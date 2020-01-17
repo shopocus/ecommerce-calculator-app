@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">calculator</string>
+    <string-array name="numbers">
+        <item>choose</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+    </string-array>
 </resources>
