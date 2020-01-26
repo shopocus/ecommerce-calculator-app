@@ -55,7 +55,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/colorFormBackground" />
+            android:textColor="@color/colorBae" />
 
     <TextView
         android:id="@+id/textViewRegister"

@@ -72,7 +72,7 @@
             android:background="@color/colorPrimaryDark"
             android:text="Sign Up"
             android:textAllCaps="false"
-            android:textColor="@color/colorFormBackground" />
+            android:textColor="@color/colorBae" />
 
         <TextView
             android:id="@+id/textViewLogin"
