@@ -1,10 +1,10 @@
-package com.ecommerce.calculator;
+package com.ecommerce.calculator.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import com.ecommerce.calculator.R;
 
 public class SplashScreen extends AppCompatActivity {
 

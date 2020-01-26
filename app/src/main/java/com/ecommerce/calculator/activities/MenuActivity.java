@@ -1,9 +1,9 @@
-package com.ecommerce.calculator;
+package com.ecommerce.calculator.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.ecommerce.calculator.R;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,18 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import  android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     ListView listView;
     String nTitle[] = {"Meesho","Flipkart","Amazon","Myntra","Paytm"};
@@ -33,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu);
 
         listView = findViewById(R.id.listview);
         MyAdapter adapter = new MyAdapter(this, nTitle, nDescription, images);
@@ -42,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
-                   // Toast.makeText(MainActivity.this,"description",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, calculation.class);
+                    Intent intent = new Intent(MenuActivity.this, calculation.class);
                     startActivity(intent);
                 }
                 else {

@@ -4,36 +4,27 @@
     package="com.ecommerce.calculator">
 
     <dist:module dist:instant="true" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/calculator"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/calculator"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".SplashScreen"
+        <activity android:name=".activities.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".calculation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.MenuActivity"></activity>
+        <activity android:name=".activities.calculation"></activity>
     </application>
 
 </manifest>
