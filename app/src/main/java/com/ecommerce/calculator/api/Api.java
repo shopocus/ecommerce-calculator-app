@@ -26,6 +26,19 @@ public interface Api {
             @Field("password") String password
     );
 
+    @FormUrlEncoded
+    @POST("calculate")
+    call<CalculateResponse> calculate(
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithGst") double productPriceWithGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("packagingExpense") double packagingExpense,
+            @Field("storageFee") double storageFee,
+            @Field("discountPercent") double discountPercent,
+            @Field("discountAmount") double discountAmount
+    );
+
     /*@FormUrlEncoded
     @PUT("updateuser/{id}")
     Call<LoginResponse> updateUser(
