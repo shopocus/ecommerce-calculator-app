@@ -2,6 +2,7 @@ package com.ecommerce.calculator.api;
 
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
+import com.ecommerce.calculator.models.CalculateResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -28,13 +29,15 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("calculate")
-    call<CalculateResponse> calculate(
+    Call<CalculateResponse> calculate(
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
             @Field("productPriceWithGst") double productPriceWithGst,
             @Field("inwardShipping") double inwardShipping,
             @Field("packagingExpense") double packagingExpense,
+            @Field("labour") double labour,
             @Field("storageFee") double storageFee,
+            @Field("other") double other,
             @Field("discountPercent") double discountPercent,
             @Field("discountAmount") double discountAmount
     );
