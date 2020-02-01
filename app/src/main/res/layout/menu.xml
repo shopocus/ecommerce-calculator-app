@@ -7,6 +7,14 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+    <!--<include
+        layout="@layout/options_tab"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"/>-->
 
     <ScrollView
         android:layout_width="match_parent"

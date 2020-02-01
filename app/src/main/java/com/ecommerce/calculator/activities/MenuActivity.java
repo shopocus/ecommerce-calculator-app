@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
-                    Intent intent = new Intent(MenuActivity.this, calculation.class);
+                    Intent intent = new Intent(MenuActivity.this, FragmentSelection.class);
                     startActivity(intent);
                 }
                 else {

@@ -32,7 +32,7 @@ public interface Api {
     Call<CalculateResponse> calculate(
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
-            @Field("productPriceWithGst") double productPriceWithGst,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
             @Field("inwardShipping") double inwardShipping,
             @Field("packagingExpense") double packagingExpense,
             @Field("labour") double labour,

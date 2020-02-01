@@ -3,7 +3,6 @@ package com.ecommerce.calculator.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
-import com.ecommerce.calculator.storage.SharedPrefManager;
+
 import retrofit2.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,7 +24,7 @@ public class calculation extends AppCompatActivity implements View.OnClickListen
     ImageButton details, expenses, discounts;
     TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5, line6, textViewResult;
     EditText num1, num2, num3, num4, num5, num6, num7, num8, num9, num10;
-    Button calculate,reset;
+   // Button calculate,reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +33,9 @@ public class calculation extends AppCompatActivity implements View.OnClickListen
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       // getSupportActionBar().setTitle("back arrow");
+        // getSupportActionBar().setTitle("back arrow");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-       // getSupportActionBar().setDisplayShowTitleEnabled(true);
+        // getSupportActionBar().setDisplayShowTitleEnabled(true);
 
         details = (ImageButton) findViewById(R.id.details_dropdown);
         pp = (TextView) findViewById(R.id.text_pp);
@@ -67,8 +66,8 @@ public class calculation extends AppCompatActivity implements View.OnClickListen
         num9 = (EditText) findViewById(R.id.number9);
         num10 = (EditText) findViewById(R.id.number10);
         textViewResult = (TextView) findViewById(R.id.text_view_result);
-       // calculate = (Button) findViewById(R.id.calcuate);
-       // reset = (Button)findViewById(R.id.reset);
+        // calculate = (Button) findViewById(R.id.calcuate);
+        // reset = (Button)findViewById(R.id.reset);
         findViewById(R.id.calculate).setOnClickListener(this);
         findViewById(R.id.reset).setOnClickListener(this);
     }
@@ -87,7 +86,7 @@ public class calculation extends AppCompatActivity implements View.OnClickListen
         double number10 = Double.parseDouble(num10.getText().toString());
 
         Call<CalculateResponse> call = RetrofitClient
-                .getInstance().getApi().calculate(number1, number2, number3, number4, number5, number6, number7, number8, number9, number10);
+                .getInstance().getApi().calculate(number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
 
         call.enqueue(new Callback<CalculateResponse>() {
             @Override
@@ -104,7 +103,7 @@ public class calculation extends AppCompatActivity implements View.OnClickListen
                     content += "tcs: " + CalculateResponse.getTcs() + "\n";
                     content += "gstPayable: " + CalculateResponse.getGstPayable() + "\n";
                     content += "gstClaim: " + CalculateResponse.getGstClaim() + "\n";
-                    content += "profitPercentage: " + CalculateResponse.getProfitPercentage();
+                    content += "profitPercentage: " + CalculateResponse.getProfitPercentage() + "\n";
                     textViewResult.append(content);
                 //}else {
                 //    Toast.makeText(calculation.this, CalculateResponse.getMsg(), Toast.LENGTH_LONG).show();
