@@ -2,41 +2,45 @@ package com.ecommerce.calculator.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.ecommerce.calculator.R;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import  android.widget.ListView;
+import android.widget.Toolbar;
 
 public class MenuActivity extends AppCompatActivity {
 
     ListView listView;
     String nTitle[] = {"Meesho","Flipkart","Amazon","Myntra","Paytm"};
-    String nDescription[] = {"subtitle","subtitle","subtitle","subtitle","subtitle"};
-    int images[] = {R.drawable.meesho,R.drawable.flipkart,R.drawable.amazon,R.drawable.myntra,R.drawable.paytm};
+    //String nDescription[] = {"subtitle","subtitle","subtitle","subtitle","subtitle"};
+    //int images[] = {R.drawable.meesho,R.drawable.flipkart,R.drawable.amazon,R.drawable.myntra,R.drawable.paytm};
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
         listView = findViewById(R.id.listview);
-        MyAdapter adapter = new MyAdapter(this, nTitle, nDescription, images);
+        MyAdapter adapter = new MyAdapter(this, nTitle);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position==0){
-                    Intent intent = new Intent(MenuActivity.this, calculation.class);
+                    Intent intent = new Intent(MenuActivity.this, FragmentSelection.class);
                     startActivity(intent);
                 }
                 else {
@@ -44,21 +48,25 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setActionBar(toolbar);
+        //setSupportActionBar(toolbar);
     }
 
     class MyAdapter extends ArrayAdapter<String>{
 
         Context context;
         String rTitle[];
-        String rDescription[];
-        int rImgs[];
+        //String rDescription[];
+        //int rImgs[];
 
-        MyAdapter(Context c,String title[], String description[], int imgs[]){
+        MyAdapter(Context c,String title[]){
             super(c, R.layout.row, R.id.textview1, title);
             this.context = c;
             this.rTitle = title;
-            this.rDescription = description;
-            this.rImgs = imgs;
+            //this.rDescription = description;
+            //this.rImgs = imgs;
         }
 
         @NonNull
@@ -66,12 +74,12 @@ public class MenuActivity extends AppCompatActivity {
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View row = layoutInflater.inflate(R.layout.row,parent,false);
-            ImageView images = row.findViewById(R.id.image);
+            //ImageView images = row.findViewById(R.id.image);
             TextView myTitle = row.findViewById(R.id.textview1);
-            TextView myDescription = row.findViewById(R.id.textview2);
-            images.setImageResource(rImgs[position]);
+            //TextView myDescription = row.findViewById(R.id.textview2);
+            //images.setImageResource(rImgs[position]);
             myTitle.setText(rTitle[position]);
-            myDescription.setText(rDescription[position]);
+            //myDescription.setText(rDescription[position]);
             return row;
         }
     }

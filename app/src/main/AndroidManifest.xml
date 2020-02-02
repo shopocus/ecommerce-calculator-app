@@ -23,8 +23,8 @@
         </activity>
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"></activity>
         <activity android:name=".activities.MenuActivity"></activity>
-        <activity android:name=".activities.calculation"></activity>
     </application>
 
 </manifest>

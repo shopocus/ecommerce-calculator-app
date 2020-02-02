@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
+
+   <!-- <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />-->
+
+    <!--<androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragments"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"/>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
     <TextView
         android:id="@+id/text_input"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:background="@color/colorBase"
         android:text="Input Details"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -18,35 +41,39 @@
 
         <TextView
             android:id="@+id/text_sp"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Selling Price: "
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorAccent"/>
 
         <EditText
             android:id="@+id/number1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorBase"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="@color/colorBase">
         <TextView
             android:id="@+id/text_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Product Details"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+
         <ImageButton
             android:id="@+id/details_dropdown"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/negation"
-            android:onClick="extension_details"/>
+            android:layout_height="match_parent"
+            android:src="@drawable/dropdown" />
 
     </LinearLayout>
 
@@ -56,20 +83,31 @@
 
         <TextView
             android:id="@+id/text_pp"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Product Price: "
+            android:text="Purchase Price: "
             android:visibility="gone"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorAccent"/>
 
         <EditText
             android:id="@+id/number2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number" />
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/line1"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,38 +115,41 @@
 
         <TextView
             android:id="@+id/text_gst"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="GST: "
-            android:textColor="@color/colorPrimaryDark"/>
+            android:text="GST on product: "
+            android:textColor="@color/colorAccent"/>
 
         <EditText
             android:id="@+id/number3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number" />
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBase"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
         <TextView
             android:id="@+id/text_expenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other expenses"
-            android:textColor="@color/colorAccent"
+            android:text="Expenses"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="16sp" />
+
         <ImageButton
             android:id="@+id/expenses_dropdown"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/negation"
-            android:onClick="extension_expenses"/>
+            android:layout_height="match_parent"
+            android:src="@drawable/dropdown" />
 
     </LinearLayout>
 
@@ -118,18 +159,168 @@
 
         <TextView
             android:id="@+id/text_transport"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Transportation: "
+            android:text="Inward Shipping: "
             android:visibility="gone"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorAccent"/>
 
         <EditText
             android:id="@+id/number4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number" />
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line2"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_packaging"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Packaging expenses: "
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/number5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line3"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_labour"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Labour: "
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/number6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line4"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/text_Storage"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Storage fees: "
+        android:visibility="gone"
+        android:textColor="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/number7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textColor="@color/colorBase"
+        android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/line5"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_other"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Other charges: "
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/number8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/colorBase"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:id="@+id/text_discounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discounts"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/discounts_dropdown"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dropdown" />
 
     </LinearLayout>
 
@@ -138,24 +329,61 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/text_raw"
-            android:layout_width="wrap_content"
+            android:id="@+id/text_price"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Raw Materials: "
+            android:text="By Price: "
             android:visibility="gone"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:textColor="@color/colorAccent"/>
 
         <EditText
-            android:id="@+id/number5"
+            android:id="@+id/number9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number" />
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/line6"
+        style="?android:attr/listSeparatorTextViewStyle"
+        android:paddingTop="3dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorBase" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_percentage"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="By Percentage: "
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"/>
+
+        <EditText
+            android:id="@+id/number10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal">
         <Button
             android:id="@+id/reset"
             android:layout_width="wrap_content"
@@ -164,12 +392,22 @@
             android:layout_centerVertical="true"
             android:text="RESET" />
         <Button
-            android:id="@+id/calcuate"
+            android:id="@+id/calculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="CALCULATE" />
 
     </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_view_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000" />
+
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
