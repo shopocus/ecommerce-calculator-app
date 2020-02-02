@@ -2,11 +2,13 @@ package com.ecommerce.calculator.activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 import com.ecommerce.calculator.R;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import  android.widget.ListView;
+import android.widget.Toolbar;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class MenuActivity extends AppCompatActivity {
     //int images[] = {R.drawable.meesho,R.drawable.flipkart,R.drawable.amazon,R.drawable.myntra,R.drawable.paytm};
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +48,10 @@ public class MenuActivity extends AppCompatActivity {
                 }
             }
         });
+        //Toolbar toolbar = findViewById(R.id.toolbar);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setActionBar(toolbar);
+        //setSupportActionBar(toolbar);
     }
 
     class MyAdapter extends ArrayAdapter<String>{
