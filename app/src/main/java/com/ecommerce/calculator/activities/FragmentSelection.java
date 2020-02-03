@@ -1,14 +1,19 @@
 package com.ecommerce.calculator.activities;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 import com.ecommerce.calculator.R;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 public class FragmentSelection extends AppCompatActivity {
@@ -21,18 +26,25 @@ public class FragmentSelection extends AppCompatActivity {
 
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setActionBar(toolbar);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        // toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        setActionBar(toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         // getSupportActionBar().setTitle("back arrow");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Shopocus");
+        toolbar.setSubtitle("Business Calculator");
+       // getSupportActionBar().setIcon(R.drawable.shopocus);
         // getSupportActionBar().setDisplayShowTitleEnabled(true);
+
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));
         tabLayout.addTab(tabLayout.newTab().setText("Saved"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
@@ -54,5 +66,25 @@ public class FragmentSelection extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.profile, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.profile:
+                break;
+            case R.id.logout:
+                SharedPrefManager.getInstance(FragmentSelection.this).clear();
+                Intent intent = new Intent(FragmentSelection.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
