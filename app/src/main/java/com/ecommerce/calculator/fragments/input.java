@@ -166,14 +166,13 @@ public class input extends Fragment implements View.OnClickListener{
             num8 = view.findViewById(R.id.number8);
             num9 = view.findViewById(R.id.number9);
             num10 = view.findViewById(R.id.number10);
-            textViewResult = view.findViewById(R.id.text_view_result);
+           // textViewResult = view.findViewById(R.id.text_view_resulta);
 
            // view.findViewById(R.id.reset).setOnClickListener(this);
            // view.findViewById(R.id.calculate).setOnClickListener(this);
         }
 
     protected void calculate() {
-        Toast.makeText(getActivity(), "yes", Toast.LENGTH_LONG).show();
         double number1 = Double.parseDouble(num1.getText().toString());
         double number2 = Double.parseDouble(num2.getText().toString());
         double number3 = Double.parseDouble(num3.getText().toString());
@@ -192,7 +191,7 @@ public class input extends Fragment implements View.OnClickListener{
             @Override
             public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
                 CalculateResponse CalculateResponse = response.body();
-                Toast.makeText(getActivity(), "yes boss", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "result", Toast.LENGTH_LONG).show();
                 //textViewResult.setText(SharedPrefManager.getInstance(getApplication()).getResult());
                 // if(CalculateResponse.getMsg().equals("")) {
                 String content = "";
@@ -204,7 +203,7 @@ public class input extends Fragment implements View.OnClickListener{
                 content += "gstPayable: " + CalculateResponse.getGstPayable() + "\n";
                 content += "gstClaim: " + CalculateResponse.getGstClaim() + "\n";
                 content += "profitPercentage: " + CalculateResponse.getProfitPercentage() + "\n";
-                textViewResult.append(content);
+             //   textViewResult.append(content);
                 //}else {
                 //    Toast.makeText(calculation.this, CalculateResponse.getMsg(), Toast.LENGTH_LONG).show();
                 //}

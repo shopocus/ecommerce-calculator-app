@@ -1,6 +1,8 @@
 package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import com.ecommerce.calculator.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
@@ -38,7 +41,10 @@ public class FragmentSelection extends AppCompatActivity {
        // getSupportActionBar().setIcon(R.drawable.shopocus);
         // getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-
+//        Intent intent = getIntent();
+//        String mtitle = intent.getStringExtra("ititle");
+//        byte[] mbytes = getIntent().getByteArrayExtra("iImage");
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(mbytes, 0, mbytes.length);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));
