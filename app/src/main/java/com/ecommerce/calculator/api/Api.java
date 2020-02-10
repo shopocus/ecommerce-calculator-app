@@ -3,6 +3,7 @@ package com.ecommerce.calculator.api;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
+import com.ecommerce.calculator.models.SaveResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -40,6 +41,31 @@ public interface Api {
             @Field("other") double other,
             @Field("discountPercent") double discountPercent,
             @Field("discountAmount") double discountAmount
+    );
+
+    @FormUrlEncoded
+    @POST("meesho/tosave")
+    Call<SaveResponse> saved(
+      @Field("email") String email,
+      @Field("title") String title,
+      @Field("sellingPrice") String sellingPrice,
+      @Field("gstOnProduct") String gstOnProduct,
+      @Field("productPriceWithoutGst") String productPriceWithoutGst,
+      @Field("inwardShipping") String inwardShipping,
+      @Field("packagingExpense") String packagingExpense,
+      @Field("labour") String labour,
+      @Field("storageFee") String storageFee,
+      @Field("other") String other,
+      @Field("discountPercent") String discountPercent,
+      @Field("discountAmount") String discountAmount,
+      @Field("bankSettlement") Double bankSettlement,
+      @Field("totalMeeshoCommision") Double totalMeeshoCommision,
+      @Field("profit") Double profit,
+      @Field("totalGstPayable") Double totalGstPayable,
+      @Field("tcs") Double tcs,
+      @Field("gstPayable") Double gstPayable,
+      @Field("gstClaim") Double gstClaim,
+      @Field("profitPercentage") Double profitPercentage
     );
 
     /*@FormUrlEncoded

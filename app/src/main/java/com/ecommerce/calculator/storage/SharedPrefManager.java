@@ -2,6 +2,8 @@ package com.ecommerce.calculator.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.User;
 
 public class SharedPrefManager {
@@ -51,18 +53,18 @@ public class SharedPrefManager {
         );
     }
 
-    public String getResult() {
+    public CalculateResponse getResult() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String content = "";
-                   /* content += "bankSettlement: " + sharedPreferences.getString("bankSettlement", null) + "\n";
-                    content += "totalMeeshoCommision: " + sharedPreferences.getString("totalMeeshoCommision", null) + "\n";
-                    content += "profit: " + sharedPreferences.getString("profit", null) + "\n";
-                    content += "totalGstPayable: " + sharedPreferences.getString("totalGstPayable", null) + "\n\n";
-                    content += "tcs: " + sharedPreferences.getString("tcs", null) + "\n";
-                    content += "gstPayable: " + sharedPreferences.getString("gstPayable", null) + "\n";
-                    content += "gstClaim: " + sharedPreferences.getString("gstClaim", null) + "\n";
-                    content += "profitPercentage: " + sharedPreferences.getString("profitPercentage", null) + "\n\n";*/
-        return content;
+        return new CalculateResponse(
+                sharedPreferences.getFloat("bankSettlement", 0),
+                sharedPreferences.getFloat("totalMeeshoCommision", 0),
+                sharedPreferences.getFloat("profit", 0),
+                sharedPreferences.getFloat("totalGstPayable", 0),
+                sharedPreferences.getFloat("tcs", 0),
+                sharedPreferences.getFloat("gstPayable", 0),
+                sharedPreferences.getFloat("gstClaim", 0),
+                sharedPreferences.getFloat("profitPercentage", 0)
+        );
     }
 
     public void clear() {
