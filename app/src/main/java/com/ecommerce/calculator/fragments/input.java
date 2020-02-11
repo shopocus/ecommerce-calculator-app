@@ -190,6 +190,16 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
+        sendEmail = view.findViewById(R.id.sendEmail);
+        sendEmail.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                share();
+            }
+        });
+
         return view;
     }
 
@@ -372,6 +382,36 @@ public class input extends Fragment implements View.OnClickListener {
 
             }
         });
+    }
+
+    public void share(){
+
+        String content = "sellingPrice" + num1.getText().toString().trim() + "\n" +
+        "gstOnProduct" + num3.getText().toString().trim() + "\n" +
+        "productPriceWithoutGst" + num2.getText().toString().trim() + "\n" +
+        "inwardShipping" + num4.getText().toString().trim() + "\n" +
+        "packagingExpense" + num5.getText().toString().trim() + "\n" +
+        "labour" + num6.getText().toString().trim() + "\n" +
+        "storageFee" + num7.getText().toString().trim() + "\n" +
+        "other" + num8.getText().toString().trim() + "\n" +
+        "discountPercent" + num10.getText().toString().trim() + "\n" +
+        "discountAmount" + num9.getText().toString().trim() + "\n" +
+        "bankSettlement" + String.valueOf(items[0]) + "\n" +
+        "totalMeeshoCommision" + String.valueOf(items[1]) + "\n" +
+        "profit" + String.valueOf(items[2]) + "\n" +
+                "totalGstPayable" + String.valueOf(items[3]) + "\n" +
+        "tcs" + String.valueOf(items[4]) + "\n" +
+        "gstPayable" + String.valueOf(items[5]) + "\n" +
+        "gstClaim" + String.valueOf(items[6]) + "\n" +
+        "profitPercentage" + String.valueOf(items[7]);
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        String shareBody = content;
+        String shareSub = "Your Bill";
+        intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
+        intent.putExtra(intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(intent, "Share using"));
     }
 
     @Override
