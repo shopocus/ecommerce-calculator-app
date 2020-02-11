@@ -53,19 +53,35 @@ public class SharedPrefManager {
         );
     }
 
-    public CalculateResponse getResult() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return new CalculateResponse(
-                sharedPreferences.getFloat("bankSettlement", 0),
-                sharedPreferences.getFloat("totalMeeshoCommision", 0),
-                sharedPreferences.getFloat("profit", 0),
-                sharedPreferences.getFloat("totalGstPayable", 0),
-                sharedPreferences.getFloat("tcs", 0),
-                sharedPreferences.getFloat("gstPayable", 0),
-                sharedPreferences.getFloat("gstClaim", 0),
-                sharedPreferences.getFloat("profitPercentage", 0)
-        );
-    }
+//    public void saveResult(String text1, String text2, String text3, String text4, String text5, String text6, String text7, String text8){
+//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString("bankSettlement", text1);
+//        editor.putString("totalMeeshoCommision", text2);
+//        editor.putString("profit", text3);
+//        editor.putString("totalGstPayable", text4);
+//        editor.putString("tcs", text5);
+//        editor.putString("gstPayable", text6);
+//        editor.putString("gstClaim", text7);
+//        editor.putString("profitPercentage", text8);
+//
+//        editor.apply();
+//    }
+//
+//    public CalculateResponse getResult() {
+//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return new CalculateResponse(
+//                sharedPreferences.getFloat("bankSettlement", 0),
+//                sharedPreferences.getFloat("totalMeeshoCommision", 0),
+//                sharedPreferences.getFloat("profit", 0),
+//                sharedPreferences.getFloat("totalGstPayable", 0),
+//                sharedPreferences.getFloat("tcs", 0),
+//                sharedPreferences.getFloat("gstPayable", 0),
+//                sharedPreferences.getFloat("gstClaim", 0),
+//                sharedPreferences.getFloat("profitPercentage", 0)
+//        );
+//    }
 
     public void clear() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

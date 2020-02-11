@@ -58,14 +58,14 @@ public interface Api {
       @Field("other") String other,
       @Field("discountPercent") String discountPercent,
       @Field("discountAmount") String discountAmount,
-      @Field("bankSettlement") Double bankSettlement,
-      @Field("totalMeeshoCommision") Double totalMeeshoCommision,
-      @Field("profit") Double profit,
-      @Field("totalGstPayable") Double totalGstPayable,
-      @Field("tcs") Double tcs,
-      @Field("gstPayable") Double gstPayable,
-      @Field("gstClaim") Double gstClaim,
-      @Field("profitPercentage") Double profitPercentage
+      @Field("bankSettlement") String bankSettlement,
+      @Field("totalMeeshoCommision") String totalMeeshoCommision,
+      @Field("profit") String profit,
+      @Field("totalGstPayable") String totalGstPayable,
+      @Field("tcs") String tcs,
+      @Field("gstPayable") String gstPayable,
+      @Field("gstClaim") String gstClaim,
+      @Field("profitPercentage") String profitPercentage
     );
 
     /*@FormUrlEncoded

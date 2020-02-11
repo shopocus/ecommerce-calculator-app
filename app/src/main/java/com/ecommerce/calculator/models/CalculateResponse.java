@@ -1,7 +1,14 @@
 package com.ecommerce.calculator.models;
 
 public class CalculateResponse {
-    private double bankSettlement,totalMeeshoCommision,profit,totalGstPayable,tcs,gstPayable,gstClaim,profitPercentage;
+    private  double bankSettlement;
+    private  double totalMeeshoCommision;
+    private  double profit;
+    private  double totalGstPayable;
+    private  double tcs;
+    private  double gstPayable;
+    private  double gstClaim;
+    private  double profitPercentage;
     private String msg;
 
     public CalculateResponse( double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs, double gstPayable, double gstClaim, double profitPercentage) {

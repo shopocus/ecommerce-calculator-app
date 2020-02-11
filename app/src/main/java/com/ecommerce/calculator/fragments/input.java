@@ -1,7 +1,11 @@
 package com.ecommerce.calculator.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +39,7 @@ import android.view.View.OnClickListener;
 import android.util.Log;
 import java.util.ArrayList;
 
-public class input extends Fragment implements View.OnClickListener{
+public class input extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "input";
 
@@ -45,7 +49,8 @@ public class input extends Fragment implements View.OnClickListener{
 
     ListView itemList;
     CardView result_card;
-   // String items[];
+    Double[] items = new Double[8] ;
+    private String myText;
    // output text1,text2,text3,text4,text5,text6,text7,text8;
 
     @Nullable
@@ -160,7 +165,28 @@ public class input extends Fragment implements View.OnClickListener{
             @Override
             public void onClick(View v)
             {
-                save();
+                AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
+                mydialog.setTitle("Title");
+
+                final EditText title = new EditText(getActivity());
+                title.setInputType(InputType.TYPE_CLASS_TEXT);
+                mydialog.setView(title);
+
+                mydialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        myText = title.getText().toString();
+                        //Toast.makeText(getActivity(), myText, Toast.LENGTH_LONG).show();
+                        save();
+                    }
+                });
+                mydialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                mydialog.show();
             }
         });
 
@@ -227,14 +253,14 @@ public class input extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(), "result", Toast.LENGTH_LONG).show();
                 result_card.setVisibility(View.VISIBLE);
 
-//                items[0] = String.valueOf(CalculateResponse.getBankSettlement());
-//                items[1] = String.valueOf(CalculateResponse.getTotalMeeshoCommision());
-//                items[2] = String.valueOf(CalculateResponse.getProfit());
-//                items[3] = String.valueOf(CalculateResponse.getTotalGstPayable());
-//                items[4] = String.valueOf(CalculateResponse.getTcs());
-//                items[5] = String.valueOf(CalculateResponse.getGstPayable());
-//                items[6] = String.valueOf(CalculateResponse.getGstClaim());
-//                items[7] = String.valueOf(CalculateResponse.getProfitPercentage());
+                items[0] = CalculateResponse.getBankSettlement();
+                items[1] = CalculateResponse.getTotalMeeshoCommision();
+                items[2] = CalculateResponse.getProfit();
+                items[3] = CalculateResponse.getTotalGstPayable();
+                items[4] = CalculateResponse.getTcs();
+                items[5] = CalculateResponse.getGstPayable();
+                items[6] = CalculateResponse.getGstClaim();
+                items[7] = CalculateResponse.getProfitPercentage();
 
                 output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
                 output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalMeeshoCommision()));
@@ -257,7 +283,9 @@ public class input extends Fragment implements View.OnClickListener{
 
                 OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
                 itemList.setAdapter(adapter);
-
+//
+//                SharedPrefManager.getInstance(getActivity())
+//                        .saveResult(text1.getAnswer(),text2.getAnswer(),text3.getAnswer(),text4.getAnswer(),text5.getAnswer(),text6.getAnswer(),text7.getAnswer(),text8.getAnswer());
                 //OutputListAdapter adapter = new OutputListAdapter(this, R.layout.output_row, itemList);
                 //ListView.setAdapter(adapter);
                 //textViewResult.setText(SharedPrefManager.getInstance(getApplication()).getResult());
@@ -288,7 +316,7 @@ public class input extends Fragment implements View.OnClickListener{
     public void save(){
 
         String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
-        String title = "aashi";
+        String title = String.valueOf(myText);
         String sellingPrice = num1.getText().toString().trim();
         String gstOnProduct = num3.getText().toString().trim();
         String productPriceWithoutGst = num2.getText().toString().trim();
@@ -299,18 +327,19 @@ public class input extends Fragment implements View.OnClickListener{
         String other = num8.getText().toString().trim();
         String discountPercent = num10.getText().toString().trim();
         String discountAmount = num9.getText().toString().trim();
-        Double bankSettlement = SharedPrefManager.getInstance(getActivity()).getResult().getBankSettlement();
-        Double totalMeeshoCommision = SharedPrefManager.getInstance(getActivity()).getResult().getTotalMeeshoCommision();
-        Double profit = SharedPrefManager.getInstance(getActivity()).getResult().getProfit();
-        Double totalGstPayable = SharedPrefManager.getInstance(getActivity()).getResult().getTotalGstPayable();
-        Double tcs = SharedPrefManager.getInstance(getActivity()).getResult().getTcs();
-        Double gstPayable = SharedPrefManager.getInstance(getActivity()).getResult().getGstPayable();
-        Double gstClaim = SharedPrefManager.getInstance(getActivity()).getResult().getGstClaim();
-        Double profitPercentage = SharedPrefManager.getInstance(getActivity()).getResult().getProfitPercentage();
+        String bankSettlement = String.valueOf(items[0]);
+        String totalMeeshoCommision = String.valueOf(items[1]);
+        String profit = String.valueOf(items[2]);
+        String totalGstPayable = String.valueOf(items[3]);
+        String tcs = String.valueOf(items[4]);
+        String gstPayable = String.valueOf(items[5]);
+        String gstClaim = String.valueOf(items[6]);
+        String profitPercentage = String.valueOf(items[7]);
 
         System.out.println(TAG);
         Log.d(TAG,email);
         Log.d(TAG, String.valueOf(bankSettlement));
+        Log.d(TAG, String.valueOf(title));
 
         Call<SaveResponse> call = RetrofitClient
                 .getInstance()
@@ -349,4 +378,5 @@ public class input extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
 
     }
+
 }
