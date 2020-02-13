@@ -2,6 +2,7 @@ package com.ecommerce.calculator.models;
 import android.view.View;
 import android.content.Context;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,9 +18,8 @@ public class progressButton {
     private ProgressBar progressBar;
     private TextView textView;
 
-    Animation fade_in;
-
     public progressButton(Context ct, View view){
+
         cardView = view.findViewById(R.id.cardView);
         layout = view.findViewById(R.id.constraint_layout);
         progressBar = view.findViewById(R.id.loader);

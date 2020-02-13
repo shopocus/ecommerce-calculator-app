@@ -11,6 +11,27 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
+    <LinearLayout
+        android:id="@id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/toolbar"
+        android:layout_marginBottom="16dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_marginRight="16dp"
+            android:queryHint="Search Here"
+            android:iconifiedByDefault="false"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

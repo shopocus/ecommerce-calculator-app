@@ -27,7 +27,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="25dp"
                             android:indeterminate="true"
-                            android:indeterminateTint="@color/colorBase"
+                            android:indeterminateTint="@color/white"
                             android:indeterminateTintMode="src_atop"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

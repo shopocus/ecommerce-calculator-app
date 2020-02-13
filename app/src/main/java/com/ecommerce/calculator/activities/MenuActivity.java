@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import  android.widget.GridView;
 
@@ -34,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
 
     RecyclerView mrecyclerView;
     HolderAdapter holderAdapter;
+    SearchView searchView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +52,20 @@ public class MenuActivity extends AppCompatActivity {
 
         holderAdapter = new HolderAdapter(this, getMyList());
         mrecyclerView.setAdapter(holderAdapter);
+
+        searchView = (SearchView)findViewById(R.id.search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                holderAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private ArrayList<menu> getMyList(){

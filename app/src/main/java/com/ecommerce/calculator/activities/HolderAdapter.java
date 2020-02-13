@@ -8,22 +8,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.ColorSpace.Model;
+import android.widget.Filter;
+import android.widget.Filterable;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ecommerce.calculator.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+
 import com.ecommerce.calculator.models.menu;
 
-public class HolderAdapter extends RecyclerView.Adapter<MyHolder> {
+public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable {
 
     Context c;
     ArrayList<menu> menu;
+    ArrayList<menu> ListFull;
 
     public HolderAdapter(Context c, ArrayList<menu> menu){
         this.c = c;
         this.menu = menu;
+        ListFull = new ArrayList<>(menu);
     }
 
     @NonNull
@@ -71,4 +77,40 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> {
     public int getItemCount() {
         return menu.size();
     }
+
+    public Filter getFilter(){
+        return menuFilter;
+    }
+    private Filter menuFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            ArrayList<menu> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(ListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (menu item : ListFull) {
+                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            menu.clear();
+            menu.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

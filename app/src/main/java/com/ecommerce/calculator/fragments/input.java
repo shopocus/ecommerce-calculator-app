@@ -6,6 +6,7 @@ import android.content.Intent;
 import androidx.core.content.ContextCompat;
 
 import android.os.Handler;
+import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class input extends Fragment implements View.OnClickListener {
     //progressButton progressButton;
     private ProgressBar progressBar;
     private TextView textView;
+    Animation fade_in;
     //ProgressBar progressBar;
    // output text1,text2,text3,text4,text5,text6,text7,text8;
 
@@ -399,7 +401,7 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
                 CalculateResponse CalculateResponse = response.body();
-                Toast.makeText(getActivity(), "result", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "OUTPUT", Toast.LENGTH_LONG).show();
 
                 ButtonFinished();
 
@@ -464,7 +466,7 @@ public class input extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -508,26 +510,20 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
                 SaveResponse dr = response.body();
-                //if (dr.getEmail().equals("yes")) {
-                save.setImageResource(R.drawable.ic_bookmark);
-                save.setEnabled(false);
-                    Toast.makeText(getActivity(), dr.getEmail(), Toast.LENGTH_LONG).show();
-                    //SharedPrefManager.getInstance(getActivity())
-                      //      .saveUser(dr.getEmail());
-                    //Intent intent = new Intent(getActivity(), MenuActivity.class);
-                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    //startActivity(intent);
-                //} else if(dr.getMessage().equals("user_already_exist")){
-                  //  Toast.makeText(MainActivity.this, "Account already exist", Toast.LENGTH_LONG).show();
-                //}else {
-                  //  Toast.makeText(MainActivity.this, "Try Again Later", Toast.LENGTH_LONG).show();
-                //}
+                if (dr.getMessage().equals("title_already_exist")) {
+                    Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
+                }else
+                {
+                    save.setImageResource(R.drawable.ic_bookmark);
+                    save.setEnabled(false);
+                    Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<SaveResponse> call, Throwable t) {
 
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Internet  Disconnected", Toast.LENGTH_LONG).show();
 
             }
         });

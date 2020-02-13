@@ -25,6 +25,7 @@
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"></activity>
         <activity android:name=".activities.MenuActivity"></activity>
+        <activity android:name=".activities.profile"></activity>
     </application>
 
 </manifest>

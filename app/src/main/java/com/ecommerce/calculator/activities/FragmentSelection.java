@@ -84,12 +84,15 @@ public class FragmentSelection extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
+                Intent intent = new Intent(FragmentSelection.this, profile.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
             case R.id.logout:
                 SharedPrefManager.getInstance(FragmentSelection.this).clear();
-                Intent intent = new Intent(FragmentSelection.this, LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                Intent intent_logout = new Intent(FragmentSelection.this, LoginActivity.class);
+                intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_logout);
         }
         return super.onOptionsItemSelected(item);
     }
