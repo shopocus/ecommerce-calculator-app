@@ -6,13 +6,24 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <ImageButton
+        android:id="@+id/reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_refresh"
+        android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
         android:paddingBottom="30dp"
         android:orientation="vertical">
 
@@ -47,10 +58,18 @@
             android:text="Selling Price: "
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -89,6 +108,7 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:gravity="left"
+            android:rotation="180"
             android:backgroundTint="@color/light_grey"
             android:src="@drawable/ic_arrow_drop_down" />
 
@@ -103,14 +123,21 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Purchase Price: "
-            android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/rs1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:textColor="@color/colorBase"/>
 
         <EditText
             android:id="@+id/number2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -120,7 +147,6 @@
         style="?android:attr/listSeparatorTextViewStyle"
         android:paddingTop="3dp"
         android:gravity="center_horizontal"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorBase" />
@@ -133,16 +159,28 @@
             android:id="@+id/text_gst"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:text="GST on product: "
             android:textColor="@color/colorPrimary"/>
 
-        <EditText
+        <TextView
+            android:id="@+id/rs2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textSize="15dp"
+            android:textColor="@color/colorBase"/>
+
+        <Spinner
+            android:id="@+id/number3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--<EditText
             android:id="@+id/number3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal" />-->
 
     </LinearLayout>
 
@@ -198,11 +236,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -229,11 +277,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -260,11 +318,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -291,11 +359,21 @@
         android:visibility="gone"
         android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
     <EditText
         android:id="@+id/number7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
+        android:textSize="15dp"
         android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -322,11 +400,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
     </LinearLayout>
 
@@ -382,11 +470,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -413,11 +511,21 @@
             android:visibility="gone"
             android:textColor="@color/colorPrimary"/>
 
+        <TextView
+            android:id="@+id/rs9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%"
+            android:textSize="15dp"
+            android:visibility="gone"
+            android:textColor="@color/colorBase"/>
+
         <EditText
             android:id="@+id/number10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:textSize="15dp"
             android:inputType="numberDecimal" />
 
     </LinearLayout>
@@ -427,11 +535,11 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal">
-        <Button
+        <!--<Button
             android:id="@+id/reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -447,7 +555,13 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@color/light_grey"
-            android:text="CALCULATE" />
+            android:text="CALCULATE" />-->
+
+        <include
+            android:id="@+id/calculate"
+            layout="@layout/loader"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 
@@ -497,7 +611,7 @@
                     android:layout_centerVertical="true"
                     android:layout_weight="50"
                     android:background="@color/white"
-                    android:src="@drawable/ic_saved"/>
+                    android:src="@drawable/ic_bookmark_border"/>
                 <ImageButton
                     android:id="@+id/sendEmail"
                     android:layout_width="match_parent"
@@ -505,7 +619,7 @@
                     android:layout_weight="50"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_mail"
+                    android:src="@drawable/ic_share"
                     android:background="@color/white"/>
 
             </LinearLayout>
