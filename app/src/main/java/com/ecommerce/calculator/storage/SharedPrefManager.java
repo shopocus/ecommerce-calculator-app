@@ -33,7 +33,7 @@ public class SharedPrefManager {
 
         editor.putString("name", user.getName());
         editor.putString("email", user.getEmail());
-        editor.putString("mobile", user.getMobile_no());
+        editor.putString("mobile_no", user.getMobile_no());
 
         editor.apply();
 

@@ -495,11 +495,6 @@ public class input extends Fragment implements View.OnClickListener {
         String gstClaim = String.valueOf(items[6]);
         String profitPercentage = String.valueOf(items[7]);
 
-        System.out.println(TAG);
-        Log.d(TAG,email);
-        Log.d(TAG, String.valueOf(bankSettlement));
-        Log.d(TAG, String.valueOf(title));
-
         Call<SaveResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -510,13 +505,12 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
                 SaveResponse dr = response.body();
-                if (dr.getMessage().equals("title_already_exist")) {
-                    Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
-                }else
-                {
+                if (dr.getMessage().equals("saved")) {
                     save.setImageResource(R.drawable.ic_bookmark);
                     save.setEnabled(false);
                     Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
                 }
             }
 

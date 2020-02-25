@@ -4,9 +4,12 @@ import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.SaveResponse;
+import com.ecommerce.calculator.models.savedTitleResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -66,6 +69,12 @@ public interface Api {
       @Field("gstPayable") String gstPayable,
       @Field("gstClaim") String gstClaim,
       @Field("profitPercentage") String profitPercentage
+    );
+
+    @FormUrlEncoded
+    @POST("meesho/saved/title")
+    Call<savedTitleResponse> getTitles(
+            @Field("email") String email
     );
 
     /*@FormUrlEncoded

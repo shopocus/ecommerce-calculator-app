@@ -1,6 +1,7 @@
 package com.ecommerce.calculator.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,8 @@ import com.ecommerce.calculator.R;
 
 public class profile extends AppCompatActivity {
 
-        private TextView textViewEmail, textViewName, textViewMobile;
+    private static final String TAG = "profile";
+    private TextView textViewEmail, textViewName, textViewMobile;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,5 +29,6 @@ public class profile extends AppCompatActivity {
             textViewEmail.setText(SharedPrefManager.getInstance(profile.this).getUser().getName());
             textViewName.setText(SharedPrefManager.getInstance(profile.this).getUser().getEmail());
             textViewMobile.setText(SharedPrefManager.getInstance(profile.this).getUser().getMobile_no());
+
     }
 }
