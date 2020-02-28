@@ -2,6 +2,7 @@ package com.ecommerce.calculator.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,24 @@ import androidx.annotation.NonNull;
 import java.util.List;
 import com.ecommerce.calculator.R;
 import android.widget.Filter;
+import android.widget.Toast;
 
-public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder> implements Filterable {
+import com.ecommerce.calculator.api.RetrofitClient;
+import com.ecommerce.calculator.fragments.saved;
+import com.ecommerce.calculator.models.DefaultResponse;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 
-    private Context mCtx;
-    private static List<String> titleList;
-    private static List<String> ListFull;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class TitleAdapter extends RecyclerView.Adapter<TitleHolder> implements Filterable {
+    private static final String TAG = "input";
+    public static final String KEY = "title";
+
+    Context mCtx;
+    List<String> titleList;
+    List<String> ListFull;
 
     public TitleAdapter(Context mCtx, List<String> titleList) {
         this.mCtx = mCtx;
@@ -29,24 +42,29 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     @NonNull
     @Override
     public TitleHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mCtx).inflate(R.layout.title_rows, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.title_rows, null);
         return new TitleHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
-        //Title title = titleList.get(position);
+        String title = titleList.get(position);
+        holder.textViewTitle.setText(title);
 
-        holder.textViewTitle.setText(titleList.get(position));
-        //holder.textViewEmail.setText(user.getEmail());
-        //holder.textViewMobile.setText(user.getMobile_no());
-        TitleHolder.setItemClickListener(new itemClick() {
+        holder.setItemClickListener(new itemClick() {
             @Override
             public void onItemClickListener(View v, int position) {
-                if (titleList.get(position).equals("Meesho")){
-                    Intent intent = new Intent(mCtx , FragmentSelection.class);
-                    mCtx.startActivity(intent);
-                }
+             //   Log.d(TAG, title);
+                saved obj = new saved();
+                obj.FetchData(title);
+                Intent intent = new Intent(mCtx, Data.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                mCtx.startActivity(intent);
+
+//                    Intent intent = new Intent(mCtx , FragmentSelection.class);
+//                    //intent.putExtra(KEY, 1);
+//                    //intent.putExtra(KEY,"1");
+//                    mCtx.startActivity(intent);
             }
         });
     }
@@ -56,18 +74,18 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         return titleList.size();
     }
 
-    public static class TitleHolder extends RecyclerView.ViewHolder {
-
-        TextView textViewTitle;
-
-        public TitleHolder(View itemView) {
-            super(itemView);
-
-            textViewTitle = itemView.findViewById(R.id.title);
-            //textViewEmail = itemView.findViewById(R.id.textViewEmail);
-            //textViewMobile = itemView.findViewById(R.id.textViewMobile);
-        }
-    }
+//    public static class TitleHolder extends RecyclerView.ViewHolder {
+//
+//        TextView textViewTitle;
+//
+//        public TitleHolder(View itemView) {
+//            super(itemView);
+//
+//            textViewTitle = itemView.findViewById(R.id.title);
+//            //textViewEmail = itemView.findViewById(R.id.textViewEmail);
+//            //textViewMobile = itemView.findViewById(R.id.textViewMobile);
+//        }
+//    }
 
     @Override
     public Filter getFilter() {

@@ -2,6 +2,7 @@ package com.ecommerce.calculator.fragments;
 
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +18,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ecommerce.calculator.activities.Data;
+import com.ecommerce.calculator.activities.FragmentSelection;
+import com.ecommerce.calculator.activities.MainActivity;
+import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.activities.TitleAdapter;
 import com.ecommerce.calculator.R;
 
@@ -27,6 +33,8 @@ import com.ecommerce.calculator.activities.HolderAdapter;
 import com.ecommerce.calculator.activities.OutputListAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
+import com.ecommerce.calculator.models.DefaultResponse;
+import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.models.savedTitleResponse;
@@ -45,7 +53,7 @@ public class saved extends Fragment{
 //    RecyclerView mrecyclerView;
 //    TitleAdapter titleAdapter;
     SearchView searchBar;
-    ImageButton edit;
+//    ImageButton edit;
 
     private RecyclerView recyclerView;
     private TitleAdapter adapter;
@@ -68,15 +76,15 @@ public class saved extends Fragment{
             }
         });
 
-        edit = view.findViewById(R.id.edit);
-        edit.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                String title =
-            }
-        });
+//        edit = view.findViewById(R.id.edit);
+//        edit.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                //String title =
+//            }
+//        });
 
 
         //mrecyclerView = view.findViewById(R.id.title_list);
@@ -113,7 +121,48 @@ public class saved extends Fragment{
             }
         });
     }
+
+    public void FetchData(String title){
+        String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
+        //String email = editTextEmail.getText().toString().trim();
+        //String mobile_no = editTextMobile.getText().toString().trim();
+        //String password = editTextPassword.getText().toString().trim();
+        Call<TitleDataResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .getData(email, title);
+
+        call.enqueue(new Callback<TitleDataResponse>() {
+            @Override
+            public void onResponse(Call<TitleDataResponse> call, Response<TitleDataResponse> response) {
+                TitleDataResponse td = response.body();
+                //if (td.getMessage().equals("yes")) {
+                    //Toast.makeText(getActivity(), "ho gya", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(getActivity())
+                            .saveData(td);
+                //}
+//                else if(dr.getMessage().equals("user_already_exist")){
+//                    signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//                    signup.setText("Sign Up");
+//                    signup.setTextColor(getResources().getColor(R.color.colorBase));
+//                    signup.setEnabled(true);
+//                    Toast.makeText(MainActivity.this, "Account already exist", Toast.LENGTH_LONG).show();
+                //}
+            }
+
+            @Override
+            public void onFailure(Call<TitleDataResponse> call, Throwable t) {
+//                signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//                signup.setText("Sign Up");
+//                signup.setTextColor(getResources().getColor(R.color.colorBase));
+//                signup.setEnabled(true);
+                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
 }
+
 
 /*        titleAdapter = new TitleAdapter(getActivity(), getMyList());
         mrecyclerView.setAdapter(titleAdapter);

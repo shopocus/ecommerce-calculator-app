@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import com.ecommerce.calculator.models.menu;
 
 public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable {
+    public static final String KEY = "title";
 
     Context c;
     ArrayList<menu> menu;
@@ -67,6 +68,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             public void onItemClickListener(View v, int position) {
                 if (menu.get(position).getTitle().equals("Meesho")){
                     Intent intent = new Intent(c , FragmentSelection.class);
+                    intent.putExtra(KEY,0);
                     c.startActivity(intent);
                 }
             }

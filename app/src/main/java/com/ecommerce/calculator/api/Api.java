@@ -5,7 +5,7 @@ import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.SaveResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
-
+import com.ecommerce.calculator.models.TitleDataResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -75,6 +75,13 @@ public interface Api {
     @POST("meesho/saved/title")
     Call<savedTitleResponse> getTitles(
             @Field("email") String email
+    );
+
+    @FormUrlEncoded
+    @POST("meesho/saved/title/data")
+    Call<TitleDataResponse> getData(
+            @Field("email") String email,
+            @Field("title") String title
     );
 
     /*@FormUrlEncoded

@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Patterns;
+
+import com.ecommerce.calculator.activities.Data;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -324,6 +326,46 @@ public class input extends Fragment implements View.OnClickListener {
             num10 = view.findViewById(R.id.number10);
             progressBar = view.findViewById(R.id.loader);
             textView = view.findViewById(R.id.calculate_textview);
+
+            if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+                num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+                num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+                int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
+                switch (value){
+                    case 0:
+                        num3.setSelection(0);
+                        break;
+                    case 5:
+                        num3.setSelection(1);
+                        break;
+                    case 12:
+                        num3.setSelection(2);
+                        break;
+                    case 18:
+                        num3.setSelection(3);
+                        break;
+                    case 28:
+                        num3.setSelection(4);
+                        break;
+                }
+               // num3.setSelection(Integer.parseInt());
+                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
+                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
+                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
+                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
+                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
+                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
+                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+                //calculate();
+//                rs1.setText(SharedPrefManager.getInstance(Data.this).getData().getBankSettlement());
+//                rs2.setText(SharedPrefManager.getInstance(Data.this).getData().getTotalMeeshoCommision());
+//                rs3.setText(SharedPrefManager.getInstance(Data.this).getData().getProfit());
+//                rs4.setText(SharedPrefManager.getInstance(Data.this).getData().getTotalGstPayable());
+//                rs5.setText(SharedPrefManager.getInstance(Data.this).getData().getTcs());
+//                textViewGstPayable.setText(SharedPrefManager.getInstance(Data.this).getData().getGstPayable());
+//                textViewGstClaim.setText(SharedPrefManager.getInstance(Data.this).getData().getGstClaim());
+//                textViewProfitPercentage.setText(SharedPrefManager.getInstance(Data.this).getData().getProfitPercentage());
+            }
            // progressBar = (ProgressBar)view.findViewById(R.id.spin_kit);
            // textViewResult = view.findViewById(R.id.text_view_resulta);
 

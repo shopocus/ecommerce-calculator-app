@@ -47,6 +47,10 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Shopocus");
         toolbar.setSubtitle("Business Calculator");
 
+        String flag = "false";
+        SharedPrefManager.getInstance(MenuActivity.this)
+                .saveFlag(flag);
+
         mrecyclerView = findViewById(R.id.menu);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
