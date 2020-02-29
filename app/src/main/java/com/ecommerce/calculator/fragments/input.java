@@ -3,17 +3,11 @@ package com.ecommerce.calculator.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.core.content.ContextCompat;
 
-import android.os.Handler;
 import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Patterns;
 
-import com.ecommerce.calculator.activities.Data;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,25 +24,21 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.calculator.models.SaveResponse;
-import com.ecommerce.calculator.activities.MainActivity;
-import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.activities.OutputListAdapter;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
-import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import android.widget.Button;
+
 import android.view.View.OnClickListener;
-import android.util.Log;
+
 import java.util.ArrayList;
 
 public class input extends Fragment implements View.OnClickListener {
@@ -356,6 +346,9 @@ public class input extends Fragment implements View.OnClickListener {
                 num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
                 num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
                 num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+                String flag = "false";
+                SharedPrefManager.getInstance(getActivity())
+                        .saveFlag(flag);
                 //calculate();
 //                rs1.setText(SharedPrefManager.getInstance(Data.this).getData().getBankSettlement());
 //                rs2.setText(SharedPrefManager.getInstance(Data.this).getData().getTotalMeeshoCommision());

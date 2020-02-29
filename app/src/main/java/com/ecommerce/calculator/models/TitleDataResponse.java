@@ -19,10 +19,12 @@ public class TitleDataResponse {
         private  String gstPayable;
         private  String gstClaim;
         private  String profitPercentage;
+        private String title;
        // private String message;
 
-        public TitleDataResponse( String gstOnProduct, String productPriceWithoutGst, String inwardShipping, String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent, String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage) {
+        public TitleDataResponse(String title, String gstOnProduct, String productPriceWithoutGst, String inwardShipping, String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent, String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage) {
             //this.msg = msg;
+            this.title = title;
             this.gstOnProduct = gstOnProduct;
             this.productPriceWithoutGst = productPriceWithoutGst;
             this.inwardShipping = inwardShipping;
@@ -45,6 +47,11 @@ public class TitleDataResponse {
 //    public String getMsg(){
 //        return msg;
 //    }
+
+
+    public String getTitle() {
+            return title;
+    }
 
     public String getGstOnProduct() {
         return gstOnProduct;

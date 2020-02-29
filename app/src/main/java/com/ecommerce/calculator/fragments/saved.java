@@ -1,42 +1,23 @@
 package com.ecommerce.calculator.fragments;
 
-import android.app.DownloadManager;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ecommerce.calculator.activities.Data;
-import com.ecommerce.calculator.activities.FragmentSelection;
-import com.ecommerce.calculator.activities.MainActivity;
-import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.activities.TitleAdapter;
 import com.ecommerce.calculator.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.ecommerce.calculator.activities.HolderAdapter;
-import com.ecommerce.calculator.activities.OutputListAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.CalculateResponse;
-import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
-import com.ecommerce.calculator.models.menu;
-import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import androidx.annotation.NonNull;
@@ -44,11 +25,10 @@ import androidx.annotation.Nullable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.ecommerce.calculator.activities.TitleAdapter;
 
 import static java.util.Locale.filter;
 
-public class saved extends Fragment{
+public class saved extends Fragment {
 
 //    RecyclerView mrecyclerView;
 //    TitleAdapter titleAdapter;
@@ -111,7 +91,7 @@ public class saved extends Fragment{
 //            public void onResponse(Call<savedTitleResponse> call, Response<savedTitleResponse> response) {
 
                 titleList = savedTitleResponse.getTitle();
-                adapter = new TitleAdapter(getActivity(), titleList);
+                adapter = new TitleAdapter(getActivity(), titleList,getFragmentManager());
                 recyclerView.setAdapter(adapter);
             }
 
@@ -136,11 +116,11 @@ public class saved extends Fragment{
             @Override
             public void onResponse(Call<TitleDataResponse> call, Response<TitleDataResponse> response) {
                 TitleDataResponse td = response.body();
-                //if (td.getMessage().equals("yes")) {
+                if (td.getTitle().equals(title)) {
                     //Toast.makeText(getActivity(), "ho gya", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(getActivity())
                             .saveData(td);
-                //}
+                }
 //                else if(dr.getMessage().equals("user_already_exist")){
 //                    signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 //                    signup.setText("Sign Up");

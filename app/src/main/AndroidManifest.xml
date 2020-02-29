@@ -26,7 +26,7 @@
         <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"></activity>
         <activity android:name=".activities.MenuActivity"></activity>
         <activity android:name=".activities.profile" android:parentActivityName=".activities.MenuActivity"></activity>
-        <activity android:name=".activities.Data"></activity>
+        <activity android:name=".fragments.Data" android:parentActivityName=".activities.FragmentSelection"></activity>
     </application>
 
 </manifest>
