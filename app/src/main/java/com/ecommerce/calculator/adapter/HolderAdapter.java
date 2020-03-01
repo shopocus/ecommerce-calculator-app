@@ -1,26 +1,23 @@
-package com.ecommerce.calculator.activities;
+package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.graphics.ColorSpace.Model;
 import android.widget.Filter;
 import android.widget.Filterable;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ecommerce.calculator.R;
-
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-
+import com.ecommerce.calculator.activities.FragmentSelection;
+import com.ecommerce.calculator.holder.MyHolder;
+import com.ecommerce.calculator.holder.itemClick;
 import com.ecommerce.calculator.models.menu;
 
 public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable {
+
     public static final String KEY = "title";
 
     Context c;
@@ -44,25 +41,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     public void onBindViewHolder(@NonNull MyHolder myHolder, int position) {
         myHolder.mTitle.setText(menu.get(position).getTitle());
         myHolder.mImageView.setImageResource(menu.get(position).getImg());
-//
-//        myHolder.setItemClickListener(new itemClick() {
-//            @Override
-//            public void onItemClickListener(View v, int position) {
-//                String gtitle = menu.get(position).getTitle();
-//                BitmapDrawable bitmapDrawable = (BitmapDrawable)myHolder.mImageView.getDrawable();
-//
-//                Bitmap bitmap = bitmapDrawable.getBitmap();
-//                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//
-//                byte[] bytes = stream.toByteArray();
-//                Intent intent = new Intent(c, FragmentSelection.class);
-//                intent.putExtra("iTitle", gtitle);
-//                intent.putExtra("iImage", bytes);
-//                c.startActivity(intent);
-//            }
-//        });
-
         myHolder.setItemClickListener(new itemClick() {
             @Override
             public void onItemClickListener(View v, int position) {
@@ -92,7 +70,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 filteredList.addAll(ListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-
                 for (menu item : ListFull) {
                     if (item.getTitle().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
@@ -105,8 +82,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
 
             return results;
         }
-
-
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {

@@ -3,13 +3,8 @@ package com.ecommerce.calculator.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import androidx.annotation.Nullable;
 import android.view.ViewGroup;
@@ -20,8 +15,6 @@ import android.widget.Button;
 
 public class Data extends DialogFragment {
 
-    // public static final String KEY = "title";
-
     private TextView textViewTitle, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewInwardShipping, textViewPackagingExpenses, textViewLabour,
             textViewStorageFees, textViewOther, textViewByPrice, textViewByPercentage, textViewBankSettlement, textViewTotalMeeshoCommision, textViewProfit,
             textViewTotalGstPayable, textViewTcs, textViewGstPayable, textViewGstClaim, textViewProfitPercentage;
@@ -29,16 +22,8 @@ public class Data extends DialogFragment {
     Button edit,close;
 
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.data_popup, container, false);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().closeOptionsMenu();
-        //getCallingActivity();
-        //getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setTitle("Shopocus");
-        //toolbar.setSubtitle("Business Calculator");
+        View view = inflater.inflate(R.layout.data_popup, container, false);
 
         textViewTitle = view.findViewById(R.id.textViewTitle);
         textViewSellingPrice = view.findViewById(R.id.textViewSellingPrice);
@@ -96,21 +81,10 @@ public class Data extends DialogFragment {
                 SharedPrefManager.getInstance(getActivity())
                         .saveFlag(flag);
                 Intent intent = new Intent(getActivity(), FragmentSelection.class);
-                //intent.putExtra(KEY,0);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
         return view;
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent intent = new Intent(Data.this, FragmentSelection.class);
-//        //intent.putExtra(KEY,0);
-//        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
-//        //super.onBackPressed();
-//    }
 }

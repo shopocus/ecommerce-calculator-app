@@ -8,7 +8,6 @@ public class SaveResponse {
     public SaveResponse(String message, String email) {
         this.message = message;
         this.email = email;
-        //this.user = user;
     }
 
     public String getEmail() {

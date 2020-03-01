@@ -175,13 +175,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <!--<EditText
-            android:id="@+id/number3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:inputType="numberDecimal" />-->
-
     </LinearLayout>
 
         </LinearLayout>
@@ -539,23 +532,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal">
-        <!--<Button
-            android:id="@+id/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@color/light_grey"
-            android:text="RESET" />
-        <Button
-            android:id="@+id/calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:background="@color/light_grey"
-            android:text="CALCULATE" />-->
 
         <include
             android:id="@+id/calculate"

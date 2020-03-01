@@ -1,4 +1,4 @@
-package com.ecommerce.calculator.activities;
+package com.ecommerce.calculator.holder;
 
 import android.view.View;
 

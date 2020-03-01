@@ -4,12 +4,10 @@
 
     <item
         android:id="@+id/profile"
-        android:title="profile"
-        android:orderInCategory="100" />
+        android:title="profile" />
 
     <item
         android:id="@+id/logout"
-        android:title="logout"
-        android:orderInCategory="100" />
+        android:title="logout" />
 
 </menu>

@@ -1,4 +1,4 @@
-package com.ecommerce.calculator.activities;
+package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,17 +10,11 @@ import android.view.animation.Animation;
 import androidx.annotation.NonNull;
 import android.view.animation.AnimationUtils;
 import com.ecommerce.calculator.R;
-import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Callback;
 
 public class OutputListAdapter extends ArrayAdapter<output> {
 
-    private static final String TAG = "OutputListAdapter";
     private Context mcontext;
     int mresource;
     private int lastPosition = -1;
@@ -45,29 +39,22 @@ public class OutputListAdapter extends ArrayAdapter<output> {
         output output = new output(title,answer);
         final View result;
         ViewHolder holder;
+
         if(convertView == null){
-        LayoutInflater inflater = LayoutInflater.from(mcontext);
-        convertView = inflater.inflate(mresource, parent, false);
+            LayoutInflater inflater = LayoutInflater.from(mcontext);
+            convertView = inflater.inflate(mresource, parent, false);
             holder= new ViewHolder();
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.answer = (TextView) convertView.findViewById(R.id.answer);
-
             result = convertView;
-
             convertView.setTag(holder);
         }
         else{
             holder = (ViewHolder) convertView.getTag();
             result = convertView;
         }
-//        TextView tit = (TextView)convertView.findViewById(R.id.title);
-//        TextView ans = (TextView)convertView.findViewById(R.id.answer);
-//
-//        tit.setText(title);
-//        ans.setText(answer);
 
-        Animation animation = AnimationUtils.loadAnimation(mcontext,
-                (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
+        Animation animation = AnimationUtils.loadAnimation(mcontext, (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
         result.startAnimation(animation);
         lastPosition = position;
 
@@ -76,5 +63,4 @@ public class OutputListAdapter extends ArrayAdapter<output> {
 
         return convertView;
     }
-
 }

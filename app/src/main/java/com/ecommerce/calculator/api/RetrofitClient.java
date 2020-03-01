@@ -1,9 +1,7 @@
 package com.ecommerce.calculator.api;
 
 import android.util.Base64;
-
 import java.io.IOException;
-
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,7 +16,6 @@ public class RetrofitClient {
     private static final String BASE_URL = "https://ecommerce-calculator.herokuapp.com/api/MPC/";
     private static RetrofitClient mInstance;
     private Retrofit retrofit;
-
 
     private RetrofitClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

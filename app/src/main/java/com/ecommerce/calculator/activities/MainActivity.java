@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.textViewLogin).setOnClickListener(this);
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -90,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button signup = (Button)findViewById(R.id.buttonSignUp);
         signup.setBackgroundColor(getResources().getColor(R.color.light_grey));
         signup.setText("Sign Up");
-        //signup.setTextColor(getResources().getColor(R.color.colorBase));
         signup.setEnabled(false);
 
         Call<DefaultResponse> call = RetrofitClient
@@ -125,11 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 signup.setTextColor(getResources().getColor(R.color.colorBase));
                 signup.setEnabled(true);
                 Toast.makeText(MainActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
-
             }
         });
-
-
     }
 
     @Override
@@ -139,9 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 userSignUp();
                 break;
             case R.id.textViewLogin:
-
                 startActivity(new Intent(this, LoginActivity.class));
-
                 break;
         }
     }

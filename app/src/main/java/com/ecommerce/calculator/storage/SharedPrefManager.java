@@ -2,8 +2,6 @@ package com.ecommerce.calculator.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.User;
 
@@ -87,22 +85,22 @@ public class SharedPrefManager {
         return new TitleDataResponse(
                 sharedPreferences.getString("title", null),
                 sharedPreferences.getString("gstOnProduct", null),
-        sharedPreferences.getString("productPriceWithoutGst", null),
-        sharedPreferences.getString("inwardShipping", null),
-        sharedPreferences.getString("packagingExpense", null),
-        sharedPreferences.getString("labour", null),
-        sharedPreferences.getString("storageFee", null),
-        sharedPreferences.getString("other", null),
-        sharedPreferences.getString("discountAmount", null),
-        sharedPreferences.getString("discountPercent", null),
-        sharedPreferences.getString("bankSettlement", null),
-        sharedPreferences.getString("totalMeeshoCommision", null),
-        sharedPreferences.getString("profit", null),
-        sharedPreferences.getString("totalGstPayable", null),
-        sharedPreferences.getString("tcs", null),
-        sharedPreferences.getString("gstPayable", null),
-        sharedPreferences.getString("gstClaim", null),
-        sharedPreferences.getString("profitPercentage", null)
+                sharedPreferences.getString("productPriceWithoutGst", null),
+                sharedPreferences.getString("inwardShipping", null),
+                sharedPreferences.getString("packagingExpense", null),
+                sharedPreferences.getString("labour", null),
+                sharedPreferences.getString("storageFee", null),
+                sharedPreferences.getString("other", null),
+                sharedPreferences.getString("discountAmount", null),
+                sharedPreferences.getString("discountPercent", null),
+                sharedPreferences.getString("bankSettlement", null),
+                sharedPreferences.getString("totalMeeshoCommision", null),
+                sharedPreferences.getString("profit", null),
+                sharedPreferences.getString("totalGstPayable", null),
+                sharedPreferences.getString("tcs", null),
+                sharedPreferences.getString("gstPayable", null),
+                sharedPreferences.getString("gstClaim", null),
+                sharedPreferences.getString("profitPercentage", null)
         );
     }
 

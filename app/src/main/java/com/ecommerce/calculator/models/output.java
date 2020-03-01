@@ -12,6 +12,7 @@ public class output {
     public String getTitle(){
         return title;
     }
+
     public String getAnswer(){
         return answer;
     }

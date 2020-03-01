@@ -1,4 +1,4 @@
-package com.ecommerce.calculator.activities;
+package com.ecommerce.calculator.holder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    ImageView mImageView;
-    TextView mTitle;
+    public ImageView mImageView;
+    public TextView mTitle;
     itemClick itemClickListener;
 
-    MyHolder(@NonNull View itemView){
+    public MyHolder(@NonNull View itemView){
         super(itemView);
 
         this.mImageView = itemView.findViewById(R.id.image);
@@ -26,6 +26,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
     public void onClick(View v) {
         this.itemClickListener.onItemClickListener(v, getLayoutPosition());
     }
+
     public void setItemClickListener(itemClick id){
         this.itemClickListener = id;
     }

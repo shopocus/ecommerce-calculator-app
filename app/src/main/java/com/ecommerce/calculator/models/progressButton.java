@@ -1,14 +1,11 @@
 package com.ecommerce.calculator.models;
+
 import android.view.View;
 import android.content.Context;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.ecommerce.calculator.R;
 
 public class progressButton {
@@ -25,6 +22,7 @@ public class progressButton {
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
     }
+
     public void ButtonActivated(){
         progressBar.setVisibility(View.VISIBLE);
         textView.setText("");

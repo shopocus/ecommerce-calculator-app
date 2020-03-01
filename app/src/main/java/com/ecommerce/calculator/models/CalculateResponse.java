@@ -11,8 +11,8 @@ public class CalculateResponse {
     private  double profitPercentage;
     private String msg;
 
-    public CalculateResponse( double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs, double gstPayable, double gstClaim, double profitPercentage) {
-        //this.msg = msg;
+    public CalculateResponse( double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs,
+                              double gstPayable, double gstClaim, double profitPercentage) {
         this.bankSettlement = bankSettlement;
         this.totalMeeshoCommision = totalMeeshoCommision;
         this.profit = profit;
@@ -22,10 +22,6 @@ public class CalculateResponse {
         this.gstClaim = gstClaim;
         this.profitPercentage = profitPercentage;
     }
-
-//    public String getMsg(){
-//        return msg;
-//    }
 
     public double getBankSettlement() {
         return bankSettlement;

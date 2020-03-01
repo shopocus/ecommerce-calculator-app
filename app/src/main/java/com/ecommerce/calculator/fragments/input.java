@@ -3,11 +3,9 @@ package com.ecommerce.calculator.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.view.animation.Animation;
 import android.os.Bundle;
 import android.text.InputType;
-
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,50 +24,43 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.calculator.models.SaveResponse;
-import com.ecommerce.calculator.activities.OutputListAdapter;
+import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import android.view.View.OnClickListener;
-
 import java.util.ArrayList;
 
 public class input extends Fragment implements View.OnClickListener {
 
-    private static final String TAG = "input";
-
     private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5, line6,rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
+    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5, line6,
+            rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
     private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
 
     Spinner num3;
     ListView itemList;
     CardView result_card;
     Double[] items = new Double[8] ;
-    private String myText;
     String gst_array[] = {"0", "5", "12", "18", "28"};
     String spinner_ans;
-    //progressButton progressButton;
     private ProgressBar progressBar;
     private TextView textView;
-    Animation fade_in;
-    //ProgressBar progressBar;
-   // output text1,text2,text3,text4,text5,text6,text7,text8;
+    private String myText;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.menu, container, false);
 
-        itemList = (ListView) view.findViewById(R.id.text_view_result);
-        result_card = (CardView) view.findViewById(R.id.result_card);
+        itemList = view.findViewById(R.id.text_view_result);
+        result_card = view.findViewById(R.id.result_card);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
@@ -185,7 +176,7 @@ public class input extends Fragment implements View.OnClickListener {
             {
                 progressButton progressButton = new progressButton(getActivity(), v);
                 progressButton.ButtonActivated();
-               calculate();
+                calculate();
             }
         });
 
@@ -227,7 +218,6 @@ public class input extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         myText = title.getText().toString();
-                        //Toast.makeText(getActivity(), myText, Toast.LENGTH_LONG).show();
                         save();
                     }
                 });
@@ -254,74 +244,69 @@ public class input extends Fragment implements View.OnClickListener {
         return view;
     }
 
-        @Override
-        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-            super.onViewCreated(view, savedInstanceState);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-            details = view.findViewById(R.id.details_dropdown);
-            pp = view.findViewById(R.id.text_pp);
-            gst = view.findViewById(R.id.text_gst);
-            transport = view.findViewById(R.id.text_transport);
-            packaging = view.findViewById(R.id.text_packaging);
-            labour = view.findViewById(R.id.text_labour);
-            storage = view.findViewById(R.id.text_Storage);
-            other = view.findViewById(R.id.text_other);
-            line1 = view.findViewById(R.id.line1);
-            line2 = view.findViewById(R.id.line2);
-            line3 = view.findViewById(R.id.line3);
-            line4 = view.findViewById(R.id.line4);
-            line5 = view.findViewById(R.id.line5);
-            line6 = view.findViewById(R.id.line6);
-            rs1 = view.findViewById(R.id.rs1);
-            rs2 = view.findViewById(R.id.rs2);
-            rs3 = view.findViewById(R.id.rs3);
-            rs4 = view.findViewById(R.id.rs4);
-            rs5 = view.findViewById(R.id.rs5);
-            rs6 = view.findViewById(R.id.rs6);
-            rs7 = view.findViewById(R.id.rs7);
-            rs8 = view.findViewById(R.id.rs8);
-            rs9 = view.findViewById(R.id.rs9);
-            expenses = view.findViewById(R.id.expenses_dropdown);
-            discounts = view.findViewById(R.id.discounts_dropdown);
-            price = view.findViewById(R.id.text_price);
-            percentage = view.findViewById(R.id.text_percentage);
-            num1 = view.findViewById(R.id.number1);
-            num2 = view.findViewById(R.id.number2);
-            num3 = view.findViewById(R.id.number3);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                    android.R.layout.simple_list_item_activated_1, gst_array);
-// Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-            num3.setAdapter(adapter);
-            num3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            spinner_ans = gst_array[position];
-                          //  Log.d(TAG,spinner_ans);
-                }
+        details = view.findViewById(R.id.details_dropdown);
+        pp = view.findViewById(R.id.text_pp);
+        gst = view.findViewById(R.id.text_gst);
+        transport = view.findViewById(R.id.text_transport);
+        packaging = view.findViewById(R.id.text_packaging);
+        labour = view.findViewById(R.id.text_labour);
+        storage = view.findViewById(R.id.text_Storage);
+        other = view.findViewById(R.id.text_other);
+        line1 = view.findViewById(R.id.line1);
+        line2 = view.findViewById(R.id.line2);
+        line3 = view.findViewById(R.id.line3);
+        line4 = view.findViewById(R.id.line4);
+        line5 = view.findViewById(R.id.line5);
+        line6 = view.findViewById(R.id.line6);
+        rs1 = view.findViewById(R.id.rs1);
+        rs2 = view.findViewById(R.id.rs2);
+        rs3 = view.findViewById(R.id.rs3);
+        rs4 = view.findViewById(R.id.rs4);
+        rs5 = view.findViewById(R.id.rs5);
+        rs6 = view.findViewById(R.id.rs6);
+        rs7 = view.findViewById(R.id.rs7);
+        rs8 = view.findViewById(R.id.rs8);
+        rs9 = view.findViewById(R.id.rs9);
+        expenses = view.findViewById(R.id.expenses_dropdown);
+        discounts = view.findViewById(R.id.discounts_dropdown);
+        price = view.findViewById(R.id.text_price);
+        percentage = view.findViewById(R.id.text_percentage);
+        num1 = view.findViewById(R.id.number1);
+        num2 = view.findViewById(R.id.number2);
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
+        num3 = view.findViewById(R.id.number3);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, gst_array);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        num3.setAdapter(adapter);
+        num3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinner_ans = gst_array[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
-                }
-            });
-// Apply the adapter to the spinner
-           // num3.setAdapter(adapter);
-            num4 = view.findViewById(R.id.number4);
-            num5 = view.findViewById(R.id.number5);
-            num6 = view.findViewById(R.id.number6);
-            num7 = view.findViewById(R.id.number7);
-            num8 = view.findViewById(R.id.number8);
-            num9 = view.findViewById(R.id.number9);
-            num10 = view.findViewById(R.id.number10);
-            progressBar = view.findViewById(R.id.loader);
-            textView = view.findViewById(R.id.calculate_textview);
+        num4 = view.findViewById(R.id.number4);
+        num5 = view.findViewById(R.id.number5);
+        num6 = view.findViewById(R.id.number6);
+        num7 = view.findViewById(R.id.number7);
+        num8 = view.findViewById(R.id.number8);
+        num9 = view.findViewById(R.id.number9);
+        num10 = view.findViewById(R.id.number10);
+        progressBar = view.findViewById(R.id.loader);
+        textView = view.findViewById(R.id.calculate_textview);
 
-            if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-                num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-                num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-                int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
-                switch (value){
+        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
+            switch (value){
                     case 0:
                         num3.setSelection(0);
                         break;
@@ -338,7 +323,6 @@ public class input extends Fragment implements View.OnClickListener {
                         num3.setSelection(4);
                         break;
                 }
-               // num3.setSelection(Integer.parseInt());
                 num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
                 num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
                 num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
@@ -349,21 +333,7 @@ public class input extends Fragment implements View.OnClickListener {
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())
                         .saveFlag(flag);
-                //calculate();
-//                rs1.setText(SharedPrefManager.getInstance(Data.this).getData().getBankSettlement());
-//                rs2.setText(SharedPrefManager.getInstance(Data.this).getData().getTotalMeeshoCommision());
-//                rs3.setText(SharedPrefManager.getInstance(Data.this).getData().getProfit());
-//                rs4.setText(SharedPrefManager.getInstance(Data.this).getData().getTotalGstPayable());
-//                rs5.setText(SharedPrefManager.getInstance(Data.this).getData().getTcs());
-//                textViewGstPayable.setText(SharedPrefManager.getInstance(Data.this).getData().getGstPayable());
-//                textViewGstClaim.setText(SharedPrefManager.getInstance(Data.this).getData().getGstClaim());
-//                textViewProfitPercentage.setText(SharedPrefManager.getInstance(Data.this).getData().getProfitPercentage());
             }
-           // progressBar = (ProgressBar)view.findViewById(R.id.spin_kit);
-           // textViewResult = view.findViewById(R.id.text_view_resulta);
-
-           // view.findViewById(R.id.reset).setOnClickListener(this);
-           // view.findViewById(R.id.calculate).setOnClickListener(this);
         }
 
     protected void calculate() {
@@ -473,42 +443,17 @@ public class input extends Fragment implements View.OnClickListener {
                 OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
                 itemList.setAdapter(adapter);
 
-                //progressButton.ButtonFinished();
-
                 save.setImageResource(R.drawable.ic_bookmark_border);
                 save.setEnabled(true);
-//
-//                SharedPrefManager.getInstance(getActivity())
-//                        .saveResult(text1.getAnswer(),text2.getAnswer(),text3.getAnswer(),text4.getAnswer(),text5.getAnswer(),text6.getAnswer(),text7.getAnswer(),text8.getAnswer());
-                //OutputListAdapter adapter = new OutputListAdapter(this, R.layout.output_row, itemList);
-                //ListView.setAdapter(adapter);
-                //textViewResult.setText(SharedPrefManager.getInstance(getApplication()).getResult());
-                // if(CalculateResponse.getMsg().equals("")) {
-//                String content = "";
-//                content += "bankSettlement: " + CalculateResponse.getBankSettlement() + "\n";
-//                content += "totalMeeshoCommision: " + CalculateResponse.getTotalMeeshoCommision() + "\n";
-//                content += "profit: " + CalculateResponse.getProfit() + "\n";
-//                content += "totalGstPayable: " + CalculateResponse.getTotalGstPayable() + "\n";
-//                content += "tcs: " + CalculateResponse.getTcs() + "\n";
-//                content += "gstPayable: " + CalculateResponse.getGstPayable() + "\n";
-//                content += "gstClaim: " + CalculateResponse.getGstClaim() + "\n";
-//                content += "profitPercentage: " + CalculateResponse.getProfitPercentage() + "\n";
-             //   textViewResult.append(content);
-                //}else {
-                //    Toast.makeText(calculation.this, CalculateResponse.getMsg(), Toast.LENGTH_LONG).show();
-                //}
             }
-
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     public void save(){
-
         String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
         String title = String.valueOf(myText);
         String sellingPrice = num1.getText().toString().trim();
@@ -533,8 +478,9 @@ public class input extends Fragment implements View.OnClickListener {
         Call<SaveResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .saved(email, title, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee, other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable, gstClaim, profitPercentage);
-
+                .saved(email, title, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
+                        other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
+                        gstClaim, profitPercentage);
 
         call.enqueue(new Callback<SaveResponse>() {
             @Override
@@ -548,38 +494,34 @@ public class input extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<SaveResponse> call, Throwable t) {
-
                 Toast.makeText(getActivity(), "Internet  Disconnected", Toast.LENGTH_LONG).show();
-
             }
         });
     }
 
     public void share(){
-
         String content = "INPUT" + "\n" +
                 "Selling Price: " + num1.getText().toString().trim() + "\n" +
-        "GST On Product: " + spinner_ans + "\n" +
-        "Product Price Without GST: " + num2.getText().toString().trim() + "\n" +
-        "Inward Shipping: " + num4.getText().toString().trim() + "\n" +
-        "Packaging Expense: " + num5.getText().toString().trim() + "\n" +
-        "Labour: " + num6.getText().toString().trim() + "\n" +
-        "Storage Fee: " + num7.getText().toString().trim() + "\n" +
-        "Other: " + num8.getText().toString().trim() + "\n" +
-        "Discount Percent: " + num10.getText().toString().trim() + "\n" +
-        "Discount Amount: " + num9.getText().toString().trim() + "\n\n" +
+                "GST On Product: " + spinner_ans + "\n" +
+                "Product Price Without GST: " + num2.getText().toString().trim() + "\n" +
+                "Inward Shipping: " + num4.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + num5.getText().toString().trim() + "\n" +
+                "Labour: " + num6.getText().toString().trim() + "\n" +
+                "Storage Fee: " + num7.getText().toString().trim() + "\n" +
+                "Other: " + num8.getText().toString().trim() + "\n" +
+                "Discount Percent: " + num10.getText().toString().trim() + "\n" +
+                "Discount Amount: " + num9.getText().toString().trim() + "\n\n" +
                 "OUTPUT" + "\n" +
-        "Bank Settlement: " + String.valueOf(items[0]) + "\n" +
-        "Total Meesho Commision: " + String.valueOf(items[1]) + "\n" +
-        "Profit: " + String.valueOf(items[2]) + "\n" +
-                "Total GST Payable: " + String.valueOf(items[3]) + "\n" +
-        "Tcs: " + String.valueOf(items[4]) + "\n" +
-        "GST Payable: " + String.valueOf(items[5]) + "\n" +
-        "GST Claim: " + String.valueOf(items[6]) + "\n" +
-        "Profit Percentage: " + String.valueOf(items[7]);
+                "Bank Settlement: " + items[0] + "\n" +
+                "Total Meesho Commision: " + items[1] + "\n" +
+                "Profit: " + items[2] + "\n" +
+                "Total GST Payable: " + items[3] + "\n" +
+                "Tcs: " + items[4] + "\n" +
+                "GST Payable: " + items[5] + "\n" +
+                "GST Claim: " + items[6] + "\n" +
+                "Profit Percentage: " + items[7];
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
@@ -597,7 +539,5 @@ public class input extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
     }
-
 }
