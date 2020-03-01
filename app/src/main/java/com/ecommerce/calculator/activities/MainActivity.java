@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
         findViewById(R.id.textViewLogin).setOnClickListener(this);
     }
-
 
     @Override
     protected void onStart() {
@@ -86,6 +86,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        Button signup = (Button)findViewById(R.id.buttonSignUp);
+        signup.setBackgroundColor(getResources().getColor(R.color.light_grey));
+        signup.setText("Sign Up");
+        signup.setEnabled(false);
+
         Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -103,21 +108,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else if(dr.getMessage().equals("user_already_exist")){
+                    signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    signup.setText("Sign Up");
+                    signup.setTextColor(getResources().getColor(R.color.colorBase));
+                    signup.setEnabled(true);
                     Toast.makeText(MainActivity.this, "Account already exist", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(MainActivity.this, "Try Again Later", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
-
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-
+                signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                signup.setText("Sign Up");
+                signup.setTextColor(getResources().getColor(R.color.colorBase));
+                signup.setEnabled(true);
+                Toast.makeText(MainActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
     @Override
@@ -127,9 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 userSignUp();
                 break;
             case R.id.textViewLogin:
-
                 startActivity(new Intent(this, LoginActivity.class));
-
                 break;
         }
     }

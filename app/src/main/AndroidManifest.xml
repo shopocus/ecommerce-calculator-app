@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/calculator"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -21,10 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"></activity>
         <activity android:name=".activities.MenuActivity"></activity>
+        <activity android:name=".activities.profile" android:parentActivityName=".activities.MenuActivity"></activity>
+        <activity android:name=".fragments.Data"></activity>
+
     </application>
 
 </manifest>

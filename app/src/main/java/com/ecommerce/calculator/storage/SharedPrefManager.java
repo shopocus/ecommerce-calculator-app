@@ -2,6 +2,7 @@ package com.ecommerce.calculator.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.User;
 
 public class SharedPrefManager {
@@ -31,7 +32,7 @@ public class SharedPrefManager {
 
         editor.putString("name", user.getName());
         editor.putString("email", user.getEmail());
-        editor.putString("mobile", user.getMobile_no());
+        editor.putString("mobile_no", user.getMobile_no());
 
         editor.apply();
 
@@ -51,18 +52,71 @@ public class SharedPrefManager {
         );
     }
 
-    public String getResult() {
+    public void saveData(TitleDataResponse dataResponse) {
+
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        String content = "";
-                   /* content += "bankSettlement: " + sharedPreferences.getString("bankSettlement", null) + "\n";
-                    content += "totalMeeshoCommision: " + sharedPreferences.getString("totalMeeshoCommision", null) + "\n";
-                    content += "profit: " + sharedPreferences.getString("profit", null) + "\n";
-                    content += "totalGstPayable: " + sharedPreferences.getString("totalGstPayable", null) + "\n\n";
-                    content += "tcs: " + sharedPreferences.getString("tcs", null) + "\n";
-                    content += "gstPayable: " + sharedPreferences.getString("gstPayable", null) + "\n";
-                    content += "gstClaim: " + sharedPreferences.getString("gstClaim", null) + "\n";
-                    content += "profitPercentage: " + sharedPreferences.getString("profitPercentage", null) + "\n\n";*/
-        return content;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("title", dataResponse.getTitle());
+        editor.putString("gstOnProduct", dataResponse.getGstOnProduct());
+        editor.putString("productPriceWithoutGst", dataResponse.getProductPriceWithoutGst());
+        editor.putString("inwardShipping", dataResponse.getInwardShipping());
+        editor.putString("packagingExpense", dataResponse.getPackagingExpense());
+        editor.putString("labour", dataResponse.getLabour());
+        editor.putString("storageFee", dataResponse.getStorageFee());
+        editor.putString("other", dataResponse.getOther());
+        editor.putString("discountAmount", dataResponse.getDiscountAmount());
+        editor.putString("discountPercent", dataResponse.getDiscountPercent());
+        editor.putString("bankSettlement", dataResponse.getBankSettlement());
+        editor.putString("totalMeeshoCommision", dataResponse.getTotalMeeshoCommision());
+        editor.putString("profit", dataResponse.getProfit());
+        editor.putString("totalGstPayable", dataResponse.getTotalGstPayable());
+        editor.putString("tcs", dataResponse.getTcs());
+        editor.putString("gstPayable", dataResponse.getGstPayable());
+        editor.putString("gstClaim", dataResponse.getGstClaim());
+        editor.putString("profitPercentage", dataResponse.getProfitPercentage());
+
+        editor.apply();
+
+    }
+
+    public TitleDataResponse getData() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return new TitleDataResponse(
+                sharedPreferences.getString("title", null),
+                sharedPreferences.getString("gstOnProduct", null),
+                sharedPreferences.getString("productPriceWithoutGst", null),
+                sharedPreferences.getString("inwardShipping", null),
+                sharedPreferences.getString("packagingExpense", null),
+                sharedPreferences.getString("labour", null),
+                sharedPreferences.getString("storageFee", null),
+                sharedPreferences.getString("other", null),
+                sharedPreferences.getString("discountAmount", null),
+                sharedPreferences.getString("discountPercent", null),
+                sharedPreferences.getString("bankSettlement", null),
+                sharedPreferences.getString("totalMeeshoCommision", null),
+                sharedPreferences.getString("profit", null),
+                sharedPreferences.getString("totalGstPayable", null),
+                sharedPreferences.getString("tcs", null),
+                sharedPreferences.getString("gstPayable", null),
+                sharedPreferences.getString("gstClaim", null),
+                sharedPreferences.getString("profitPercentage", null)
+        );
+    }
+
+    public void saveFlag(String flag){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("flag", flag);
+
+        editor.apply();
+    }
+
+    public String getFlag(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String flag = (sharedPreferences.getString("flag",null));
+        return flag;
     }
 
     public void clear() {

@@ -3,13 +3,15 @@ package com.ecommerce.calculator.api;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
+import com.ecommerce.calculator.models.SaveResponse;
+import com.ecommerce.calculator.models.savedTitleResponse;
+import com.ecommerce.calculator.models.TitleDataResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 public interface Api {
-
 
     @FormUrlEncoded
     @POST("signup")
@@ -42,20 +44,41 @@ public interface Api {
             @Field("discountAmount") double discountAmount
     );
 
-    /*@FormUrlEncoded
-    @PUT("updateuser/{id}")
-    Call<LoginResponse> updateUser(
+    @FormUrlEncoded
+    @POST("meesho/tosave")
+    Call<SaveResponse> saved(
             @Field("email") String email,
-            @Field("name") String name,
-            @Field("mobile") String mobile_no
+            @Field("title") String title,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("packagingExpense") String packagingExpense,
+            @Field("labour") String labour,
+            @Field("storageFee") String storageFee,
+            @Field("other") String other,
+            @Field("discountPercent") String discountPercent,
+            @Field("discountAmount") String discountAmount,
+            @Field("bankSettlement") String bankSettlement,
+            @Field("totalMeeshoCommision") String totalMeeshoCommision,
+            @Field("profit") String profit,
+            @Field("totalGstPayable") String totalGstPayable,
+            @Field("tcs") String tcs,
+            @Field("gstPayable") String gstPayable,
+            @Field("gstClaim") String gstClaim,
+            @Field("profitPercentage") String profitPercentage
     );
 
     @FormUrlEncoded
-    @PUT("updatepassword")
-    Call<DefaultResponse> updatePassword(
-            @Field("currentpassword") String currentpassword,
-            @Field("newpassword") String newpassword,
+    @POST("meesho/saved/title")
+    Call<savedTitleResponse> getTitles(
             @Field("email") String email
-    );*/
+    );
 
+    @FormUrlEncoded
+    @POST("meesho/saved/title/data")
+    Call<TitleDataResponse> getData(
+            @Field("email") String email,
+            @Field("title") String title
+    );
 }

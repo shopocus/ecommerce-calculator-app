@@ -2,9 +2,9 @@ package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +17,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -46,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userLogin() {
-
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
@@ -74,6 +72,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
+        Button login = (Button)findViewById(R.id.buttonLogin);
+        login.setBackgroundColor(getResources().getColor(R.color.light_grey));
+        login.setText("Login");
+        login.setEnabled(false);
+
         Call<LoginResponse> call = RetrofitClient
                 .getInstance().getApi().login(email, password);
 
@@ -83,26 +86,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginResponse loginResponse = response.body();
 
                 if (loginResponse.getMessage().equals("yes")) {
-
                     SharedPrefManager.getInstance(LoginActivity.this)
                             .saveUser(loginResponse.getUser());
-
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
-
                 } else {
-                    Toast.makeText(LoginActivity.this, loginResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    login.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    login.setText("Login");
+                    login.setTextColor(getResources().getColor(R.color.colorBase));
+                    login.setEnabled(true);
+                    Toast.makeText(LoginActivity.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                login.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                login.setText("Login");
+                login.setTextColor(getResources().getColor(R.color.colorBase));
+                login.setEnabled(true);
+                Toast.makeText(LoginActivity.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     @Override

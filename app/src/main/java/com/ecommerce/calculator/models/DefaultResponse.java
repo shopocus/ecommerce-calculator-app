@@ -1,7 +1,5 @@
 package com.ecommerce.calculator.models;
 
-import com.google.gson.annotations.SerializedName;
-
 public class DefaultResponse {
 
     private String message;
