@@ -46,7 +46,7 @@ public class Data extends DialogFragment {
         textViewProfitPercentage = view.findViewById(R.id.textViewProfitPercentage);
 
         textViewTitle.setText(SharedPrefManager.getInstance(getActivity()).getData().getTitle());
-        textViewSellingPrice.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+        textViewSellingPrice.setText(SharedPrefManager.getInstance(getActivity()).getData().getSellingPrice());
         textViewPurchasePrice.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
         textViewGst.setText(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
         textViewInwardShipping.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());

@@ -2,6 +2,7 @@ package com.ecommerce.calculator.models;
 
 public class TitleDataResponse {
 
+    private String sellingPrice;
     private String gstOnProduct;
     private String productPriceWithoutGst;
     private String inwardShipping;
@@ -21,11 +22,12 @@ public class TitleDataResponse {
     private String profitPercentage;
     private String title;
 
-    public TitleDataResponse(String title, String gstOnProduct, String productPriceWithoutGst, String inwardShipping, String packagingExpense,
-                                 String labour, String storageFee, String other, String discountAmount, String discountPercent, String bankSettlement,
-                                 String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim,
-                                 String profitPercentage) {
+    public TitleDataResponse(String title, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String inwardShipping,
+                             String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
+                             String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
+                             String gstClaim, String profitPercentage) {
         this.title = title;
+        this.sellingPrice = sellingPrice;
         this.gstOnProduct = gstOnProduct;
         this.productPriceWithoutGst = productPriceWithoutGst;
         this.inwardShipping = inwardShipping;
@@ -46,7 +48,11 @@ public class TitleDataResponse {
     }
 
     public String getTitle() {
-            return title;
+        return title;
+    }
+
+    public String getSellingPrice() {
+            return sellingPrice;
     }
 
     public String getGstOnProduct() {

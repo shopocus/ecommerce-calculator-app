@@ -3,7 +3,6 @@ package com.ecommerce.calculator.fragments;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.animation.Animation;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.models.progressButton;
@@ -448,7 +447,7 @@ public class input extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -539,5 +538,6 @@ public class input extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
     }
 }

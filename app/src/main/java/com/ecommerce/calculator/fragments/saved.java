@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,10 +22,13 @@ import androidx.annotation.Nullable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader;
 
 public class saved extends Fragment {
 
     SearchView searchBar;
+    TextView text;
+    TrailingCircularDotsLoader loader;
 
     private RecyclerView recyclerView;
     private TitleAdapter adapter;
@@ -46,6 +50,9 @@ public class saved extends Fragment {
                 return false;
             }
         });
+
+        loader = view.findViewById(R.id.loader);
+
         return view;
     }
 
@@ -63,9 +70,18 @@ public class saved extends Fragment {
             public void onResponse(Call<savedTitleResponse> call, Response<savedTitleResponse> response) {
                 savedTitleResponse savedTitleResponse = response.body();
 
-                titleList = savedTitleResponse.getTitle();
-                adapter = new TitleAdapter(getActivity(), titleList,getFragmentManager());
-                recyclerView.setAdapter(adapter);
+                if(savedTitleResponse.getMessage().equals("title_found")) {
+                    titleList = savedTitleResponse.getTitle();
+                    recyclerView.setVisibility(view.VISIBLE);
+                    loader.setVisibility(view.GONE);
+                    adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
+                    recyclerView.setAdapter(adapter);
+                }
+                else if(savedTitleResponse.getMessage().equals("no_title_exists")){
+                    text = view.findViewById(R.id.text);
+                    text.setVisibility(view.VISIBLE);
+                    loader.setVisibility(view.GONE);
+                }
             }
 
             @Override
@@ -96,5 +112,11 @@ public class saved extends Fragment {
                 Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        onViewCreated(getView(),null);
     }
 }
