@@ -114,4 +114,5 @@ public class TitleDataResponse {
         public String getProfitPercentage(){
             return profitPercentage;
         }
+
 }

@@ -14,8 +14,8 @@ import android.widget.Filter;
 import androidx.fragment.app.FragmentManager;
 import com.ecommerce.calculator.holder.TitleHolder;
 import com.ecommerce.calculator.fragments.Data;
-import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.holder.itemClick;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 
 public class TitleAdapter extends RecyclerView.Adapter<TitleHolder> implements Filterable {
 
@@ -46,8 +46,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleHolder> implements F
         holder.setItemClickListener(new itemClick() {
             @Override
             public void onItemClickListener(View v, int position) {
-                saved obj = new saved();
-                obj.FetchData(title);
+                SharedPrefManager.getInstance(mCtx).saveTitle(title);
                 Data dialog = new Data();
                 dialog.show(fragmentManager, "Data");
             }

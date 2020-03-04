@@ -57,28 +57,27 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("title", dataResponse.getTitle());
-        editor.putString("sellingPrice", dataResponse.getSellingPrice());
-        editor.putString("gstOnProduct", dataResponse.getGstOnProduct());
-        editor.putString("productPriceWithoutGst", dataResponse.getProductPriceWithoutGst());
-        editor.putString("inwardShipping", dataResponse.getInwardShipping());
-        editor.putString("packagingExpense", dataResponse.getPackagingExpense());
-        editor.putString("labour", dataResponse.getLabour());
-        editor.putString("storageFee", dataResponse.getStorageFee());
-        editor.putString("other", dataResponse.getOther());
-        editor.putString("discountAmount", dataResponse.getDiscountAmount());
-        editor.putString("discountPercent", dataResponse.getDiscountPercent());
-        editor.putString("bankSettlement", dataResponse.getBankSettlement());
-        editor.putString("totalMeeshoCommision", dataResponse.getTotalMeeshoCommision());
-        editor.putString("profit", dataResponse.getProfit());
-        editor.putString("totalGstPayable", dataResponse.getTotalGstPayable());
-        editor.putString("tcs", dataResponse.getTcs());
-        editor.putString("gstPayable", dataResponse.getGstPayable());
-        editor.putString("gstClaim", dataResponse.getGstClaim());
-        editor.putString("profitPercentage", dataResponse.getProfitPercentage());
+            editor.putString("title", dataResponse.getTitle());
+            editor.putString("sellingPrice", dataResponse.getSellingPrice());
+            editor.putString("gstOnProduct", dataResponse.getGstOnProduct());
+            editor.putString("productPriceWithoutGst", dataResponse.getProductPriceWithoutGst());
+            editor.putString("inwardShipping", dataResponse.getInwardShipping());
+            editor.putString("packagingExpense", dataResponse.getPackagingExpense());
+            editor.putString("labour", dataResponse.getLabour());
+            editor.putString("storageFee", dataResponse.getStorageFee());
+            editor.putString("other", dataResponse.getOther());
+            editor.putString("discountAmount", dataResponse.getDiscountAmount());
+            editor.putString("discountPercent", dataResponse.getDiscountPercent());
+            editor.putString("bankSettlement", dataResponse.getBankSettlement());
+            editor.putString("totalMeeshoCommision", dataResponse.getTotalMeeshoCommision());
+            editor.putString("profit", dataResponse.getProfit());
+            editor.putString("totalGstPayable", dataResponse.getTotalGstPayable());
+            editor.putString("tcs", dataResponse.getTcs());
+            editor.putString("gstPayable", dataResponse.getGstPayable());
+            editor.putString("gstClaim", dataResponse.getGstClaim());
+            editor.putString("profitPercentage", dataResponse.getProfitPercentage());
 
         editor.apply();
-
     }
 
     public TitleDataResponse getData() {
@@ -119,6 +118,21 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String flag = (sharedPreferences.getString("flag",null));
         return flag;
+    }
+
+    public void saveTitle(String title){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("title", title);
+
+        editor.apply();
+    }
+
+    public String getTitle(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String title = (sharedPreferences.getString("title",null));
+        return title;
     }
 
     public void clear() {

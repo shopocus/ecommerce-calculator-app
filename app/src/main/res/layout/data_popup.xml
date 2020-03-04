@@ -15,15 +15,18 @@
         android:layout_height="wrap_content"
         android:textSize="30sp"
         android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone"
         android:gravity="center"/>
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/input_card"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="5dp"
         app:cardCornerRadius="10dp"
+        android:visibility="gone"
         android:elevation="3dp">
 
         <LinearLayout
@@ -247,6 +250,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="10dp"
+                android:id="@+id/output_card"
+                android:visibility="gone"
                 android:elevation="3dp">
 
                 <LinearLayout
@@ -432,6 +437,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/buttons"
+        android:visibility="gone"
         android:layout_marginTop="5dp"
         android:weightSum="100">
 

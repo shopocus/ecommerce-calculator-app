@@ -14,7 +14,6 @@ import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import androidx.annotation.NonNull;
@@ -87,29 +86,6 @@ public class saved extends Fragment {
             @Override
             public void onFailure(Call<savedTitleResponse> call, Throwable t) {
                 Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
-    public void FetchData(String title){
-        String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
-        Call<TitleDataResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .getData(email, title);
-
-        call.enqueue(new Callback<TitleDataResponse>() {
-            @Override
-            public void onResponse(Call<TitleDataResponse> call, Response<TitleDataResponse> response) {
-                TitleDataResponse td = response.body();
-                if (td.getTitle().equals(title)) {
-                    SharedPrefManager.getInstance(getActivity())
-                            .saveData(td);
-                }
-            }
-            @Override
-            public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
