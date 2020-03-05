@@ -36,49 +36,48 @@ public class Data extends DialogFragment {
 
         View view = inflater.inflate(R.layout.data_popup, container, false);
 
-            input_card = view.findViewById(R.id.input_card);
-            output_card = view.findViewById(R.id.output_card);
-            buttons = view.findViewById(R.id.buttons);
-            textViewTitle = view.findViewById(R.id.textViewTitle);
-            textViewSellingPrice = view.findViewById(R.id.textViewSellingPrice);
-            textViewPurchasePrice = view.findViewById(R.id.textViewPurchasePrice);
-            textViewGst = view.findViewById(R.id.textViewGst);
-            textViewInwardShipping = view.findViewById(R.id.textViewInwardShipping);
-            textViewPackagingExpenses = view.findViewById(R.id.textViewPackagingExpense);
-            textViewLabour = view.findViewById(R.id.textViewLabour);
-            textViewStorageFees = view.findViewById(R.id.textViewStorageFees);
-            textViewOther = view.findViewById(R.id.textViewOther);
-            textViewByPrice = view.findViewById(R.id.textViewByPrice);
-            textViewByPercentage = view.findViewById(R.id.textViewByPercentage);
-            textViewBankSettlement = view.findViewById(R.id.textViewBankSettlement);
-            textViewTotalMeeshoCommision = view.findViewById(R.id.textViewMeeshoCommision);
-            textViewProfit = view.findViewById(R.id.textViewProfit);
-            textViewTotalGstPayable = view.findViewById(R.id.textViewTotalGstPayable);
-            textViewTcs = view.findViewById(R.id.textViewTcs);
-            textViewGstPayable = view.findViewById(R.id.textViewGstPayable);
-            textViewGstClaim = view.findViewById(R.id.textViewGstClaim);
-            textViewProfitPercentage = view.findViewById(R.id.textViewProfitPercentage);
+        input_card = view.findViewById(R.id.input_card);
+        output_card = view.findViewById(R.id.output_card);
+        buttons = view.findViewById(R.id.buttons);
+        textViewTitle = view.findViewById(R.id.textViewTitle);
+        textViewSellingPrice = view.findViewById(R.id.textViewSellingPrice);
+        textViewPurchasePrice = view.findViewById(R.id.textViewPurchasePrice);
+        textViewGst = view.findViewById(R.id.textViewGst);
+        textViewInwardShipping = view.findViewById(R.id.textViewInwardShipping);
+        textViewPackagingExpenses = view.findViewById(R.id.textViewPackagingExpense);
+        textViewLabour = view.findViewById(R.id.textViewLabour);
+        textViewStorageFees = view.findViewById(R.id.textViewStorageFees);
+        textViewOther = view.findViewById(R.id.textViewOther);
+        textViewByPrice = view.findViewById(R.id.textViewByPrice);
+        textViewByPercentage = view.findViewById(R.id.textViewByPercentage);
+        textViewBankSettlement = view.findViewById(R.id.textViewBankSettlement);
+        textViewTotalMeeshoCommision = view.findViewById(R.id.textViewMeeshoCommision);
+        textViewProfit = view.findViewById(R.id.textViewProfit);
+        textViewTotalGstPayable = view.findViewById(R.id.textViewTotalGstPayable);
+        textViewTcs = view.findViewById(R.id.textViewTcs);
+        textViewGstPayable = view.findViewById(R.id.textViewGstPayable);
+        textViewGstClaim = view.findViewById(R.id.textViewGstClaim);
+        textViewProfitPercentage = view.findViewById(R.id.textViewProfitPercentage);
 
-            close = view.findViewById(R.id.action_close);
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getDialog().dismiss();
-                }
-            });
+        close = view.findViewById(R.id.action_close);
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().dismiss();
+            }
+        });
 
-            edit = view.findViewById(R.id.action_edit);
-            edit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String flag = "true";
-                    SharedPrefManager.getInstance(getActivity())
-                            .saveFlag(flag);
-                    Intent intent = new Intent(getActivity(), FragmentSelection.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            });
+        edit = view.findViewById(R.id.action_edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String flag = "true";
+                SharedPrefManager.getInstance(getActivity())
+                        .saveFlag(flag);
+                Intent intent = new Intent(getActivity(), FragmentSelection.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
