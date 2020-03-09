@@ -29,6 +29,8 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.gms.ads.AdView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

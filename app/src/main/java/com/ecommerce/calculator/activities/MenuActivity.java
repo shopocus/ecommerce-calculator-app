@@ -68,18 +68,18 @@ public class MenuActivity extends AppCompatActivity {
 
         m = new menu();
         m.setTitle("Club Factory");
-        m.setImg(R.drawable.myntra);
+        m.setImg(R.drawable.clubfactory);
         menu.add(m);
 
-        m = new menu();
-        m.setTitle("Flipkart");
-        m.setImg(R.drawable.flipkart);
-        menu.add(m);
-
-        m = new menu();
-        m.setTitle("Amazon");
-        m.setImg(R.drawable.amazon);
-        menu.add(m);
+//        m = new menu();
+//        m.setTitle("Flipkart");
+//        m.setImg(R.drawable.flipkart);
+//        menu.add(m);
+//
+//        m = new menu();
+//        m.setTitle("Amazon");
+//        m.setImg(R.drawable.amazon);
+//        menu.add(m);
 
         return menu;
     }

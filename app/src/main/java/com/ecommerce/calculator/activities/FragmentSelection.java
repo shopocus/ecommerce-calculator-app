@@ -3,6 +3,9 @@ package com.ecommerce.calculator.activities;
 import android.os.Build;
 import android.os.Bundle;
 import com.ecommerce.calculator.adapter.PageAdapter;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
 import com.ecommerce.calculator.R;
 import androidx.annotation.RequiresApi;
@@ -14,12 +17,18 @@ import com.ecommerce.calculator.fragments.saved;
 public class FragmentSelection extends AppCompatActivity {
 
     ViewPager viewPager;
+    AdView mAdView;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options_tab);
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ecommerce.calculator.R;
@@ -48,6 +50,9 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                     Intent intent = new Intent(c , FragmentSelection.class);
                     intent.putExtra(KEY,0);
                     c.startActivity(intent);
+                }
+                else {
+                    Toast.makeText(c, "Coming Soon", Toast.LENGTH_LONG).show();
                 }
             }
         });
