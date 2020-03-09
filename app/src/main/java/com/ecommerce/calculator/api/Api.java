@@ -6,9 +6,11 @@ import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.SaveResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
+import com.ecommerce.calculator.models.DeleteDataResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -81,4 +83,9 @@ public interface Api {
             @Field("email") String email,
             @Field("title") String title
     );
+
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "meesho/delete/title", hasBody = true)
+    Call<DeleteDataResponse> DeleteData(@Field("email") String email, @Field("title") String title);
+
 }
