@@ -1,7 +1,12 @@
 package com.ecommerce.calculator.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Filterable;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -9,6 +14,7 @@ import java.util.List;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
+import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
@@ -33,11 +39,13 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     public static class TitleHolder extends RecyclerView.ViewHolder {
         public TextView textViewTitle;
         public ImageButton delete;
+        public Button edit_button;
 
         public TitleHolder(View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.title);
             delete = itemView.findViewById(R.id.delete);
+            edit_button = itemView.findViewById(R.id.edit_button);
         }
     }
 
@@ -59,7 +67,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
         String title = titleList.get(position);
         holder.textViewTitle.setText(title);
-        holder.delete.setImageResource(R.drawable.ic_delete);
 
         holder.textViewTitle.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -93,6 +100,33 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                         Toast.makeText(mCtx, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+            }
+        });
+
+        holder.edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder mydialog = new AlertDialog.Builder(mCtx);
+                mydialog.setTitle("New Title");
+
+                final EditText edittitle = new EditText(mCtx);
+                edittitle.setInputType(InputType.TYPE_CLASS_TEXT);
+                mydialog.setView(edittitle);
+
+                mydialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String newTitle = edittitle.getText().toString();
+                        update(title, newTitle);
+                    }
+                });
+                mydialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                mydialog.show();
             }
         });
     }
@@ -135,4 +169,25 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         }
     };
 
+    void update(String title, String newTitle) {
+
+        String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
+        Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle);
+
+        call.enqueue(new Callback<DeleteDataResponse>() {
+            @Override
+            public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
+                DeleteDataResponse deleteDataResponse = response.body();
+
+                if (deleteDataResponse.getMessage().equals("title_updated")) {
+                    Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+                Toast.makeText(mCtx, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

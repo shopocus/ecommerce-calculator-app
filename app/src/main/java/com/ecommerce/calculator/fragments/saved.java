@@ -14,6 +14,7 @@ import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
 import com.ecommerce.calculator.api.RetrofitClient;
+import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import androidx.annotation.NonNull;
@@ -93,6 +94,6 @@ public class saved extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        onViewCreated(getView(),null);
+        onViewCreated(getView(), null);
     }
 }

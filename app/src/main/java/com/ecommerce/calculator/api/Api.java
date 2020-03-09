@@ -1,5 +1,7 @@
 package com.ecommerce.calculator.api;
 
+import android.widget.ScrollView;
+
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
@@ -12,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface Api {
 
@@ -87,5 +90,13 @@ public interface Api {
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "meesho/delete/title", hasBody = true)
     Call<DeleteDataResponse> DeleteData(@Field("email") String email, @Field("title") String title);
+
+    @FormUrlEncoded
+    @PUT("meesho/update/title")
+    Call<DeleteDataResponse> update(
+            @Field("email") String email,
+            @Field("title") String title,
+            @Field("newTitle") String newTitle
+            );
 
 }
