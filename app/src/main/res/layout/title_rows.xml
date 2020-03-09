@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/title"
             android:text="Title"
-            android:textSize="20sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
         <ImageButton
             android:id="@+id/delete"

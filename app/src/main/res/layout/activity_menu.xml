@@ -24,8 +24,8 @@
         <SearchView
             android:id="@+id/search"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginVertical="5dp"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
             android:layout_marginRight="16dp"
             android:queryHint="Search Here"
             android:iconifiedByDefault="false"/>

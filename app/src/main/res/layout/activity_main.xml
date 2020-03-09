@@ -4,16 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".activities.MainActivity">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:src="@drawable/shopocus"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/sign_up"
+        android:layout_marginBottom="100dp"
+        />
+
     <TextView
+        android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:text="Sign Up"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
 
     <LinearLayout
@@ -69,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textColor="@color/colorBase" />
