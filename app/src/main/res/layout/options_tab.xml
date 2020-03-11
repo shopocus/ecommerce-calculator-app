@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.FragmentSelection">
 
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/tab_layout"
+        android:layout_marginBottom="50dp"
         android:background="@color/light_grey"/>
 
     <com.google.android.gms.ads.AdView

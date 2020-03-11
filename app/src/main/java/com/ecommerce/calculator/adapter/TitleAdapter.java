@@ -12,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
-import com.ecommerce.calculator.fragments.saved;
+import android.text.TextUtils;
 import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
@@ -68,7 +69,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         String title = titleList.get(position);
         holder.textViewTitle.setText(title);
 
-        holder.textViewTitle.setOnClickListener(new View.OnClickListener(){
+        holder.textViewTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPrefManager.getInstance(mCtx).saveTitle(title);
@@ -80,53 +81,74 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-                Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().DeleteData(email, title);
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(mCtx);
+                builder.setMessage("Are you sure you want to Delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
+                                Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().DeleteData(email, title);
 
-                call.enqueue(new Callback<DeleteDataResponse>() {
-                    @Override
-                    public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
-                        DeleteDataResponse deleteDataResponse = response.body();
+                                call.enqueue(new Callback<DeleteDataResponse>() {
+                                    @Override
+                                    public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
+                                        DeleteDataResponse deleteDataResponse = response.body();
 
-                        if (deleteDataResponse.getMessage().equals("deleted")) {
-                            titleList.remove(position);
-                            notifyItemRemoved(position);
-                            Toast.makeText(mCtx, "Deleted", Toast.LENGTH_LONG).show();
-                        }
-                    }
+                                        if (deleteDataResponse.getMessage().equals("deleted")) {
+                                            titleList.remove(position);
+                                            notifyItemRemoved(position);
+                                            Toast.makeText(mCtx, "Deleted", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
 
-                    @Override
-                    public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
-                        Toast.makeText(mCtx, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                                    @Override
+                                    public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+                                        Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
             }
         });
 
         holder.edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder mydialog = new AlertDialog.Builder(mCtx);
-                mydialog.setTitle("New Title");
-
                 final EditText edittitle = new EditText(mCtx);
                 edittitle.setInputType(InputType.TYPE_CLASS_TEXT);
-                mydialog.setView(edittitle);
-
-                mydialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newTitle = edittitle.getText().toString();
-                        update(title, newTitle);
-                    }
-                });
-                mydialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                mydialog.show();
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(mCtx);
+                builder.setTitle("New Title")
+                        .setCancelable(false)
+                        .setView(edittitle)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String newTitle = edittitle.getText().toString();
+                                if (newTitle.equals("")) {
+                                    Toast.makeText(mCtx, "Invalid Title", Toast.LENGTH_LONG).show();
+                                } else {
+                                    update(title, newTitle);
+                                }
+                            }
+                        })
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                androidx.appcompat.app.AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }
@@ -170,7 +192,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     };
 
     void update(String title, String newTitle) {
-
         String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
         Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle);
 
@@ -186,7 +207,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
             @Override
             public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
-                Toast.makeText(mCtx, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }

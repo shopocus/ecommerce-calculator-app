@@ -14,7 +14,6 @@ import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import androidx.annotation.NonNull;
@@ -86,7 +85,8 @@ public class saved extends Fragment {
 
             @Override
             public void onFailure(Call<savedTitleResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                loader.setVisibility(view.GONE);
+                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -12,9 +12,11 @@ import com.ecommerce.calculator.R;
 import  com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
+import android.view.inputmethod.InputMethodManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.content.Context;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -131,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSignUp:
-                userSignUp();
-                break;
+                    userSignUp();
+                    break;
             case R.id.textViewLogin:
                 startActivity(new Intent(this, LoginActivity.class));
                 break;

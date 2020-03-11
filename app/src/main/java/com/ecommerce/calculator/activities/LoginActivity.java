@@ -1,9 +1,11 @@
 package com.ecommerce.calculator.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -115,8 +117,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonLogin:
-                userLogin();
-                break;
+                    userLogin();
+                    break;
             case R.id.textViewRegister:
                 startActivity(new Intent(this, MainActivity.class));
                 break;

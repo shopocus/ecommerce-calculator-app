@@ -1,6 +1,7 @@
 package com.ecommerce.calculator.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -29,8 +31,6 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-import com.google.android.gms.ads.AdView;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -177,6 +177,11 @@ public class input extends Fragment implements View.OnClickListener {
             {
                 progressButton progressButton = new progressButton(getActivity(), v);
                 progressButton.ButtonActivated();
+                InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                View focusedView = getActivity().getCurrentFocus();
+                if (focusedView != null) {
+                    inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
                 calculate();
             }
         });
@@ -219,7 +224,11 @@ public class input extends Fragment implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         myText = title.getText().toString();
-                        save();
+                                if (myText.equals("")) {
+                                    Toast.makeText(getActivity(), "Invalid Title", Toast.LENGTH_LONG).show();
+                                } else {
+                                    save();
+                                }
                     }
                 });
                 mydialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -449,7 +458,8 @@ public class input extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_LONG).show();
+                ButtonFinished();
+                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
