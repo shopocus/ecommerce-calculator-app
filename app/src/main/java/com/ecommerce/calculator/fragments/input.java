@@ -218,6 +218,9 @@ public class input extends Fragment implements View.OnClickListener {
 
                 final EditText title = new EditText(getActivity());
                 title.setInputType(InputType.TYPE_CLASS_TEXT);
+                title.setHint("Enter Title");
+                title.requestFocus();
+                title.setPadding(70,40,50,40);
                 mydialog.setView(title);
 
                 mydialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
 import android.text.TextUtils;
+
+import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
@@ -31,6 +35,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder> implements Filterable {
+
+    String Tag = "index";
 
     Context mCtx;
     List<String> titleList;
@@ -68,11 +74,18 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
         String title = titleList.get(position);
         holder.textViewTitle.setText(title);
+        final String[] newTitle = {""};
 
         holder.textViewTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPrefManager.getInstance(mCtx).saveTitle(title);
+                if(newTitle[0].equals("")){
+                    SharedPrefManager.getInstance(mCtx).saveTitle(title);
+                }
+                else {
+                    SharedPrefManager.getInstance(mCtx).saveTitle(newTitle[0]);
+                }
+                Log.d(Tag, title);
                 Data dialog = new Data();
                 dialog.show(fragmentManager, "Data");
             }
@@ -126,6 +139,9 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
             public void onClick(View v) {
                 final EditText edittitle = new EditText(mCtx);
                 edittitle.setInputType(InputType.TYPE_CLASS_TEXT);
+                edittitle.setHint("Enter new Title");
+                edittitle.requestFocus();
+                edittitle.setPadding(70,40,50,40);
                 androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(mCtx);
                 builder.setTitle("New Title")
                         .setCancelable(false)
@@ -133,11 +149,36 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String newTitle = edittitle.getText().toString();
-                                if (newTitle.equals("")) {
+                                newTitle[0] = edittitle.getText().toString();
+                                if (newTitle[0].equals("")) {
                                     Toast.makeText(mCtx, "Invalid Title", Toast.LENGTH_LONG).show();
                                 } else {
-                                    update(title, newTitle);
+                                    String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
+                                    Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle[0]);
+
+                                    call.enqueue(new Callback<DeleteDataResponse>() {
+                                        @Override
+                                        public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
+                                            DeleteDataResponse deleteDataResponse = response.body();
+
+                                            if (deleteDataResponse.getMessage().equals("title_updated")) {
+                                               // TitleAdapter.this.notifyItemChanged(position);
+                                                holder.textViewTitle.setText(newTitle[0]);
+//                                                title.replace(title,newTitle);
+//                                                holder.textViewTitle.setText(title);
+                                                //super.onBindViewHolder(holder,position);
+                                                //title.replace(title,newTitle);\
+                                               // titleList.set(position,newTitle);
+                                                Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+                                            Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                   // update(title, newTitle);
                                 }
                             }
                         })
@@ -191,24 +232,24 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         }
     };
 
-    void update(String title, String newTitle) {
-        String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-        Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle);
-
-        call.enqueue(new Callback<DeleteDataResponse>() {
-            @Override
-            public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
-                DeleteDataResponse deleteDataResponse = response.body();
-
-                if (deleteDataResponse.getMessage().equals("title_updated")) {
-                    Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
-                Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    void update(String title, String newTitle) {
+//        String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
+//        Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle);
+//
+//        call.enqueue(new Callback<DeleteDataResponse>() {
+//            @Override
+//            public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
+//                DeleteDataResponse deleteDataResponse = response.body();
+//
+//                if (deleteDataResponse.getMessage().equals("title_updated")) {
+//                    Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+//                Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 }
