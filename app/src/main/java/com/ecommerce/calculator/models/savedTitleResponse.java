@@ -4,17 +4,17 @@ import java.util.List;
 
 public class savedTitleResponse {
 
-    private List<String> title;
+    private List<Title> title;
     private String message;
 
-    public savedTitleResponse(List<String> title, String message) {
+    public savedTitleResponse(List<Title> title, String message) {
         this.title = title;
         this.message = message;
     }
 
     public String getMessage() {return message; }
 
-    public List<String> getTitle() {
+    public List<Title> getTitle() {
         return title;
     }
 }

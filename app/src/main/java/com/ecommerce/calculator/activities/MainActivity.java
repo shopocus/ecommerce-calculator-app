@@ -88,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        if (mobile_no.length() != 10) {
+            editTextMobile.setError("Not a Valid Mobile Number");
+            editTextMobile.requestFocus();
+            return;
+        }
+
         Button signup = (Button)findViewById(R.id.buttonSignUp);
         signup.setBackgroundColor(getResources().getColor(R.color.light_grey));
         signup.setText("Sign Up");
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                signup.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                signup.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 signup.setText("Sign Up");
                 signup.setTextColor(getResources().getColor(R.color.colorBase));
                 signup.setEnabled(true);

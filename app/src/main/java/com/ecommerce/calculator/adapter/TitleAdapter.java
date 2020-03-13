@@ -22,9 +22,11 @@ import android.text.TextUtils;
 
 import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.models.DeleteDataResponse;
+import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -41,25 +43,28 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     String Tag = "index";
 
     Context mCtx;
-    List<String> titleList;
-    List<String> ListFull;
+    List<Title> titleList;
+    List<Title> ListFull;
     FragmentManager fragmentManager;
 
     public static class TitleHolder extends RecyclerView.ViewHolder {
-        public TextView textViewTitle,optionMenu;
+        public LinearLayout data_layout;
+        public TextView textViewTitle,optionMenu,textViewDate;
        // public ImageButton delete;
        // public Button edit_button;
 
         public TitleHolder(View itemView) {
             super(itemView);
+            data_layout = itemView.findViewById(R.id.data_layout);
             textViewTitle = itemView.findViewById(R.id.title);
+            textViewDate = itemView.findViewById(R.id.date);
             optionMenu = itemView.findViewById(R.id.optionMenu);
             //delete = itemView.findViewById(R.id.delete);
             //edit_button = itemView.findViewById(R.id.edit_button);
         }
     }
 
-    public TitleAdapter(Context mCtx, List<String> titleList, FragmentManager fragmentManager) {
+    public TitleAdapter(Context mCtx, List<Title> titleList, FragmentManager fragmentManager) {
         this.mCtx = mCtx;
         this.titleList = titleList;
         this.fragmentManager = fragmentManager;
@@ -75,11 +80,13 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
     @Override
     public void onBindViewHolder(@NonNull TitleHolder holder, int position) {
-        String title = titleList.get(position);
+        String title = titleList.get(position).getTitle();
+        String date = titleList.get(position).getDate();
         holder.textViewTitle.setText(title);
+        holder.textViewDate.setText(date);
         final String[] newTitle = {""};
 
-        holder.textViewTitle.setOnClickListener(new View.OnClickListener() {
+        holder.data_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (newTitle[0].equals("")) {
@@ -87,7 +94,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                 } else {
                     SharedPrefManager.getInstance(mCtx).saveTitle(newTitle[0]);
                 }
-                Log.d(Tag, title);
                 Data dialog = new Data();
                 dialog.show(fragmentManager, "Data");
             }
@@ -208,7 +214,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
     @Override
     public int getItemCount() {
-        return titleList.size();
+            return titleList.size();
     }
 
     @Override
@@ -219,14 +225,14 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     private Filter titleFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            List<String> filteredList = new ArrayList<>();
+            List<Title> filteredList = new ArrayList<>();
 
             if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(ListFull);
             } else {
                 String filter = constraint.toString().toLowerCase().trim();
-                for (String item : ListFull) {
-                    if (item.toLowerCase().contains(filter)) {
+                for (Title item : ListFull) {
+                    if (item.getTitle().toLowerCase().contains(filter)) {
                         filteredList.add(item);
                     }
                 }

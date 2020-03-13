@@ -2,6 +2,8 @@ package com.ecommerce.calculator.activities;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.WindowManager;
+
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;

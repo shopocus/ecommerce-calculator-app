@@ -104,7 +104,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                login.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                login.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 login.setText("Login");
                 login.setTextColor(getResources().getColor(R.color.colorBase));
                 login.setEnabled(true);

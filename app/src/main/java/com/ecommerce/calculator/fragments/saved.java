@@ -14,6 +14,7 @@ import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
 import com.ecommerce.calculator.api.RetrofitClient;
+import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import androidx.annotation.NonNull;
@@ -33,7 +34,7 @@ public class saved extends Fragment {
 
     private RecyclerView recyclerView;
     private TitleAdapter adapter;
-    private List<String> titleList;
+    private List<Title> titleList;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,6 +48,7 @@ public class saved extends Fragment {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
+                if(adapter != null)
                 adapter.getFilter().filter(newText);
                 return false;
             }
@@ -60,6 +62,7 @@ public class saved extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        text = view.findViewById(R.id.text);
         recyclerView = view.findViewById(R.id.title_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
@@ -72,6 +75,7 @@ public class saved extends Fragment {
                 savedTitleResponse savedTitleResponse = response.body();
 
                 if(savedTitleResponse.getMessage().equals("title_found")) {
+                    text.setVisibility(View.GONE);
                     titleList = savedTitleResponse.getTitle();
                     recyclerView.setVisibility(view.VISIBLE);
                     loader.setVisibility(view.GONE);
@@ -79,7 +83,6 @@ public class saved extends Fragment {
                     recyclerView.setAdapter(adapter);
                 }
                 else if(savedTitleResponse.getMessage().equals("no_title_exists")){
-                    text = view.findViewById(R.id.text);
                     text.setVisibility(view.VISIBLE);
                     loader.setVisibility(view.GONE);
                 }

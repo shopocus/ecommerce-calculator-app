@@ -343,6 +343,7 @@ public class input extends Fragment implements View.OnClickListener {
                 num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
                 num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
                 num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())
                         .saveFlag(flag);

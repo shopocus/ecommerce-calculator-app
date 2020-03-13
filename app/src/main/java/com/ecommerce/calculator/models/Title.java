@@ -1,13 +1,16 @@
 package com.ecommerce.calculator.models;
 
 public class Title {
-        private String title;
+        private String title, date;
+
+    public Title(String title, String date) {
+        this.title = title;
+        this.date = date;
+    }
 
         public String getTitle(){
             return title;
         }
 
-        public void setTitle(String title){
-            this.title = title;
-        }
+        public String getDate() { return date; }
 }
