@@ -1,31 +1,22 @@
 package com.ecommerce.calculator.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.InputType;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filterable;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
-import com.ecommerce.calculator.activities.FragmentSelection;
-import com.ecommerce.calculator.activities.MenuActivity;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
-import android.text.TextUtils;
-
-import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.models.DeleteDataResponse;
 import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -50,8 +41,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
     public static class TitleHolder extends RecyclerView.ViewHolder {
         public LinearLayout data_layout;
         public TextView textViewTitle,optionMenu,textViewDate;
-       // public ImageButton delete;
-       // public Button edit_button;
 
         public TitleHolder(View itemView) {
             super(itemView);
@@ -59,8 +48,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
             textViewTitle = itemView.findViewById(R.id.title);
             textViewDate = itemView.findViewById(R.id.date);
             optionMenu = itemView.findViewById(R.id.optionMenu);
-            //delete = itemView.findViewById(R.id.delete);
-            //edit_button = itemView.findViewById(R.id.edit_button);
         }
     }
 
@@ -135,13 +122,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                             DeleteDataResponse deleteDataResponse = response.body();
 
                                                             if (deleteDataResponse.getMessage().equals("title_updated")) {
-                                                                // TitleAdapter.this.notifyItemChanged(position);
                                                                 holder.textViewTitle.setText(newTitle[0]);
-//                                                title.replace(title,newTitle);
-//                                                holder.textViewTitle.setText(title);
-                                                                //super.onBindViewHolder(holder,position);
-                                                                //title.replace(title,newTitle);\
-                                                                // titleList.set(position,newTitle);
                                                                 Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
                                                             }
                                                         }
@@ -151,7 +132,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                             Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
                                                         }
                                                     });
-                                                    // update(title, newTitle);
                                                 }
                                             }
                                         })

@@ -1,7 +1,5 @@
 package com.ecommerce.calculator.api;
 
-import android.widget.ScrollView;
-
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;

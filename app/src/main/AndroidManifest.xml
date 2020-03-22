@@ -19,7 +19,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713"/>
-           <!-- android:value="ca-app-pub-4863820214041257~7277054058"/>-->
 
         <activity android:name=".activities.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
