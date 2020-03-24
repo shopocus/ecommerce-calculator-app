@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="50dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verify Your Email"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/user_mail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/user_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="20sp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/otp_digit_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/otp_digit_1"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/timer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/otp_digit_2"/>
+
+    <EditText
+        android:id="@+id/otp_digit_2"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
+        app:layout_constraintStart_toEndOf="@+id/otp_digit_1"
+        app:layout_constraintEnd_toStartOf="@id/otp_digit_3"/>
+
+    <EditText
+        android:id="@+id/otp_digit_3"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
+        app:layout_constraintStart_toEndOf="@+id/otp_digit_2"
+        app:layout_constraintEnd_toStartOf="@id/otp_digit_4"/>
+
+    <EditText
+        android:id="@+id/otp_digit_4"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
+        app:layout_constraintStart_toEndOf="@+id/otp_digit_3"
+        app:layout_constraintEnd_toStartOf="@id/otp_digit_5"/>
+
+    <EditText
+        android:id="@+id/otp_digit_5"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
+        app:layout_constraintStart_toEndOf="@+id/otp_digit_4"
+        app:layout_constraintEnd_toStartOf="@id/otp_digit_6"/>
+
+    <EditText
+        android:id="@+id/otp_digit_6"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
+        app:layout_constraintStart_toEndOf="@+id/otp_digit_5"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="timer"
+        android:textColor="@color/light_grey"
+        android:textSize="20sp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/verification_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/verification_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:text="Verify"
+        android:textColor="@color/colorBase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
