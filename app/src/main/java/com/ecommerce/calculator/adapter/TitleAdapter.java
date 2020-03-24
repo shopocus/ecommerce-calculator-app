@@ -13,7 +13,7 @@ import java.util.List;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
-import com.ecommerce.calculator.models.DeleteDataResponse;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import android.widget.Filter;
@@ -114,12 +114,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                     Toast.makeText(mCtx, "Invalid Title", Toast.LENGTH_LONG).show();
                                                 } else {
                                                     String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-                                                    Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle[0]);
+                                                    Call<MessageResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle[0]);
 
-                                                    call.enqueue(new Callback<DeleteDataResponse>() {
+                                                    call.enqueue(new Callback<MessageResponse>() {
                                                         @Override
-                                                        public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
-                                                            DeleteDataResponse deleteDataResponse = response.body();
+                                                        public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                                                            MessageResponse deleteDataResponse = response.body();
 
                                                             if (deleteDataResponse.getMessage().equals("title_updated")) {
                                                                 holder.textViewTitle.setText(newTitle[0]);
@@ -128,7 +128,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                         }
 
                                                         @Override
-                                                        public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+                                                        public void onFailure(Call<MessageResponse> call, Throwable t) {
                                                             Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
                                                         }
                                                     });
@@ -153,12 +153,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-                                                Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().DeleteData(email, title);
+                                                Call<MessageResponse> call = RetrofitClient.getInstance().getApi().DeleteData(email, title);
 
-                                                call.enqueue(new Callback<DeleteDataResponse>() {
+                                                call.enqueue(new Callback<MessageResponse>() {
                                                     @Override
-                                                    public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
-                                                        DeleteDataResponse deleteDataResponse = response.body();
+                                                    public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                                                        MessageResponse deleteDataResponse = response.body();
 
                                                         if (deleteDataResponse.getMessage().equals("deleted")) {
                                                             titleList.remove(position);
@@ -168,7 +168,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                     }
 
                                                     @Override
-                                                    public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
+                                                    public void onFailure(Call<MessageResponse> call, Throwable t) {
                                                         Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
                                                     }
                                                 });

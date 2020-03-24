@@ -1,10 +1,10 @@
 package com.ecommerce.calculator.models;
 
-public class DeleteDataResponse {
+public class MessageResponse {
 
     private String message;
 
-    public DeleteDataResponse(String msg) {
+    public MessageResponse(String msg) {
         this.message = msg;
     }
 

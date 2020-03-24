@@ -32,6 +32,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/timer"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +44,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
         app:layout_constraintStart_toEndOf="@+id/otp_digit_1"
         app:layout_constraintEnd_toStartOf="@id/otp_digit_3"/>
@@ -51,6 +55,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
         app:layout_constraintStart_toEndOf="@+id/otp_digit_2"
         app:layout_constraintEnd_toStartOf="@id/otp_digit_4"/>
@@ -60,6 +66,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
         app:layout_constraintStart_toEndOf="@+id/otp_digit_3"
         app:layout_constraintEnd_toStartOf="@id/otp_digit_5"/>
@@ -69,6 +77,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
         app:layout_constraintStart_toEndOf="@+id/otp_digit_4"
         app:layout_constraintEnd_toStartOf="@id/otp_digit_6"/>
@@ -78,6 +88,8 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:inputType="number"
+        android:maxLength="1"
         app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
         app:layout_constraintStart_toEndOf="@+id/otp_digit_5"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -86,13 +98,27 @@
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="timer"
+        android:layout_marginBottom="30dp"
+        android:text="00:00"
         android:textColor="@color/light_grey"
         android:textSize="20sp"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/verification_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+   <!-- <TextView
+        android:id="@+id/resend_otp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Resend OTP"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/timer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/timer" />-->
 
     <Button
         android:id="@+id/verification_button"

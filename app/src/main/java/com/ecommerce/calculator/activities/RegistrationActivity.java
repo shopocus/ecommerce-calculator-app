@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.models.MessageResponse;
 import  com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
@@ -16,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextName, editTextEmail, editTextMobile, editTextPassword;
 
@@ -94,10 +95,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button signup = (Button)findViewById(R.id.buttonSignUp);
         signup.setBackgroundColor(getResources().getColor(R.color.light_grey));
-        signup.setText("Sign Up");
+        signup.setText("Loading");
         signup.setEnabled(false);
 
-        Call<DefaultResponse> call = RetrofitClient
+        Call<MessageResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .otpSend(email);
+
+        call.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                MessageResponse dr = response.body();
+                if (dr.getMessage().equals("yes")) {
+                    Intent intent = new Intent(RegistrationActivity.this, Verification.class);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email", email);
+                    intent.putExtra("mobile_no", mobile_no);
+                    intent.putExtra("password", password);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                signup.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                signup.setText("Sign Up");
+                signup.setTextColor(getResources().getColor(R.color.colorBase));
+                signup.setEnabled(true);
+                Toast.makeText(RegistrationActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+            }
+        });
+        /*Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .signup(name, email, mobile_no, password);
@@ -107,10 +137,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse dr = response.body();
                 if (dr.getMessage().equals("yes")) {
-                    Toast.makeText(MainActivity.this, "Account Created Successfully", Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(MainActivity.this)
+                    Toast.makeText(RegistrationActivity.this, "Account Created Successfully", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(RegistrationActivity.this)
                             .saveUser(dr.getUser());
-                    Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                    Intent intent = new Intent(RegistrationActivity.this, MenuActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else if(dr.getMessage().equals("user_already_exist")){
@@ -118,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     signup.setText("Sign Up");
                     signup.setTextColor(getResources().getColor(R.color.colorBase));
                     signup.setEnabled(true);
-                    Toast.makeText(MainActivity.this, "Account already exist", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationActivity.this, "Account already exist", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -128,9 +158,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 signup.setText("Sign Up");
                 signup.setTextColor(getResources().getColor(R.color.colorBase));
                 signup.setEnabled(true);
-                Toast.makeText(MainActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 
     @Override

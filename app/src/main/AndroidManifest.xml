@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.RegistrationActivity"></activity>
+        <activity android:name=".activities.Verification"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"
             android:windowSoftInputMode="adjustPan">

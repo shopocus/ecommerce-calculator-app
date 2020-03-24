@@ -6,7 +6,7 @@ import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.SaveResponse;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
-import com.ecommerce.calculator.models.DeleteDataResponse;
+import com.ecommerce.calculator.models.MessageResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -87,14 +87,27 @@ public interface Api {
 
     @FormUrlEncoded
     @HTTP(method = "DELETE", path = "meesho/delete/title", hasBody = true)
-    Call<DeleteDataResponse> DeleteData(@Field("email") String email, @Field("title") String title);
+    Call<MessageResponse> DeleteData(@Field("email") String email, @Field("title") String title);
 
     @FormUrlEncoded
     @PUT("meesho/update/title")
-    Call<DeleteDataResponse> update(
+    Call<MessageResponse> update(
             @Field("email") String email,
             @Field("title") String title,
             @Field("newTitle") String newTitle
             );
+
+    @FormUrlEncoded
+    @POST("preRegister/sendOtp")
+    Call<MessageResponse> otpSend(
+      @Field("email") String email
+    );
+
+    @FormUrlEncoded
+    @POST("preRegister/verifyOtp")
+    Call<MessageResponse> otpVerification(
+            @Field("email") String email,
+            @Field("otp") Integer otp
+    );
 
 }
