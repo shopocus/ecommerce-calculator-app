@@ -104,7 +104,7 @@ public class Verification extends AppCompatActivity {
                 otp_digit_4.setEnabled(false);
                 otp_digit_5.setEnabled(false);
                 otp_digit_6.setEnabled(false);
-                verification_button.setBackgroundColor(getResources().getColor(R.color.light_grey));
+                verification_button.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
                 verification_button.setText("Verify");
                 verification_button.setEnabled(false);
                 mTimerRunning = false;
@@ -134,7 +134,7 @@ public class Verification extends AppCompatActivity {
         Toast.makeText(Verification.this, OTP, Toast.LENGTH_LONG).show();
 
         //verification_button = (Button)findViewById(R.id.buttonSignUp);
-        verification_button.setBackgroundColor(getResources().getColor(R.color.light_grey));
+        verification_button.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
         verification_button.setText("Verifying");
         verification_button.setEnabled(false);
 
@@ -153,7 +153,7 @@ public class Verification extends AppCompatActivity {
                 else{
                     verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                     verification_button.setText("Verify");
-                    verification_button.setTextColor(getResources().getColor(R.color.colorBase));
+                    verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
                     Toast.makeText(Verification.this, dr.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -163,7 +163,7 @@ public class Verification extends AppCompatActivity {
             public void onFailure(Call<MessageResponse> call, Throwable t) {
                 verification_button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 verification_button.setText("Verify");
-                verification_button.setTextColor(getResources().getColor(R.color.colorBase));
+                verification_button.setTextColor(getResources().getColor(R.color.white));
                 verification_button.setEnabled(true);
                 Toast.makeText(Verification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
@@ -212,7 +212,7 @@ public class Verification extends AppCompatActivity {
                 MessageResponse dr = response.body();
                 if (dr.getMessage().equals("yes")) {
                     counttime.setEnabled(false);
-                    verification_button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                     verification_button.setText("Verify");
                     verification_button.setEnabled(true);
                     otp_digit_1.setText("");

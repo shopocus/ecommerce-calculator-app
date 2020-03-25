@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.ecommerce.calculator.R;
@@ -72,9 +73,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        Button login = (Button)findViewById(R.id.buttonLogin);
-        login.setBackgroundColor(getResources().getColor(R.color.light_grey));
-        login.setText("Login");
+        TextView login = (TextView) findViewById(R.id.buttonLogin);
+        login.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
+        login.setText("Loading");
         login.setEnabled(false);
 
         Call<LoginResponse> call = RetrofitClient
@@ -92,9 +93,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
-                    login.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                    login.setBackground(getResources().getDrawable(R.drawable.button_background));
                     login.setText("Login");
-                    login.setTextColor(getResources().getColor(R.color.colorBase));
+                    login.setTextColor(getResources().getColor(R.color.white));
                     login.setEnabled(true);
                     Toast.makeText(LoginActivity.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
@@ -102,9 +103,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                login.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                login.setBackground(getResources().getDrawable(R.drawable.button_background));
                 login.setText("Login");
-                login.setTextColor(getResources().getColor(R.color.colorBase));
+                login.setTextColor(getResources().getColor(R.color.white));
                 login.setEnabled(true);
                 Toast.makeText(LoginActivity.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
