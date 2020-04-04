@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activities.HomeScreen"></activity>
         <activity android:name=".activities.RegistrationActivity"></activity>
         <activity android:name=".activities.Verification"></activity>
         <activity android:name=".activities.LoginActivity"></activity>
