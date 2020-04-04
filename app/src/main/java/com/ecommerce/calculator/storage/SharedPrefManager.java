@@ -52,6 +52,23 @@ public class SharedPrefManager {
         );
     }
 
+    public void saveToken(String token) {
+
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("token", token);
+
+        editor.apply();
+
+    }
+
+    public String getToken() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        return token;
+    }
+
     public void saveData(TitleDataResponse dataResponse) {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

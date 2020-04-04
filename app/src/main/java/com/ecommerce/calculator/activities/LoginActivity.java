@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
 
-                if (loginResponse.getMessage().equals("yes")) {
+                if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(LoginActivity.this)
                             .saveUser(loginResponse.getUser());
                     Intent intent = new Intent(LoginActivity.this, MenuActivity.class);

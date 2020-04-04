@@ -17,4 +17,5 @@ public class LoginResponse {
     public User getUser() {
         return user;
     }
+
 }
