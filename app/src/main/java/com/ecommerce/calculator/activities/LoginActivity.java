@@ -2,6 +2,7 @@ package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.textViewRegister).setOnClickListener(this);
+        findViewById(R.id.forgetPassword).setOnClickListener(this);
+
+//        SharedPrefManager.getInstance(this)
+//                .saveToken("false");
     }
 
     @Override
@@ -120,6 +125,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     break;
             case R.id.textViewRegister:
                 startActivity(new Intent(this, RegistrationActivity.class));
+                break;
+            case R.id.forgetPassword:
+                startActivity(new Intent(this, ForgetPassword.class));
                 break;
         }
     }

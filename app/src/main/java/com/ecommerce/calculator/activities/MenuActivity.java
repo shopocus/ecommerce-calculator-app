@@ -12,12 +12,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import com.ecommerce.calculator.adapter.HolderAdapter;
+import com.ecommerce.calculator.api.RetrofitClient;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -38,6 +48,9 @@ public class MenuActivity extends AppCompatActivity {
         String flag = "false";
         SharedPrefManager.getInstance(MenuActivity.this)
                 .saveFlag(flag);
+
+//        String token = SharedPrefManager.getInstance(this).getToken();
+//        Log.d("input", token);
 
         mrecyclerView = findViewById(R.id.menu);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -106,10 +119,7 @@ public class MenuActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                SharedPrefManager.getInstance(MenuActivity.this).clear();
-                                Intent intent_logout = new Intent(MenuActivity.this, LoginActivity.class);
-                                intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent_logout);
+                                logout();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -143,5 +153,33 @@ public class MenuActivity extends AppCompatActivity {
                 });
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    void logout(){
+
+        Call<MessageResponse> call = RetrofitClient
+                .getInstance().getApi().logout();
+
+        call.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                MessageResponse messageResponse = response.body();
+
+                if (messageResponse.getMessage().equals("logged_out")) {
+                    Toast.makeText(MenuActivity.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(MenuActivity.this).clear();
+                    Intent intent_logout = new Intent(MenuActivity.this, LoginActivity.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
+                } else {
+                    Toast.makeText(MenuActivity.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(MenuActivity.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

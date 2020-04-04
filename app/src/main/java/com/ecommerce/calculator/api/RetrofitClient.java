@@ -43,10 +43,12 @@ public class RetrofitClient {
                                     return response;
                                 }
                                 else {
+                                    String token = SharedPrefManager.getInstance(context).getToken();
+                                    Log.d("token", token);
                                 Request original = chain.request();
 
                                 Request.Builder requestBuilder = original.newBuilder()
-                                        .addHeader("Authorization", SharedPrefManager.getInstance(context).getToken())
+                                        .addHeader("x-auth", SharedPrefManager.getInstance(context).getToken())
                                         .method(original.method(), original.body());
 
                                 Request request = requestBuilder.build();

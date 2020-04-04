@@ -40,7 +40,7 @@ public class SharedPrefManager {
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString("email", null) != null;
+        return sharedPreferences.getString("token", null) != null;
     }
 
     public User getUser() {

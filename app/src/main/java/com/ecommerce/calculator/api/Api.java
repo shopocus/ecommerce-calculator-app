@@ -111,4 +111,27 @@ public interface Api {
             @Field("otp") Integer otp
     );
 
+    @FormUrlEncoded
+    @POST("forgetPassword/sendOtp")
+    Call<MessageResponse> forgetPasswordOtpSend(
+            @Field("email") String email
+    );
+
+    @FormUrlEncoded
+    @POST("forgetPassword/verifyOtp")
+    Call<MessageResponse> forgetPasswordOtpVerification(
+            @Field("email") String email,
+      @Field("otp") String otp
+    );
+
+    @FormUrlEncoded
+    @PUT("forgetPassword/changePassword")
+    Call<MessageResponse> updatePassword(
+            @Field("email") String email,
+            @Field("newPassword") String newPassword
+    );
+
+    @HTTP(method = "DELETE", path = "logout", hasBody = true)
+    Call<MessageResponse> logout();
+
 }
