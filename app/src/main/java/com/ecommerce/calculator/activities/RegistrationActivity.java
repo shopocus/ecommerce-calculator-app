@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.models.MessageResponse;
 import  com.ecommerce.calculator.storage.SharedPrefManager;
@@ -33,6 +35,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         editTextPassword = findViewById(R.id.editTextPassword);
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
+
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         //findViewById(R.id.textViewLogin).setOnClickListener(this);
     }
 

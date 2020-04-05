@@ -29,9 +29,9 @@
         </activity>
 
         <activity android:name=".activities.HomeScreen"></activity>
-        <activity android:name=".activities.RegistrationActivity"></activity>
+        <activity android:name=".activities.RegistrationActivity" android:parentActivityName=".activities.HomeScreen"></activity>
         <activity android:name=".activities.Verification"></activity>
-        <activity android:name=".activities.LoginActivity"></activity>
+        <activity android:name=".activities.LoginActivity" android:parentActivityName=".activities.HomeScreen"></activity>
         <activity android:name=".activities.ForgetPassword"></activity>
         <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MenuActivity"
             android:windowSoftInputMode="adjustPan">

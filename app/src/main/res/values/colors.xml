@@ -6,5 +6,8 @@
     <color name="colorBase">#D8D6D6</color>
     <color name="white">#fff</color>
     <color name="black">#000</color>
-    <color name="light_grey">#ECEBEB</color>#F3755F
+    <color name="light_grey">#ECEBEB</color>
+    <color name="homescreen_background">#ffeae0</color>
+    <color name="orange_theme">#ff7233</color>#FD5C05
+    <color name="main_headings">#2F2A37</color>
 </resources>

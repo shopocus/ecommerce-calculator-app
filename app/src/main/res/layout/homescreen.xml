@@ -5,68 +5,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/homescreen1">
+    android:background="@color/homescreen_background">
 
     <TextView
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Business calculator"
-        android:textColor="#2F2A37"
+        android:text="Business Calculator"
+        android:textColor="@color/main_headings"
         android:textSize="35sp"
-        android:textStyle="italic"
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--<TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="now business becomes easy"
-        android:textColor="#673AB7"
-        android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/homescreen2"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="50dp"
-        android:layout_marginTop="250dp"
+        android:paddingVertical="16dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <TextView
-            android:id="@+id/buttonsignUp"
+            android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/singupbutton"
+            android:background="@drawable/login_signup_button"
+            android:elevation="1dp"
             android:gravity="center"
-            android:padding="13dp"
+            android:padding="10dp"
             android:text="Sign Up"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/orange_theme"
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSignUp"
+            tools:layout_editor_absoluteX="50dp" />
 
         <TextView
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/loginbutton"
+            android:background="@drawable/login_signup_button"
+            android:elevation="1dp"
             android:gravity="center"
-            android:padding="13dp"
+            android:padding="10dp"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/orange_theme"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/buttonsignUp" />
+            app:layout_constraintTop_toBottomOf="@+id/text"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
+            tools:layout_editor_absoluteX="50dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

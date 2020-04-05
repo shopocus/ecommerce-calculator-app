@@ -1,15 +1,19 @@
 package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.models.LoginResponse;
@@ -20,6 +24,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    Window window;
+
     private EditText editTextEmail;
     private EditText editTextPassword;
 
@@ -28,15 +34,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if(Build.VERSION.SDK_INT>=21){
+            window=this.getWindow();
+            window.setStatusBarColor(this.getResources().getColor(R.color.orange_theme));
+        }
+
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
-        findViewById(R.id.textViewRegister).setOnClickListener(this);
+      //  findViewById(R.id.textViewRegister).setOnClickListener(this);
         findViewById(R.id.forgetPassword).setOnClickListener(this);
 
-//        SharedPrefManager.getInstance(this)
-//                .saveToken("false");
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -123,9 +134,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.buttonLogin:
                     userLogin();
                     break;
-            case R.id.textViewRegister:
-                startActivity(new Intent(this, RegistrationActivity.class));
-                break;
+//            case R.id.textViewRegister:
+//                startActivity(new Intent(this, RegistrationActivity.class));
+//                break;
             case R.id.forgetPassword:
                 startActivity(new Intent(this, ForgetPassword.class));
                 break;
