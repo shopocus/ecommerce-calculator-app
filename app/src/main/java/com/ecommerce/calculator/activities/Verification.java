@@ -3,6 +3,8 @@ package com.ecommerce.calculator.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +27,10 @@ import retrofit2.Response;
 
 public class Verification extends AppCompatActivity {
 
-    private TextView editTextEmail, counttime;
+    private TextView editTextEmail, counttime, verification_button;
     private EditText otp_digit_1, otp_digit_2, otp_digit_3, otp_digit_4, otp_digit_5, otp_digit_6;
     private String name, email, mobile_no, password, OTP;
-    private Button verification_button;
+    //private Button verification_button;
     ///private static final long START_TIME_IN_MILLIS = 100000;
 
     private boolean mTimerRunning;
@@ -54,6 +56,106 @@ public class Verification extends AppCompatActivity {
         otp_digit_4 = findViewById(R.id.otp_digit_4);
         otp_digit_5 = findViewById(R.id.otp_digit_5);
         otp_digit_6 = findViewById(R.id.otp_digit_6);
+
+        otp_digit_1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_1.clearFocus();
+                    otp_digit_2.requestFocus();
+                    otp_digit_2.setCursorVisible(true);
+                }
+            }
+        });
+
+        otp_digit_2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_2.clearFocus();
+                    otp_digit_3.requestFocus();
+                    otp_digit_3.setCursorVisible(true);
+                }
+            }
+        });
+
+        otp_digit_3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_3.clearFocus();
+                    otp_digit_4.requestFocus();
+                    otp_digit_4.setCursorVisible(true);
+                }
+            }
+        });
+
+        otp_digit_4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_4.clearFocus();
+                    otp_digit_5.requestFocus();
+                    otp_digit_5.setCursorVisible(true);
+                }
+            }
+        });
+
+        otp_digit_5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_5.clearFocus();
+                    otp_digit_6.requestFocus();
+                    otp_digit_6.setCursorVisible(true);
+                }
+            }
+        });
+
+        otp_digit_6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length()>0){
+                    otp_digit_6.clearFocus();
+                }
+            }
+        });
 
         counttime=findViewById(R.id.timer);
 

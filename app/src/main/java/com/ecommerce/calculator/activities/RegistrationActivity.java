@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,9 +100,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             return;
         }
 
-        TextView signup = (TextView) findViewById(R.id.buttonSignUp);
+        ImageButton signup = (ImageButton) findViewById(R.id.buttonSignUp);
         signup.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
-        signup.setText("Loading");
+      //  signup.setText("Loading");
         signup.setEnabled(false);
 
         Call<MessageResponse> call = RetrofitClient
@@ -113,7 +114,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse dr = response.body();
-                if (dr.getMessage().equals("yes")) {
+                if (dr.getMessage().equals("otp_sent")) {
                     Intent intent = new Intent(RegistrationActivity.this, Verification.class);
                     intent.putExtra("name", name);
                     intent.putExtra("email", email);
@@ -122,13 +123,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
+                else if(dr.getMessage().equals("user_already_exist")) {
+                    signup.setBackground(getResources().getDrawable(R.drawable.button_background));
+                    signup.setEnabled(true);
+                    Toast.makeText(RegistrationActivity.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
                 signup.setBackground(getResources().getDrawable(R.drawable.button_background));
-                signup.setText("Sign Up");
-                signup.setTextColor(getResources().getColor(R.color.white));
+                //signup.setText("Sign Up");
+               // signup.setTextColor(getResources().getColor(R.color.white));
                 signup.setEnabled(true);
                 Toast.makeText(RegistrationActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
