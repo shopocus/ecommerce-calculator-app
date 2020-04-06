@@ -24,8 +24,6 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Window window;
-
     private EditText editTextEmail;
     private EditText editTextPassword;
 
@@ -33,11 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        if(Build.VERSION.SDK_INT>=21){
-            window=this.getWindow();
-            window.setStatusBarColor(this.getResources().getColor(R.color.orange_theme));
-        }
 
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);

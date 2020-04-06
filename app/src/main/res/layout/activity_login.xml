@@ -8,15 +8,6 @@
     android:background="@drawable/wavey5"
     tools:context=".activities.RegistrationActivity">
 
-   <!-- <ImageView
-        android:id="@+id/background"
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:src="@drawable/homescreen3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-
     <ImageButton
         android:id="@+id/backGo"
         android:layout_width="wrap_content"
@@ -52,14 +43,14 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:padding="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <TextView
-            android:id="@+id/login"
+            android:id="@+id/signUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -81,7 +72,7 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:textSize="15sp"
-            app:layout_constraintTop_toBottomOf="@+id/login" />
+            app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
 
         <EditText
@@ -109,7 +100,7 @@
             app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
-       <!-- <TextView
+        <!-- <TextView
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,7 +115,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />-->
+            app:layout_constraintTop_toBottomOf="@+id/forgetPassword" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,7 +126,7 @@
             android:layout_marginLeft="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/buttonLogin"
             app:layout_constraintStart_toStartOf="@+id/editTextPassword"
-            app:layout_constraintTop_toTopOf="@+id/buttonLogin" />
+            app:layout_constraintTop_toTopOf="@+id/buttonLogin" />-->
 
         <ImageButton
             android:id="@+id/buttonLogin"
