@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Verification extends AppCompatActivity {
+public class RegistrationOtpVerification extends AppCompatActivity {
 
     private TextView editTextEmail, counttime, verification_button;
     private EditText otp_digit_1, otp_digit_2, otp_digit_3, otp_digit_4, otp_digit_5, otp_digit_6;
@@ -163,6 +162,12 @@ public class Verification extends AppCompatActivity {
         verification_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                otp_digit_1.clearFocus();
+                otp_digit_2.clearFocus();
+                otp_digit_3.clearFocus();
+                otp_digit_4.clearFocus();
+                otp_digit_5.clearFocus();
+                otp_digit_6.clearFocus();
                 Verification();
             }
         });
@@ -178,11 +183,11 @@ public class Verification extends AppCompatActivity {
     }
 
     private void Timer(){
-        new CountDownTimer(120000,1000) {
+        new CountDownTimer(61000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
-                mTimeLeftInMillis = 100000;
+                mTimeLeftInMillis = 60000;
                 mTimeLeftInMillis = millisUntilFinished;
                 int minutes = (int) (mTimeLeftInMillis / 1000) / 60;
                 int seconds = (int) (mTimeLeftInMillis / 1000) % 60;
@@ -190,6 +195,7 @@ public class Verification extends AppCompatActivity {
                 String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
                 counttime.setText(timeLeftFormatted);
+                counttime.setTextColor(getResources().getColor(R.color.orange_theme));
                 //counttime.setText(String.valueOf(counter));
                 //counter++;
             }
@@ -198,7 +204,7 @@ public class Verification extends AppCompatActivity {
                 //counttime.setVisibility(View.GONE);
                 //resend_otp.setVisibility(View.VISIBLE);
                 counttime.setText("Resend OTP");
-                counttime.setTextColor(getResources().getColor(R.color.black));
+                counttime.setTextColor(getResources().getColor(R.color.link));
                 counttime.setEnabled(true);
                 otp_digit_1.setEnabled(false);
                 otp_digit_2.setEnabled(false);
@@ -233,7 +239,7 @@ public class Verification extends AppCompatActivity {
 
         OTP = otp_1+otp_2+otp_3+otp_4+otp_5+otp_6;
 
-        Toast.makeText(Verification.this, OTP, Toast.LENGTH_LONG).show();
+        Toast.makeText(RegistrationOtpVerification.this, OTP, Toast.LENGTH_LONG).show();
 
         //verification_button = (Button)findViewById(R.id.buttonSignUp);
         verification_button.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
@@ -243,7 +249,7 @@ public class Verification extends AppCompatActivity {
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .otpVerification(email,Integer.valueOf(OTP));
+                .otpVerification(email,OTP);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
@@ -257,7 +263,7 @@ public class Verification extends AppCompatActivity {
                     verification_button.setText("Verify");
                     verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
-                    Toast.makeText(Verification.this, dr.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationOtpVerification.this, dr.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -267,7 +273,7 @@ public class Verification extends AppCompatActivity {
                 verification_button.setText("Verify");
                 verification_button.setTextColor(getResources().getColor(R.color.white));
                 verification_button.setEnabled(true);
-                Toast.makeText(Verification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationOtpVerification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -282,22 +288,22 @@ public class Verification extends AppCompatActivity {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse dr = response.body();
-                if (dr.getMessage().equals("yes")) {
-                    Toast.makeText(Verification.this, "Account Created Successfully", Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(Verification.this)
+                if (dr.getMessage().equals("signed_up")) {
+                    Toast.makeText(RegistrationOtpVerification.this, "Account Created Successfully", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(RegistrationOtpVerification.this)
                             .saveUser(dr.getUser());
-                    Intent intent = new Intent(Verification.this, MenuActivity.class);
+                    Intent intent = new Intent(RegistrationOtpVerification.this, MeeshoCalculation.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(Verification.this, "Already Exits", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationOtpVerification.this, "Already Exits", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                Toast.makeText(Verification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationOtpVerification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -312,7 +318,7 @@ public class Verification extends AppCompatActivity {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse dr = response.body();
-                if (dr.getMessage().equals("yes")) {
+                if (dr.getMessage().equals("otp_sent")) {
                     counttime.setEnabled(false);
                     verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                     verification_button.setText("Verify");
@@ -335,7 +341,7 @@ public class Verification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Toast.makeText(Verification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegistrationOtpVerification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }

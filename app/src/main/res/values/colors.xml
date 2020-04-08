@@ -10,4 +10,5 @@
     <color name="homescreen_background">#ffeae0</color>
     <color name="orange_theme">#ff7233</color>#FD5C05
     <color name="main_headings">#2F2A37</color>
+    <color name="link">#2196F3</color>
 </resources>

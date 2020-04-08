@@ -1,11 +1,9 @@
 package com.ecommerce.calculator.api;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.Log;
 
-import com.ecommerce.calculator.activities.LoginActivity;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import java.io.IOException;

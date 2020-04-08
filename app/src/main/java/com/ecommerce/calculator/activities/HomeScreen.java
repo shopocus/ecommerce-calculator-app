@@ -32,10 +32,10 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSignUp:
-                startActivity(new Intent(this, RegistrationActivity.class));
+                startActivity(new Intent(this, Registration.class));
                 break;
             case R.id.buttonLogin:
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, Login.class));
                 break;
         }
     }

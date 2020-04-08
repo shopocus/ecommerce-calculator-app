@@ -1,18 +1,13 @@
 package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -22,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -48,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(this, MenuActivity.class);
+            Intent intent = new Intent(this, MeeshoCalculation.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -96,9 +91,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 LoginResponse loginResponse = response.body();
 
                 if (loginResponse.getMessage().equals("loggedIn")) {
-                    SharedPrefManager.getInstance(LoginActivity.this)
+                    SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    Intent intent = new Intent(Login.this, MeeshoCalculation.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
@@ -106,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     login.setText("Login");
                     login.setTextColor(getResources().getColor(R.color.white));
                     login.setEnabled(true);
-                    Toast.makeText(LoginActivity.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -116,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login.setText("Login");
                 login.setTextColor(getResources().getColor(R.color.white));
                 login.setEnabled(true);
-                Toast.makeText(LoginActivity.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -131,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                startActivity(new Intent(this, RegistrationActivity.class));
 //                break;
             case R.id.forgetPassword:
-                startActivity(new Intent(this, ForgetPassword.class));
+                startActivity(new Intent(this, ForgotPasswordGetEmail.class));
                 break;
         }
     }

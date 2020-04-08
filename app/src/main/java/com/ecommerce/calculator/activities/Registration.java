@@ -4,24 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.models.MessageResponse;
 import  com.ecommerce.calculator.storage.SharedPrefManager;
-import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
+public class Registration extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextName, editTextEmail, editTextMobile, editTextPassword;
 
@@ -46,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     protected void onStart() {
         super.onStart();
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
-            Intent intent = new Intent(this, MenuActivity.class);
+            Intent intent = new Intent(this, MeeshoCalculation.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
@@ -115,18 +111,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse dr = response.body();
                 if (dr.getMessage().equals("otp_sent")) {
-                    Intent intent = new Intent(RegistrationActivity.this, Verification.class);
+                    Intent intent = new Intent(Registration.this, RegistrationOtpVerification.class);
                     intent.putExtra("name", name);
                     intent.putExtra("email", email);
                     intent.putExtra("mobile_no", mobile_no);
                     intent.putExtra("password", password);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
                 else if(dr.getMessage().equals("user_already_exist")) {
                     signup.setBackground(getResources().getDrawable(R.drawable.button_background));
                     signup.setEnabled(true);
-                    Toast.makeText(RegistrationActivity.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Registration.this, "User Already Exist", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -136,7 +132,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 //signup.setText("Sign Up");
                // signup.setTextColor(getResources().getColor(R.color.white));
                 signup.setEnabled(true);
-                Toast.makeText(RegistrationActivity.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(Registration.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });
         /*Call<DefaultResponse> call = RetrofitClient

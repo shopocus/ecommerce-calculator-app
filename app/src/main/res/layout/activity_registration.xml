@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wavey5"
-    tools:context=".activities.RegistrationActivity">
+    android:paddingHorizontal="16dp"
+    tools:context=".activities.Registration">
 
     <ImageButton
         android:id="@+id/backGo"
@@ -43,7 +44,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="30dp"
+        android:paddingVertical="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +68,7 @@
             android:background="@drawable/edittext_background"
             android:drawableLeft="@drawable/ic_name"
             android:drawablePadding="5dp"
+            android:layout_marginHorizontal="16dp"
             android:elevation="2dp"
             android:hint="name"
             android:inputType="text"
@@ -81,6 +83,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/edittext_background"
             android:drawableLeft="@drawable/ic_email"
+            android:layout_marginHorizontal="16dp"
             android:drawablePadding="5dp"
             android:elevation="2dp"
             android:hint="email"
@@ -97,6 +100,7 @@
             android:background="@drawable/edittext_background"
             android:drawableLeft="@drawable/ic_call_black_24dp"
             android:drawablePadding="5dp"
+            android:layout_marginHorizontal="16dp"
             android:elevation="2dp"
             android:hint="mobile number"
             android:inputType="number"
@@ -114,6 +118,7 @@
             android:background="@drawable/edittext_background"
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="5dp"
+            android:layout_marginHorizontal="16dp"
             android:elevation="2dp"
             android:hint="password"
             android:inputType="textPassword"

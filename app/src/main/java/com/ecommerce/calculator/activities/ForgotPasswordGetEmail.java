@@ -3,23 +3,21 @@ package com.ecommerce.calculator.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.MessageResponse;
-import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForgetPassword extends AppCompatActivity {
+public class ForgotPasswordGetEmail extends AppCompatActivity {
 
     EditText email,otp,password;
 
@@ -29,10 +27,10 @@ public class ForgetPassword extends AppCompatActivity {
         setContentView(R.layout.forget_password);
 
         email = findViewById(R.id.email);
-        otp = findViewById(R.id.otp);
-        password = findViewById(R.id.password);
+      //  otp = findViewById(R.id.otp);
+       // password = findViewById(R.id.password);
 
-        Button submit = findViewById(R.id.submit);
+        TextView submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,21 +38,21 @@ public class ForgetPassword extends AppCompatActivity {
             }
         });
 
-        Button verify = findViewById(R.id.verify);
-        verify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyOtp();
-            }
-        });
+//        Button verify = findViewById(R.id.verify);
+//        verify.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                verifyOtp();
+//            }
+//        });
 
-        Button change = findViewById(R.id.change);
-        change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updatePassword();
-            }
-        });
+//        Button change = findViewById(R.id.change);
+//        change.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                updatePassword();
+//            }
+//        });
     }
 
     void requestOtp(){
@@ -68,20 +66,24 @@ public class ForgetPassword extends AppCompatActivity {
                 MessageResponse messageResponse = response.body();
 
                 if (messageResponse.getMessage().equals("otp_sent")) {
-                    Toast.makeText(ForgetPassword.this, "otp send", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordGetEmail.this, "otp send", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ForgotPasswordGetEmail.this, ForgotPasswordVerifyEmail.class);
+                    intent.putExtra("email", emailSend);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 } else {
-                    Toast.makeText(ForgetPassword.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgotPasswordGetEmail.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Toast.makeText(ForgetPassword.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(ForgotPasswordGetEmail.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    void verifyOtp(){
+    /*void verifyOtp(){
         String emailSend = email.getText().toString().trim();
         String otpSend = otp.getText().toString().trim();
         Toast.makeText(ForgetPassword.this, otpSend, Toast.LENGTH_LONG).show();
@@ -131,5 +133,5 @@ public class ForgetPassword extends AppCompatActivity {
                 Toast.makeText(ForgetPassword.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
         });
-    }
+    }*/
 }

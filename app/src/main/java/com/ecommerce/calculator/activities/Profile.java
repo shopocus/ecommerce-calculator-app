@@ -8,7 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.R;
 
-public class profile extends AppCompatActivity {
+public class Profile extends AppCompatActivity {
 
     private TextView textViewEmail, textViewName, textViewMobile;
 
@@ -27,8 +27,8 @@ public class profile extends AppCompatActivity {
         textViewName = (TextView)findViewById(R.id.textViewName);
         textViewMobile = (TextView)findViewById(R.id.textViewMobile);
 
-        textViewEmail.setText(SharedPrefManager.getInstance(profile.this).getUser().getName());
-        textViewName.setText(SharedPrefManager.getInstance(profile.this).getUser().getEmail());
-        textViewMobile.setText(SharedPrefManager.getInstance(profile.this).getUser().getMobile_no());
+        textViewEmail.setText(SharedPrefManager.getInstance(Profile.this).getUser().getName());
+        textViewName.setText(SharedPrefManager.getInstance(Profile.this).getUser().getEmail());
+        textViewMobile.setText(SharedPrefManager.getInstance(Profile.this).getUser().getMobile_no());
     }
 }

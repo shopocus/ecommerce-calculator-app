@@ -108,7 +108,7 @@ public interface Api {
     @POST("preRegister/verifyOtp")
     Call<MessageResponse> otpVerification(
             @Field("email") String email,
-            @Field("otp") Integer otp
+            @Field("otp") String otp
     );
 
     @FormUrlEncoded

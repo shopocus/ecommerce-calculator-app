@@ -77,7 +77,6 @@
                 android:cursorVisible="true"
                 android:elevation="3dp"
                 android:textAlignment="center"
-                android:textColor="@color/main_headings"
                 android:inputType="number"
                 android:maxLength="1"
                 android:textCursorDrawable="@null"
@@ -193,12 +192,12 @@
             android:layout_marginTop="16dp"
             android:text="00:00"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/resend_otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -210,7 +209,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/timer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/timer" />
+            app:layout_constraintTop_toTopOf="@+id/timer" />-->
 
         <TextView
             android:id="@+id/verification_button"
