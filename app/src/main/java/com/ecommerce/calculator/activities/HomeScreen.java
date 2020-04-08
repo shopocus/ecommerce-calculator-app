@@ -21,7 +21,7 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
 
         if(Build.VERSION.SDK_INT>=21){
             window=this.getWindow();
-            window.setStatusBarColor(this.getResources().getColor(R.color.homescreen_background));
+            window.setStatusBarColor(this.getResources().getColor(R.color.white));
         }
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
