@@ -167,7 +167,7 @@ public class MeeshoCalculation extends AppCompatActivity {
                 if (messageResponse.getMessage().equals("logged_out")) {
                     Toast.makeText(MeeshoCalculation.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(MeeshoCalculation.this).clear();
-                    Intent intent_logout = new Intent(MeeshoCalculation.this, Login.class);
+                    Intent intent_logout = new Intent(MeeshoCalculation.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 } else {

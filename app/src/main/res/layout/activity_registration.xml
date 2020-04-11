@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/wavey5"
     android:paddingHorizontal="16dp"
+    android:id="@+id/constraintLayout"
     tools:context=".activities.Registration">
 
     <ImageButton
@@ -41,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/innerConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="30dp"

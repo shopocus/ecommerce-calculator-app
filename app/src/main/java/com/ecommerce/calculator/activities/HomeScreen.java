@@ -9,6 +9,7 @@ import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 
 public class HomeScreen  extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +27,17 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            Intent intent = new Intent(this, MeeshoCalculation.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     @Override

@@ -1,18 +1,22 @@
 package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
+import com.google.android.material.snackbar.Snackbar;
+import java.util.regex.Pattern;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,6 +25,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmail;
     private EditText editTextPassword;
+    ConstraintLayout constraintLayout;
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}" + "$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,57 +36,38 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
+        constraintLayout = findViewById(R.id.constraintLayout);
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
-      //  findViewById(R.id.textViewRegister).setOnClickListener(this);
         findViewById(R.id.forgetPassword).setOnClickListener(this);
-
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-            Intent intent = new Intent(this, MeeshoCalculation.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
     }
 
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if (email.isEmpty()) {
-            editTextEmail.setError("Email is required");
-            editTextEmail.requestFocus();
+        if (email.isEmpty() || password.isEmpty()) {
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter All The Details", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
             return;
         }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Enter a valid email");
-            editTextEmail.requestFocus();
+        if (!PASSWORD_PATTERN.matcher(password).matches() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid Details", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
             return;
         }
 
-        if (password.isEmpty()) {
-            editTextPassword.setError("Password required");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        if (password.length() < 6) {
-            editTextPassword.setError("Password should be atleast 6 character long");
-            editTextPassword.requestFocus();
-            return;
-        }
-
-        TextView login = (TextView) findViewById(R.id.buttonLogin);
+        ImageButton login = (ImageButton) findViewById(R.id.buttonLogin);
         login.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
-        login.setText("Loading");
         login.setEnabled(false);
 
         Call<LoginResponse> call = RetrofitClient
@@ -98,8 +86,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     startActivity(intent);
                 } else {
                     login.setBackground(getResources().getDrawable(R.drawable.button_background));
-                    login.setText("Login");
-                    login.setTextColor(getResources().getColor(R.color.white));
                     login.setEnabled(true);
                     Toast.makeText(Login.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
@@ -108,8 +94,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 login.setBackground(getResources().getDrawable(R.drawable.button_background));
-                login.setText("Login");
-                login.setTextColor(getResources().getColor(R.color.white));
                 login.setEnabled(true);
                 Toast.makeText(Login.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
@@ -122,12 +106,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.buttonLogin:
                     userLogin();
                     break;
-//            case R.id.textViewRegister:
-//                startActivity(new Intent(this, RegistrationActivity.class));
-//                break;
             case R.id.forgetPassword:
                 startActivity(new Intent(this, ForgotPasswordGetEmail.class));
                 break;
         }
     }
+
 }

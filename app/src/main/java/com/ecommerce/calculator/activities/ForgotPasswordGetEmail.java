@@ -19,12 +19,12 @@ import retrofit2.Response;
 
 public class ForgotPasswordGetEmail extends AppCompatActivity {
 
-    EditText email,otp,password;
+    EditText email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forget_password);
+        setContentView(R.layout.forgot_password);
 
         email = findViewById(R.id.email);
       //  otp = findViewById(R.id.otp);
@@ -34,6 +34,11 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+              //  ImageButton signup = (ImageButton) findViewById(R.id.buttonSignUp);
+                submit.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
+                //  signup.setText("Loading");
+                submit.setEnabled(false);
                 requestOtp();
             }
         });
@@ -56,6 +61,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
     }
 
     void requestOtp(){
+
         String emailSend = email.getText().toString().trim();
         Call<MessageResponse> call = RetrofitClient
                 .getInstance().getApi().forgetPasswordOtpSend(emailSend);
