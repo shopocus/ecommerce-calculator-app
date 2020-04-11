@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
@@ -81,13 +81,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
-                    Intent intent = new Intent(Login.this, MeeshoCalculation.class);
+                    Intent intent = new Intent(Login.this, Menu.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
                     login.setBackground(getResources().getDrawable(R.drawable.button_background));
                     login.setEnabled(true);
-                    Toast.makeText(Login.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid Details", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                 }
             }
 
@@ -95,7 +100,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 login.setBackground(getResources().getDrawable(R.drawable.button_background));
                 login.setEnabled(true);
-                Toast.makeText(Login.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
             }
         });
     }

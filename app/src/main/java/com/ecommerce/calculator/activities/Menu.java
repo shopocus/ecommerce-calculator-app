@@ -17,7 +17,6 @@ import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -28,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MeeshoCalculation extends AppCompatActivity {
+public class Menu extends AppCompatActivity {
 
     RecyclerView mrecyclerView;
     HolderAdapter holderAdapter;
@@ -45,7 +44,7 @@ public class MeeshoCalculation extends AppCompatActivity {
         toolbar.setSubtitle("Business Calculator");
 
         String flag = "false";
-        SharedPrefManager.getInstance(MeeshoCalculation.this)
+        SharedPrefManager.getInstance(Menu.this)
                 .saveFlag(flag);
 
 //        String token = SharedPrefManager.getInstance(this).getToken();
@@ -99,7 +98,7 @@ public class MeeshoCalculation extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(android.view.Menu menu){
         getMenuInflater().inflate(R.menu.profile, menu);
         return true;
     }
@@ -108,7 +107,7 @@ public class MeeshoCalculation extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.profile:
-                Intent intent = new Intent(MeeshoCalculation.this, Profile.class);
+                Intent intent = new Intent(Menu.this, Profile.class);
                 startActivity(intent);
                 break;
             case R.id.logout:
@@ -141,7 +140,7 @@ public class MeeshoCalculation extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        MeeshoCalculation.super.onBackPressed();
+                        Menu.super.onBackPressed();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -165,19 +164,19 @@ public class MeeshoCalculation extends AppCompatActivity {
                 MessageResponse messageResponse = response.body();
 
                 if (messageResponse.getMessage().equals("logged_out")) {
-                    Toast.makeText(MeeshoCalculation.this, "log out", Toast.LENGTH_LONG).show();
-                    SharedPrefManager.getInstance(MeeshoCalculation.this).clear();
-                    Intent intent_logout = new Intent(MeeshoCalculation.this, HomeScreen.class);
+                    Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(Menu.this).clear();
+                    Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 } else {
-                    Toast.makeText(MeeshoCalculation.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Menu.this, "Invalid  Details", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Toast.makeText(MeeshoCalculation.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(Menu.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
             }
         });
     }

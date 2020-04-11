@@ -1,6 +1,7 @@
 package com.ecommerce.calculator.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -8,13 +9,12 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.MessageResponse;
-import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.snackbar.Snackbar;
 import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,8 +25,7 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
         private TextView editTextEmail, counttime, verification_button;
         private EditText otp_digit_1, otp_digit_2, otp_digit_3, otp_digit_4, otp_digit_5, otp_digit_6;
         private String email, OTP;
-        //private Button verification_button;
-        ///private static final long START_TIME_IN_MILLIS = 100000;
+        ConstraintLayout constraintLayout;
 
         private boolean mTimerRunning;
         private long mTimeLeftInMillis;
@@ -37,8 +36,11 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
             setContentView(R.layout.verification);
 
             editTextEmail = findViewById(R.id.user_mail);
+            constraintLayout = findViewById(R.id.constraintLayout);
+
             Intent intent = getIntent();
             email = intent.getStringExtra("email");
+
             editTextEmail.setText(email);
 
             otp_digit_1 = findViewById(R.id.otp_digit_1);
@@ -189,13 +191,9 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
 
                     counttime.setText(timeLeftFormatted);
                     counttime.setTextColor(getResources().getColor(R.color.orange_theme));
-                    //counttime.setText(String.valueOf(counter));
-                    //counter++;
                 }
                 @Override
                 public void onFinish() {
-                    //counttime.setVisibility(View.GONE);
-                    //resend_otp.setVisibility(View.VISIBLE);
                     counttime.setText("Resend OTP");
                     counttime.setTextColor(getResources().getColor(R.color.link));
                     counttime.setEnabled(true);
@@ -209,7 +207,6 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                     verification_button.setText("Verify");
                     verification_button.setEnabled(false);
                     mTimerRunning = false;
-                    //counttime.setText("Finished");
                 }
             }.start();
             mTimerRunning = true;
@@ -225,16 +222,17 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
             String otp_6 = otp_digit_6.getText().toString().trim();
 
             if (otp_1.isEmpty() || otp_2.isEmpty() || otp_3.isEmpty() || otp_4.isEmpty() || otp_5.isEmpty() || otp_6.isEmpty()) {
-                otp_digit_1.setError("OTP Required");
-                otp_digit_1.requestFocus();
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid OTP", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
                 return;
             }
 
             OTP = otp_1+otp_2+otp_3+otp_4+otp_5+otp_6;
 
-            Toast.makeText(ForgotPasswordVerifyEmail.this, OTP, Toast.LENGTH_LONG).show();
-
-            //verification_button = (Button)findViewById(R.id.buttonSignUp);
             verification_button.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
             verification_button.setText("Verifying");
             verification_button.setEnabled(false);
@@ -251,7 +249,6 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                     if (dr.getMessage().equals("matched")) {
                         Intent intent = new Intent(ForgotPasswordVerifyEmail.this, GetNewPassword.class);
                         intent.putExtra("email", email);
-                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     }
                     else{
@@ -259,7 +256,12 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                         verification_button.setText("Verify");
                         verification_button.setTextColor(getResources().getColor(R.color.white));
                         verification_button.setEnabled(true);
-                        Toast.makeText(ForgotPasswordVerifyEmail.this, dr.getMessage(), Toast.LENGTH_LONG).show();
+                        Snackbar snackbar = Snackbar.make(constraintLayout, "Wrong OTP", Snackbar.LENGTH_SHORT);
+                        View snackView = snackbar.getView();
+                        TextView textView = snackView.findViewById(R.id.snackbar_text);
+                        textView.setTextColor(Color.WHITE);
+                        textView.setTextSize(15);
+                        snackbar.show();
                     }
                 }
 
@@ -269,42 +271,18 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                     verification_button.setText("Verify");
                     verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
-                    Toast.makeText(ForgotPasswordVerifyEmail.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                 }
             });
         }
 
-       /* private void Registration(){
-            Call<DefaultResponse> call = RetrofitClient
-                    .getInstance()
-                    .getApi()
-                    .signup(name, email, mobile_no, password);
-
-            call.enqueue(new Callback<DefaultResponse>() {
-                @Override
-                public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
-                    DefaultResponse dr = response.body();
-                    if (dr.getMessage().equals("signed_up")) {
-                        Toast.makeText(com.ecommerce.calculator.activities.RegistrationOtpVerification.this, "Account Created Successfully", Toast.LENGTH_LONG).show();
-                        SharedPrefManager.getInstance(com.ecommerce.calculator.activities.RegistrationOtpVerification.this)
-                                .saveUser(dr.getUser());
-                        Intent intent = new Intent(com.ecommerce.calculator.activities.RegistrationOtpVerification.this, MeeshoCalculation.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                    }
-                    else{
-                        Toast.makeText(com.ecommerce.calculator.activities.RegistrationOtpVerification.this, "Already Exits", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<DefaultResponse> call, Throwable t) {
-                    Toast.makeText(com.ecommerce.calculator.activities.RegistrationOtpVerification.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
-                }
-            });
-        }*/
-
         private void Resend(){
+
             Call<MessageResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
@@ -337,7 +315,12 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<MessageResponse> call, Throwable t) {
-                    Toast.makeText(ForgotPasswordVerifyEmail.this, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                 }
             });
         }

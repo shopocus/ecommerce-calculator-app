@@ -35,11 +35,11 @@
         <activity android:name=".activities.ForgotPasswordGetEmail"></activity>
         <activity android:name=".activities.ForgotPasswordVerifyEmail"></activity>
         <activity android:name=".activities.GetNewPassword"></activity>
-        <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.MeeshoCalculation"
+        <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.Menu"
             android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".activities.MeeshoCalculation"></activity>
-        <activity android:name=".activities.Profile" android:parentActivityName=".activities.MeeshoCalculation"></activity>
+        <activity android:name=".activities.Menu"></activity>
+        <activity android:name=".activities.Profile" android:parentActivityName=".activities.Menu"></activity>
         <activity android:name=".fragments.Data"></activity>
 
     </application>

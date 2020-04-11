@@ -109,6 +109,14 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     textView.setTextSize(15);
                     snackbar.show();
                 }
+                else{
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
+                }
             }
 
             @Override
