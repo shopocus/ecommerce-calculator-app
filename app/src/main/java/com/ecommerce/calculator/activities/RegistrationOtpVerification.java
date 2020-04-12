@@ -18,6 +18,8 @@ import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.Locale;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -227,7 +229,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         String otp_6 = otp_digit_6.getText().toString().trim();
 
         if (otp_1.isEmpty() || otp_2.isEmpty() || otp_3.isEmpty() || otp_4.isEmpty() || otp_5.isEmpty() || otp_6.isEmpty()) {
-            Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid OTP", Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Enter Valid OTP", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
             textView.setTextColor(Color.WHITE);
@@ -245,17 +247,17 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .otpVerification(email,OTP);
+                .otpVerification(email, OTP);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse dr = response.body();
+
                 if (dr.getMessage().equals("matched")) {
                     Registration();
                 }
-                else{
-                    verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
+                else{verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                     verification_button.setText("Verify");
                     verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
@@ -270,7 +272,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                verification_button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                 verification_button.setText("Verify");
                 verification_button.setTextColor(getResources().getColor(R.color.white));
                 verification_button.setEnabled(true);
@@ -295,18 +297,26 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void onResponse(Call<DefaultResponse> call, Response<DefaultResponse> response) {
                 DefaultResponse dr = response.body();
+                verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
+                verification_button.setText("Verify");
+                verification_button.setTextColor(getResources().getColor(R.color.white));
+                verification_button.setEnabled(true);
                 if (dr.getMessage().equals("signed_up")) {
-                    Snackbar snackbar = Snackbar.make(constraintLayout, "Account Created Successfully", Snackbar.LENGTH_SHORT);
-                    View snackView = snackbar.getView();
-                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                    textView.setTextColor(Color.WHITE);
-                    textView.setTextSize(15);
-                    snackbar.show();
                     SharedPrefManager.getInstance(RegistrationOtpVerification.this)
                             .saveUser(dr.getUser());
-                    Intent intent = new Intent(RegistrationOtpVerification.this, Menu.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    new SweetAlertDialog(RegistrationOtpVerification.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Account Created Successfully")
+                            .setConfirmText("Continue")
+                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    Intent intent = new Intent(RegistrationOtpVerification.this, Menu.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            })
+                            .show();
                 }
                 else{
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
@@ -320,6 +330,10 @@ public class RegistrationOtpVerification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
+                verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
+                verification_button.setText("Verify");
+                verification_button.setTextColor(getResources().getColor(R.color.white));
+                verification_button.setEnabled(true);
                 Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);

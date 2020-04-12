@@ -17,6 +17,8 @@ import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.regex.Pattern;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,11 +41,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         constraintLayout = findViewById(R.id.constraintLayout);
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
-        findViewById(R.id.forgetPassword).setOnClickListener(this);
+        findViewById(R.id.forgotPassword).setOnClickListener(this);
     }
 
     private void userLogin() {
-        String email = editTextEmail.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim().toLowerCase();
         String password = editTextPassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
@@ -81,9 +83,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
-                    Intent intent = new Intent(Login.this, Menu.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    new SweetAlertDialog(Login.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Successfully Logged In")
+                            .setConfirmText("Continue")
+                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    Intent intent = new Intent(Login.this, Menu.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            })
+                            .show();
                 } else {
                     login.setBackground(getResources().getDrawable(R.drawable.button_background));
                     login.setEnabled(true);
@@ -116,7 +128,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.buttonLogin:
                     userLogin();
                     break;
-            case R.id.forgetPassword:
+            case R.id.forgotPassword:
                 startActivity(new Intent(this, ForgotPasswordGetEmail.class));
                 break;
         }

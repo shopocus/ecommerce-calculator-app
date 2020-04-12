@@ -246,16 +246,16 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                     MessageResponse dr = response.body();
+                    verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
+                    verification_button.setText("Verify");
+                    verification_button.setTextColor(getResources().getColor(R.color.white));
+                    verification_button.setEnabled(true);
                     if (dr.getMessage().equals("matched")) {
                         Intent intent = new Intent(ForgotPasswordVerifyEmail.this, GetNewPassword.class);
                         intent.putExtra("email", email);
                         startActivity(intent);
                     }
                     else{
-                        verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
-                        verification_button.setText("Verify");
-                        verification_button.setTextColor(getResources().getColor(R.color.white));
-                        verification_button.setEnabled(true);
                         Snackbar snackbar = Snackbar.make(constraintLayout, "Wrong OTP", Snackbar.LENGTH_SHORT);
                         View snackView = snackbar.getView();
                         TextView textView = snackView.findViewById(R.id.snackbar_text);

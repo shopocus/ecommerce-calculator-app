@@ -44,7 +44,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     private void userSignUp() {
         String name = editTextName.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
+        String email = editTextEmail.getText().toString().trim().toLowerCase();
         String mobile_no = editTextMobile.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
@@ -91,6 +91,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse dr = response.body();
+                signup.setBackground(getResources().getDrawable(R.drawable.button_background));
+                signup.setEnabled(true);
                 if (dr.getMessage().equals("otp_sent")) {
                     Intent intent = new Intent(Registration.this, RegistrationOtpVerification.class);
                     intent.putExtra("name", name);
@@ -100,8 +102,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                 }
                 else if(dr.getMessage().equals("user_already_exist")) {
-                    signup.setBackground(getResources().getDrawable(R.drawable.button_background));
-                    signup.setEnabled(true);
                     Snackbar snackbar = Snackbar.make(constraintLayout, "User Already Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);

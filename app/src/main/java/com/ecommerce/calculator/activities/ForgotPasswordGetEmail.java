@@ -20,6 +20,7 @@ import retrofit2.Response;
 public class ForgotPasswordGetEmail extends AppCompatActivity {
 
     EditText email;
+    TextView submit;
     ConstraintLayout constraintLayout;
 
     @Override
@@ -30,7 +31,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
         email = findViewById(R.id.email);
         constraintLayout = findViewById(R.id.constraintLayout);
 
-        TextView submit = findViewById(R.id.submit);
+        submit = findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,9 +46,12 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
 
     void requestOtp(){
 
-        String emailSend = email.getText().toString().trim();
+        String emailSend = email.getText().toString().trim().toLowerCase();
 
         if (!Patterns.EMAIL_ADDRESS.matcher(emailSend).matches() || emailSend.isEmpty()) {
+            submit.setBackground(getResources().getDrawable(R.drawable.button_background));
+            submit.setText("Send OTP");
+            submit.setEnabled(true);
             Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid Email Address", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -64,7 +68,9 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse messageResponse = response.body();
-
+                submit.setBackground(getResources().getDrawable(R.drawable.button_background));
+                submit.setText("Send OTP");
+                submit.setEnabled(true);
                 if (messageResponse.getMessage().equals("otp_sent")) {
                     Intent intent = new Intent(ForgotPasswordGetEmail.this, ForgotPasswordVerifyEmail.class);
                     intent.putExtra("email", emailSend);
@@ -88,6 +94,9 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
+                submit.setBackground(getResources().getDrawable(R.drawable.button_background));
+                submit.setText("Send OTP");
+                submit.setEnabled(true);
                 Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);

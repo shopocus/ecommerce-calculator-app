@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +24,7 @@ public class GetNewPassword extends AppCompatActivity {
 
     EditText newPassword, confirmPassword;
     String email;
-    Button update;
+    TextView update;
     ConstraintLayout constraintLayout;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}" + "$");
@@ -53,6 +55,16 @@ public class GetNewPassword extends AppCompatActivity {
         String passwordSend = newPassword.getText().toString().trim();
         String confirmPasswordSend = confirmPassword.getText().toString().trim();
 
+        if(passwordSend.isEmpty() || confirmPasswordSend.isEmpty()){
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter The Required Fields", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
+            return;
+        }
+
         if(!passwordSend.equals(confirmPasswordSend)){
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter Same Password", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
@@ -60,6 +72,7 @@ public class GetNewPassword extends AppCompatActivity {
             textView.setTextColor(Color.WHITE);
             textView.setTextSize(15);
             snackbar.show();
+            return;
         }
 
         if (!PASSWORD_PATTERN.matcher(passwordSend).matches()) {
@@ -84,17 +97,23 @@ public class GetNewPassword extends AppCompatActivity {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 MessageResponse messageResponse = response.body();
-
+                update.setBackground(getResources().getDrawable(R.drawable.button_background));
+                update.setText("Update");
+                update.setEnabled(true);
                 if (messageResponse.getMessage().equals("password_changed")) {
-                    Snackbar snackbar = Snackbar.make(constraintLayout, "Password Updated Successfully", Snackbar.LENGTH_SHORT);
-                    View snackView = snackbar.getView();
-                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                    textView.setTextColor(Color.WHITE);
-                    textView.setTextSize(15);
-                    snackbar.show();
-                    Intent intent = new Intent(GetNewPassword.this, Login.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    new SweetAlertDialog(GetNewPassword.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Password Updated Successfully")
+                            .setConfirmText("Continue")
+                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    Intent intent = new Intent(GetNewPassword.this, HomeScreen.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                            })
+                            .show();
                 } else {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
@@ -102,9 +121,6 @@ public class GetNewPassword extends AppCompatActivity {
                     textView.setTextColor(Color.WHITE);
                     textView.setTextSize(15);
                     snackbar.show();
-                    update.setBackground(getResources().getDrawable(R.drawable.button_background));
-                    update.setText("Update");
-                    update.setEnabled(true);
                 }
             }
 
