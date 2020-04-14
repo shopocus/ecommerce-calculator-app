@@ -1,27 +1,43 @@
 package com.ecommerce.calculator.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
 public class HomeScreen  extends AppCompatActivity implements View.OnClickListener {
 
-    Window window;
+   // Window window;
+
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.homescreen_background);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarGradiant(this);
         setContentView(R.layout.homescreen);
 
-        if(Build.VERSION.SDK_INT>=21){
-            window=this.getWindow();
-            window.setStatusBarColor(this.getResources().getColor(R.color.white));
-        }
+//        if(Build.VERSION.SDK_INT>=21){
+//            window=this.getWindow();
+//            window.setStatusBarColor(this.getResources().getColor(R.color.white));
+//        }
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);

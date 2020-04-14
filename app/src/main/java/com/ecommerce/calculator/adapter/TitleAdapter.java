@@ -113,17 +113,20 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                 if (newTitle[0].equals("")) {
                                                     Toast.makeText(mCtx, "Invalid Title", Toast.LENGTH_LONG).show();
                                                 } else {
-                                                    String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-                                                    Call<MessageResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle[0]);
+                                                    String company = SharedPrefManager.getInstance(mCtx).getCompany();
+                                                    Call<MessageResponse> call = RetrofitClient.getInstance().getApi().update(company, title, newTitle[0]);
 
                                                     call.enqueue(new Callback<MessageResponse>() {
                                                         @Override
                                                         public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                                                             MessageResponse deleteDataResponse = response.body();
 
-                                                            if (deleteDataResponse.getMessage().equals("title_updated")) {
+                                                            if (deleteDataResponse.getMessage().equals("updated")) {
                                                                 holder.textViewTitle.setText(newTitle[0]);
                                                                 Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
+                                                            }
+                                                            else{
+                                                                Toast.makeText(mCtx, "Title exists", Toast.LENGTH_LONG).show();
                                                             }
                                                         }
 
@@ -152,8 +155,8 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-                                                Call<MessageResponse> call = RetrofitClient.getInstance().getApi().DeleteData(email, title);
+                                                String company = SharedPrefManager.getInstance(mCtx).getCompany();
+                                                Call<MessageResponse> call = RetrofitClient.getInstance().getApi().DeleteData(company, title);
 
                                                 call.enqueue(new Callback<MessageResponse>() {
                                                     @Override

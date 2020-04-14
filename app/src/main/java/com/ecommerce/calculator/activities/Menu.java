@@ -8,8 +8,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ecommerce.calculator.R;
+
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import com.ecommerce.calculator.adapter.HolderAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
@@ -18,6 +22,8 @@ import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -33,9 +39,22 @@ public class Menu extends AppCompatActivity {
     HolderAdapter holderAdapter;
     SearchView searchView;
 
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.toolbar);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+        setStatusBarGradiant(this);
         setContentView(R.layout.activity_menu);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

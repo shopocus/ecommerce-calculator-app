@@ -92,13 +92,13 @@ public interface Api {
     );
 
     @FormUrlEncoded
-    @HTTP(method = "DELETE", path = "meesho/delete/title", hasBody = true)
-    Call<MessageResponse> DeleteData(@Field("email") String email, @Field("title") String title);
+    @HTTP(method = "DELETE", path = "common/delete/title", hasBody = true)
+    Call<MessageResponse> DeleteData(@Field("company") String company, @Field("title") String title);
 
     @FormUrlEncoded
-    @PUT("meesho/update/title")
+    @PUT("common/update/title")
     Call<MessageResponse> update(
-            @Field("email") String email,
+            @Field("company") String company,
             @Field("title") String title,
             @Field("newTitle") String newTitle
             );

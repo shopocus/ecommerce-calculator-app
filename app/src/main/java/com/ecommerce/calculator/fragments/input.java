@@ -49,6 +49,8 @@ public class input extends Fragment implements View.OnClickListener {
 
     Spinner num3, categories;
     String categoryFinal;
+    List<String> list = new ArrayList<>();
+
     //ArrayList<String> arrayList;
     //ArrayAdapter<String> arrayAdapter;
 
@@ -262,6 +264,7 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
+        list.add("Select Category");
         categories();
 
         return view;
@@ -362,6 +365,7 @@ public class input extends Fragment implements View.OnClickListener {
         }
 
         protected void categories() {
+
             Call<category> call = RetrofitClient
                     .getInstance().getApi().getCategories();
 
@@ -369,7 +373,7 @@ public class input extends Fragment implements View.OnClickListener {
                 @Override
                 public void onResponse(Call<category> call, Response<category> response) {
                     category category = response.body();
-                    List<String> list = new ArrayList<>();
+
                     for(String s  : category.getCategory()){
                         list.add(s);
                     }
