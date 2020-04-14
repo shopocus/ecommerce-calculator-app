@@ -48,6 +48,7 @@ public class input extends Fragment implements View.OnClickListener {
     private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
 
     Spinner num3, categories;
+    String categoryFinal;
     //ArrayList<String> arrayList;
     //ArrayAdapter<String> arrayAdapter;
 
@@ -200,6 +201,7 @@ public class input extends Fragment implements View.OnClickListener {
             {
                 num1.requestFocus();
                 num1.setText("");
+                categories.setSelection(0);
                 num2.setText("");
                 num3.setSelection(0);
                 num4.setText("");
@@ -325,33 +327,33 @@ public class input extends Fragment implements View.OnClickListener {
         textView = view.findViewById(R.id.calculate_textview);
 
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-//            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-//            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-//            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
-//            switch (value){
-//                    case 0:
-//                        num3.setSelection(0);
-//                        break;
-//                    case 5:
-//                        num3.setSelection(1);
-//                        break;
-//                    case 12:
-//                        num3.setSelection(2);
-//                        break;
-//                    case 18:
-//                        num3.setSelection(3);
-//                        break;
-//                    case 28:
-//                        num3.setSelection(4);
-//                        break;
-//                }
-//                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
-//                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
-//                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
-//                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
-//                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
-//                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
-//                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
+            switch (value){
+                    case 0:
+                        num3.setSelection(0);
+                        break;
+                    case 5:
+                        num3.setSelection(1);
+                        break;
+                    case 12:
+                        num3.setSelection(2);
+                        break;
+                    case 18:
+                        num3.setSelection(3);
+                        break;
+                    case 28:
+                        num3.setSelection(4);
+                        break;
+                }
+                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
+                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
+                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
+                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
+                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
+                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
+                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
 
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())
@@ -371,9 +373,19 @@ public class input extends Fragment implements View.OnClickListener {
                     for(String s  : category.getCategory()){
                         list.add(s);
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
                     categories.setAdapter(adapter);
+
+                    categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            categoryFinal = list.get(position);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
                 }
 
                 @Override
@@ -435,6 +447,7 @@ public class input extends Fragment implements View.OnClickListener {
             return;
         }
 
+        String category = categoryFinal;
         double number1 = Double.parseDouble(num1.getText().toString());
         double number2 = Double.parseDouble(num2.getText().toString());
         double number3 = Double.parseDouble(spinner_ans);
@@ -447,7 +460,7 @@ public class input extends Fragment implements View.OnClickListener {
         double number10 = Double.parseDouble(num10.getText().toString());
 
         Call<CalculateResponse> call = RetrofitClient
-                .getInstance().getApi().calculate("Appliances", number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
+                .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
 
         call.enqueue(new Callback<CalculateResponse>() {
             @Override
@@ -502,8 +515,8 @@ public class input extends Fragment implements View.OnClickListener {
     }
 
     public void save(){
-        String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
         String title = String.valueOf(myText);
+        String category = categoryFinal;
         String sellingPrice = num1.getText().toString().trim();
         String gstOnProduct = spinner_ans;
         String productPriceWithoutGst = num2.getText().toString().trim();
@@ -526,7 +539,7 @@ public class input extends Fragment implements View.OnClickListener {
         Call<SaveResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .saved(title, "Appliances" , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
+                .saved(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
                         other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
                         gstClaim, profitPercentage);
 

@@ -75,6 +75,7 @@ public class SharedPrefManager {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
             editor.putString("title", dataResponse.getTitle());
+            editor.putString("category", dataResponse.getCategory());
             editor.putString("sellingPrice", dataResponse.getSellingPrice());
             editor.putString("gstOnProduct", dataResponse.getGstOnProduct());
             editor.putString("productPriceWithoutGst", dataResponse.getProductPriceWithoutGst());
@@ -101,6 +102,7 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new TitleDataResponse(
                 sharedPreferences.getString("title", null),
+                sharedPreferences.getString("category", null),
                 sharedPreferences.getString("sellingPrice", null),
                 sharedPreferences.getString("gstOnProduct", null),
                 sharedPreferences.getString("productPriceWithoutGst", null),
@@ -150,6 +152,21 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String title = (sharedPreferences.getString("title",null));
         return title;
+    }
+
+    public void saveCompany(String company){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("company", company);
+
+        editor.apply();
+    }
+
+    public String getCompany(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String company = (sharedPreferences.getString("company",null));
+        return company;
     }
 
     public void clear() {

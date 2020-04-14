@@ -63,9 +63,9 @@ public class saved extends Fragment {
         text = view.findViewById(R.id.text);
         recyclerView = view.findViewById(R.id.title_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
+        String company = SharedPrefManager.getInstance(getActivity()).getCompany();
 
-        Call<savedTitleResponse> call = RetrofitClient.getInstance().getApi().getTitles("meesho");
+        Call<savedTitleResponse> call = RetrofitClient.getInstance().getApi().getTitles(company);
 
         call.enqueue(new Callback<savedTitleResponse>() {
             @Override

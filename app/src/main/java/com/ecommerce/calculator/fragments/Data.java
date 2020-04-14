@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class Data extends DialogFragment {
 
-    private TextView textViewTitle, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewInwardShipping, textViewPackagingExpenses, textViewLabour,
+    private TextView textViewTitle, textViewCategory, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewInwardShipping, textViewPackagingExpenses, textViewLabour,
             textViewStorageFees, textViewOther, textViewByPrice, textViewByPercentage, textViewBankSettlement, textViewTotalMeeshoCommision, textViewProfit,
             textViewTotalGstPayable, textViewTcs, textViewGstPayable, textViewGstClaim, textViewProfitPercentage;
 
@@ -40,6 +40,7 @@ public class Data extends DialogFragment {
         output_card = view.findViewById(R.id.output_card);
         buttons = view.findViewById(R.id.buttons);
         textViewTitle = view.findViewById(R.id.textViewTitle);
+        textViewCategory = view.findViewById(R.id.textViewCategory);
         textViewSellingPrice = view.findViewById(R.id.textViewSellingPrice);
         textViewPurchasePrice = view.findViewById(R.id.textViewPurchasePrice);
         textViewGst = view.findViewById(R.id.textViewGst);
@@ -107,6 +108,7 @@ public class Data extends DialogFragment {
                     buttons.setVisibility(getView().VISIBLE);
                     textViewTitle.setVisibility(getView().VISIBLE);
                     textViewTitle.setText(td.getTitle());
+                    textViewCategory.setText(td.getCategory());
                     textViewSellingPrice.setText(td.getSellingPrice());
                     textViewPurchasePrice.setText(td.getProductPriceWithoutGst());
                     textViewGst.setText(td.getGstOnProduct());

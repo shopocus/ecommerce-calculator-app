@@ -16,6 +16,7 @@ import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.holder.MyHolder;
 import com.ecommerce.calculator.holder.itemClick;
 import com.ecommerce.calculator.models.menu;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 
 public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable {
 
@@ -46,6 +47,8 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             @Override
             public void onItemClickListener(View v, int position) {
                 if (menu.get(position).getTitle().equals("Meesho")){
+                    SharedPrefManager.getInstance(c)
+                            .saveCompany("meesho");
                     Intent intent = new Intent(c , FragmentSelection.class);
                     intent.putExtra(KEY,0);
                     c.startActivity(intent);
