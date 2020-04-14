@@ -65,14 +65,14 @@ public class saved extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         String email = SharedPrefManager.getInstance(getActivity()).getUser().getEmail();
 
-        Call<savedTitleResponse> call = RetrofitClient.getInstance().getApi().getTitles(email);
+        Call<savedTitleResponse> call = RetrofitClient.getInstance().getApi().getTitles("meesho");
 
         call.enqueue(new Callback<savedTitleResponse>() {
             @Override
             public void onResponse(Call<savedTitleResponse> call, Response<savedTitleResponse> response) {
                 savedTitleResponse savedTitleResponse = response.body();
 
-                if(savedTitleResponse.getMessage().equals("title_found")) {
+                if(savedTitleResponse.getMessage().equals("data_found")) {
                     text.setVisibility(View.GONE);
                     titleList = savedTitleResponse.getTitle();
                     recyclerView.setVisibility(view.VISIBLE);
@@ -80,7 +80,7 @@ public class saved extends Fragment {
                     adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
                     recyclerView.setAdapter(adapter);
                 }
-                else if(savedTitleResponse.getMessage().equals("no_title_exists")){
+                else if(savedTitleResponse.getMessage().equals("no_data_exists")){
                     text.setVisibility(view.VISIBLE);
                     loader.setVisibility(view.GONE);
                 }

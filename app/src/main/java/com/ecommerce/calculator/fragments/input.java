@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+
+import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,15 +38,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import android.view.View.OnClickListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class input extends Fragment implements View.OnClickListener {
 
     private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5, line6,
-            rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
+    private TextView textViewCategory, pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
+            line6, line7, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
     private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
 
-    Spinner num3;
+    Spinner num3, categories;
+    //ArrayList<String> arrayList;
+    //ArrayAdapter<String> arrayAdapter;
+
     ListView itemList;
     CardView result_card;
     Double[] items = new Double[8] ;
@@ -254,6 +260,8 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
+        categories();
+
         return view;
     }
 
@@ -261,6 +269,7 @@ public class input extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        categories = view.findViewById(R.id.category);
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
@@ -316,38 +325,62 @@ public class input extends Fragment implements View.OnClickListener {
         textView = view.findViewById(R.id.calculate_textview);
 
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
-            switch (value){
-                    case 0:
-                        num3.setSelection(0);
-                        break;
-                    case 5:
-                        num3.setSelection(1);
-                        break;
-                    case 12:
-                        num3.setSelection(2);
-                        break;
-                    case 18:
-                        num3.setSelection(3);
-                        break;
-                    case 28:
-                        num3.setSelection(4);
-                        break;
-                }
-                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
-                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
-                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
-                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
-                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
-                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
-                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+//            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+//            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+//            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
+//            switch (value){
+//                    case 0:
+//                        num3.setSelection(0);
+//                        break;
+//                    case 5:
+//                        num3.setSelection(1);
+//                        break;
+//                    case 12:
+//                        num3.setSelection(2);
+//                        break;
+//                    case 18:
+//                        num3.setSelection(3);
+//                        break;
+//                    case 28:
+//                        num3.setSelection(4);
+//                        break;
+//                }
+//                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
+//                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
+//                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
+//                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
+//                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
+//                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
+//                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
 
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())
                         .saveFlag(flag);
             }
+        }
+
+        protected void categories() {
+            Call<category> call = RetrofitClient
+                    .getInstance().getApi().getCategories();
+
+            call.enqueue(new Callback<category>() {
+                @Override
+                public void onResponse(Call<category> call, Response<category> response) {
+                    category category = response.body();
+                    List<String> list = new ArrayList<>();
+                    for(String s  : category.getCategory()){
+                        list.add(s);
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    categories.setAdapter(adapter);
+                }
+
+                @Override
+                public void onFailure(Call<category> call, Throwable t) {
+
+                }
+            });
         }
 
     protected void calculate() {
@@ -414,7 +447,7 @@ public class input extends Fragment implements View.OnClickListener {
         double number10 = Double.parseDouble(num10.getText().toString());
 
         Call<CalculateResponse> call = RetrofitClient
-                .getInstance().getApi().calculate(number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
+                .getInstance().getApi().calculate("Appliances", number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
 
         call.enqueue(new Callback<CalculateResponse>() {
             @Override
@@ -493,7 +526,7 @@ public class input extends Fragment implements View.OnClickListener {
         Call<SaveResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .saved(email, title, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
+                .saved(title, "Appliances" , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
                         other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
                         gstClaim, profitPercentage);
 
@@ -501,7 +534,7 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
                 SaveResponse dr = response.body();
-                if (dr.getMessage().equals("saved")) {
+                if (dr.getMessage().equals("data_saved")) {
                     save.setImageResource(R.drawable.ic_bookmark);
                     save.setEnabled(false);
                     Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();

@@ -4,14 +4,15 @@ import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.SaveResponse;
+import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.HTTP;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -34,8 +35,9 @@ public interface Api {
     );
 
     @FormUrlEncoded
-    @POST("calculate")
+    @POST("meesho/app/calculate")
     Call<CalculateResponse> calculate(
+            @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
             @Field("productPriceWithoutGst") double productPriceWithoutGst,
@@ -48,11 +50,14 @@ public interface Api {
             @Field("discountAmount") double discountAmount
     );
 
+    @GET("meesho/app/showCategory")
+    Call<category> getCategories( );
+
     @FormUrlEncoded
-    @POST("meesho/tosave")
+    @POST("meesho/app/toSave")
     Call<SaveResponse> saved(
-            @Field("email") String email,
             @Field("title") String title,
+            @Field("category") String category,
             @Field("sellingPrice") String sellingPrice,
             @Field("gstOnProduct") String gstOnProduct,
             @Field("productPriceWithoutGst") String productPriceWithoutGst,
@@ -74,15 +79,15 @@ public interface Api {
     );
 
     @FormUrlEncoded
-    @POST("meesho/saved/title")
+    @POST("common/show/saved/title")
     Call<savedTitleResponse> getTitles(
-            @Field("email") String email
+            @Field("company") String company
     );
 
     @FormUrlEncoded
-    @POST("meesho/saved/title/data")
+    @POST("common/show/saved/title/data")
     Call<TitleDataResponse> getData(
-            @Field("email") String email,
+            @Field("company") String company,
             @Field("title") String title
     );
 

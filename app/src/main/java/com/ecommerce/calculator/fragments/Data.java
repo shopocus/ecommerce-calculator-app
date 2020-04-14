@@ -93,7 +93,7 @@ public class Data extends DialogFragment {
         Call<TitleDataResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .getData(email, title);
+                .getData("meesho", title);
 
         call.enqueue(new Callback<TitleDataResponse>() {
             @Override

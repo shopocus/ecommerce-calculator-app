@@ -48,6 +48,43 @@
         android:text="Input Details"
         android:textSize="16sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp">
+
+                    <TextView
+                        android:id="@+id/textViewCategory"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Category: "
+                        android:textColor="@color/colorPrimary"/>
+
+                    <!-- <TextView
+                         android:id="@+id/rs2"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="%"
+                         android:textSize="15dp"
+                         android:textColor="@color/colorBase"/>-->
+
+                    <Spinner
+                        android:id="@+id/category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/line7"
+                    style="?android:attr/listSeparatorTextViewStyle"
+                    android:paddingTop="3dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBase" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
