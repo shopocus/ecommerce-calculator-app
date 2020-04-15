@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 
+import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.calculator.models.SaveResponse;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
@@ -50,10 +53,6 @@ public class input extends Fragment implements View.OnClickListener {
     Spinner num3, categories;
     String categoryFinal;
     List<String> list = new ArrayList<>();
-
-    //ArrayList<String> arrayList;
-    //ArrayAdapter<String> arrayAdapter;
-
     ListView itemList;
     CardView result_card;
     Double[] items = new Double[8] ;
@@ -264,8 +263,8 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
-        list.add("Select Category");
-        categories();
+//        list.add("Select Category");
+//        categories();
 
         return view;
     }
@@ -275,6 +274,8 @@ public class input extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         categories = view.findViewById(R.id.category);
+        list.add("Select Category");
+        categories();
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
@@ -330,6 +331,15 @@ public class input extends Fragment implements View.OnClickListener {
         textView = view.findViewById(R.id.calculate_textview);
 
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+            //Toast.makeText(getActivity(), list.get(1), Toast.LENGTH_LONG).show();
+            //int selection = list.indexOf(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
+            //Toast.makeText(getActivity(),String.valueOf(selection), Toast.LENGTH_LONG).show();
+            //categories.setSelection(selection);
+            //int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
+            //categories.setSelection(selection);
+//            for(String s:list) {
+//                Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
+//            }
             num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
             num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
             int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
@@ -372,24 +382,34 @@ public class input extends Fragment implements View.OnClickListener {
             call.enqueue(new Callback<category>() {
                 @Override
                 public void onResponse(Call<category> call, Response<category> response) {
-                    category category = response.body();
+                    if(response.isSuccessful()) {
+                        category category = response.body();
 
-                    for(String s  : category.getCategory()){
-                        list.add(s);
+                        for (String s : category.getCategory()) {
+                            list.add(s);
+                        }
+                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
+                        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+                        categories.setAdapter(adapter);
+
+                        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                categoryFinal = list.get(position);
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+                            }
+                        });
+                    }else if(response.code() == 401){
+                        Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                        // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                        SharedPrefManager.getInstance(getContext()).clear();
+                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent_logout);
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
-                    adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-                    categories.setAdapter(adapter);
-
-                    categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            categoryFinal = list.get(position);
-                        }
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-                        }
-                    });
                 }
 
                 @Override
@@ -469,46 +489,55 @@ public class input extends Fragment implements View.OnClickListener {
         call.enqueue(new Callback<CalculateResponse>() {
             @Override
             public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
-                CalculateResponse CalculateResponse = response.body();
-                Toast.makeText(getActivity(), "OUTPUT", Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()) {
+                    CalculateResponse CalculateResponse = response.body();
+                    Toast.makeText(getActivity(), "OUTPUT", Toast.LENGTH_LONG).show();
 
-                ButtonFinished();
+                    ButtonFinished();
 
-                result_card.setVisibility(View.VISIBLE);
+                    result_card.setVisibility(View.VISIBLE);
 
-                items[0] = CalculateResponse.getBankSettlement();
-                items[1] = CalculateResponse.getTotalMeeshoCommision();
-                items[2] = CalculateResponse.getProfit();
-                items[3] = CalculateResponse.getTotalGstPayable();
-                items[4] = CalculateResponse.getTcs();
-                items[5] = CalculateResponse.getGstPayable();
-                items[6] = CalculateResponse.getGstClaim();
-                items[7] = CalculateResponse.getProfitPercentage();
+                    items[0] = CalculateResponse.getBankSettlement();
+                    items[1] = CalculateResponse.getTotalMeeshoCommision();
+                    items[2] = CalculateResponse.getProfit();
+                    items[3] = CalculateResponse.getTotalGstPayable();
+                    items[4] = CalculateResponse.getTcs();
+                    items[5] = CalculateResponse.getGstPayable();
+                    items[6] = CalculateResponse.getGstClaim();
+                    items[7] = CalculateResponse.getProfitPercentage();
 
-                output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalMeeshoCommision()));
-                output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
-                output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
-                output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
-                output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
-                output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
-                output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
+                    output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
+                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalMeeshoCommision()));
+                    output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
+                    output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
+                    output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
+                    output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
+                    output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
+                    output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
 
-                ArrayList<output> outputList = new ArrayList<>();
-                outputList.add(text1);
-                outputList.add(text2);
-                outputList.add(text3);
-                outputList.add(text4);
-                outputList.add(text5);
-                outputList.add(text6);
-                outputList.add(text7);
-                outputList.add(text8);
+                    ArrayList<output> outputList = new ArrayList<>();
+                    outputList.add(text1);
+                    outputList.add(text2);
+                    outputList.add(text3);
+                    outputList.add(text4);
+                    outputList.add(text5);
+                    outputList.add(text6);
+                    outputList.add(text7);
+                    outputList.add(text8);
 
-                OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
-                itemList.setAdapter(adapter);
+                    OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
+                    itemList.setAdapter(adapter);
 
-                save.setImageResource(R.drawable.ic_bookmark_border);
-                save.setEnabled(true);
+                    save.setImageResource(R.drawable.ic_bookmark_border);
+                    save.setEnabled(true);
+                }else if(response.code() == 501){
+                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(getContext()).clear();
+                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
+                }
             }
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
@@ -550,13 +579,22 @@ public class input extends Fragment implements View.OnClickListener {
         call.enqueue(new Callback<SaveResponse>() {
             @Override
             public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
-                SaveResponse dr = response.body();
-                if (dr.getMessage().equals("data_saved")) {
-                    save.setImageResource(R.drawable.ic_bookmark);
-                    save.setEnabled(false);
-                    Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()) {
+                    SaveResponse dr = response.body();
+                    if (dr.getMessage().equals("data_saved")) {
+                        save.setImageResource(R.drawable.ic_bookmark);
+                        save.setEnabled(false);
+                        Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
+                    }
+                }else if(response.code() == 401){
+                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(getContext()).clear();
+                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
                 }
             }
             @Override

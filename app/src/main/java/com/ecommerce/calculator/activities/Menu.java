@@ -180,16 +180,20 @@ public class Menu extends AppCompatActivity {
         call.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                MessageResponse messageResponse = response.body();
-
-                if (messageResponse.getMessage().equals("logged_out")) {
+                if (response.isSuccessful()) {
+                    MessageResponse messageResponse = response.body();
                     Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(Menu.this).clear();
                     Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
-                } else {
-                    Toast.makeText(Menu.this, "Invalid  Details", Toast.LENGTH_LONG).show();
+                } else if(response.code() == 401){
+                    Toast.makeText(Menu.this, "Session Expire", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(Menu.this).clear();
+                    Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
                 }
             }
 

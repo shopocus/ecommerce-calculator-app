@@ -1,5 +1,6 @@
 package com.ecommerce.calculator.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
@@ -70,19 +74,28 @@ public class saved extends Fragment {
         call.enqueue(new Callback<savedTitleResponse>() {
             @Override
             public void onResponse(Call<savedTitleResponse> call, Response<savedTitleResponse> response) {
-                savedTitleResponse savedTitleResponse = response.body();
 
-                if(savedTitleResponse.getMessage().equals("data_found")) {
-                    text.setVisibility(View.GONE);
-                    titleList = savedTitleResponse.getTitle();
-                    recyclerView.setVisibility(view.VISIBLE);
-                    loader.setVisibility(view.GONE);
-                    adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
-                    recyclerView.setAdapter(adapter);
-                }
-                else if(savedTitleResponse.getMessage().equals("no_data_exists")){
-                    text.setVisibility(view.VISIBLE);
-                    loader.setVisibility(view.GONE);
+                if (response.isSuccessful()) {
+                    savedTitleResponse savedTitleResponse = response.body();
+
+                    if (savedTitleResponse.getMessage().equals("data_found")) {
+                        text.setVisibility(View.GONE);
+                        titleList = savedTitleResponse.getTitle();
+                        recyclerView.setVisibility(view.VISIBLE);
+                        loader.setVisibility(view.GONE);
+                        adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
+                        recyclerView.setAdapter(adapter);
+                    } else if (savedTitleResponse.getMessage().equals("no_data_exists")) {
+                        text.setVisibility(view.VISIBLE);
+                        loader.setVisibility(view.GONE);
+                    }
+                }else if(response.code() == 401){
+                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(getContext()).clear();
+                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
                 }
             }
 

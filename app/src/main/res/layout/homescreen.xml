@@ -13,17 +13,18 @@
         android:layout_height="wrap_content"
         android:text="Business Calculator"
         android:textColor="@color/main_headings"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="250dp"
-        android:src="@drawable/homescreenfinal"
+        android:src="@drawable/home8"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
@@ -42,8 +43,8 @@
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/homescreen_button"
-            android:elevation="5dp"
+            android:background="@drawable/button_background"
+            android:elevation="2dp"
             android:layout_marginHorizontal="30dp"
             android:gravity="center"
             android:padding="10dp"
@@ -66,14 +67,14 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edittext_background"
-            android:elevation="5dp"
+            android:background="@drawable/homescreen_button"
+            android:elevation="2dp"
             android:gravity="center"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:text="Login"
             android:textAllCaps="false"
-            android:textColor="@color/main_headings"
+            android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/text"/>
 

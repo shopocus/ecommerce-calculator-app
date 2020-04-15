@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import android.view.ViewGroup;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.FragmentSelection;
+import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -99,39 +101,48 @@ public class Data extends DialogFragment {
         call.enqueue(new Callback<TitleDataResponse>() {
             @Override
             public void onResponse(Call<TitleDataResponse> call, Response<TitleDataResponse> response) {
-                TitleDataResponse td = response.body();
-                if (td.getTitle().equals(title)) {
-                    SharedPrefManager.getInstance(getActivity())
-                            .saveData(td);
-                    input_card.setVisibility(getView().VISIBLE);
-                    output_card.setVisibility(getView().VISIBLE);
-                    buttons.setVisibility(getView().VISIBLE);
-                    textViewTitle.setVisibility(getView().VISIBLE);
-                    textViewTitle.setText(td.getTitle());
-                    textViewCategory.setText(td.getCategory());
-                    textViewSellingPrice.setText(td.getSellingPrice());
-                    textViewPurchasePrice.setText(td.getProductPriceWithoutGst());
-                    textViewGst.setText(td.getGstOnProduct());
-                    textViewInwardShipping.setText(td.getInwardShipping());
-                    textViewPackagingExpenses.setText(td.getPackagingExpense());
-                    textViewLabour.setText(td.getLabour());
-                    textViewStorageFees.setText(td.getStorageFee());
-                    textViewOther.setText(td.getOther());
-                    textViewByPrice.setText(td.getDiscountAmount());
-                    textViewByPercentage.setText(td.getDiscountPercent());
-                    textViewBankSettlement.setText(td.getBankSettlement());
-                    textViewTotalMeeshoCommision.setText(td.getTotalMeeshoCommision());
-                    textViewProfit.setText(td.getProfit());
-                    textViewTotalGstPayable.setText(td.getTotalGstPayable());
-                    textViewTcs.setText(td.getTcs());
-                    textViewGstPayable.setText(td.getGstPayable());
-                    textViewGstClaim.setText(td.getGstClaim());
-                    textViewProfitPercentage.setText(td.getProfitPercentage());
+                if (response.isSuccessful()) {
+                    TitleDataResponse td = response.body();
+                    if (td.getTitle().equals(title)) {
+                        SharedPrefManager.getInstance(getActivity())
+                                .saveData(td);
+                        input_card.setVisibility(getView().VISIBLE);
+                        output_card.setVisibility(getView().VISIBLE);
+                        buttons.setVisibility(getView().VISIBLE);
+                        textViewTitle.setVisibility(getView().VISIBLE);
+                        textViewTitle.setText(td.getTitle());
+                        textViewCategory.setText(td.getCategory());
+                        textViewSellingPrice.setText(td.getSellingPrice());
+                        textViewPurchasePrice.setText(td.getProductPriceWithoutGst());
+                        textViewGst.setText(td.getGstOnProduct());
+                        textViewInwardShipping.setText(td.getInwardShipping());
+                        textViewPackagingExpenses.setText(td.getPackagingExpense());
+                        textViewLabour.setText(td.getLabour());
+                        textViewStorageFees.setText(td.getStorageFee());
+                        textViewOther.setText(td.getOther());
+                        textViewByPrice.setText(td.getDiscountAmount());
+                        textViewByPercentage.setText(td.getDiscountPercent());
+                        textViewBankSettlement.setText(td.getBankSettlement());
+                        textViewTotalMeeshoCommision.setText(td.getTotalMeeshoCommision());
+                        textViewProfit.setText(td.getProfit());
+                        textViewTotalGstPayable.setText(td.getTotalGstPayable());
+                        textViewTcs.setText(td.getTcs());
+                        textViewGstPayable.setText(td.getGstPayable());
+                        textViewGstClaim.setText(td.getGstClaim());
+                        textViewProfitPercentage.setText(td.getProfitPercentage());
+                    }
+                }else if(response.code() == 401){
+                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
+                    SharedPrefManager.getInstance(getContext()).clear();
+                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
                 }
             }
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Server Error!", Toast.LENGTH_LONG).show();
             }
         });
     }
