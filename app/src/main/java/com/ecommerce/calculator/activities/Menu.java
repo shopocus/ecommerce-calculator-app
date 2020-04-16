@@ -57,6 +57,9 @@ public class Menu extends AppCompatActivity {
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_menu);
 
+        //LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
+        LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Shopocus");
@@ -72,7 +75,7 @@ public class Menu extends AppCompatActivity {
         mrecyclerView = findViewById(R.id.menu);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        holderAdapter = new HolderAdapter(this, getMyList());
+        holderAdapter = new HolderAdapter(this, getMyList(), loadingDialog);
         mrecyclerView.setAdapter(holderAdapter);
 
         searchView = (SearchView)findViewById(R.id.search);

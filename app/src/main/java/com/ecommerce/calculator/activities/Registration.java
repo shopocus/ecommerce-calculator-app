@@ -32,6 +32,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     private EditText editTextName, editTextEmail, editTextMobile, editTextPassword;
     ConstraintLayout constraintLayout;
+    LoadingDialog loadingDialog;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}" + "$");
 
@@ -52,6 +53,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_registration);
 
+        loadingDialog = new LoadingDialog(Registration.this);
+
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextMobile = findViewById(R.id.editTextMobile);
@@ -69,6 +72,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         String password = editTextPassword.getText().toString().trim();
 
         if (name.isEmpty() || email.isEmpty()  || mobile_no.isEmpty() || password.isEmpty()) {
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter All The Details", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -79,6 +83,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
 
         if(name.length() <2) {
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Name is too Short", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -89,6 +94,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() || mobile_no.length() != 10) {
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid Details", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -99,6 +105,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
 
         if(!PASSWORD_PATTERN.matcher(password).matches()){
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Too Weak Password", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -123,6 +130,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 MessageResponse dr = response.body();
                 signup.setBackground(getResources().getDrawable(R.drawable.button_background));
                 signup.setEnabled(true);
+                loadingDialog.dismissDialog();
                 if (dr.getMessage().equals("otp_sent")) {
                     Intent intent = new Intent(Registration.this, RegistrationOtpVerification.class);
                     intent.putExtra("name", name);
@@ -159,6 +167,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
+                loadingDialog.dismissDialog();
                 signup.setBackground(getResources().getDrawable(R.drawable.button_background));
                 signup.setEnabled(true);
                 Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
@@ -180,6 +189,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()) {
             case R.id.buttonSignUp:
+                loadingDialog.startLoadingDialog();
                 userSignUp();
                 break;
             case R.id.backGo:

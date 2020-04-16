@@ -35,6 +35,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail;
     private EditText editTextPassword;
     ConstraintLayout constraintLayout;
+    LoadingDialog loadingDialog;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}" + "$");
 
@@ -55,6 +56,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_login);
 
+        loadingDialog = new LoadingDialog(Login.this);
+
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         constraintLayout = findViewById(R.id.constraintLayout);
@@ -69,6 +72,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         String password = editTextPassword.getText().toString().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter All The Details", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -79,6 +83,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
         if (!PASSWORD_PATTERN.matcher(password).matches() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Invalid Details", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -99,7 +104,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
-
+                loadingDialog.dismissDialog();
                 if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
@@ -130,6 +135,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                loadingDialog.dismissDialog();
                 login.setBackground(getResources().getDrawable(R.drawable.button_background));
                 login.setEnabled(true);
                 Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
@@ -154,6 +160,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 //                TextView login = findViewById(R.id.buttonLogin);
 //                login.setBackground(getResources().getDrawable(R.drawable.button_background));
 //                login.setEnabled(false);
+                loadingDialog.startLoadingDialog();
                 userLogin();
                 break;
             case R.id.forgotPassword:

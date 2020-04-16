@@ -18,6 +18,9 @@ import java.util.List;
 
 import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.LoadingDialog;
+import com.ecommerce.calculator.activities.Menu;
+import com.ecommerce.calculator.activities.Registration;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.holder.MyHolder;
 import com.ecommerce.calculator.holder.itemClick;
@@ -36,11 +39,13 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     Context c;
     ArrayList<menu> menu;
     ArrayList<menu> ListFull;
+    LoadingDialog loadingDialog;
 
-    public HolderAdapter(Context c, ArrayList<menu> menu){
+    public HolderAdapter(Context c, ArrayList<menu> menu, LoadingDialog loadingDialog){
         this.c = c;
         this.menu = menu;
         ListFull = new ArrayList<>(menu);
+        this.loadingDialog = loadingDialog;
     }
 
     @NonNull
@@ -57,12 +62,16 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         myHolder.setItemClickListener(new itemClick() {
             @Override
             public void onItemClickListener(View v, int position) {
+               // LoadingDialog loadingDialog = new LoadingDialog(c);
+               // LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
+                loadingDialog.startLoadingDialog();
                 if (menu.get(position).getTitle().equals("Meesho")){
                     SharedPrefManager.getInstance(c)
                             .saveCompany("meesho");
                     categories();
                 }
                 else {
+                    loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_LONG).show();
                 }
             }
@@ -115,6 +124,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         call.enqueue(new Callback<category>() {
             @Override
             public void onResponse(Call<category> call, Response<category> response) {
+                loadingDialog.dismissDialog();
                 if(response.isSuccessful()) {
                     category category = response.body();
                     ArrayList<String> list = new ArrayList<>();
@@ -143,6 +153,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
 //                        }
 //                    });
                 }else if(response.code() == 401){
+                    loadingDialog.dismissDialog();
                     Toast.makeText(c, "Session Expire", Toast.LENGTH_LONG).show();
                     // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(c).clear();
