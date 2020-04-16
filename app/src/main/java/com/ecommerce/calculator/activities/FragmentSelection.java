@@ -1,11 +1,16 @@
 package com.ecommerce.calculator.activities;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.google.android.gms.ads.AdRequest;
@@ -18,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.ecommerce.calculator.fragments.saved;
+
+import java.util.ArrayList;
 
 public class FragmentSelection extends AppCompatActivity {
 
@@ -60,12 +67,17 @@ public class FragmentSelection extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
         viewPager = (ViewPager) findViewById(R.id.pager);
-        PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        PageAdapter pageAdapter = new PageAdapter(getBaseContext(), getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                View focusedView = getCurrentFocus();
+                if (focusedView != null) {
+                    inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                }
                 if(tab.getPosition() == 1) {
                     saved fragment = (saved) viewPager.getAdapter().instantiateItem(viewPager, tab.getPosition());
                     fragment.onResume();

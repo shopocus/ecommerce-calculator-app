@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 
+import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.progressButton;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +55,7 @@ public class input extends Fragment implements View.OnClickListener {
 
     Spinner num3, categories;
     String categoryFinal;
-    List<String> list = new ArrayList<>();
+    ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
     Double[] items = new Double[8] ;
@@ -266,6 +269,7 @@ public class input extends Fragment implements View.OnClickListener {
 //        list.add("Select Category");
 //        categories();
 
+
         return view;
     }
 
@@ -274,8 +278,28 @@ public class input extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         categories = view.findViewById(R.id.category);
-        list.add("Select Category");
-        categories();
+
+//        FragmentSelection fragmentSelection = (FragmentSelection) getActivity();
+//        ArrayList<String> list = fragmentSelection.getList();
+//        Log.d("input", list.get(1));
+//
+        list = SharedPrefManager.getInstance(getActivity()).getList();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        categories.setAdapter(adapter);
+
+        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                categoryFinal = list.get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        //list.add("Select Category");
+        //categories();
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
@@ -307,9 +331,9 @@ public class input extends Fragment implements View.OnClickListener {
         num2 = view.findViewById(R.id.number2);
 
         num3 = view.findViewById(R.id.number3);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, gst_array);
-        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-        num3.setAdapter(adapter);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, gst_array);
+        adapter1.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+        num3.setAdapter(adapter1);
         num3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -335,8 +359,8 @@ public class input extends Fragment implements View.OnClickListener {
             //int selection = list.indexOf(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
             //Toast.makeText(getActivity(),String.valueOf(selection), Toast.LENGTH_LONG).show();
             //categories.setSelection(selection);
-            //int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
-            //categories.setSelection(selection);
+            int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
+            categories.setSelection(selection);
 //            for(String s:list) {
 //                Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
 //            }
@@ -372,51 +396,6 @@ public class input extends Fragment implements View.OnClickListener {
                 SharedPrefManager.getInstance(getActivity())
                         .saveFlag(flag);
             }
-        }
-
-        protected void categories() {
-
-            Call<category> call = RetrofitClient
-                    .getInstance().getApi().getCategories();
-
-            call.enqueue(new Callback<category>() {
-                @Override
-                public void onResponse(Call<category> call, Response<category> response) {
-                    if(response.isSuccessful()) {
-                        category category = response.body();
-
-                        for (String s : category.getCategory()) {
-                            list.add(s);
-                        }
-                        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
-                        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-                        categories.setAdapter(adapter);
-
-                        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                categoryFinal = list.get(position);
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-                            }
-                        });
-                    }else if(response.code() == 401){
-                        Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
-                        // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
-                        SharedPrefManager.getInstance(getContext()).clear();
-                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
-                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent_logout);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<category> call, Throwable t) {
-
-                }
-            });
         }
 
     protected void calculate() {

@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Business Calculator"
         android:textColor="@color/main_headings"
-        android:textSize="25sp"
+        android:textSize="28sp"
+        android:textStyle="bold"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:src="@drawable/home8"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />

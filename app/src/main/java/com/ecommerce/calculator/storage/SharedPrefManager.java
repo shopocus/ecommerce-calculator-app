@@ -4,6 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.User;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SharedPrefManager {
 
@@ -137,6 +143,35 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String flag = (sharedPreferences.getString("flag",null));
         return flag;
+    }
+
+    public void saveList(ArrayList<String> list) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+
+//        for(String s:list) {
+//            editor.putString("list", s);
+//        }
+
+        editor.putString("list", json);
+
+        editor.apply();
+    }
+
+    public ArrayList<String> getList(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        //List<String> list = (sharedPreferences.ge("list",null));
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("list", null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        ArrayList<String> list = gson.fromJson(json, type);
+//        if(list == null){
+//            list = new ArrayList<>();
+//        }
+        return list;
     }
 
     public void saveTitle(String title){
