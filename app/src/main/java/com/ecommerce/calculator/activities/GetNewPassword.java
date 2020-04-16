@@ -6,9 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -111,7 +109,7 @@ public class GetNewPassword extends AppCompatActivity {
                     new SweetAlertDialog(GetNewPassword.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Password Updated Successfully")
                             .setConfirmText("Continue")
-                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
+                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {

@@ -20,7 +20,6 @@ import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.Locale;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -204,7 +203,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                 String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
                 counttime.setText(timeLeftFormatted);
-                counttime.setTextColor(getResources().getColor(R.color.orange_theme));
+                counttime.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             }
             @Override
             public void onFinish() {
@@ -314,7 +313,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                     new SweetAlertDialog(RegistrationOtpVerification.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setTitleText("Account Created Successfully")
                             .setConfirmText("Continue")
-                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
+                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                             .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                 @Override
                                 public void onClick(SweetAlertDialog sweetAlertDialog) {

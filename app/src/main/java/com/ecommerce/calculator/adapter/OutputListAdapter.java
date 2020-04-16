@@ -44,8 +44,8 @@ public class OutputListAdapter extends ArrayAdapter<output> {
             LayoutInflater inflater = LayoutInflater.from(mcontext);
             convertView = inflater.inflate(mresource, parent, false);
             holder= new ViewHolder();
-            holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.answer = (TextView) convertView.findViewById(R.id.answer);
+            holder.title = convertView.findViewById(R.id.title);
+            holder.answer = convertView.findViewById(R.id.answer);
             result = convertView;
             convertView.setTag(holder);
         }

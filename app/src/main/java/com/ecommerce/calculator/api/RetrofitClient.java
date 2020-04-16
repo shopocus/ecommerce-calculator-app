@@ -3,9 +3,7 @@ package com.ecommerce.calculator.api;
 import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
-
 import com.ecommerce.calculator.storage.SharedPrefManager;
-
 import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -29,15 +27,11 @@ public class RetrofitClient {
                         new Interceptor() {
                             @Override
                             public Response intercept(Chain chain) throws IOException {
-
-                               // SharedPreferences preferences = context.getSharedPreferences("MY_APP",Context.MODE_PRIVATE);
-
                                 if(SharedPrefManager.getInstance(context).getToken() == null) {
                                     Response response = chain.proceed(chain.request());
                                     String token = response.header("X-Auth");
                                     SharedPrefManager.getInstance(context)
                                             .saveToken(token);
-                                   // preferences.edit().putString("TOKEN", token).apply();
                                     return response;
                                 }
                                 else {

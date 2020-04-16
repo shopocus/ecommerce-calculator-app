@@ -197,7 +197,7 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                     String timeLeftFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 
                     counttime.setText(timeLeftFormatted);
-                    counttime.setTextColor(getResources().getColor(R.color.orange_theme));
+                    counttime.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 }
                 @Override
                 public void onFinish() {

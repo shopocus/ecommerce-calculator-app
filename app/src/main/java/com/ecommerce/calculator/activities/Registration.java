@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.models.MessageResponse;
-import  com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.regex.Pattern;
@@ -115,7 +113,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        ImageButton signup = (ImageButton) findViewById(R.id.buttonSignUp);
+        ImageButton signup = findViewById(R.id.buttonSignUp);
         signup.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
         signup.setEnabled(false);
 

@@ -2,16 +2,13 @@ package com.ecommerce.calculator.activities;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,8 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.ecommerce.calculator.fragments.saved;
-
-import java.util.ArrayList;
 
 public class FragmentSelection extends AppCompatActivity {
 
@@ -50,7 +45,7 @@ public class FragmentSelection extends AppCompatActivity {
         setContentView(R.layout.options_tab);
 
         MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111");
-        mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -58,15 +53,15 @@ public class FragmentSelection extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Shopocus");
-        toolbar.setSubtitle("Business Calculator");
+        toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));
         tabLayout.addTab(tabLayout.newTab().setText("Saved"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = findViewById(R.id.pager);
         PageAdapter pageAdapter = new PageAdapter(getBaseContext(), getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

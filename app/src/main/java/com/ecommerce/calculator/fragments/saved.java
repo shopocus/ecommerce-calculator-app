@@ -11,9 +11,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.ecommerce.calculator.activities.HomeScreen;
-import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
 import java.util.List;
@@ -42,7 +40,7 @@ public class saved extends Fragment {
 
         View view = inflater.inflate(R.layout.saved_list, container, false);
 
-        searchBar = (SearchView)view.findViewById(R.id.search_bar);
+        searchBar = view.findViewById(R.id.search_bar);
         searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -81,17 +79,16 @@ public class saved extends Fragment {
                     if (savedTitleResponse.getMessage().equals("data_found")) {
                         text.setVisibility(View.GONE);
                         titleList = savedTitleResponse.getTitle();
-                        recyclerView.setVisibility(view.VISIBLE);
-                        loader.setVisibility(view.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        loader.setVisibility(View.GONE);
                         adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
                         recyclerView.setAdapter(adapter);
                     } else if (savedTitleResponse.getMessage().equals("no_data_exists")) {
-                        text.setVisibility(view.VISIBLE);
-                        loader.setVisibility(view.GONE);
+                        text.setVisibility(View.VISIBLE);
+                        loader.setVisibility(View.GONE);
                     }
                 }else if(response.code() == 401){
                     Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
-                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -101,7 +98,7 @@ public class saved extends Fragment {
 
             @Override
             public void onFailure(Call<savedTitleResponse> call, Throwable t) {
-                loader.setVisibility(view.GONE);
+                loader.setVisibility(View.GONE);
                 Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
             }
         });

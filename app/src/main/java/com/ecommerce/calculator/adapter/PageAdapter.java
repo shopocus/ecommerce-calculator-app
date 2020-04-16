@@ -1,7 +1,6 @@
 package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -22,8 +21,6 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        //switch(position){
-          //  case 0:
                 if(SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
                     if (position == 0) {
                         input input = new input();
@@ -33,7 +30,6 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                         return saved;
                     }
                 }
-            //case 1:
         return null;
     }
 

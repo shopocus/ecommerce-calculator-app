@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.HomeScreen;
-import com.ecommerce.calculator.activities.Menu;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -133,7 +132,6 @@ public class Data extends DialogFragment {
                     }
                 }else if(response.code() == 401){
                     Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
-                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

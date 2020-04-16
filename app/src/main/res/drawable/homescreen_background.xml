@@ -1,7 +1,3 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FBF6F6"/>
-    <!--<gradient android:startColor="#FDDEBF"
-        android:endColor="@color/orange_theme"
-        android:angle="135">
-    </gradient>-->
+    <solid android:color="@color/homescreen_background"/>
 </shape>

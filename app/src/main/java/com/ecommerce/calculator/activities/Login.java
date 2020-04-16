@@ -15,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
@@ -24,8 +23,6 @@ import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
 import java.util.regex.Pattern;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -93,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        ImageButton login = (ImageButton) findViewById(R.id.buttonLogin);
+        ImageButton login = findViewById(R.id.buttonLogin);
         login.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
         login.setEnabled(false);
 
@@ -108,19 +105,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
-                    new SweetAlertDialog(Login.this, SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Successfully Logged In")
-                            .setConfirmText("Continue")
-                            .setConfirmButtonBackgroundColor(getResources().getColor(R.color.orange_theme))
-                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    Intent intent = new Intent(Login.this, Menu.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                }
-                            })
-                            .show();
                 } else {
                     login.setBackground(getResources().getDrawable(R.drawable.button_background));
                     login.setEnabled(true);
@@ -157,9 +141,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         switch (v.getId()) {
             case R.id.buttonLogin:
-//                TextView login = findViewById(R.id.buttonLogin);
-//                login.setBackground(getResources().getDrawable(R.drawable.button_background));
-//                login.setEnabled(false);
                 loadingDialog.startLoadingDialog();
                 userLogin();
                 break;

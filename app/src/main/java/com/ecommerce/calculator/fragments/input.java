@@ -6,14 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-
-import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.HomeScreen;
-import com.ecommerce.calculator.activities.Menu;
-import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.progressButton;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +24,6 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.ecommerce.calculator.models.SaveResponse;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
@@ -44,7 +37,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import android.view.View.OnClickListener;
 import java.util.ArrayList;
-import java.util.List;
 
 public class input extends Fragment implements View.OnClickListener {
 
@@ -59,7 +51,7 @@ public class input extends Fragment implements View.OnClickListener {
     ListView itemList;
     CardView result_card;
     Double[] items = new Double[8] ;
-    String gst_array[] = {"0", "5", "12", "18", "28"};
+    String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     private ProgressBar progressBar;
     private TextView textView;
@@ -266,9 +258,6 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
-//        list.add("Select Category");
-//        categories();
-
 
         return view;
     }
@@ -278,10 +267,7 @@ public class input extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         categories = view.findViewById(R.id.category);
-//        FragmentSelection fragmentSelection = (FragmentSelection) getActivity();
-//        ArrayList<String> list = fragmentSelection.getList();
-//        Log.d("input", list.get(1));
-//
+
         list = SharedPrefManager.getInstance(getActivity()).getList();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
@@ -297,8 +283,7 @@ public class input extends Fragment implements View.OnClickListener {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        //list.add("Select Category");
-        //categories();
+
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
@@ -354,15 +339,8 @@ public class input extends Fragment implements View.OnClickListener {
         textView = view.findViewById(R.id.calculate_textview);
 
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-            //Toast.makeText(getActivity(), list.get(1), Toast.LENGTH_LONG).show();
-            //int selection = list.indexOf(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
-            //Toast.makeText(getActivity(),String.valueOf(selection), Toast.LENGTH_LONG).show();
-            //categories.setSelection(selection);
             int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
             categories.setSelection(selection);
-//            for(String s:list) {
-//                Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
-//            }
             num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
             num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
             int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
@@ -510,7 +488,6 @@ public class input extends Fragment implements View.OnClickListener {
                     save.setEnabled(true);
                 }else if(response.code() == 501){
                     Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
-                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -568,7 +545,6 @@ public class input extends Fragment implements View.OnClickListener {
                     }
                 }else if(response.code() == 401){
                     Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
-                    // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -609,7 +585,7 @@ public class input extends Fragment implements View.OnClickListener {
         String shareBody = content;
         String shareSub = "Your Bill";
         intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
-        intent.putExtra(intent.EXTRA_TEXT, shareBody);
+        intent.putExtra(Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(intent, "Share using"));
     }
 

@@ -40,9 +40,9 @@ public class Profile extends AppCompatActivity {
         getSupportActionBar().setTitle("Shopocus");
         toolbar.setSubtitle("Business Calculator");
 
-        textViewEmail = (TextView)findViewById(R.id.textViewEmail);
-        textViewName = (TextView)findViewById(R.id.textViewName);
-        textViewMobile = (TextView)findViewById(R.id.textViewMobile);
+        textViewEmail = findViewById(R.id.textViewEmail);
+        textViewName = findViewById(R.id.textViewName);
+        textViewMobile = findViewById(R.id.textViewMobile);
 
         textViewEmail.setText(SharedPrefManager.getInstance(Profile.this).getUser().getName());
         textViewName.setText(SharedPrefManager.getInstance(Profile.this).getUser().getEmail());

@@ -233,24 +233,4 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
         }
     };
 
-//    void update(String title, String newTitle) {
-//        String email = SharedPrefManager.getInstance(mCtx).getUser().getEmail();
-//        Call<DeleteDataResponse> call = RetrofitClient.getInstance().getApi().update(email, title, newTitle);
-//
-//        call.enqueue(new Callback<DeleteDataResponse>() {
-//            @Override
-//            public void onResponse(Call<DeleteDataResponse> call, Response<DeleteDataResponse> response) {
-//                DeleteDataResponse deleteDataResponse = response.body();
-//
-//                if (deleteDataResponse.getMessage().equals("title_updated")) {
-//                    Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<DeleteDataResponse> call, Throwable t) {
-//                Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
 }

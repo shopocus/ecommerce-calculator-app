@@ -2,6 +2,7 @@ package com.ecommerce.calculator.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,14 +10,17 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.ecommerce.calculator.utils.NetworkHelper;
+import com.google.android.material.snackbar.Snackbar;
 
 public class HomeScreen  extends AppCompatActivity implements View.OnClickListener {
 
-   // Window window;
+    private boolean isNetworkOk;
+    ConstraintLayout constraintLayout;
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -35,10 +39,17 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
         setStatusBarGradiant(this);
         setContentView(R.layout.homescreen);
 
-//        if(Build.VERSION.SDK_INT>=21){
-//            window=this.getWindow();
-//            window.setStatusBarColor(this.getResources().getColor(R.color.white));
-//        }
+        constraintLayout = findViewById(R.id.constraintLayout);
+
+        isNetworkOk = NetworkHelper.isNetworkAvailable(this);
+        if(!isNetworkOk) {
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
+        }
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
@@ -59,15 +70,9 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSignUp:
-//                TextView signup = findViewById(R.id.buttonSignUp);
-//                signup.setBackground(getResources().getDrawable(R.drawable.homescreen_button));
-//                signup.setEnabled(false);
                 startActivity(new Intent(this, Registration.class));
                 break;
             case R.id.buttonLogin:
-//                TextView login = findViewById(R.id.buttonLogin);
-//                login.setBackground(getResources().getDrawable(R.drawable.button_background));
-//                login.setEnabled(false);
                 startActivity(new Intent(this, Login.class));
                 break;
         }

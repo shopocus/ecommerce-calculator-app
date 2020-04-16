@@ -8,10 +8,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ecommerce.calculator.R;
-
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,15 +20,17 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-
+import com.ecommerce.calculator.utils.NetworkHelper;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,6 +40,8 @@ public class Menu extends AppCompatActivity {
     RecyclerView mrecyclerView;
     HolderAdapter holderAdapter;
     SearchView searchView;
+    LinearLayout linearLayout;
+    Boolean isNetworkOk;
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -53,24 +57,30 @@ public class Menu extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_menu);
+        linearLayout = findViewById(R.id.linearlayout);
 
-        //LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
+        isNetworkOk = NetworkHelper.isNetworkAvailable(this);
+        if(!isNetworkOk) {
+            Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
+        }
+
         LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Shopocus");
-        toolbar.setSubtitle("Business Calculator");
+        toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         String flag = "false";
         SharedPrefManager.getInstance(Menu.this)
                 .saveFlag(flag);
-
-//        String token = SharedPrefManager.getInstance(this).getToken();
-//        Log.d("input", token);
 
         mrecyclerView = findViewById(R.id.menu);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,7 +88,7 @@ public class Menu extends AppCompatActivity {
         holderAdapter = new HolderAdapter(this, getMyList(), loadingDialog);
         mrecyclerView.setAdapter(holderAdapter);
 
-        searchView = (SearchView)findViewById(R.id.search);
+        searchView = findViewById(R.id.search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -105,16 +115,6 @@ public class Menu extends AppCompatActivity {
         m.setTitle("Club Factory");
         m.setImg(R.drawable.clubfactory);
         menu.add(m);
-
-//        m = new menu();
-//        m.setTitle("Flipkart");
-//        m.setImg(R.drawable.flipkart);
-//        menu.add(m);
-//
-//        m = new menu();
-//        m.setTitle("Amazon");
-//        m.setImg(R.drawable.amazon);
-//        menu.add(m);
 
         return menu;
     }
@@ -192,7 +192,6 @@ public class Menu extends AppCompatActivity {
                     startActivity(intent_logout);
                 } else if(response.code() == 401){
                     Toast.makeText(Menu.this, "Session Expire", Toast.LENGTH_LONG).show();
-                   // Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(Menu.this).clear();
                     Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

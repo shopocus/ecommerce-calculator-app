@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/image"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/calcilogofinal"/>
 
         <TextView
             android:layout_width="match_parent"
