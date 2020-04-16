@@ -29,7 +29,6 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -185,13 +184,17 @@ public class Menu extends AppCompatActivity {
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
                     MessageResponse messageResponse = response.body();
-                    Toast.makeText(Menu.this, "log out", Toast.LENGTH_LONG).show();
                     SharedPrefManager.getInstance(Menu.this).clear();
                     Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 } else if(response.code() == 401){
-                    Toast.makeText(Menu.this, "Session Expire", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                     SharedPrefManager.getInstance(Menu.this).clear();
                     Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -201,7 +204,12 @@ public class Menu extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Toast.makeText(Menu.this, "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
             }
         });
     }

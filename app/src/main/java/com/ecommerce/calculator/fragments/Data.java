@@ -1,6 +1,7 @@
 package com.ecommerce.calculator.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.snackbar.Snackbar;
 import android.widget.Button;
 import android.widget.Toast;
 import retrofit2.Call;
@@ -31,12 +33,13 @@ public class Data extends DialogFragment {
 
     Button edit,close;
     CardView input_card,output_card;
-    LinearLayout buttons;
+    LinearLayout buttons, linearLayout;
 
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.data_popup, container, false);
 
+        linearLayout = view.findViewById(R.id.linearlayout);
         input_card = view.findViewById(R.id.input_card);
         output_card = view.findViewById(R.id.output_card);
         buttons = view.findViewById(R.id.buttons);
@@ -131,7 +134,7 @@ public class Data extends DialogFragment {
                         textViewProfitPercentage.setText(td.getProfitPercentage());
                     }
                 }else if(response.code() == 401){
-                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -140,7 +143,12 @@ public class Data extends DialogFragment {
             }
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Server Error!", Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
             }
         });
     }

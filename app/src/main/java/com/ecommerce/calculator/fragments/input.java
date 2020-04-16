@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
@@ -16,10 +17,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,8 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.snackbar.Snackbar;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,9 +44,10 @@ import java.util.ArrayList;
 public class input extends Fragment implements View.OnClickListener {
 
     private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView textViewCategory, pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
+    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
             line6, line7, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
     private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
+    LinearLayout linearLayout;
 
     Spinner num3, categories;
     String categoryFinal;
@@ -65,6 +69,7 @@ public class input extends Fragment implements View.OnClickListener {
 
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);
+        linearLayout = view.findViewById(R.id.linearlayout);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
@@ -232,7 +237,12 @@ public class input extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         myText = title.getText().toString();
                                 if (myText.equals("")) {
-                                    Toast.makeText(getActivity(), "Invalid Title", Toast.LENGTH_LONG).show();
+                                    Snackbar snackbar = Snackbar.make(linearLayout, "Enter the Title", Snackbar.LENGTH_SHORT);
+                                    View snackView = snackbar.getView();
+                                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                                    textView.setTextColor(Color.WHITE);
+                                    textView.setTextSize(15);
+                                    snackbar.show();
                                 } else {
                                     save();
                                 }
@@ -447,8 +457,6 @@ public class input extends Fragment implements View.OnClickListener {
             public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
                 if(response.isSuccessful()) {
                     CalculateResponse CalculateResponse = response.body();
-                    Toast.makeText(getActivity(), "OUTPUT", Toast.LENGTH_LONG).show();
-
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
@@ -487,7 +495,12 @@ public class input extends Fragment implements View.OnClickListener {
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
                 }else if(response.code() == 501){
-                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -497,7 +510,12 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
                 ButtonFinished();
-                Toast.makeText(getActivity(), "Internet Disconnected", Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
             }
         });
     }
@@ -539,12 +557,26 @@ public class input extends Fragment implements View.OnClickListener {
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
                         save.setEnabled(false);
-                        Toast.makeText(getActivity(), "Saved", Toast.LENGTH_LONG).show();
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Successfully Saved")
+                                .setConfirmText("Ok")
+                                .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+                                .show();
                     } else {
-                        Toast.makeText(getActivity(), "Title  Already  Exist", Toast.LENGTH_LONG).show();
+                        Snackbar snackbar = Snackbar.make(linearLayout, "Title Name Already Exists", Snackbar.LENGTH_SHORT);
+                        View snackView = snackbar.getView();
+                        TextView textView = snackView.findViewById(R.id.snackbar_text);
+                        textView.setTextColor(Color.WHITE);
+                        textView.setTextSize(15);
+                        snackbar.show();
                     }
                 }else if(response.code() == 401){
-                    Toast.makeText(getContext(), "Session Expire", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -553,7 +585,12 @@ public class input extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<SaveResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "Internet  Disconnected", Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
+                View snackView = snackbar.getView();
+                TextView textView = snackView.findViewById(R.id.snackbar_text);
+                textView.setTextColor(Color.WHITE);
+                textView.setTextSize(15);
+                snackbar.show();
             }
         });
     }
