@@ -61,6 +61,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.forgotPassword).setOnClickListener(this);
+        findViewById(R.id.backGo).setOnClickListener(this);
     }
 
     private void userLogin() {
@@ -150,10 +151,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
         switch (v.getId()) {
             case R.id.buttonLogin:
-                    userLogin();
-                    break;
+//                TextView login = findViewById(R.id.buttonLogin);
+//                login.setBackground(getResources().getDrawable(R.drawable.button_background));
+//                login.setEnabled(false);
+                userLogin();
+                break;
             case R.id.forgotPassword:
                 startActivity(new Intent(this, ForgotPasswordGetEmail.class));
+                break;
+            case R.id.backGo:
+                startActivity(new Intent(this, HomeScreen.class));
                 break;
         }
     }

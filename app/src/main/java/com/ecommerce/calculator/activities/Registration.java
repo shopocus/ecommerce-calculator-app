@@ -1,12 +1,18 @@
 package com.ecommerce.calculator.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -29,10 +35,21 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" + "(?=.*[0-9])" + "(?=.*[a-z])" + "(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$)" + ".{8,}" + "$");
 
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.toolbar);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarGradiant(this);
         setContentView(R.layout.activity_registration);
 
         editTextName = findViewById(R.id.editTextName);
@@ -42,6 +59,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         constraintLayout = findViewById(R.id.constraintLayout);
 
         findViewById(R.id.buttonSignUp).setOnClickListener(this);
+        findViewById(R.id.backGo).setOnClickListener(this);
     }
 
     private void userSignUp() {
@@ -52,6 +70,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         if (name.isEmpty() || email.isEmpty()  || mobile_no.isEmpty() || password.isEmpty()) {
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter All The Details", Snackbar.LENGTH_SHORT);
+            View snackView = snackbar.getView();
+            TextView textView = snackView.findViewById(R.id.snackbar_text);
+            textView.setTextColor(Color.WHITE);
+            textView.setTextSize(15);
+            snackbar.show();
+            return;
+        }
+
+        if(name.length() <2) {
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Name is too Short", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
             textView.setTextColor(Color.WHITE);
@@ -87,7 +115,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .otpSend(email);
+                .otpSend(email, mobile_no);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
@@ -104,7 +132,15 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                 }
                 else if(dr.getMessage().equals("user_already_exist")) {
-                    Snackbar snackbar = Snackbar.make(constraintLayout, "User Already Exist", Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Email Already Exist", Snackbar.LENGTH_SHORT);
+                    View snackView = snackbar.getView();
+                    TextView textView = snackView.findViewById(R.id.snackbar_text);
+                    textView.setTextColor(Color.WHITE);
+                    textView.setTextSize(15);
+                    snackbar.show();
+                }
+                else if(dr.getMessage().equals("mobileNo_already_exists")) {
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Mobile Number Already Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);
@@ -144,8 +180,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
         switch (v.getId()) {
             case R.id.buttonSignUp:
-                    userSignUp();
-                    break;
+                userSignUp();
+                break;
+            case R.id.backGo:
+                startActivity(new Intent(this, HomeScreen.class));
+                break;
         }
     }
 }

@@ -278,7 +278,6 @@ public class input extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         categories = view.findViewById(R.id.category);
-
 //        FragmentSelection fragmentSelection = (FragmentSelection) getActivity();
 //        ArrayList<String> list = fragmentSelection.getList();
 //        Log.d("input", list.get(1));

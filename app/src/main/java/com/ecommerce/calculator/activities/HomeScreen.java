@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.ecommerce.calculator.R;
@@ -58,9 +59,15 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonSignUp:
+//                TextView signup = findViewById(R.id.buttonSignUp);
+//                signup.setBackground(getResources().getDrawable(R.drawable.homescreen_button));
+//                signup.setEnabled(false);
                 startActivity(new Intent(this, Registration.class));
                 break;
             case R.id.buttonLogin:
+//                TextView login = findViewById(R.id.buttonLogin);
+//                login.setBackground(getResources().getDrawable(R.drawable.button_background));
+//                login.setEnabled(false);
                 startActivity(new Intent(this, Login.class));
                 break;
         }

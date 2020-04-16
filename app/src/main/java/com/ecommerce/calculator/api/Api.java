@@ -106,7 +106,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("preRegister/sendOtp")
     Call<MessageResponse> otpSend(
-      @Field("email") String email
+      @Field("email") String email,
+      @Field("mobile_no") String mobile_no
     );
 
     @FormUrlEncoded

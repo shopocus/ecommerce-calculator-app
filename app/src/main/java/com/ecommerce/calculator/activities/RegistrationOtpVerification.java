@@ -355,7 +355,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .otpSend(email);
+                .otpSend(email, mobile_no);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
