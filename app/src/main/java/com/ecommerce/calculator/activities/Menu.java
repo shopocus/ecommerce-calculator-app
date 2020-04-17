@@ -41,6 +41,7 @@ public class Menu extends AppCompatActivity {
     SearchView searchView;
     LinearLayout linearLayout;
     Boolean isNetworkOk;
+    LoadingDialog loadingDialog;
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -70,7 +71,7 @@ public class Menu extends AppCompatActivity {
             snackbar.show();
         }
 
-        LoadingDialog loadingDialog = new LoadingDialog(Menu.this);
+        loadingDialog = new LoadingDialog(Menu.this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -138,6 +139,7 @@ public class Menu extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                loadingDialog.startLoadingDialog();
                                 logout();
                             }
                         })
@@ -182,6 +184,7 @@ public class Menu extends AppCompatActivity {
         call.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                loadingDialog.dismissDialog();
                 if (response.isSuccessful()) {
                     MessageResponse messageResponse = response.body();
                     SharedPrefManager.getInstance(Menu.this).clear();
@@ -204,6 +207,7 @@ public class Menu extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
+                loadingDialog.dismissDialog();
                 Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);

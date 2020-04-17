@@ -1,7 +1,6 @@
 package com.ecommerce.calculator.fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -18,7 +17,6 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-import com.google.android.material.snackbar.Snackbar;
 import android.widget.Button;
 import android.widget.Toast;
 import retrofit2.Call;
@@ -143,12 +141,7 @@ public class Data extends DialogFragment {
             }
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
-                View snackView = snackbar.getView();
-                TextView textView = snackView.findViewById(R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-                textView.setTextSize(15);
-                snackbar.show();
+                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

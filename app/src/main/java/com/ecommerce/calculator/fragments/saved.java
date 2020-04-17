@@ -1,7 +1,6 @@
 package com.ecommerce.calculator.fragments;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader;
-import com.google.android.material.snackbar.Snackbar;
 
 public class saved extends Fragment {
 
@@ -93,12 +92,7 @@ public class saved extends Fragment {
                         loader.setVisibility(View.GONE);
                     }
                 }else if(response.code() == 401){
-                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
-                    View snackView = snackbar.getView();
-                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                    textView.setTextColor(Color.WHITE);
-                    textView.setTextSize(15);
-                    snackbar.show();
+                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -109,12 +103,7 @@ public class saved extends Fragment {
             @Override
             public void onFailure(Call<savedTitleResponse> call, Throwable t) {
                 loader.setVisibility(View.GONE);
-                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
-                View snackView = snackbar.getView();
-                TextView textView = snackView.findViewById(R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-                textView.setTextSize(15);
-                snackbar.show();
+                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

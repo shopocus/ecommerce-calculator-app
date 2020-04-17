@@ -105,6 +105,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if (loginResponse.getMessage().equals("loggedIn")) {
                     SharedPrefManager.getInstance(Login.this)
                             .saveUser(loginResponse.getUser());
+                    Intent intent = new Intent(Login.this, Menu.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 } else {
                     login.setBackground(getResources().getDrawable(R.drawable.button_background));
                     login.setEnabled(true);
@@ -122,7 +125,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 loadingDialog.dismissDialog();
                 login.setBackground(getResources().getDrawable(R.drawable.button_background));
                 login.setEnabled(true);
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);

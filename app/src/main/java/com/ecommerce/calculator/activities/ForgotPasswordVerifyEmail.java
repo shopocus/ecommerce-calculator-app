@@ -278,7 +278,7 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
                     verification_button.setText("Verify");
                     verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
-                    Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);
@@ -322,7 +322,7 @@ public class ForgotPasswordVerifyEmail extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<MessageResponse> call, Throwable t) {
-                    Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                    Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);

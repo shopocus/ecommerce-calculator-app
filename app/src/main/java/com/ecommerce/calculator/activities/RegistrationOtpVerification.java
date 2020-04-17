@@ -90,6 +90,11 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                     otp_digit_3.requestFocus();
                     otp_digit_3.setCursorVisible(true);
                 }
+                else if(s.length()==0){
+                    otp_digit_2.clearFocus();
+                    otp_digit_1.requestFocus();
+                    otp_digit_1.setCursorVisible(true);
+                }
             }
         });
 
@@ -106,6 +111,11 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                     otp_digit_3.clearFocus();
                     otp_digit_4.requestFocus();
                     otp_digit_4.setCursorVisible(true);
+                }
+                else if(s.length()==0){
+                    otp_digit_3.clearFocus();
+                    otp_digit_2.requestFocus();
+                    otp_digit_2.setCursorVisible(true);
                 }
             }
         });
@@ -124,6 +134,11 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                     otp_digit_5.requestFocus();
                     otp_digit_5.setCursorVisible(true);
                 }
+                else if(s.length()==0){
+                    otp_digit_4.clearFocus();
+                    otp_digit_3.requestFocus();
+                    otp_digit_3.setCursorVisible(true);
+                }
             }
         });
 
@@ -141,6 +156,11 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                     otp_digit_6.requestFocus();
                     otp_digit_6.setCursorVisible(true);
                 }
+                else if(s.length()==0){
+                    otp_digit_5.clearFocus();
+                    otp_digit_4.requestFocus();
+                    otp_digit_4.setCursorVisible(true);
+                }
             }
         });
 
@@ -155,6 +175,11 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(s.length()>0){
                     otp_digit_6.clearFocus();
+                }
+                else if(s.length()==0){
+                    otp_digit_6.clearFocus();
+                    otp_digit_5.requestFocus();
+                    otp_digit_5.setCursorVisible(true);
                 }
             }
         });
@@ -282,7 +307,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                 verification_button.setText("Verify");
                 verification_button.setTextColor(getResources().getColor(R.color.white));
                 verification_button.setEnabled(true);
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);
@@ -340,7 +365,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                 verification_button.setText("Verify");
                 verification_button.setTextColor(getResources().getColor(R.color.white));
                 verification_button.setEnabled(true);
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);
@@ -383,7 +408,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);

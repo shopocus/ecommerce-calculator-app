@@ -104,7 +104,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         if(!PASSWORD_PATTERN.matcher(password).matches()){
             loadingDialog.dismissDialog();
-            Snackbar snackbar = Snackbar.make(constraintLayout, "Too Weak Password", Snackbar.LENGTH_SHORT);
+            Snackbar snackbar = Snackbar.make(constraintLayout, "Password Consists Atleast One Upper Case Character, One Number, One Special Symbol ", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
             textView.setTextColor(Color.WHITE);
@@ -168,7 +168,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 loadingDialog.dismissDialog();
                 signup.setBackground(getResources().getDrawable(R.drawable.button_background));
                 signup.setEnabled(true);
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);

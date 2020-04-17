@@ -63,7 +63,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 }
                 else {
                     loadingDialog.dismissDialog();
-                    Toast.makeText(c, "Coming Soon", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -119,7 +119,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 if(response.isSuccessful()) {
                     category category = response.body();
                     ArrayList<String> list = new ArrayList<>();
-                    list.add("Select Category");
                     for (String s : category.getCategory()) {
                         list.add(s);
                     }
@@ -130,7 +129,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                     c.startActivity(intent);
                 }else if(response.code() == 401){
                     loadingDialog.dismissDialog();
-                    Toast.makeText(c, "Session Expire", Toast.LENGTH_LONG).show();
+                    Toast.makeText(c, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(c).clear();
                     Intent intent_logout = new Intent(c, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -140,7 +139,8 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
 
             @Override
             public void onFailure(Call<category> call, Throwable t) {
-
+                loadingDialog.dismissDialog();
+                Toast.makeText(c, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -2,6 +2,7 @@ package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.Menu;
+import com.ecommerce.calculator.activities.RegistrationOtpVerification;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -25,6 +28,8 @@ import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 import androidx.fragment.app.FragmentManager;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -111,7 +116,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                             public void onClick(DialogInterface dialog, int which) {
                                                 newTitle[0] = edittitle.getText().toString();
                                                 if (newTitle[0].equals("")) {
-                                                    Toast.makeText(mCtx, "Invalid Title", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(mCtx, "Please Enter Valid Title", Toast.LENGTH_SHORT).show();
                                                 } else {
                                                     String company = SharedPrefManager.getInstance(mCtx).getCompany();
                                                     Call<MessageResponse> call = RetrofitClient.getInstance().getApi().update(company, title, newTitle[0]);
@@ -123,16 +128,20 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
                                                             if (deleteDataResponse.getMessage().equals("updated")) {
                                                                 holder.textViewTitle.setText(newTitle[0]);
-                                                                Toast.makeText(mCtx, "Updated", Toast.LENGTH_LONG).show();
+                                                                new SweetAlertDialog(mCtx, SweetAlertDialog.SUCCESS_TYPE)
+                                                                        .setTitleText("Successfully Updated")
+                                                                        .setConfirmText("Ok")
+                                                                        .setConfirmButtonBackgroundColor(mCtx.getResources().getColor(R.color.colorPrimaryDark))
+                                                                        .show();
                                                             }
                                                             else{
-                                                                Toast.makeText(mCtx, "Title exists", Toast.LENGTH_LONG).show();
+                                                                Toast.makeText(mCtx, "Title Already Exists", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
 
                                                         @Override
                                                         public void onFailure(Call<MessageResponse> call, Throwable t) {
-                                                            Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });
                                                 }
@@ -166,13 +175,17 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                         if (deleteDataResponse.getMessage().equals("deleted")) {
                                                             titleList.remove(position);
                                                             notifyItemRemoved(position);
-                                                            Toast.makeText(mCtx, "Deleted", Toast.LENGTH_LONG).show();
+                                                            new SweetAlertDialog(mCtx, SweetAlertDialog.SUCCESS_TYPE)
+                                                                    .setTitleText("Deleted")
+                                                                    .setConfirmText("Ok")
+                                                                    .setConfirmButtonBackgroundColor(mCtx.getResources().getColor(R.color.colorPrimaryDark))
+                                                                    .show();
                                                         }
                                                     }
 
                                                     @Override
                                                     public void onFailure(Call<MessageResponse> call, Throwable t) {
-                                                        Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_LONG).show();
+                                                        Toast.makeText(mCtx, "Internet Disconnected", Toast.LENGTH_SHORT).show();
                                                     }
                                                 });
                                             }

@@ -44,8 +44,8 @@ public class Profile extends AppCompatActivity {
         textViewName = findViewById(R.id.textViewName);
         textViewMobile = findViewById(R.id.textViewMobile);
 
-        textViewEmail.setText(SharedPrefManager.getInstance(Profile.this).getUser().getName());
-        textViewName.setText(SharedPrefManager.getInstance(Profile.this).getUser().getEmail());
+        textViewName.setText(SharedPrefManager.getInstance(Profile.this).getUser().getName());
+        textViewEmail.setText(SharedPrefManager.getInstance(Profile.this).getUser().getEmail());
         textViewMobile.setText(SharedPrefManager.getInstance(Profile.this).getUser().getMobile_no());
     }
 }

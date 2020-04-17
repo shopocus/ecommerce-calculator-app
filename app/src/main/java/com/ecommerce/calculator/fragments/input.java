@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
@@ -33,12 +32,13 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.CalculateResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-import com.google.android.material.snackbar.Snackbar;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class input extends Fragment implements View.OnClickListener {
@@ -237,12 +237,7 @@ public class input extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         myText = title.getText().toString();
                                 if (myText.equals("")) {
-                                    Snackbar snackbar = Snackbar.make(linearLayout, "Enter the Title", Snackbar.LENGTH_SHORT);
-                                    View snackView = snackbar.getView();
-                                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                                    textView.setTextColor(Color.WHITE);
-                                    textView.setTextSize(15);
-                                    snackbar.show();
+                                    Toast.makeText(getContext(), "Enter the Title", Toast.LENGTH_SHORT).show();
                                 } else {
                                     save();
                                 }
@@ -495,12 +490,7 @@ public class input extends Fragment implements View.OnClickListener {
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
                 }else if(response.code() == 501){
-                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
-                    View snackView = snackbar.getView();
-                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                    textView.setTextColor(Color.WHITE);
-                    textView.setTextSize(15);
-                    snackbar.show();
+                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -510,12 +500,7 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onFailure(Call<CalculateResponse> call, Throwable t) {
                 ButtonFinished();
-                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
-                View snackView = snackbar.getView();
-                TextView textView = snackView.findViewById(R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-                textView.setTextSize(15);
-                snackbar.show();
+                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -563,20 +548,10 @@ public class input extends Fragment implements View.OnClickListener {
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .show();
                     } else {
-                        Snackbar snackbar = Snackbar.make(linearLayout, "Title Name Already Exists", Snackbar.LENGTH_SHORT);
-                        View snackView = snackbar.getView();
-                        TextView textView = snackView.findViewById(R.id.snackbar_text);
-                        textView.setTextColor(Color.WHITE);
-                        textView.setTextSize(15);
-                        snackbar.show();
+                        Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
                     }
                 }else if(response.code() == 401){
-                    Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
-                    View snackView = snackbar.getView();
-                    TextView textView = snackView.findViewById(R.id.snackbar_text);
-                    textView.setTextColor(Color.WHITE);
-                    textView.setTextSize(15);
-                    snackbar.show();
+                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -585,12 +560,7 @@ public class input extends Fragment implements View.OnClickListener {
             }
             @Override
             public void onFailure(Call<SaveResponse> call, Throwable t) {
-                Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
-                View snackView = snackbar.getView();
-                TextView textView = snackView.findViewById(R.id.snackbar_text);
-                textView.setTextColor(Color.WHITE);
-                textView.setTextSize(15);
-                snackbar.show();
+                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

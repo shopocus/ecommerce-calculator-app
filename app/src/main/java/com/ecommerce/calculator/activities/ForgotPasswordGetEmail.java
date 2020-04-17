@@ -103,7 +103,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
                 submit.setBackground(getResources().getDrawable(R.drawable.button_background));
                 submit.setText("Send OTP");
                 submit.setEnabled(true);
-                Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
                 View snackView = snackbar.getView();
                 TextView textView = snackView.findViewById(R.id.snackbar_text);
                 textView.setTextColor(Color.WHITE);
