@@ -76,6 +76,7 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
                 startActivity(new Intent(this, Login.class));
                 break;
         }
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
 }

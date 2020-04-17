@@ -64,6 +64,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.backGo).setOnClickListener(this);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim().toLowerCase();
         String password = editTextPassword.getText().toString().trim();
@@ -151,7 +157,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this, ForgotPasswordGetEmail.class));
                 break;
             case R.id.backGo:
-                startActivity(new Intent(this, HomeScreen.class));
+                finish();
                 break;
         }
     }
