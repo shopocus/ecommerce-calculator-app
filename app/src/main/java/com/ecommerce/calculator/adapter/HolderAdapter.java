@@ -61,6 +61,11 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("meesho");
                     categories();
                 }
+                else if (menu.get(position).getTitle().equals("Club Factory")){
+                    SharedPrefManager.getInstance(c)
+                            .saveCompany("club factory");
+                    categories();
+                }
                 else {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();

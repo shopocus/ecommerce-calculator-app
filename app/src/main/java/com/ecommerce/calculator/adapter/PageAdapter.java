@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.ecommerce.calculator.fragments.input;
+import com.ecommerce.calculator.fragments.clubfactory_calculation;
 import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
@@ -21,15 +22,21 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-                if(SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
-                    if (position == 0) {
-                        input input = new input();
-                        return input;
-                    } else {
-                        saved saved = new saved();
-                        return saved;
-                    }
-                }
+        if(position == 0) {
+            if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
+                //if (position == 0) {
+                input input = new input();
+                return input;
+            }
+            if (SharedPrefManager.getInstance(c).getCompany().equals("club factory")) {
+                //if (position == 0) {
+                clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
+                return clubfactory_calculation;
+            }
+        }else {
+            saved saved = new saved();
+            return saved;
+        }
         return null;
     }
 
