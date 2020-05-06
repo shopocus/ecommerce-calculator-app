@@ -28,7 +28,7 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 input input = new input();
                 return input;
             }
-            if (SharedPrefManager.getInstance(c).getCompany().equals("club factory")) {
+            if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
                 //if (position == 0) {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
                 return clubfactory_calculation;
