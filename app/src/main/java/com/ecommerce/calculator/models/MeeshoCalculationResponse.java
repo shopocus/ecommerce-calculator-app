@@ -1,6 +1,6 @@
 package com.ecommerce.calculator.models;
 
-public class CalculateResponse {
+public class MeeshoCalculationResponse {
     private  double bankSettlement;
     private  double totalMeeshoCommision;
     private  double profit;
@@ -9,10 +9,9 @@ public class CalculateResponse {
     private  double gstPayable;
     private  double gstClaim;
     private  double profitPercentage;
-    private String msg;
 
-    public CalculateResponse( double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs,
-                              double gstPayable, double gstClaim, double profitPercentage) {
+    public MeeshoCalculationResponse(double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs,
+                                     double gstPayable, double gstClaim, double profitPercentage) {
         this.bankSettlement = bankSettlement;
         this.totalMeeshoCommision = totalMeeshoCommision;
         this.profit = profit;

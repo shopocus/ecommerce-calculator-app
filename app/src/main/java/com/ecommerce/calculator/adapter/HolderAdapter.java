@@ -63,7 +63,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 }
                 else if (menu.get(position).getTitle().equals("Club Factory")){
                     SharedPrefManager.getInstance(c)
-                            .saveCompany("club factory");
+                            .saveCompany("clubFactory");
                     categories();
                 }
                 else {

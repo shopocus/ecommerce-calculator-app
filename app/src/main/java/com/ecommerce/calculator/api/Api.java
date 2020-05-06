@@ -1,9 +1,9 @@
 package com.ecommerce.calculator.api;
 
+import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.LoginResponse;
-import com.ecommerce.calculator.models.CalculateResponse;
-import com.ecommerce.calculator.models.SaveResponse;
+import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
@@ -36,7 +36,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("meesho/app/calculate")
-    Call<CalculateResponse> calculate(
+    Call<MeeshoCalculationResponse> calculate(
             @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
@@ -55,7 +55,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("meesho/app/toSave")
-    Call<SaveResponse> saved(
+    Call<MessageResponse> saved(
             @Field("title") String title,
             @Field("category") String category,
             @Field("sellingPrice") String sellingPrice,
@@ -80,7 +80,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("clubFactory/app/calculate")
-    Call<CalculateResponse> clubFactoyrCalculation(
+    Call<ClubFactoryCalculationResponse> clubFactoyrCalculation(
             @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
@@ -102,7 +102,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("clubFactory/app/toSave")
-    Call<SaveResponse> savedclubFactory(
+    Call<MessageResponse> savedclubFactory(
             @Field("title") String title,
             @Field("category") String category,
             @Field("sellingPrice") String sellingPrice,

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,18 +20,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import com.ecommerce.calculator.models.SaveResponse;
+
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.CalculateResponse;
+import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -44,9 +49,9 @@ import java.util.ArrayList;
 public class clubfactory_calculation extends Fragment implements View.OnClickListener {
 
     private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView pp,weight, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
+    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
             line6, line7, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
-    private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
+    private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10, num11;
     LinearLayout linearLayout;
 
     Spinner num3, categories;
@@ -60,6 +65,10 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private ProgressBar progressBar;
     private TextView textView;
     private String myText;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+    SwitchCompat switchCompat;
+    String status;
 
     @Nullable
     @Override
@@ -212,6 +221,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 num8.setText("");
                 num9.setText("");
                 num10.setText("");
+                num11.setText("");
                 result_card.setVisibility(View.GONE);
             }
         });
@@ -290,8 +300,19 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         });
 
         details = view.findViewById(R.id.details_dropdown);
+        radioGroup = view.findViewById(R.id.radioGroup);
+        switchCompat = view.findViewById(R.id.courier_switch);
+        switchCompat.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if(switchCompat.isChecked()){
+                    status = "delivery";
+                }else{
+                    status = "other";
+                }
+            }
+        });
         pp = view.findViewById(R.id.text_pp);
-        weight = view.findViewById(R.id.text_weight);
         gst = view.findViewById(R.id.text_gst);
         transport = view.findViewById(R.id.text_transport);
         packaging = view.findViewById(R.id.text_packaging);
@@ -341,6 +362,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         num8 = view.findViewById(R.id.number8);
         num9 = view.findViewById(R.id.number9);
         num10 = view.findViewById(R.id.number10);
+        num11 = view.findViewById(R.id.number11);
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
@@ -397,6 +419,13 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             return;
         }
 
+        if (num11.getText().toString().isEmpty()) {
+            num11.setError("Weight is required");
+            num11.requestFocus();
+            ButtonFinished();
+            return;
+        }
+
         if(Double.parseDouble(num1.getText().toString()) <= 0){
             num1.setError("Selling Price not valid");
             num1.requestFocus();
@@ -444,36 +473,38 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         double number8 = Double.parseDouble(num8.getText().toString());
         double number9 = Double.parseDouble(num9.getText().toString());
         double number10 = Double.parseDouble(num10.getText().toString());
+        double number11 = Double.parseDouble(num11.getText().toString());
 
-        Call<CalculateResponse> call = RetrofitClient
-                .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
+        Call<ClubFactoryCalculationResponse> call = RetrofitClient
+                .getInstance().getApi().clubFactoyrCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
+                        number11, checkButton(getView()), status);
 
-        call.enqueue(new Callback<CalculateResponse>() {
+        call.enqueue(new Callback<ClubFactoryCalculationResponse>() {
             @Override
-            public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
+            public void onResponse(Call<ClubFactoryCalculationResponse> call, Response<ClubFactoryCalculationResponse> response) {
                 if(response.isSuccessful()) {
-                    CalculateResponse CalculateResponse = response.body();
+                    ClubFactoryCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
 
-                    items[0] = CalculateResponse.getBankSettlement();
-                    items[1] = CalculateResponse.getTotalMeeshoCommision();
-                    items[2] = CalculateResponse.getProfit();
-                    items[3] = CalculateResponse.getTotalGstPayable();
-                    items[4] = CalculateResponse.getTcs();
-                    items[5] = CalculateResponse.getGstPayable();
-                    items[6] = CalculateResponse.getGstClaim();
-                    items[7] = CalculateResponse.getProfitPercentage();
+                    items[0] = CalculateResponse.getLocal().getBankSettlement();
+                    items[1] = CalculateResponse.getLocal().getTotalMeeshoCommision();
+                    items[2] = CalculateResponse.getLocal().getProfit();
+                    items[3] = CalculateResponse.getLocal().getTotalGstPayable();
+                    items[4] = CalculateResponse.getLocal().getTcs();
+                    items[5] = CalculateResponse.getLocal().getGstPayable();
+                    items[6] = CalculateResponse.getLocal().getGstClaim();
+                    items[7] = CalculateResponse.getLocal().getProfitPercentage();
 
-                    output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalMeeshoCommision()));
-                    output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
-                    output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
-                    output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
-                    output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
-                    output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
-                    output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
+                    output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
+                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getLocal().getTotalMeeshoCommision()));
+                    output text3 = new output("Profit", String.valueOf(CalculateResponse.getLocal().getProfit()));
+                    output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
+                    output text5 = new output("TCS", String.valueOf(CalculateResponse.getLocal().getTcs()));
+                    output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getLocal().getGstPayable()));
+                    output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getLocal().getGstClaim()));
+                    output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
 
                     ArrayList<output> outputList = new ArrayList<>();
                     outputList.add(text1);
@@ -499,7 +530,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 }
             }
             @Override
-            public void onFailure(Call<CalculateResponse> call, Throwable t) {
+            public void onFailure(Call<ClubFactoryCalculationResponse> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
@@ -528,18 +559,23 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         String gstClaim = String.valueOf(items[6]);
         String profitPercentage = String.valueOf(items[7]);
 
-        Call<SaveResponse> call = RetrofitClient
+        Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .saved(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
+                .savedclubFactory(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
                         other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
-                        gstClaim, profitPercentage);
+                        gstClaim, profitPercentage, "", "", "", "",""
+                ,"","","","","","","",
+                        "","","","","","","",
+                        "","","","","","",
+                        "","","","","","","",
+                        "","","");
 
-        call.enqueue(new Callback<SaveResponse>() {
+        call.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()) {
-                    SaveResponse dr = response.body();
+                    MessageResponse dr = response.body();
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
                         save.setEnabled(false);
@@ -560,7 +596,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 }
             }
             @Override
-            public void onFailure(Call<SaveResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
@@ -600,6 +636,12 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     void ButtonFinished(){
         progressBar.setVisibility(View.GONE);
         textView.setText("Calculate");
+    }
+
+    public String checkButton(View v){
+        int radioId = radioGroup.getCheckedRadioButtonId();
+        radioButton = v.findViewById(radioId);
+        return radioButton.getText().toString();
     }
 
     @Override

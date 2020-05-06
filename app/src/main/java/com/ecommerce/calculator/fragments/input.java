@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,11 +26,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import com.ecommerce.calculator.models.SaveResponse;
+
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.CalculateResponse;
+import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -444,14 +445,14 @@ public class input extends Fragment implements View.OnClickListener {
         double number9 = Double.parseDouble(num9.getText().toString());
         double number10 = Double.parseDouble(num10.getText().toString());
 
-        Call<CalculateResponse> call = RetrofitClient
+        Call<MeeshoCalculationResponse> call = RetrofitClient
                 .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
 
-        call.enqueue(new Callback<CalculateResponse>() {
+        call.enqueue(new Callback<MeeshoCalculationResponse>() {
             @Override
-            public void onResponse(Call<CalculateResponse> call, Response<CalculateResponse> response) {
+            public void onResponse(Call<MeeshoCalculationResponse> call, Response<MeeshoCalculationResponse> response) {
                 if(response.isSuccessful()) {
-                    CalculateResponse CalculateResponse = response.body();
+                    MeeshoCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
@@ -498,7 +499,7 @@ public class input extends Fragment implements View.OnClickListener {
                 }
             }
             @Override
-            public void onFailure(Call<CalculateResponse> call, Throwable t) {
+            public void onFailure(Call<MeeshoCalculationResponse> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
@@ -527,18 +528,18 @@ public class input extends Fragment implements View.OnClickListener {
         String gstClaim = String.valueOf(items[6]);
         String profitPercentage = String.valueOf(items[7]);
 
-        Call<SaveResponse> call = RetrofitClient
+        Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .saved(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
                         other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
                         gstClaim, profitPercentage);
 
-        call.enqueue(new Callback<SaveResponse>() {
+        call.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<SaveResponse> call, Response<SaveResponse> response) {
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
                 if(response.isSuccessful()) {
-                    SaveResponse dr = response.body();
+                    MessageResponse dr = response.body();
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
                         save.setEnabled(false);
@@ -559,7 +560,7 @@ public class input extends Fragment implements View.OnClickListener {
                 }
             }
             @Override
-            public void onFailure(Call<SaveResponse> call, Throwable t) {
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
