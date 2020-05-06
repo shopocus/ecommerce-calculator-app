@@ -264,7 +264,7 @@
                             android:textColor="@color/colorPrimary"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <androidx.appcompat.widget.SwitchCompat
@@ -275,7 +275,7 @@
                                 android:text="Delivery     "
                                 android:textOff="OFF"
                                 android:textOn="ON"
-                                android:padding="3dp"
+                                android:layout_marginVertical="5dp"
                                 android:thumb="@drawable/courier_switch"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
