@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
@@ -30,6 +31,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
@@ -37,6 +39,8 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.tabs.TabLayout;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,6 +73,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     RadioButton radioButton;
     SwitchCompat switchCompat;
     String status;
+    ViewPager viewPager;
+    TabLayout tabLayout;
 
     @Nullable
     @Override
@@ -79,6 +85,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);
         linearLayout = view.findViewById(R.id.linearlayout);
+        viewPager = view.findViewById(R.id.viewPager);
+        tabLayout = view.findViewById(R.id.tabLayout);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
@@ -275,6 +283,40 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setUpViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void setUpViewPager(ViewPager viewPager) {
+        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new Local(), "Local");
+        adapter.addFragment(new Regional(), "Regional");
+        adapter.addFragment(new Metro(), "Metro");
+        adapter.addFragment(new RestOfIndia(), "Rest Of India");
+        adapter.addFragment(new Kerala(), "Kerala");
+
+        viewPager.setAdapter(adapter);
     }
 
     @Override
