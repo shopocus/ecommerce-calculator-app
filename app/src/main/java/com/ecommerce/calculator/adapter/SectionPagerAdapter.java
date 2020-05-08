@@ -1,22 +1,18 @@
 package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.ecommerce.calculator.fragments.Kerala;
+import com.ecommerce.calculator.fragments.Kerela;
 import com.ecommerce.calculator.fragments.Local;
 import com.ecommerce.calculator.fragments.Metro;
 import com.ecommerce.calculator.fragments.Regional;
 import com.ecommerce.calculator.fragments.RestOfIndia;
-import com.ecommerce.calculator.fragments.input;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
@@ -24,11 +20,13 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
     //private List<String> titleList = new ArrayList<>();
     int counttab;
     Context c;
+    Bundle bundle;
 
-    public SectionPagerAdapter(Context c, @NonNull FragmentManager fm, int counttab) {
+    public SectionPagerAdapter(Context c, @NonNull FragmentManager fm, int counttab, Bundle bundle) {
         super(fm);
         this.c = c;
         this.counttab = counttab;
+        this.bundle = bundle;
     }
 
     @NonNull
@@ -37,6 +35,7 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
         switch(position){
             case 0:
                 Local local = new Local();
+                local.setArguments(bundle);
                 return local;
             case 1:
                 Regional regional = new Regional();
@@ -48,7 +47,7 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
                 RestOfIndia restOfIndia = new RestOfIndia();
                 return restOfIndia;
             case 4:
-                Kerala kerala = new Kerala();
+                Kerela kerala = new Kerela();
                 return kerala;
         }
         //return fragmentList.get(position);

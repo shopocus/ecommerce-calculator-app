@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
-import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -34,11 +33,8 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.MeeshoCalculationResponse;
-import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 
@@ -395,29 +391,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Local"));
-        tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.black));
-        PageAdapter pageAdapter = new PageAdapter(getContext(), getFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(pageAdapter);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
             int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
             categories.setSelection(selection);
@@ -538,38 +511,89 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     ClubFactoryCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
 
-                    result_card.setVisibility(View.VISIBLE);
+                    ArrayList<String> Local = new ArrayList<>();
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalMeeshoCommision()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTcs()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstPayable()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstClaim()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getProfit()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
 
-                    items[0] = CalculateResponse.getLocal().getBankSettlement();
-                    items[1] = CalculateResponse.getLocal().getTotalMeeshoCommision();
-                    items[2] = CalculateResponse.getLocal().getProfit();
-                    items[3] = CalculateResponse.getLocal().getTotalGstPayable();
-                    items[4] = CalculateResponse.getLocal().getTcs();
-                    items[5] = CalculateResponse.getLocal().getGstPayable();
-                    items[6] = CalculateResponse.getLocal().getGstClaim();
-                    items[7] = CalculateResponse.getLocal().getProfitPercentage();
+                    ArrayList<String> Regional = new ArrayList<>();
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalMeeshoCommision()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalGstPayable()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTcs()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstPayable()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstClaim()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getProfit()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getProfitPercentage()));
 
-                    output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
-                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getLocal().getTotalMeeshoCommision()));
-                    output text3 = new output("Profit", String.valueOf(CalculateResponse.getLocal().getProfit()));
-                    output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
-                    output text5 = new output("TCS", String.valueOf(CalculateResponse.getLocal().getTcs()));
-                    output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getLocal().getGstPayable()));
-                    output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getLocal().getGstClaim()));
-                    output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
+                    ArrayList<String> Metro = new ArrayList<>();
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalMeeshoCommision()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalGstPayable()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTcs()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstPayable()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstClaim()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getProfit()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getProfitPercentage()));
 
-                    ArrayList<output> outputList = new ArrayList<>();
-                    outputList.add(text1);
-                    outputList.add(text2);
-                    outputList.add(text3);
-                    outputList.add(text4);
-                    outputList.add(text5);
-                    outputList.add(text6);
-                    outputList.add(text7);
-                    outputList.add(text8);
+                    ArrayList<String> RestOfIndia = new ArrayList<>();
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getBankSettlement()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalMeeshoCommision()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalGstPayable()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTcs()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstPayable()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstClaim()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfit()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfitPercentage()));
 
-                    OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
-                    itemList.setAdapter(adapter);
+                    ArrayList<String> Kerela = new ArrayList<>();
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getBankSettlement()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalMeeshoCommision()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalGstPayable()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTcs()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstPayable()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstClaim()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getProfit()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getProfitPercentage()));
+
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList("Local", Local);
+                    bundle.putStringArrayList("Regional", Regional);
+                    bundle.putStringArrayList("Metro", Metro);
+                    bundle.putStringArrayList("RestOfIndia", RestOfIndia);
+                    bundle.putStringArrayList("Kerela", Kerela);
+
+                    tabLayout.addTab(tabLayout.newTab().setText("Local"));
+                    tabLayout.addTab(tabLayout.newTab().setText("Regional"));
+                    tabLayout.addTab(tabLayout.newTab().setText("Metro"));
+                    tabLayout.addTab(tabLayout.newTab().setText("Rest Of India"));
+                    tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
+                    tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+                    tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+                    SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                    viewPager.setAdapter(sectionPagerAdapter);
+                    viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                    tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                        @Override
+                        public void onTabSelected(TabLayout.Tab tab) {
+                            viewPager.setCurrentItem(tab.getPosition());
+                        }
+
+                        @Override
+                        public void onTabUnselected(TabLayout.Tab tab) {
+
+                        }
+
+                        @Override
+                        public void onTabReselected(TabLayout.Tab tab) {
+
+                        }
+                    });
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);

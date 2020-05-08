@@ -1,65 +1,55 @@
 package com.ecommerce.calculator.fragments;
 
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ListView;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.adapter.OutputListAdapter;
+import com.ecommerce.calculator.models.output;
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Metro#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Metro extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Metro() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Metro.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Metro newInstance(String param1, String param2) {
-        Metro fragment = new Metro();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    ListView result;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_metro, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_local, container, false);
+
+        result = view.findViewById(R.id.text_view_result);
+
+        Bundle bundle = this.getArguments();
+        ArrayList<String> bundle_metro = bundle.getStringArrayList("Metro");
+
+        output text1 = new output("Bank Settlement", bundle_metro.get(0));
+        output text2 = new output("Total Commission", bundle_metro.get(1));
+        output text4 = new output("Total GST Payable", bundle_metro.get(2));
+        output text5 = new output("TCS", bundle_metro.get(3));
+        output text6 = new output("GST Payable", bundle_metro.get(4));
+        output text7 = new output("GST Claim", bundle_metro.get(5));
+        output text3 = new output("Profit", bundle_metro.get(6));
+        output text8 = new output("Profit Percentage", bundle_metro.get(7));
+
+        ArrayList<output> outputList = new ArrayList<>();
+        outputList.add(text1);
+        outputList.add(text2);
+        outputList.add(text3);
+        outputList.add(text4);
+        outputList.add(text5);
+        outputList.add(text6);
+        outputList.add(text7);
+        outputList.add(text8);
+
+        OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
+        result.setAdapter(adapter);
+        return view;
     }
 }

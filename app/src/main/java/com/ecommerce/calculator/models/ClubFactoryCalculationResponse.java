@@ -1,23 +1,21 @@
 package com.ecommerce.calculator.models;
 
-import java.util.List;
-
 public class ClubFactoryCalculationResponse {
 
     private MeeshoCalculationResponse Local;
     private MeeshoCalculationResponse Regional;
     private MeeshoCalculationResponse Metro;
     private MeeshoCalculationResponse RestOfIndia;
-    private MeeshoCalculationResponse Kerala;
+    private MeeshoCalculationResponse Kerela;
 
     public ClubFactoryCalculationResponse(MeeshoCalculationResponse Local, MeeshoCalculationResponse Regional,
                                           MeeshoCalculationResponse Metro, MeeshoCalculationResponse RestOfIndia,
-                                          MeeshoCalculationResponse Kerala) {
+                                          MeeshoCalculationResponse Kerela) {
         this.Local = Local;
         this.Regional = Regional;
         this.Metro = Metro;
         this.RestOfIndia = RestOfIndia;
-        this.Kerala = Kerala;
+        this.Kerela = Kerela;
     }
 
     public MeeshoCalculationResponse getLocal() {
@@ -36,8 +34,8 @@ public class ClubFactoryCalculationResponse {
         return RestOfIndia;
     }
 
-    public MeeshoCalculationResponse getKerala() {
-        return Kerala;
+    public MeeshoCalculationResponse getKerela() {
+        return Kerela;
     }
 
 }
