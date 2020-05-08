@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -288,35 +289,21 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setUpViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+        //setUpViewPager(viewPager);
+        //tabLayout.setupWithViewPager(viewPager);
+        //TabLayout tabLayout = findViewById(R.id.tab_layout);
 
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     private void setUpViewPager(ViewPager viewPager) {
-        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
-        adapter.addFragment(new Local(), "Local");
-        adapter.addFragment(new Regional(), "Regional");
-        adapter.addFragment(new Metro(), "Metro");
-        adapter.addFragment(new RestOfIndia(), "Rest Of India");
-        adapter.addFragment(new Kerala(), "Kerala");
+//        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
+//        adapter.addFragment(new Local(), "Local");
+//        adapter.addFragment(new Regional(), "Regional");
+//        adapter.addFragment(new Metro(), "Metro");
+//        adapter.addFragment(new RestOfIndia(), "Rest Of India");
+//        adapter.addFragment(new Kerala(), "Kerala");
 
-        viewPager.setAdapter(adapter);
+       // viewPager.setAdapter(adapter);
     }
 
     @Override
@@ -407,6 +394,29 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         num11 = view.findViewById(R.id.number11);
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Local"));
+        tabLayout.addTab(tabLayout.newTab().setText("Regional"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.black));
+        PageAdapter pageAdapter = new PageAdapter(getContext(), getFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
             int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
