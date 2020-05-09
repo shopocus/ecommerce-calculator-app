@@ -83,7 +83,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         result_card = view.findViewById(R.id.result_card);
         linearLayout = view.findViewById(R.id.linearlayout);
         viewPager = view.findViewById(R.id.viewPager);
-        tabLayout = view.findViewById(R.id.tabLayout);
+        tabLayout = view.findViewById(R.id.tab_layout);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
@@ -283,26 +283,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //setUpViewPager(viewPager);
-        //tabLayout.setupWithViewPager(viewPager);
-        //TabLayout tabLayout = findViewById(R.id.tab_layout);
-
-    }
-
-    private void setUpViewPager(ViewPager viewPager) {
-//        SectionPagerAdapter adapter = new SectionPagerAdapter(getChildFragmentManager());
-//        adapter.addFragment(new Local(), "Local");
-//        adapter.addFragment(new Regional(), "Regional");
-//        adapter.addFragment(new Metro(), "Metro");
-//        adapter.addFragment(new RestOfIndia(), "Rest Of India");
-//        adapter.addFragment(new Kerala(), "Kerala");
-
-       // viewPager.setAdapter(adapter);
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -327,6 +307,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         details = view.findViewById(R.id.details_dropdown);
         radioGroup = view.findViewById(R.id.radioGroup);
         switchCompat = view.findViewById(R.id.courier_switch);
+        switchCompat.setChecked(true);
         switchCompat.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -510,6 +491,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 if(response.isSuccessful()) {
                     ClubFactoryCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
+
+                    result_card.setVisibility(View.VISIBLE);
 
                     ArrayList<String> Local = new ArrayList<>();
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));

@@ -24,46 +24,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="30dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/result_card"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="false">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/clubfactory_input">
+
 
                 <TextView
                     android:id="@+id/output_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
                     android:gravity="center_horizontal"
-                    android:padding="8dp"
-                    android:text="OUTPUT"
+                    android:paddingTop="16dp"
+                    android:text="Result"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/colorPrimaryDark" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_below="@+id/output_text">
     <com.google.android.material.tabs.TabLayout
-        android:id="@id/tabLayout"
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/output_text">
+        android:layout_height="wrap_content">
     </com.google.android.material.tabs.TabLayout>
 
-                <androidx.cardview.widget.CardView
+              <!--  <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tabLayout">
+                    android:layout_below="@+id/tabLayout">-->
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tabLayout"
-        android:background="@color/light_grey"/>
+        android:layout_height="180dp"
+        android:paddingTop="10dp"/>
 
-                </androidx.cardview.widget.CardView>
+                    <ListView
+                        android:id="@+id/text_view_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp">
+                    </ListView>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginBottom="16dp"
-                        android:layout_below="@+id/cardView"
+                        android:layout_below="@+id/text_view_result"
                         android:orientation="horizontal"
                         android:weightSum="100"
                         tools:ignore="NotSibling">
@@ -87,6 +111,12 @@
                             android:background="@color/white"/>
 
                     </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
 
