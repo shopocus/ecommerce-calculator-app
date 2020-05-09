@@ -513,7 +513,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     ArrayList<String> Local = new ArrayList<>();
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
-                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalMeeshoCommision()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCommision()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTcs()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getGstPayable()));
@@ -523,7 +523,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     ArrayList<String> Regional = new ArrayList<>();
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
-                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalMeeshoCommision()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalCommision()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTcs()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getGstPayable()));
@@ -533,7 +533,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     ArrayList<String> Metro = new ArrayList<>();
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
-                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalMeeshoCommision()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalCommision()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalGstPayable()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTcs()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getGstPayable()));
@@ -543,7 +543,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     ArrayList<String> RestOfIndia = new ArrayList<>();
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getBankSettlement()));
-                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalMeeshoCommision()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalCommision()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalGstPayable()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTcs()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstPayable()));
@@ -553,7 +553,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     ArrayList<String> Kerela = new ArrayList<>();
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getBankSettlement()));
-                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalMeeshoCommision()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalCommision()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalGstPayable()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTcs()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstPayable()));

@@ -458,7 +458,7 @@ public class input extends Fragment implements View.OnClickListener {
                     result_card.setVisibility(View.VISIBLE);
 
                     items[0] = CalculateResponse.getBankSettlement();
-                    items[1] = CalculateResponse.getTotalMeeshoCommision();
+                    items[1] = CalculateResponse.getTotalCommision();
                     items[2] = CalculateResponse.getProfit();
                     items[3] = CalculateResponse.getTotalGstPayable();
                     items[4] = CalculateResponse.getTcs();
@@ -467,7 +467,7 @@ public class input extends Fragment implements View.OnClickListener {
                     items[7] = CalculateResponse.getProfitPercentage();
 
                     output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalMeeshoCommision()));
+                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalCommision()));
                     output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
                     output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
                     output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));

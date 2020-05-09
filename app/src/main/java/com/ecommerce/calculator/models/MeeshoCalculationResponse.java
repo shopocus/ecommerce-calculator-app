@@ -2,7 +2,7 @@ package com.ecommerce.calculator.models;
 
 public class MeeshoCalculationResponse {
     private  double bankSettlement;
-    private  double totalMeeshoCommision;
+    private  double totalCommision;
     private  double profit;
     private  double totalGstPayable;
     private  double tcs;
@@ -10,10 +10,10 @@ public class MeeshoCalculationResponse {
     private  double gstClaim;
     private  double profitPercentage;
 
-    public MeeshoCalculationResponse(double bankSettlement, double totalMeeshoCommision, double profit, double totalGstPayable, double tcs,
+    public MeeshoCalculationResponse(double bankSettlement, double totalCommision, double profit, double totalGstPayable, double tcs,
                                      double gstPayable, double gstClaim, double profitPercentage) {
         this.bankSettlement = bankSettlement;
-        this.totalMeeshoCommision = totalMeeshoCommision;
+        this.totalCommision = totalCommision;
         this.profit = profit;
         this.totalGstPayable = totalGstPayable;
         this.tcs = tcs;
@@ -26,8 +26,8 @@ public class MeeshoCalculationResponse {
         return bankSettlement;
     }
 
-    public double getTotalMeeshoCommision() {
-        return totalMeeshoCommision;
+    public double getTotalCommision() {
+        return totalCommision;
     }
 
     public double getProfit(){

@@ -39,15 +39,19 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
                 return local;
             case 1:
                 Regional regional = new Regional();
+                regional.setArguments(bundle);
                 return regional;
             case 2:
                 Metro metro = new Metro();
+                metro.setArguments(bundle);
                 return metro;
             case 3:
                 RestOfIndia restOfIndia = new RestOfIndia();
+                restOfIndia.setArguments(bundle);
                 return restOfIndia;
             case 4:
                 Kerela kerala = new Kerela();
+                kerala.setArguments(bundle);
                 return kerala;
         }
         //return fragmentList.get(position);
