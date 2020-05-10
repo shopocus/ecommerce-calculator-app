@@ -50,8 +50,8 @@ import java.util.ArrayList;
 public class clubfactory_calculation extends Fragment implements View.OnClickListener {
 
     private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
-            line6, line7, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
+    private TextView pp, gst, weight, courier, payment, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
+            line6, line8, line9, line10, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9,gm1;
     private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10, num11;
     LinearLayout linearLayout;
 
@@ -66,9 +66,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private ProgressBar progressBar;
     private TextView textView;
     private String myText;
-    RadioGroup radioGroup;
-    RadioButton radioButton;
-    SwitchCompat switchCompat;
+    RadioGroup radioGroup, radioGroupCourier;
+    RadioButton radioButton, radioButtonCourier;
     String status;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -99,6 +98,16 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     rs2.setVisibility(View.VISIBLE);
                     num3.setVisibility(View.VISIBLE);
                     line1.setVisibility(View.VISIBLE);
+                    weight.setVisibility(View.VISIBLE);
+                    gm1.setVisibility(View.VISIBLE);
+                    courier.setVisibility(View.VISIBLE);
+                    line8.setVisibility(View.VISIBLE);
+                    line9.setVisibility(View.VISIBLE);
+                    line10.setVisibility(View.VISIBLE);
+                    payment.setVisibility(View.VISIBLE);
+                    radioGroup.setVisibility(View.VISIBLE);
+                    radioGroupCourier.setVisibility(View.VISIBLE);
+                    num11.setVisibility(View.VISIBLE);
                     details.setRotation(180);
                 } else {
                     pp.setVisibility(View.GONE);
@@ -108,6 +117,16 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     rs2.setVisibility(View.GONE);
                     num3.setVisibility(View.GONE);
                     line1.setVisibility(View.GONE);
+                    weight.setVisibility(View.GONE);
+                    gm1.setVisibility(View.GONE);
+                    courier.setVisibility(View.GONE);
+                    line8.setVisibility(View.GONE);
+                    line9.setVisibility(View.GONE);
+                    line10.setVisibility(View.GONE);
+                    payment.setVisibility(View.GONE);
+                    radioGroup.setVisibility(View.GONE);
+                    radioGroupCourier.setVisibility(View.GONE);
+                    num11.setVisibility(View.GONE);
                     details.setRotation(0);
                 }
             }
@@ -306,20 +325,24 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
         details = view.findViewById(R.id.details_dropdown);
         radioGroup = view.findViewById(R.id.radioGroup);
-        switchCompat = view.findViewById(R.id.courier_switch);
-        switchCompat.setChecked(true);
-        switchCompat.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(switchCompat.isChecked()){
-                    status = "delivery";
-                }else{
-                    status = "other";
-                }
-            }
-        });
+        radioGroupCourier = view.findViewById(R.id.radioGroupCourier);
+//        switchCompat = view.findViewById(R.id.courier_switch);
+//        switchCompat.setChecked(true);
+//        switchCompat.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                if(switchCompat.isChecked()){
+//                    status = "delivery";
+//                }else{
+//                    status = "other";
+//                }
+//            }
+//        });
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
+        weight = view.findViewById(R.id.text_weight);
+        courier = view.findViewById(R.id.text_courier);
+        payment = view.findViewById(R.id.text_payment);
         transport = view.findViewById(R.id.text_transport);
         packaging = view.findViewById(R.id.text_packaging);
         labour = view.findViewById(R.id.text_labour);
@@ -331,6 +354,10 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         line4 = view.findViewById(R.id.line4);
         line5 = view.findViewById(R.id.line5);
         line6 = view.findViewById(R.id.line6);
+        line8 = view.findViewById(R.id.line8);
+        line9 = view.findViewById(R.id.line9);
+        line10 = view.findViewById(R.id.line10);
+        gm1 = view.findViewById(R.id.gm1);
         rs1 = view.findViewById(R.id.rs1);
         rs2 = view.findViewById(R.id.rs2);
         rs3 = view.findViewById(R.id.rs3);
@@ -483,7 +510,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
         Call<ClubFactoryCalculationResponse> call = RetrofitClient
                 .getInstance().getApi().clubFactoyrCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
-                        number11, checkButton(getView()), status);
+                        number11, checkButton(getView()), checkButtonCourier(getView()));
 
         call.enqueue(new Callback<ClubFactoryCalculationResponse>() {
             @Override
@@ -701,6 +728,12 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton = v.findViewById(radioId);
         return radioButton.getText().toString();
+    }
+
+    public String checkButtonCourier(View v){
+        int radioId = radioGroupCourier.getCheckedRadioButtonId();
+        radioButtonCourier = v.findViewById(radioId);
+        return radioButtonCourier.getText().toString();
     }
 
     @Override
