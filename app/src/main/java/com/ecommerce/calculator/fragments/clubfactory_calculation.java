@@ -67,7 +67,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private TextView textView;
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
-    RadioButton radioButton;
+    RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery;
     String courierOption,paymentOption;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -269,6 +269,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 num9.setText("");
                 num10.setText("");
                 num11.setText("");
+                radioButtonPostpaid.setChecked(true);
+                radioButtonDelivery.setChecked(true);
                 result_card.setVisibility(View.GONE);
             }
         });
@@ -347,6 +349,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
+        radioButtonPostpaid = view.findViewById(R.id.radio_postpaid);
+        radioButtonDelivery = view.findViewById(R.id.radio_delivery);
         gst = view.findViewById(R.id.text_gst);
         weight = view.findViewById(R.id.text_weight);
         courier = view.findViewById(R.id.text_courier);
@@ -643,14 +647,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         String discountPercent = num10.getText().toString().trim();
         String discountAmount = num9.getText().toString().trim();
         String weight = num11.getText().toString().trim();
-        String bankSettlement = String.valueOf(items[0]);
-        String totalMeeshoCommision = String.valueOf(items[1]);
-        String profit = String.valueOf(items[2]);
-        String totalGstPayable = String.valueOf(items[3]);
-        String tcs = String.valueOf(items[4]);
-        String gstPayable = String.valueOf(items[5]);
-        String gstClaim = String.valueOf(items[6]);
-        String profitPercentage = String.valueOf(items[7]);
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
@@ -696,10 +692,14 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     }
 
     public void share(){
-        String content = "INPUT" + "\n" +
+        String content = "INPUT" + "\n\n" +
+                "Category: " + categoryFinal + "\n" +
                 "Selling Price: " + num1.getText().toString().trim() + "\n" +
                 "GST On Product: " + spinner_ans + "\n" +
                 "Product Price Without GST: " + num2.getText().toString().trim() + "\n" +
+                "Weight: " + num11.getText().toString().trim() + "\n" +
+                "Courier" + courierOption + "\n" +
+                "Payment Mode" + paymentOption + "\n" +
                 "Inward Shipping: " + num4.getText().toString().trim() + "\n" +
                 "Packaging Expense: " + num5.getText().toString().trim() + "\n" +
                 "Labour: " + num6.getText().toString().trim() + "\n" +
@@ -707,15 +707,52 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 "Other: " + num8.getText().toString().trim() + "\n" +
                 "Discount Percent: " + num10.getText().toString().trim() + "\n" +
                 "Discount Amount: " + num9.getText().toString().trim() + "\n\n" +
-                "OUTPUT" + "\n" +
-                "Bank Settlement: " + items[0] + "\n" +
-                "Total Meesho Commision: " + items[1] + "\n" +
-                "Profit: " + items[2] + "\n" +
-                "Total GST Payable: " + items[3] + "\n" +
-                "Tcs: " + items[4] + "\n" +
-                "GST Payable: " + items[5] + "\n" +
-                "GST Claim: " + items[6] + "\n" +
-                "Profit Percentage: " + items[7];
+                "OUTPUT" + "\n\n" +
+                "Local" + "\n" +
+                "Bank Settlement: " + Local.get(0) + "\n" +
+                "Total Commision: " + Local.get(1) + "\n" +
+                "Total GST Payable: " + Local.get(2) + "\n" +
+                "Tcs: " + Local.get(3) + "\n" +
+                "GST Payable: " + Local.get(4) + "\n" +
+                "GST Claim: " + Local.get(5) + "\n" +
+                "Profit: " + Local.get(6) + "\n" +
+                "Profit Percentage: " + Local.get(7) + "\n" +
+                "Regional" + "\n" +
+                "Bank Settlement: " + Regional.get(0) + "\n" +
+                "Total Commision: " + Regional.get(1) + "\n" +
+                "Total GST Payable: " + Regional.get(2) + "\n" +
+                "Tcs: " + Regional.get(3) + "\n" +
+                "GST Payable: " + Regional.get(4) + "\n" +
+                "GST Claim: " + Regional.get(5) + "\n" +
+                "Profit: " + Regional.get(6) + "\n" +
+                "Profit Percentage: " + Regional.get(7) + "\n" +
+                "Metro" + "\n" +
+                "Bank Settlement: " + Metro.get(0) + "\n" +
+                "Total Commision: " + Metro.get(1) + "\n" +
+                "Total GST Payable: " + Metro.get(2) + "\n" +
+                "Tcs: " + Metro.get(3) + "\n" +
+                "GST Payable: " + Metro.get(4) + "\n" +
+                "GST Claim: " + Metro.get(5) + "\n" +
+                "Profit: " + Metro.get(6) + "\n" +
+                "Profit Percentage: " + Metro.get(7) + "\n" +
+                "Rest Of India" + "\n" +
+                "Bank Settlement: " + RestOfIndia.get(0) + "\n" +
+                "Total Commision: " + RestOfIndia.get(1) + "\n" +
+                "Total GST Payable: " + RestOfIndia.get(2) + "\n" +
+                "Tcs: " + RestOfIndia.get(3) + "\n" +
+                "GST Payable: " + RestOfIndia.get(4) + "\n" +
+                "GST Claim: " + RestOfIndia.get(5) + "\n" +
+                "Profit: " + RestOfIndia.get(6) + "\n" +
+                "Profit Percentage: " + RestOfIndia.get(7) + "\n" +
+                "Kerala" + "\n" +
+                "Bank Settlement: " + Kerela.get(0) + "\n" +
+                "Total Commision: " + Kerela.get(1) + "\n" +
+                "Total GST Payable: " + Kerela.get(2) + "\n" +
+                "Tcs: " + Kerela.get(3) + "\n" +
+                "GST Payable: " + Kerela.get(4) + "\n" +
+                "GST Claim: " + Kerela.get(5) + "\n" +
+                "Profit: " + Kerela.get(6) + "\n" +
+                "Profit Percentage: " + Kerela.get(7);
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
@@ -730,14 +767,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         progressBar.setVisibility(View.GONE);
         textView.setText("Calculate");
     }
-
-
-
-//    public String checkButtonCourier(View v){
-//        int radioId = radioGroupCourier.getCheckedRadioButtonId();
-//        radioButtonCourier = v.findViewById(radioId);
-//       // return radioButtonCourier.getText().toString();
-//    }
 
     @Override
     public void onClick(View v) {
