@@ -71,6 +71,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     String courierOption,paymentOption;
     ViewPager viewPager;
     TabLayout tabLayout;
+    ArrayList<String> Local = new ArrayList<>();
+    ArrayList<String> Regional = new ArrayList<>();
+    ArrayList<String> Metro = new ArrayList<>();
+    ArrayList<String> RestOfIndia = new ArrayList<>();
+    ArrayList<String> Kerela = new ArrayList<>();
 
     @Nullable
     @Override
@@ -525,7 +530,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
 
-                    ArrayList<String> Local = new ArrayList<>();
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCommision()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
@@ -535,7 +539,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfit()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
 
-                    ArrayList<String> Regional = new ArrayList<>();
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalCommision()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalGstPayable()));
@@ -545,7 +548,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getProfit()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getProfitPercentage()));
 
-                    ArrayList<String> Metro = new ArrayList<>();
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalCommision()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalGstPayable()));
@@ -555,7 +557,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getProfit()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getProfitPercentage()));
 
-                    ArrayList<String> RestOfIndia = new ArrayList<>();
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getBankSettlement()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalCommision()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalGstPayable()));
@@ -565,7 +566,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfit()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfitPercentage()));
 
-                    ArrayList<String> Kerela = new ArrayList<>();
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getBankSettlement()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalCommision()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalGstPayable()));
@@ -642,6 +642,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         String other = num8.getText().toString().trim();
         String discountPercent = num10.getText().toString().trim();
         String discountAmount = num9.getText().toString().trim();
+        String weight = num11.getText().toString().trim();
         String bankSettlement = String.valueOf(items[0]);
         String totalMeeshoCommision = String.valueOf(items[1]);
         String profit = String.valueOf(items[2]);
@@ -654,14 +655,14 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .savedclubFactory(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
-                        other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
-                        gstClaim, profitPercentage, "", "", "", "",""
-                ,"","","","","","","",
-                        "","","","","","","",
-                        "","","","","","",
-                        "","","","","","","",
-                        "","","");
+                .savedclubFactory(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
+                        storageFee, other, discountPercent, discountAmount, weight, paymentOption, courierOption, Local.get(0), Local.get(1),
+                        Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Regional.get(0), Regional.get(1),
+                        Regional.get(2), Regional.get(3), Regional.get(4), Regional.get(5), Regional.get(6), Regional.get(7), Metro.get(0),
+                        Metro.get(1), Metro.get(2), Metro.get(3), Metro.get(4), Metro.get(5), Metro.get(6), Metro.get(7), RestOfIndia.get(0),
+                        RestOfIndia.get(1), RestOfIndia.get(2), RestOfIndia.get(3), RestOfIndia.get(4), RestOfIndia.get(5), RestOfIndia.get(6),
+                        RestOfIndia.get(7), Kerela.get(0), Kerela.get(1), Kerela.get(2), Kerela.get(3), Kerela.get(4), Kerela.get(5), Kerela.get(6),
+                        Kerela.get(7));
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
