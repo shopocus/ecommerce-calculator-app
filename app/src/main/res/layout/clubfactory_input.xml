@@ -263,17 +263,13 @@
                             android:text="Courier: "
                             android:textColor="@color/colorPrimary"/>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="10dp">
-
                             <RadioGroup
                                 android:id="@+id/radioGroupCourier"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:weightSum="100"
                                 android:orientation="horizontal"
+                                android:layout_marginVertical="10dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -286,42 +282,16 @@
                                     android:checked="true"
                                     android:layout_gravity="center"
                                     android:layout_weight="50"
-                                    android:onClick="checkButton"
                                     android:text="Delivery" />
 
                                 <RadioButton
                                     android:id="@+id/radio_other"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:onClick="checkButton"
                                     android:layout_weight="50"
                                     android:text="Other" />
 
                             </RadioGroup>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                       <!-- <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <androidx.appcompat.widget.SwitchCompat
-                                android:id="@+id/courier_switch"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textOff="OFF"
-                                android:textOn="ON"
-                                android:layout_marginVertical="5dp"
-                                android:thumb="@drawable/courier_switch"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:showText="true"
-                                app:track="@drawable/courier_switch_track" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
 
                     </LinearLayout>
 
@@ -347,41 +317,33 @@
                             android:text="Payment Mode:"
                             android:textColor="@color/colorPrimary"/>
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="10dp">
-
                             <RadioGroup
                                 android:id="@+id/radioGroup"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
+                                android:layout_marginVertical="10dp"
                                 android:weightSum="100"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <RadioButton
-                                    android:id="@+id/radio_cod"
+                                    android:id="@+id/radio_postpaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:checked="true"
                                     android:layout_weight="50"
-                                    android:onClick="checkButton"
-                                    android:text="Cash On Delivery" />
+                                    android:text="Postpaid" />
 
                                 <RadioButton
                                     android:id="@+id/radio_prepaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="50"
-                                    android:onClick="checkButton"
                                     android:text="Prepaid" />
 
                             </RadioGroup>
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>
                 </LinearLayout>

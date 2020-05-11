@@ -67,8 +67,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private TextView textView;
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
-    RadioButton radioButton, radioButtonCourier;
-    String status;
+    RadioButton radioButton;
+    String courierOption,paymentOption;
     ViewPager viewPager;
     TabLayout tabLayout;
 
@@ -227,6 +227,24 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
         });
 
+        radioGroup = view.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                radioButton = view.findViewById(checkedId);
+                paymentOption = radioButton.getText().toString();
+            }
+        });
+
+        radioGroupCourier = view.findViewById(R.id.radioGroupCourier);
+        radioGroupCourier.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                radioButton = view.findViewById(checkedId);
+                courierOption = radioButton.getText().toString();
+            }
+        });
+
         ImageButton reset = view.findViewById(R.id.reset);
         reset.setOnClickListener(new OnClickListener()
         {
@@ -297,7 +315,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
         });
 
-
         return view;
     }
 
@@ -324,20 +341,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         });
 
         details = view.findViewById(R.id.details_dropdown);
-        radioGroup = view.findViewById(R.id.radioGroup);
-        radioGroupCourier = view.findViewById(R.id.radioGroupCourier);
-//        switchCompat = view.findViewById(R.id.courier_switch);
-//        switchCompat.setChecked(true);
-//        switchCompat.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                if(switchCompat.isChecked()){
-//                    status = "delivery";
-//                }else{
-//                    status = "other";
-//                }
-//            }
-//        });
         pp = view.findViewById(R.id.text_pp);
         gst = view.findViewById(R.id.text_gst);
         weight = view.findViewById(R.id.text_weight);
@@ -510,7 +513,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
         Call<ClubFactoryCalculationResponse> call = RetrofitClient
                 .getInstance().getApi().clubFactoyrCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
-                        number11, checkButton(getView()), checkButtonCourier(getView()));
+                        number11, paymentOption, courierOption);
 
         call.enqueue(new Callback<ClubFactoryCalculationResponse>() {
             @Override
@@ -520,6 +523,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
+                    tabLayout.removeAllTabs();
 
                     ArrayList<String> Local = new ArrayList<>();
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
@@ -605,8 +609,10 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                         }
                     });
 
+
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
+
                 }else if(response.code() == 501){
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
@@ -724,17 +730,13 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         textView.setText("Calculate");
     }
 
-    public String checkButton(View v){
-        int radioId = radioGroup.getCheckedRadioButtonId();
-        radioButton = v.findViewById(radioId);
-        return radioButton.getText().toString();
-    }
 
-    public String checkButtonCourier(View v){
-        int radioId = radioGroupCourier.getCheckedRadioButtonId();
-        radioButtonCourier = v.findViewById(radioId);
-        return radioButtonCourier.getText().toString();
-    }
+
+//    public String checkButtonCourier(View v){
+//        int radioId = radioGroupCourier.getCheckedRadioButtonId();
+//        radioButtonCourier = v.findViewById(radioId);
+//       // return radioButtonCourier.getText().toString();
+//    }
 
     @Override
     public void onClick(View v) {
