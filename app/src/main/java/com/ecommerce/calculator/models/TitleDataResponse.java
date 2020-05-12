@@ -6,6 +6,9 @@ public class TitleDataResponse {
     private String sellingPrice;
     private String gstOnProduct;
     private String productPriceWithoutGst;
+    private String weight;
+    private String courier;
+    private String paymentMode;
     private String inwardShipping;
     private String packagingExpense;
     private String labour;
@@ -23,15 +26,18 @@ public class TitleDataResponse {
     private String profitPercentage;
     private String title;
 
-    public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String inwardShipping,
-                             String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
-                             String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
-                             String gstClaim, String profitPercentage) {
+    public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
+                             String courier, String paymentMode, String inwardShipping, String packagingExpense, String labour, String storageFee,
+                             String other, String discountAmount, String discountPercent, String bankSettlement, String totalMeeshoCommision,
+                             String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage) {
         this.title = title;
         this.category = category;
         this.sellingPrice = sellingPrice;
         this.gstOnProduct = gstOnProduct;
         this.productPriceWithoutGst = productPriceWithoutGst;
+        this.weight = weight;
+        this.courier = courier;
+        this.paymentMode = paymentMode;
         this.inwardShipping = inwardShipping;
         this.packagingExpense = packagingExpense;
         this.labour = labour;
@@ -84,6 +90,12 @@ public class TitleDataResponse {
     public String getStorageFee(){
         return storageFee;
     }
+
+    public String getWeight() { return weight; }
+
+    public String getCourier() { return courier; }
+
+    public String getPaymentMode() { return paymentMode; }
 
     public String getOther(){
         return other;

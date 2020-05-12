@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.FlipkartSavedData;
 import com.ecommerce.calculator.activities.Menu;
+import com.ecommerce.calculator.activities.Profile;
 import com.ecommerce.calculator.activities.RegistrationOtpVerification;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.fragments.Data;
@@ -86,8 +88,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                 } else {
                     SharedPrefManager.getInstance(mCtx).saveTitle(newTitle[0]);
                 }
-                Data dialog = new Data();
-                dialog.show(fragmentManager, "Data");
+                if((SharedPrefManager.getInstance(mCtx).getCompany()).equals("clubFactory")){
+                    Intent intent = new Intent(mCtx, FlipkartSavedData.class);
+                    mCtx.startActivity(intent);
+                }
+//                Data dialog = new Data();
+//                dialog.show(fragmentManager, "Data");
             }
         });
 

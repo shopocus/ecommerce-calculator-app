@@ -40,6 +40,7 @@
         </activity>
         <activity android:name=".activities.Menu"></activity>
         <activity android:name=".activities.Profile" android:parentActivityName=".activities.Menu"></activity>
+        <activity android:name=".activities.FlipkartSavedData"></activity>
 
     </application>
 
