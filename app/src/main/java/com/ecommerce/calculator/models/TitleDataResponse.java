@@ -8,7 +8,7 @@ public class TitleDataResponse {
     private String productPriceWithoutGst;
     private String weight;
     private String courier;
-    private String paymentMode;
+    private String payMode;
     private String inwardShipping;
     private String packagingExpense;
     private String labour;
@@ -24,12 +24,19 @@ public class TitleDataResponse {
     private String gstPayable;
     private String gstClaim;
     private String profitPercentage;
+    private MeeshoCalculationResponse local;
+    private MeeshoCalculationResponse regional;
+    private MeeshoCalculationResponse metro;
+    private MeeshoCalculationResponse restOfIndia;
+    private MeeshoCalculationResponse kerela;
     private String title;
 
     public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
-                             String courier, String paymentMode, String inwardShipping, String packagingExpense, String labour, String storageFee,
+                             String courier, String payMode, String inwardShipping, String packagingExpense, String labour, String storageFee,
                              String other, String discountAmount, String discountPercent, String bankSettlement, String totalMeeshoCommision,
-                             String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage) {
+                             String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage,
+                             MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
+                             MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela) {
         this.title = title;
         this.category = category;
         this.sellingPrice = sellingPrice;
@@ -37,7 +44,7 @@ public class TitleDataResponse {
         this.productPriceWithoutGst = productPriceWithoutGst;
         this.weight = weight;
         this.courier = courier;
-        this.paymentMode = paymentMode;
+        this.payMode = payMode;
         this.inwardShipping = inwardShipping;
         this.packagingExpense = packagingExpense;
         this.labour = labour;
@@ -53,6 +60,11 @@ public class TitleDataResponse {
         this.gstPayable = gstPayable;
         this.gstClaim = gstClaim;
         this.profitPercentage = profitPercentage;
+        this.local = local;
+        this.regional = regional;
+        this.metro = metro;
+        this.restOfIndia = restOfIndia;
+        this.kerela = kerela;
     }
 
     public String getTitle() {
@@ -95,7 +107,7 @@ public class TitleDataResponse {
 
     public String getCourier() { return courier; }
 
-    public String getPaymentMode() { return paymentMode; }
+    public String getPaymentMode() { return payMode; }
 
     public String getOther(){
         return other;
@@ -132,5 +144,25 @@ public class TitleDataResponse {
         public String getProfitPercentage(){
             return profitPercentage;
         }
+
+    public MeeshoCalculationResponse getLocal() {
+        return local;
+    }
+
+    public MeeshoCalculationResponse getRegional() {
+        return regional;
+    }
+
+    public MeeshoCalculationResponse getMetro() {
+        return metro;
+    }
+
+    public MeeshoCalculationResponse getRestOfIndia() {
+        return restOfIndia;
+    }
+
+    public MeeshoCalculationResponse getKerela() {
+        return kerela;
+    }
 
 }

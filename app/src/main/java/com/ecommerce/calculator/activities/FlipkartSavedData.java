@@ -11,11 +11,16 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,12 +36,21 @@ public class FlipkartSavedData extends AppCompatActivity {
     Button edit,close;
     CardView input_card,output_card;
     LinearLayout buttons, linearLayout;
+    TabLayout tabLayout;
+    ArrayList<String> Local = new ArrayList<>();
+    ArrayList<String> Regional = new ArrayList<>();
+    ArrayList<String> Metro = new ArrayList<>();
+    ArrayList<String> RestOfIndia = new ArrayList<>();
+    ArrayList<String> Kerela = new ArrayList<>();
+    ViewPager viewPager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.saved_result);
+        setContentView(R.layout.saved_result_clubfactory);
 
+        viewPager = findViewById(R.id.viewPager);
+        tabLayout = findViewById(R.id.tab_layout);
         linearLayout = findViewById(R.id.linearlayout);
         input_card = findViewById(R.id.input_card);
         output_card = findViewById(R.id.output_card);
@@ -73,17 +87,18 @@ public class FlipkartSavedData extends AppCompatActivity {
 //            }
 //        });
 
-        edit = findViewById(R.id.action_edit);
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String flag = "true";
-                SharedPrefManager.getInstance(FlipkartSavedData.this)
-                        .saveFlag(flag);
-                Intent intent = new Intent(FlipkartSavedData.this, FragmentSelection.class);
-                startActivity(intent);
-            }
-        });
+//        edit = findViewById(R.id.action_edit);
+//        edit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String flag = "true";
+//                SharedPrefManager.getInstance(FlipkartSavedData.this)
+//                        .saveFlag(flag);
+//                Intent intent = new Intent(FlipkartSavedData.this, FragmentSelection.class);
+//                startActivity(intent);
+//            }
+//        });
+
         FetchData();
     }
 
@@ -122,14 +137,93 @@ public class FlipkartSavedData extends AppCompatActivity {
                         textViewOther.setText(td.getOther());
                         textViewByPrice.setText(td.getDiscountAmount());
                         textViewByPercentage.setText(td.getDiscountPercent());
-                        textViewBankSettlement.setText(td.getBankSettlement());
-                        textViewTotalCommision.setText(td.getTotalMeeshoCommision());
-                        textViewProfit.setText(td.getProfit());
-                        textViewTotalGstPayable.setText(td.getTotalGstPayable());
-                        textViewTcs.setText(td.getTcs());
-                        textViewGstPayable.setText(td.getGstPayable());
-                        textViewGstClaim.setText(td.getGstClaim());
-                        textViewProfitPercentage.setText(td.getProfitPercentage());
+//                        textViewBankSettlement.setText(td.getBankSettlement());
+//                        textViewTotalCommision.setText(td.getTotalMeeshoCommision());
+//                        textViewProfit.setText(td.getProfit());
+//                        textViewTotalGstPayable.setText(td.getTotalGstPayable());
+//                        textViewTcs.setText(td.getTcs());
+//                        textViewGstPayable.setText(td.getGstPayable());
+//                        textViewGstClaim.setText(td.getGstClaim());
+//                        textViewProfitPercentage.setText(td.getProfitPercentage());
+                        Local.add(String.valueOf(td.getLocal().getBankSettlement()));
+                        Local.add(String.valueOf(td.getLocal().getTotalCommision()));
+                        Local.add(String.valueOf(td.getLocal().getTotalGstPayable()));
+                        Local.add(String.valueOf(td.getLocal().getTcs()));
+                        Local.add(String.valueOf(td.getLocal().getGstPayable()));
+                        Local.add(String.valueOf(td.getLocal().getGstClaim()));
+                        Local.add(String.valueOf(td.getLocal().getProfit()));
+                        Local.add(String.valueOf(td.getLocal().getProfitPercentage()));
+
+                        Regional.add(String.valueOf(td.getRegional().getBankSettlement()));
+                        Regional.add(String.valueOf(td.getRegional().getTotalCommision()));
+                        Regional.add(String.valueOf(td.getRegional().getTotalGstPayable()));
+                        Regional.add(String.valueOf(td.getRegional().getTcs()));
+                        Regional.add(String.valueOf(td.getRegional().getGstPayable()));
+                        Regional.add(String.valueOf(td.getRegional().getGstClaim()));
+                        Regional.add(String.valueOf(td.getRegional().getProfit()));
+                        Regional.add(String.valueOf(td.getRegional().getProfitPercentage()));
+
+                        Metro.add(String.valueOf(td.getMetro().getBankSettlement()));
+                        Metro.add(String.valueOf(td.getMetro().getTotalCommision()));
+                        Metro.add(String.valueOf(td.getMetro().getTotalGstPayable()));
+                        Metro.add(String.valueOf(td.getMetro().getTcs()));
+                        Metro.add(String.valueOf(td.getMetro().getGstPayable()));
+                        Metro.add(String.valueOf(td.getMetro().getGstClaim()));
+                        Metro.add(String.valueOf(td.getMetro().getProfit()));
+                        Metro.add(String.valueOf(td.getMetro().getProfitPercentage()));
+
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getBankSettlement()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalCommision()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalGstPayable()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTcs()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getGstPayable()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getGstClaim()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getProfit()));
+                        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getProfitPercentage()));
+
+                        Kerela.add(String.valueOf(td.getKerela().getBankSettlement()));
+                        Kerela.add(String.valueOf(td.getKerela().getTotalCommision()));
+                        Kerela.add(String.valueOf(td.getKerela().getTotalGstPayable()));
+                        Kerela.add(String.valueOf(td.getKerela().getTcs()));
+                        Kerela.add(String.valueOf(td.getKerela().getGstPayable()));
+                        Kerela.add(String.valueOf(td.getKerela().getGstClaim()));
+                        Kerela.add(String.valueOf(td.getKerela().getProfit()));
+                        Kerela.add(String.valueOf(td.getKerela().getProfitPercentage()));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArrayList("Local", Local);
+                        bundle.putStringArrayList("Regional", Regional);
+                        bundle.putStringArrayList("Metro", Metro);
+                        bundle.putStringArrayList("RestOfIndia", RestOfIndia);
+                        bundle.putStringArrayList("Kerela", Kerela);
+
+                        tabLayout.addTab(tabLayout.newTab().setText("Local"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Regional"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Metro"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Rest Of India"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
+                        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+                        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(FlipkartSavedData.this, getSupportFragmentManager(),
+                                tabLayout.getTabCount(), bundle);
+                        viewPager.setAdapter(sectionPagerAdapter);
+                        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                            @Override
+                            public void onTabSelected(TabLayout.Tab tab) {
+                                viewPager.setCurrentItem(tab.getPosition());
+                            }
+
+                            @Override
+                            public void onTabUnselected(TabLayout.Tab tab) {
+
+                            }
+
+                            @Override
+                            public void onTabReselected(TabLayout.Tab tab) {
+
+                            }
+                        });
                     }
                 }else if(response.code() == 401){
                     Toast.makeText(FlipkartSavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();

@@ -344,41 +344,41 @@ public class input extends Fragment implements View.OnClickListener {
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
-        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-            int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
-            categories.setSelection(selection);
-            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
-            switch (value){
-                    case 0:
-                        num3.setSelection(0);
-                        break;
-                    case 5:
-                        num3.setSelection(1);
-                        break;
-                    case 12:
-                        num3.setSelection(2);
-                        break;
-                    case 18:
-                        num3.setSelection(3);
-                        break;
-                    case 28:
-                        num3.setSelection(4);
-                        break;
-                }
-                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
-                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
-                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
-                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
-                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
-                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
-                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
-
-                String flag = "false";
-                SharedPrefManager.getInstance(getActivity())
-                        .saveFlag(flag);
-            }
+//        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+//            int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
+//            categories.setSelection(selection);
+//            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+//            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
+//            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
+//            switch (value){
+//                    case 0:
+//                        num3.setSelection(0);
+//                        break;
+//                    case 5:
+//                        num3.setSelection(1);
+//                        break;
+//                    case 12:
+//                        num3.setSelection(2);
+//                        break;
+//                    case 18:
+//                        num3.setSelection(3);
+//                        break;
+//                    case 28:
+//                        num3.setSelection(4);
+//                        break;
+//                }
+//                num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
+//                num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
+//                num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
+//                num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
+//                num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
+//                num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
+//                num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
+//
+//                String flag = "false";
+//                SharedPrefManager.getInstance(getActivity())
+//                        .saveFlag(flag);
+//            }
         }
 
     protected void calculate() {

@@ -102,34 +102,34 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public TitleDataResponse getData() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return new TitleDataResponse(
-                sharedPreferences.getString("title", null),
-                sharedPreferences.getString("category", null),
-                sharedPreferences.getString("sellingPrice", null),
-                sharedPreferences.getString("gstOnProduct", null),
-                sharedPreferences.getString("weight", null),
-                sharedPreferences.getString("courier", null),
-                sharedPreferences.getString("paymentMode", null),
-                sharedPreferences.getString("productPriceWithoutGst", null),
-                sharedPreferences.getString("inwardShipping", null),
-                sharedPreferences.getString("packagingExpense", null),
-                sharedPreferences.getString("labour", null),
-                sharedPreferences.getString("storageFee", null),
-                sharedPreferences.getString("other", null),
-                sharedPreferences.getString("discountAmount", null),
-                sharedPreferences.getString("discountPercent", null),
-                sharedPreferences.getString("bankSettlement", null),
-                sharedPreferences.getString("totalMeeshoCommision", null),
-                sharedPreferences.getString("profit", null),
-                sharedPreferences.getString("totalGstPayable", null),
-                sharedPreferences.getString("tcs", null),
-                sharedPreferences.getString("gstPayable", null),
-                sharedPreferences.getString("gstClaim", null),
-                sharedPreferences.getString("profitPercentage", null)
-        );
-    }
+//    public TitleDataResponse getData() {
+//        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return new TitleDataResponse(
+//                sharedPreferences.getString("title", null),
+//                sharedPreferences.getString("category", null),
+//                sharedPreferences.getString("sellingPrice", null),
+//                sharedPreferences.getString("gstOnProduct", null),
+//                sharedPreferences.getString("weight", null),
+//                sharedPreferences.getString("courier", null),
+//                sharedPreferences.getString("paymentMode", null),
+//                sharedPreferences.getString("productPriceWithoutGst", null),
+//                sharedPreferences.getString("inwardShipping", null),
+//                sharedPreferences.getString("packagingExpense", null),
+//                sharedPreferences.getString("labour", null),
+//                sharedPreferences.getString("storageFee", null),
+//                sharedPreferences.getString("other", null),
+//                sharedPreferences.getString("discountAmount", null),
+//                sharedPreferences.getString("discountPercent", null),
+//                sharedPreferences.getString("bankSettlement", null),
+//                sharedPreferences.getString("totalMeeshoCommision", null),
+//                sharedPreferences.getString("profit", null),
+//                sharedPreferences.getString("totalGstPayable", null),
+//                sharedPreferences.getString("tcs", null),
+//                sharedPreferences.getString("gstPayable", null),
+//                sharedPreferences.getString("gstClaim", null),
+//                sharedPreferences.getString("profitPercentage", null)
+//        );
+//    }
 
     public void saveFlag(String flag){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
