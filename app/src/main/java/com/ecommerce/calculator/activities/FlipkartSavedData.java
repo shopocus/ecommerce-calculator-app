@@ -1,22 +1,31 @@
 package com.ecommerce.calculator.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
+import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,12 +37,24 @@ import retrofit2.Response;
 
 public class FlipkartSavedData extends AppCompatActivity {
 
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.toolbar);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
+    }
+
     private TextView textViewTitle, textViewCategory, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewWeight, textViewCourier,
             textViewPaymentMode, textViewInwardShipping, textViewPackagingExpenses, textViewLabour, textViewStorageFees, textViewOther,
             textViewByPrice, textViewByPercentage, textViewBankSettlement, textViewTotalCommision, textViewProfit, textViewTotalGstPayable,
             textViewTcs, textViewGstPayable, textViewGstClaim, textViewProfitPercentage;
 
     Button edit,close;
+    ListView itemList;
     CardView input_card,output_card;
     LinearLayout buttons, linearLayout;
     TabLayout tabLayout;
@@ -47,7 +68,13 @@ public class FlipkartSavedData extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStatusBarGradiant(this);
         setContentView(R.layout.saved_result_clubfactory);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tab_layout);
@@ -55,29 +82,30 @@ public class FlipkartSavedData extends AppCompatActivity {
         input_card = findViewById(R.id.input_card);
         output_card = findViewById(R.id.output_card);
         buttons = findViewById(R.id.buttons);
-        textViewTitle = findViewById(R.id.textViewTitle);
-        textViewCategory = findViewById(R.id.textViewCategory);
-        textViewSellingPrice = findViewById(R.id.textViewSellingPrice);
-        textViewPurchasePrice = findViewById(R.id.textViewPurchasePrice);
-        textViewGst = findViewById(R.id.textViewGst);
-        textViewWeight = findViewById(R.id.textViewWeight);
-        textViewCourier = findViewById(R.id.textViewCourier);
-        textViewPaymentMode = findViewById(R.id.textViewPaymentMode);
-        textViewInwardShipping = findViewById(R.id.textViewInwardShipping);
-        textViewPackagingExpenses = findViewById(R.id.textViewPackagingExpense);
-        textViewLabour = findViewById(R.id.textViewLabour);
-        textViewStorageFees = findViewById(R.id.textViewStorageFees);
-        textViewOther = findViewById(R.id.textViewOther);
-        textViewByPrice = findViewById(R.id.textViewByPrice);
-        textViewByPercentage = findViewById(R.id.textViewByPercentage);
-        textViewBankSettlement = findViewById(R.id.textViewBankSettlement);
-        textViewTotalCommision = findViewById(R.id.textViewMeeshoCommision);
-        textViewProfit = findViewById(R.id.textViewProfit);
-        textViewTotalGstPayable = findViewById(R.id.textViewTotalGstPayable);
-        textViewTcs = findViewById(R.id.textViewTcs);
-        textViewGstPayable = findViewById(R.id.textViewGstPayable);
-        textViewGstClaim = findViewById(R.id.textViewGstClaim);
-        textViewProfitPercentage = findViewById(R.id.textViewProfitPercentage);
+      //  textViewTitle = findViewById(R.id.textViewTitle);
+//        textViewCategory = findViewById(R.id.textViewCategory);
+//        textViewSellingPrice = findViewById(R.id.textViewSellingPrice);
+//        textViewPurchasePrice = findViewById(R.id.textViewPurchasePrice);
+//        textViewGst = findViewById(R.id.textViewGst);
+//        textViewWeight = findViewById(R.id.textViewWeight);
+//        textViewCourier = findViewById(R.id.textViewCourier);
+//        textViewPaymentMode = findViewById(R.id.textViewPaymentMode);
+//        textViewInwardShipping = findViewById(R.id.textViewInwardShipping);
+//        textViewPackagingExpenses = findViewById(R.id.textViewPackagingExpense);
+//        textViewLabour = findViewById(R.id.textViewLabour);
+//        textViewStorageFees = findViewById(R.id.textViewStorageFees);
+//        textViewOther = findViewById(R.id.textViewOther);
+//        textViewByPrice = findViewById(R.id.textViewByPrice);
+//        textViewByPercentage = findViewById(R.id.textViewByPercentage);
+//        textViewBankSettlement = findViewById(R.id.textViewBankSettlement);
+//        textViewTotalCommision = findViewById(R.id.textViewMeeshoCommision);
+//        textViewProfit = findViewById(R.id.textViewProfit);
+//        textViewTotalGstPayable = findViewById(R.id.textViewTotalGstPayable);
+//        textViewTcs = findViewById(R.id.textViewTcs);
+//        textViewGstPayable = findViewById(R.id.textViewGstPayable);
+//        textViewGstClaim = findViewById(R.id.textViewGstClaim);
+//        textViewProfitPercentage = findViewById(R.id.textViewProfitPercentage);
+        itemList = findViewById(R.id.text_view_input);
 
 //        close = findViewById(R.id.action_close);
 //        close.setOnClickListener(new View.OnClickListener() {
@@ -122,21 +150,41 @@ public class FlipkartSavedData extends AppCompatActivity {
 //                        output_card.setVisibility(getView().VISIBLE);
 //                        buttons.setVisibility(getView().VISIBLE);
 //                        textViewTitle.setVisibility(getView().VISIBLE);
-                        textViewTitle.setText(td.getTitle());
-                        textViewCategory.setText(td.getCategory());
-                        textViewSellingPrice.setText(td.getSellingPrice());
-                        textViewPurchasePrice.setText(td.getProductPriceWithoutGst());
-                        textViewGst.setText(td.getGstOnProduct());
-                        textViewWeight.setText(td.getWeight());
-                        textViewCourier.setText(td.getCourier());
-                        textViewPaymentMode.setText(td.getPaymentMode());
-                        textViewInwardShipping.setText(td.getInwardShipping());
-                        textViewPackagingExpenses.setText(td.getPackagingExpense());
-                        textViewLabour.setText(td.getLabour());
-                        textViewStorageFees.setText(td.getStorageFee());
-                        textViewOther.setText(td.getOther());
-                        textViewByPrice.setText(td.getDiscountAmount());
-                        textViewByPercentage.setText(td.getDiscountPercent());
+                       // textViewTitle.setText(td.getTitle());
+                        getSupportActionBar().setTitle(td.getTitle());
+                        output text1 = new output("Category", String.valueOf(td.getCategory()));
+                        output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
+                        output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
+                        output text4 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
+                        output text5 = new output("Weight", String.valueOf(td.getWeight()));
+                        output text6 = new output("Courier", String.valueOf(td.getCourier()));
+                        output text7 = new output("Payment Mode", String.valueOf(td.getPaymentMode()));
+                        output text8 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
+                        output text9 = new output("Packaging Expenses", String.valueOf(td.getPackagingExpense()));
+                        output text10 = new output("Labour", String.valueOf(td.getLabour()));
+                        output text11 = new output("Storage fees", String.valueOf(td.getStorageFee()));
+                        output text12 = new output("Other Charges", String.valueOf(td.getOther()));
+                        output text13 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
+                        output text14 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+
+                        ArrayList<output> outputList = new ArrayList<>();
+                        outputList.add(text1);
+                        outputList.add(text2);
+                        outputList.add(text3);
+                        outputList.add(text4);
+                        outputList.add(text5);
+                        outputList.add(text6);
+                        outputList.add(text7);
+                        outputList.add(text8);
+                        outputList.add(text9);
+                        outputList.add(text10);
+                        outputList.add(text11);
+                        outputList.add(text12);
+                        outputList.add(text13);
+                        outputList.add(text14);
+
+                        OutputListAdapter adapter = new OutputListAdapter(FlipkartSavedData.this, R.layout.output_row, outputList);
+                        itemList.setAdapter(adapter);
 //                        textViewBankSettlement.setText(td.getBankSettlement());
 //                        textViewTotalCommision.setText(td.getTotalMeeshoCommision());
 //                        textViewProfit.setText(td.getProfit());
