@@ -67,6 +67,7 @@ public class FlipkartSavedData extends AppCompatActivity {
     ArrayList<String> RestOfIndia = new ArrayList<>();
     ArrayList<String> Kerela = new ArrayList<>();
     ViewPager viewPager;
+    LoadingDialog loadingDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,11 +80,13 @@ public class FlipkartSavedData extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.startLoadingDialog();
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tab_layout);
         linearLayout = findViewById(R.id.linearlayout);
         input_card = findViewById(R.id.input_card);
-        output_card = findViewById(R.id.output_card);
+        output_card = findViewById(R.id.result_card);
         buttons = findViewById(R.id.buttons);
         textViewTitle = findViewById(R.id.title);
 //        textViewCategory = findViewById(R.id.textViewCategory);
@@ -148,10 +151,12 @@ public class FlipkartSavedData extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     TitleDataResponse td = response.body();
                     if (td.getTitle().equals(title)) {
+                        loadingDialog.dismissDialog();
+
 //                        SharedPrefManager.getInstance(getActivity())
 //                                .saveData(td);
-//                        input_card.setVisibility(getView().VISIBLE);
-//                        output_card.setVisibility(getView().VISIBLE);
+                        input_card.setVisibility(View.VISIBLE);
+                        output_card.setVisibility(View.VISIBLE);
 //                        buttons.setVisibility(getView().VISIBLE);
 //                        textViewTitle.setVisibility(getView().VISIBLE);
                         textViewTitle.setText(td.getTitle());
