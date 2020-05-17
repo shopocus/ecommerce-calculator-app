@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -36,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FlipkartSavedData extends AppCompatActivity {
+public class ClubFactorySavedData extends AppCompatActivity {
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -51,11 +50,7 @@ public class FlipkartSavedData extends AppCompatActivity {
 
     Bundle bundle = new Bundle();
 
-    private TextView textViewTitle, textViewCategory, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewWeight, textViewCourier,
-            textViewPaymentMode, textViewInwardShipping, textViewPackagingExpenses, textViewLabour, textViewStorageFees, textViewOther,
-            textViewByPrice, textViewByPercentage, textViewBankSettlement, textViewTotalCommision, textViewProfit, textViewTotalGstPayable,
-            textViewTcs, textViewGstPayable, textViewGstClaim, textViewProfitPercentage;
-
+    private TextView textViewTitle;
     ImageButton edit;
     ListView itemList;
     CardView input_card,output_card;
@@ -78,7 +73,6 @@ public class FlipkartSavedData extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.startLoadingDialog();
@@ -89,46 +83,16 @@ public class FlipkartSavedData extends AppCompatActivity {
         output_card = findViewById(R.id.result_card);
         buttons = findViewById(R.id.buttons);
         textViewTitle = findViewById(R.id.title);
-//        textViewCategory = findViewById(R.id.textViewCategory);
-//        textViewSellingPrice = findViewById(R.id.textViewSellingPrice);
-//        textViewPurchasePrice = findViewById(R.id.textViewPurchasePrice);
-//        textViewGst = findViewById(R.id.textViewGst);
-//        textViewWeight = findViewById(R.id.textViewWeight);
-//        textViewCourier = findViewById(R.id.textViewCourier);
-//        textViewPaymentMode = findViewById(R.id.textViewPaymentMode);
-//        textViewInwardShipping = findViewById(R.id.textViewInwardShipping);
-//        textViewPackagingExpenses = findViewById(R.id.textViewPackagingExpense);
-//        textViewLabour = findViewById(R.id.textViewLabour);
-//        textViewStorageFees = findViewById(R.id.textViewStorageFees);
-//        textViewOther = findViewById(R.id.textViewOther);
-//        textViewByPrice = findViewById(R.id.textViewByPrice);
-//        textViewByPercentage = findViewById(R.id.textViewByPercentage);
-//        textViewBankSettlement = findViewById(R.id.textViewBankSettlement);
-//        textViewTotalCommision = findViewById(R.id.textViewMeeshoCommision);
-//        textViewProfit = findViewById(R.id.textViewProfit);
-//        textViewTotalGstPayable = findViewById(R.id.textViewTotalGstPayable);
-//        textViewTcs = findViewById(R.id.textViewTcs);
-//        textViewGstPayable = findViewById(R.id.textViewGstPayable);
-//        textViewGstClaim = findViewById(R.id.textViewGstClaim);
-//        textViewProfitPercentage = findViewById(R.id.textViewProfitPercentage);
         itemList = findViewById(R.id.text_view_input);
-
-//        close = findViewById(R.id.action_close);
-//        close.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                getDialog().dismiss();
-//            }
-//        });
 
         edit = findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String flag = "true";
-                SharedPrefManager.getInstance(FlipkartSavedData.this)
+                SharedPrefManager.getInstance(ClubFactorySavedData.this)
                         .saveFlag(flag);
-                Intent intent = new Intent(FlipkartSavedData.this, FragmentSelection.class);
+                Intent intent = new Intent(ClubFactorySavedData.this, FragmentSelection.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -138,8 +102,8 @@ public class FlipkartSavedData extends AppCompatActivity {
     }
 
     public void FetchData(){
-        String company = SharedPrefManager.getInstance(FlipkartSavedData.this).getCompany();
-        String title = SharedPrefManager.getInstance(FlipkartSavedData.this).getTitle();
+        String company = SharedPrefManager.getInstance(ClubFactorySavedData.this).getCompany();
+        String title = SharedPrefManager.getInstance(ClubFactorySavedData.this).getTitle();
         Call<TitleDataResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -152,15 +116,9 @@ public class FlipkartSavedData extends AppCompatActivity {
                     TitleDataResponse td = response.body();
                     if (td.getTitle().equals(title)) {
                         loadingDialog.dismissDialog();
-
-//                        SharedPrefManager.getInstance(getActivity())
-//                                .saveData(td);
                         input_card.setVisibility(View.VISIBLE);
                         output_card.setVisibility(View.VISIBLE);
-//                        buttons.setVisibility(getView().VISIBLE);
-//                        textViewTitle.setVisibility(getView().VISIBLE);
                         textViewTitle.setText(td.getTitle());
-                       // getSupportActionBar().setTitle(td.getTitle());
                         output text1 = new output("Category", String.valueOf(td.getCategory()));
                         output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
                         output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
@@ -208,16 +166,9 @@ public class FlipkartSavedData extends AppCompatActivity {
                         outputList.add(text13);
                         outputList.add(text14);
 
-                        OutputListAdapter adapter = new OutputListAdapter(FlipkartSavedData.this, R.layout.output_row, outputList);
+                        OutputListAdapter adapter = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, outputList);
                         itemList.setAdapter(adapter);
-//                        textViewBankSettlement.setText(td.getBankSettlement());
-//                        textViewTotalCommision.setText(td.getTotalMeeshoCommision());
-//                        textViewProfit.setText(td.getProfit());
-//                        textViewTotalGstPayable.setText(td.getTotalGstPayable());
-//                        textViewTcs.setText(td.getTcs());
-//                        textViewGstPayable.setText(td.getGstPayable());
-//                        textViewGstClaim.setText(td.getGstClaim());
-//                        textViewProfitPercentage.setText(td.getProfitPercentage());
+
                         Local.add(String.valueOf(td.getLocal().getBankSettlement()));
                         Local.add(String.valueOf(td.getLocal().getTotalCommision()));
                         Local.add(String.valueOf(td.getLocal().getTotalGstPayable()));
@@ -278,7 +229,7 @@ public class FlipkartSavedData extends AppCompatActivity {
                         tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
                         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-                        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(FlipkartSavedData.this, getSupportFragmentManager(),
+                        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(ClubFactorySavedData.this, getSupportFragmentManager(),
                                 tabLayout.getTabCount(), bundle);
                         viewPager.setAdapter(sectionPagerAdapter);
                         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -300,16 +251,15 @@ public class FlipkartSavedData extends AppCompatActivity {
                         });
                     }
                 }else if(response.code() == 401){
-                    Toast.makeText(FlipkartSavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
-                    SharedPrefManager.getInstance(FlipkartSavedData.this).clear();
-                    Intent intent_logout = new Intent(FlipkartSavedData.this, HomeScreen.class);
+                    Toast.makeText(ClubFactorySavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
+                    Intent intent_logout = new Intent(ClubFactorySavedData.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 }
             }
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Toast.makeText(FlipkartSavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClubFactorySavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

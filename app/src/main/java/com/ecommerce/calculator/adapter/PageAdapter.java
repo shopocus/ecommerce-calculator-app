@@ -28,13 +28,11 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         if(position == 0) {
             if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
-                //if (position == 0) {
                 input input = new input();
                 input.setArguments(bundle);
                 return input;
             }
             if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
-                //if (position == 0) {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
                 clubfactory_calculation.setArguments(bundle);
                 return clubfactory_calculation;

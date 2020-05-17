@@ -104,8 +104,6 @@ public class Data extends DialogFragment {
                 if (response.isSuccessful()) {
                     TitleDataResponse td = response.body();
                     if (td.getTitle().equals(title)) {
-                        SharedPrefManager.getInstance(getActivity())
-                                .saveData(td);
                         input_card.setVisibility(getView().VISIBLE);
                         output_card.setVisibility(getView().VISIBLE);
                         buttons.setVisibility(getView().VISIBLE);

@@ -16,8 +16,6 @@ import com.ecommerce.calculator.fragments.RestOfIndia;
 
 public class SectionPagerAdapter extends FragmentPagerAdapter {
 
-    //private List<Fragment> fragmentList = new ArrayList<>();
-    //private List<String> titleList = new ArrayList<>();
     int counttab;
     Context c;
     Bundle bundle;
@@ -54,24 +52,11 @@ public class SectionPagerAdapter extends FragmentPagerAdapter {
                 kerala.setArguments(bundle);
                 return kerala;
         }
-        //return fragmentList.get(position);
         return null;
     }
 
     @Override
     public int getCount() {
-      //  return fragmentList.size();
         return counttab;
     }
-
-//    @Nullable
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        return titleList.get(position);
-//    }
-//
-//    public void addFragment(Fragment fragment, String title){
-//        fragmentList.add(fragment);
-//        titleList.add(title);
-//    }
 }
