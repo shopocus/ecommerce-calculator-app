@@ -67,7 +67,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private TextView textView;
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
-    RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery;
+    RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery, radioButtonPrepaid, radioButtonOther;
     String courierOption,paymentOption;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -351,6 +351,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         pp = view.findViewById(R.id.text_pp);
         radioButtonPostpaid = view.findViewById(R.id.radio_postpaid);
         radioButtonDelivery = view.findViewById(R.id.radio_delivery);
+        radioButtonPrepaid = view.findViewById(R.id.radio_prepaid);
+        radioButtonOther = view.findViewById(R.id.radio_other);
         gst = view.findViewById(R.id.text_gst);
         weight = view.findViewById(R.id.text_weight);
         courier = view.findViewById(R.id.text_courier);
@@ -411,41 +413,54 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
-//        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
-//            int selection = adapter.getPosition(SharedPrefManager.getInstance(getActivity()).getData().getCategory());
-//            categories.setSelection(selection);
-//            num1.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-//            num2.setText(SharedPrefManager.getInstance(getActivity()).getData().getProductPriceWithoutGst());
-//            int value = Integer.parseInt(SharedPrefManager.getInstance(getActivity()).getData().getGstOnProduct());
-//            switch (value){
-//                case 0:
-//                    num3.setSelection(0);
-//                    break;
-//                case 5:
-//                    num3.setSelection(1);
-//                    break;
-//                case 12:
-//                    num3.setSelection(2);
-//                    break;
-//                case 18:
-//                    num3.setSelection(3);
-//                    break;
-//                case 28:
-//                    num3.setSelection(4);
-//                    break;
-//            }
-//            num4.setText(SharedPrefManager.getInstance(getActivity()).getData().getInwardShipping());
-//            num5.setText(SharedPrefManager.getInstance(getActivity()).getData().getPackagingExpense());
-//            num6.setText(SharedPrefManager.getInstance(getActivity()).getData().getLabour());
-//            num7.setText(SharedPrefManager.getInstance(getActivity()).getData().getStorageFee());
-//            num8.setText(SharedPrefManager.getInstance(getActivity()).getData().getOther());
-//            num9.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountAmount());
-//            num10.setText(SharedPrefManager.getInstance(getActivity()).getData().getDiscountPercent());
-//
-//            String flag = "false";
-//            SharedPrefManager.getInstance(getActivity())
-//                    .saveFlag(flag);
-//        }
+        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+            Bundle bundle = this.getArguments();
+            ArrayList<String> bundle_input = bundle.getStringArrayList("input");
+            int selection = adapter.getPosition(bundle_input.get(0));
+            categories.setSelection(selection);
+            num1.setText(bundle_input.get(1));
+            num2.setText(bundle_input.get(2));
+            int value = Integer.parseInt(bundle_input.get(3));
+            switch (value){
+                case 0:
+                    num3.setSelection(0);
+                    break;
+                case 5:
+                    num3.setSelection(1);
+                    break;
+                case 12:
+                    num3.setSelection(2);
+                    break;
+                case 18:
+                    num3.setSelection(3);
+                    break;
+                case 28:
+                    num3.setSelection(4);
+                    break;
+            }
+            num11.setText(bundle_input.get(4));
+            if(bundle_input.get(5) == "prepaid"){
+                radioButtonPrepaid.setChecked(true);
+            }else{
+                radioButtonPostpaid.setChecked(true);
+            }
+            if(bundle_input.get(6) == "delhivery"){
+                radioButtonDelivery.setChecked(true);
+            }else{
+                radioButtonOther.setChecked(true);
+            }
+            num4.setText(bundle_input.get(7));
+            num5.setText(bundle_input.get(8));
+            num6.setText(bundle_input.get(9));
+            num7.setText(bundle_input.get(10));
+            num8.setText(bundle_input.get(11));
+            num9.setText(bundle_input.get(12));
+            num10.setText(bundle_input.get(13));
+
+            String flag = "false";
+            SharedPrefManager.getInstance(getActivity())
+                    .saveFlag(flag);
+        }
     }
 
     protected void calculate() {

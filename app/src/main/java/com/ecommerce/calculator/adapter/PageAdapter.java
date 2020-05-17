@@ -1,6 +1,8 @@
 package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -13,11 +15,13 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     int counttab;
     Context c;
+    Bundle bundle;
 
-    public PageAdapter(Context c, FragmentManager fm, int counttab) {
+    public PageAdapter(Context c, FragmentManager fm, int counttab, Bundle bundle) {
         super(fm);
         this.c = c;
         this.counttab = counttab;
+        this.bundle = bundle;
     }
 
     @Override
@@ -26,11 +30,13 @@ public class PageAdapter extends FragmentStatePagerAdapter {
             if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
                 //if (position == 0) {
                 input input = new input();
+                input.setArguments(bundle);
                 return input;
             }
             if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
                 //if (position == 0) {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
+                clubfactory_calculation.setArguments(bundle);
                 return clubfactory_calculation;
             }
         }else {

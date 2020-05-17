@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,12 +49,14 @@ public class FlipkartSavedData extends AppCompatActivity {
         }
     }
 
+    Bundle bundle = new Bundle();
+
     private TextView textViewTitle, textViewCategory, textViewSellingPrice, textViewPurchasePrice, textViewGst, textViewWeight, textViewCourier,
             textViewPaymentMode, textViewInwardShipping, textViewPackagingExpenses, textViewLabour, textViewStorageFees, textViewOther,
             textViewByPrice, textViewByPercentage, textViewBankSettlement, textViewTotalCommision, textViewProfit, textViewTotalGstPayable,
             textViewTcs, textViewGstPayable, textViewGstClaim, textViewProfitPercentage;
 
-    Button edit,close;
+    ImageButton edit;
     ListView itemList;
     CardView input_card,output_card;
     LinearLayout buttons, linearLayout;
@@ -82,7 +85,7 @@ public class FlipkartSavedData extends AppCompatActivity {
         input_card = findViewById(R.id.input_card);
         output_card = findViewById(R.id.output_card);
         buttons = findViewById(R.id.buttons);
-      //  textViewTitle = findViewById(R.id.textViewTitle);
+        textViewTitle = findViewById(R.id.title);
 //        textViewCategory = findViewById(R.id.textViewCategory);
 //        textViewSellingPrice = findViewById(R.id.textViewSellingPrice);
 //        textViewPurchasePrice = findViewById(R.id.textViewPurchasePrice);
@@ -115,17 +118,18 @@ public class FlipkartSavedData extends AppCompatActivity {
 //            }
 //        });
 
-//        edit = findViewById(R.id.action_edit);
-//        edit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String flag = "true";
-//                SharedPrefManager.getInstance(FlipkartSavedData.this)
-//                        .saveFlag(flag);
-//                Intent intent = new Intent(FlipkartSavedData.this, FragmentSelection.class);
-//                startActivity(intent);
-//            }
-//        });
+        edit = findViewById(R.id.edit);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String flag = "true";
+                SharedPrefManager.getInstance(FlipkartSavedData.this)
+                        .saveFlag(flag);
+                Intent intent = new Intent(FlipkartSavedData.this, FragmentSelection.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         FetchData();
     }
@@ -150,8 +154,8 @@ public class FlipkartSavedData extends AppCompatActivity {
 //                        output_card.setVisibility(getView().VISIBLE);
 //                        buttons.setVisibility(getView().VISIBLE);
 //                        textViewTitle.setVisibility(getView().VISIBLE);
-                       // textViewTitle.setText(td.getTitle());
-                        getSupportActionBar().setTitle(td.getTitle());
+                        textViewTitle.setText(td.getTitle());
+                       // getSupportActionBar().setTitle(td.getTitle());
                         output text1 = new output("Category", String.valueOf(td.getCategory()));
                         output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
                         output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
@@ -166,6 +170,22 @@ public class FlipkartSavedData extends AppCompatActivity {
                         output text12 = new output("Other Charges", String.valueOf(td.getOther()));
                         output text13 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
                         output text14 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+
+                        ArrayList<String> input = new ArrayList<>();
+                        input.add(td.getCategory());
+                        input.add(td.getSellingPrice());
+                        input.add(td.getProductPriceWithoutGst());
+                        input.add(td.getGstOnProduct());
+                        input.add(td.getWeight());
+                        input.add(td.getCourier());
+                        input.add(td.getPaymentMode());
+                        input.add(td.getInwardShipping());
+                        input.add(td.getPackagingExpense());
+                        input.add(td.getLabour());
+                        input.add(td.getStorageFee());
+                        input.add(td.getOther());
+                        input.add(td.getDiscountAmount());
+                        input.add(td.getDiscountPercent());
 
                         ArrayList<output> outputList = new ArrayList<>();
                         outputList.add(text1);
@@ -238,7 +258,8 @@ public class FlipkartSavedData extends AppCompatActivity {
                         Kerela.add(String.valueOf(td.getKerela().getProfit()));
                         Kerela.add(String.valueOf(td.getKerela().getProfitPercentage()));
 
-                        Bundle bundle = new Bundle();
+
+                        bundle.putStringArrayList("input", input);
                         bundle.putStringArrayList("Local", Local);
                         bundle.putStringArrayList("Regional", Regional);
                         bundle.putStringArrayList("Metro", Metro);

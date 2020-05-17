@@ -21,6 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.ecommerce.calculator.fragments.saved;
 
+import java.util.ArrayList;
+
 public class FragmentSelection extends AppCompatActivity {
 
     ViewPager viewPager;
@@ -61,8 +63,13 @@ public class FragmentSelection extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
+        Bundle bundle = getIntent().getExtras();
+        if(getIntent().hasExtra("input")) {
+            ArrayList<String> bundle_input = bundle.getStringArrayList("input");
+        }
+
         viewPager = findViewById(R.id.pager);
-        PageAdapter pageAdapter = new PageAdapter(getBaseContext(), getSupportFragmentManager(), tabLayout.getTabCount());
+        PageAdapter pageAdapter = new PageAdapter(getBaseContext(), getSupportFragmentManager(), tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(pageAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
