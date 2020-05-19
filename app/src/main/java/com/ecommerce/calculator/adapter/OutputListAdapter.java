@@ -33,6 +33,7 @@ public class OutputListAdapter extends ArrayAdapter<output> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
+
         String title = getItem(position).getTitle();
         String answer = getItem(position).getAnswer();
 

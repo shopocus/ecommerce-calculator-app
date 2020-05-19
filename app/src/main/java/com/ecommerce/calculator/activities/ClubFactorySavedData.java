@@ -134,6 +134,22 @@ public class ClubFactorySavedData extends AppCompatActivity {
                         output text13 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
                         output text14 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
 
+                        ArrayList<String> title = new ArrayList<>();
+                        title.add("Category");
+                        title.add("Selling Price");
+                        title.add("Purchase Price");
+                        title.add("GST on Product");
+                        title.add("Weight");
+                        title.add("Courier");
+                        title.add("Payment Mode");
+                        title.add("Inward Shipping");
+                        title.add("Packaging Expenses");
+                        title.add("Labour");
+                        title.add("Storage Fees");
+                        title.add("Other Charges");
+                        title.add("Discount on Price");
+                        title.add("Discount Percentage");
+
                         ArrayList<String> input = new ArrayList<>();
                         input.add(td.getCategory());
                         input.add(td.getSellingPrice());

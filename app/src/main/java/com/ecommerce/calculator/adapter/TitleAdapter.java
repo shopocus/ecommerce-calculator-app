@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.ClubFactorySavedData;
+import com.ecommerce.calculator.activities.MeeshoSavedData;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.Title;
@@ -90,7 +91,12 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                 if(!isNetworkOk) {
                     Toast.makeText(mCtx, "Please Connect to the Internet!", Toast.LENGTH_SHORT).show();
                 }else {
-                    if ((SharedPrefManager.getInstance(mCtx).getCompany()).equals("clubFactory")) {
+                    String name = SharedPrefManager.getInstance(mCtx).getCompany();
+                    if (name.equals("meesho")){
+                        Intent intent =  new Intent(mCtx, MeeshoSavedData.class);
+                        mCtx.startActivity(intent);
+                    }
+                    else if (name.equals("clubFactory")) {
                         Intent intent = new Intent(mCtx, ClubFactorySavedData.class);
                         mCtx.startActivity(intent);
                     }
