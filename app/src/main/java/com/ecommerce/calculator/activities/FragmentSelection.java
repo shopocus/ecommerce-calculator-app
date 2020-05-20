@@ -64,9 +64,9 @@ public class FragmentSelection extends AppCompatActivity {
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
         Bundle bundle = getIntent().getExtras();
-        if(getIntent().hasExtra("input")) {
-            ArrayList<String> bundle_input = bundle.getStringArrayList("input");
-        }
+//        if(getIntent().hasExtra("input")) {
+//            ArrayList<String> bundle_input = bundle.getStringArrayList("input");
+//        }
 
         viewPager = findViewById(R.id.pager);
         PageAdapter pageAdapter = new PageAdapter(getBaseContext(), getSupportFragmentManager(), tabLayout.getTabCount(), bundle);

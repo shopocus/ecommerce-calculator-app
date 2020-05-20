@@ -91,15 +91,17 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                 if(!isNetworkOk) {
                     Toast.makeText(mCtx, "Please Connect to the Internet!", Toast.LENGTH_SHORT).show();
                 }else {
-                    String name = SharedPrefManager.getInstance(mCtx).getCompany();
-                    if (name.equals("meesho")){
-                        Intent intent =  new Intent(mCtx, MeeshoSavedData.class);
+                    Intent intent =  new Intent(mCtx, ClubFactorySavedData.class);
                         mCtx.startActivity(intent);
-                    }
-                    else if (name.equals("clubFactory")) {
-                        Intent intent = new Intent(mCtx, ClubFactorySavedData.class);
-                        mCtx.startActivity(intent);
-                    }
+                    //String name = SharedPrefManager.getInstance(mCtx).getCompany();
+//                    if (name.equals("meesho")){
+//                        Intent intent =  new Intent(mCtx, MeeshoSavedData.class);
+//                        mCtx.startActivity(intent);
+//                    }
+//                    else if (name.equals("clubFactory")) {
+//                        Intent intent = new Intent(mCtx, ClubFactorySavedData.class);
+//                        mCtx.startActivity(intent);
+//                    }
                 }
             }
         });
