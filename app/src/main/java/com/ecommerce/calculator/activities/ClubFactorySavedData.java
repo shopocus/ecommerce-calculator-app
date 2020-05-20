@@ -192,6 +192,37 @@ public class ClubFactorySavedData extends AppCompatActivity {
         outputList.add(text18);
         outputList.add(text19);
 
+        ArrayList<String> title = new ArrayList<>();
+        title.add("Category");
+        title.add("Selling Price");
+        title.add("Purchase Price");
+        title.add("GST on Product");
+        title.add("Weight");
+        title.add("Courier");
+        title.add("Payment Mode");
+        title.add("Inward Shipping");
+        title.add("Packaging Expenses");
+        title.add("Labour");
+        title.add("Storage Fees");
+        title.add("Other Charges");
+        title.add("Discount on Price");
+        title.add("Discount Percentage");
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getCategory());
+        input.add(td.getSellingPrice());
+        input.add(td.getProductPriceWithoutGst());
+        input.add(td.getGstOnProduct());
+        input.add(td.getInwardShipping());
+        input.add(td.getPackagingExpense());
+        input.add(td.getLabour());
+        input.add(td.getStorageFee());
+        input.add(td.getOther());
+        input.add(td.getDiscountAmount());
+        input.add(td.getDiscountPercent());
+
+        bundle.putStringArrayList("input", input);
+
         OutputListAdapter adapterOutput = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, outputList);
         result.setAdapter(adapterOutput);
     }
@@ -232,6 +263,38 @@ public class ClubFactorySavedData extends AppCompatActivity {
 
         OutputListAdapter adapter = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
+
+        ArrayList<String> title = new ArrayList<>();
+        title.add("Category");
+        title.add("Selling Price");
+        title.add("Purchase Price");
+        title.add("GST on Product");
+        title.add("Weight");
+        title.add("Courier");
+        title.add("Payment Mode");
+        title.add("Inward Shipping");
+        title.add("Packaging Expenses");
+        title.add("Labour");
+        title.add("Storage Fees");
+        title.add("Other Charges");
+        title.add("Discount on Price");
+        title.add("Discount Percentage");
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getCategory());
+        input.add(td.getSellingPrice());
+        input.add(td.getProductPriceWithoutGst());
+        input.add(td.getGstOnProduct());
+        input.add(td.getWeight());
+        input.add(td.getCourier());
+        input.add(td.getPaymentMode());
+        input.add(td.getInwardShipping());
+        input.add(td.getPackagingExpense());
+        input.add(td.getLabour());
+        input.add(td.getStorageFee());
+        input.add(td.getOther());
+        input.add(td.getDiscountAmount());
+        input.add(td.getDiscountPercent());
 
         Local.add(String.valueOf(td.getLocal().getBankSettlement()));
         Local.add(String.valueOf(td.getLocal().getTotalCommision()));
@@ -278,6 +341,7 @@ public class ClubFactorySavedData extends AppCompatActivity {
         Kerela.add(String.valueOf(td.getKerela().getProfit()));
         Kerela.add(String.valueOf(td.getKerela().getProfitPercentage()));
 
+        bundle.putStringArrayList("input", input);
         bundle.putStringArrayList("Local", Local);
         bundle.putStringArrayList("Regional", Regional);
         bundle.putStringArrayList("Metro", Metro);
