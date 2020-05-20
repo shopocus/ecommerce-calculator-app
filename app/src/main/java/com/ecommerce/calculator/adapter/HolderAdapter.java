@@ -113,9 +113,17 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     };
 
     protected void categories() {
-
-        Call<category> call = RetrofitClient
-                .getInstance().getApi().getCategories();
+        Call<category> call;
+        switch (SharedPrefManager.getInstance(c).getCompany()){
+            case "meesho":
+                call = RetrofitClient.getInstance().getApi().getCategories();
+                break;
+            case "clubFactory":
+                call = RetrofitClient.getInstance().getApi().getCategoriesClubFactory();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + SharedPrefManager.getInstance(c).getCompany());
+        }
 
         call.enqueue(new Callback<category>() {
             @Override
