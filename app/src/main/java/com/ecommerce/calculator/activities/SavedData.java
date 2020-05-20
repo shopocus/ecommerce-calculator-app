@@ -24,7 +24,6 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -36,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ClubFactorySavedData extends AppCompatActivity {
+public class SavedData extends AppCompatActivity {
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -92,9 +91,9 @@ public class ClubFactorySavedData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String flag = "true";
-                SharedPrefManager.getInstance(ClubFactorySavedData.this)
+                SharedPrefManager.getInstance(SavedData.this)
                         .saveFlag(flag);
-                Intent intent = new Intent(ClubFactorySavedData.this, FragmentSelection.class);
+                Intent intent = new Intent(SavedData.this, FragmentSelection.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -104,8 +103,8 @@ public class ClubFactorySavedData extends AppCompatActivity {
     }
 
     public void FetchData(){
-        String company = SharedPrefManager.getInstance(ClubFactorySavedData.this).getCompany();
-        String title = SharedPrefManager.getInstance(ClubFactorySavedData.this).getTitle();
+        String company = SharedPrefManager.getInstance(SavedData.this).getCompany();
+        String title = SharedPrefManager.getInstance(SavedData.this).getTitle();
         Call<TitleDataResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -131,20 +130,21 @@ public class ClubFactorySavedData extends AppCompatActivity {
                         }
                     }
                 }else if(response.code() == 401){
-                    Toast.makeText(ClubFactorySavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
-                    Intent intent_logout = new Intent(ClubFactorySavedData.this, HomeScreen.class);
+                    Toast.makeText(SavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
+                    Intent intent_logout = new Intent(SavedData.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 }
             }
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
-                Toast.makeText(ClubFactorySavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     void meeshoSavedData(TitleDataResponse td){
+        result.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
         output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
         output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
@@ -170,7 +170,7 @@ public class ClubFactorySavedData extends AppCompatActivity {
         inputList.add(text10);
         inputList.add(text11);
 
-        OutputListAdapter adapter = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, inputList);
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, inputList);
         itemList.setAdapter(adapter);
 
         output text12 = new output("Bank Settlement", td.getBankSettlement());
@@ -223,7 +223,7 @@ public class ClubFactorySavedData extends AppCompatActivity {
 
         bundle.putStringArrayList("input", input);
 
-        OutputListAdapter adapterOutput = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, outputList);
+        OutputListAdapter adapterOutput = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         result.setAdapter(adapterOutput);
     }
 
@@ -261,7 +261,7 @@ public class ClubFactorySavedData extends AppCompatActivity {
         outputList.add(text13);
         outputList.add(text14);
 
-        OutputListAdapter adapter = new OutputListAdapter(ClubFactorySavedData.this, R.layout.output_row, outputList);
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
 
         ArrayList<String> title = new ArrayList<>();
@@ -355,7 +355,7 @@ public class ClubFactorySavedData extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(ClubFactorySavedData.this, getSupportFragmentManager(),
+        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(sectionPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
