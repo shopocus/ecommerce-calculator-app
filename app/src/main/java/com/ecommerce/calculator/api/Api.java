@@ -2,6 +2,7 @@ package com.ecommerce.calculator.api;
 
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.DefaultResponse;
+import com.ecommerce.calculator.models.FlipkartCalculationResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.category;
@@ -158,6 +159,28 @@ public interface Api {
             @Field("gstClaimKerela") String gstClaimKerela,
             @Field("profitKerela") String profitKerela,
             @Field("profitPercentageKerela") String profitPercentageKerala
+    );
+
+    @FormUrlEncoded
+    @POST("flipkart/app/calculate")
+    Call<FlipkartCalculationResponse> flipkartCalculation(
+            @Field("category") String category,
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("packagingExpense") double packagingExpense,
+            @Field("labour") double labour,
+            @Field("storageFee") double storageFee,
+            @Field("other") double other,
+            @Field("discountPercent") double discountPercent,
+            @Field("discountAmount") double discountAmount,
+            @Field("weight") double weight,
+            @Field("length") double length,
+            @Field("breadth") double breadth,
+            @Field("height") double height,
+            @Field("payMode") String payMode,
+            @Field("customerType") String customerType
     );
 
     @FormUrlEncoded

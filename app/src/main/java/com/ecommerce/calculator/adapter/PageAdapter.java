@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.ecommerce.calculator.fragments.flipkart_calculation;
 import com.ecommerce.calculator.fragments.input;
 import com.ecommerce.calculator.fragments.clubfactory_calculation;
 import com.ecommerce.calculator.fragments.saved;
@@ -36,6 +38,11 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
                 clubfactory_calculation.setArguments(bundle);
                 return clubfactory_calculation;
+            }
+            if (SharedPrefManager.getInstance(c).getCompany().equals("flipkart")) {
+                flipkart_calculation flipkart_calculation = new flipkart_calculation();
+                flipkart_calculation.setArguments(bundle);
+                return flipkart_calculation;
             }
         }else {
             saved saved = new saved();
