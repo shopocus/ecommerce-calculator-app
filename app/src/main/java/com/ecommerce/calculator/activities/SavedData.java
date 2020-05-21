@@ -21,9 +21,12 @@ import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
+import com.ecommerce.calculator.fragments.National;
+import com.ecommerce.calculator.fragments.Zonal;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -61,6 +64,8 @@ public class SavedData extends AppCompatActivity {
     ArrayList<String> Metro = new ArrayList<>();
     ArrayList<String> RestOfIndia = new ArrayList<>();
     ArrayList<String> Kerela = new ArrayList<>();
+    ArrayList<String> Zonal = new ArrayList<>();
+    ArrayList<String> National = new ArrayList<>();
     ViewPager viewPager;
     LoadingDialog loadingDialog;
 
@@ -126,6 +131,9 @@ public class SavedData extends AppCompatActivity {
                                 break;
                             case "clubFactory":
                                 clubFactoryData(td);
+                                break;
+                            case "flipkart":
+                                flipkartData(td);
                                 break;
                         }
                     }
@@ -358,6 +366,159 @@ public class SavedData extends AppCompatActivity {
         SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(sectionPagerAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    void flipkartData(TitleDataResponse td){
+        viewPager.setVisibility(View.VISIBLE);
+        tabLayout.setVisibility(View.VISIBLE);
+        output text1 = new output("Category", String.valueOf(td.getCategory()));
+        output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
+        output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
+        output text4 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
+        output text5 = new output("Weight", String.valueOf(td.getWeight()));
+        output text6 = new output("Length", String.valueOf(td.getLength()));
+        output text7 = new output("Length", String.valueOf(td.getBreadth()));
+        output text8 = new output("Length", String.valueOf(td.getHeight()));
+        output text9 = new output("Customer Type", String.valueOf(td.getCustomerType()));
+        output text10 = new output("Payment Mode", String.valueOf(td.getPaymentMode()));
+        output text11 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
+        output text12 = new output("Packaging Expenses", String.valueOf(td.getPackagingExpense()));
+        output text13 = new output("Labour", String.valueOf(td.getLabour()));
+        output text14 = new output("Storage fees", String.valueOf(td.getStorageFee()));
+        output text15 = new output("Other Charges", String.valueOf(td.getOther()));
+        output text16 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
+        output text17 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+
+        ArrayList<output> outputList = new ArrayList<>();
+        outputList.add(text1);
+        outputList.add(text2);
+        outputList.add(text3);
+        outputList.add(text4);
+        outputList.add(text5);
+        outputList.add(text6);
+        outputList.add(text7);
+        outputList.add(text8);
+        outputList.add(text9);
+        outputList.add(text10);
+        outputList.add(text11);
+        outputList.add(text12);
+        outputList.add(text13);
+        outputList.add(text14);
+        outputList.add(text15);
+        outputList.add(text16);
+        outputList.add(text17);
+
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
+        itemList.setAdapter(adapter);
+
+        ArrayList<String> title = new ArrayList<>();
+        title.add("Category");
+        title.add("Selling Price");
+        title.add("Purchase Price");
+        title.add("GST on Product");
+        title.add("Weight");
+        title.add("Courier");
+        title.add("Payment Mode");
+        title.add("Inward Shipping");
+        title.add("Packaging Expenses");
+        title.add("Labour");
+        title.add("Storage Fees");
+        title.add("Other Charges");
+        title.add("Discount on Price");
+        title.add("Discount Percentage");
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getCategory());
+        input.add(td.getSellingPrice());
+        input.add(td.getProductPriceWithoutGst());
+        input.add(td.getGstOnProduct());
+        input.add(td.getWeight());
+        input.add(td.getLength());
+        input.add(td.getBreadth());
+        input.add(td.getHeight());
+        input.add(td.getCustomerType());
+        input.add(td.getCourier());
+        input.add(td.getPaymentMode());
+        input.add(td.getInwardShipping());
+        input.add(td.getPackagingExpense());
+        input.add(td.getLabour());
+        input.add(td.getStorageFee());
+        input.add(td.getOther());
+        input.add(td.getDiscountAmount());
+        input.add(td.getDiscountPercent());
+
+        Local.add(String.valueOf(td.getFlipkartLocal().getCommissionFees()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getFixedFees()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getCollectionFees()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getShippingFees()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getCFCS()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getGstOnCFCS()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getTotalCharges()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getTotalGstPayable()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getTcs()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getGstPayable()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getProfit()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getProfitPercentage()));
+
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getCommissionFees()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getFixedFees()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getCollectionFees()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getShippingFees()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getCFCS()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getGstOnCFCS()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getTotalCharges()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getBankSettlement()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getTotalGstPayable()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getTcs()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getGstPayable()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getProfit()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getProfitPercentage()));
+
+        National.add(String.valueOf(td.getFlipkartNational().getCommissionFees()));
+        National.add(String.valueOf(td.getFlipkartNational().getFixedFees()));
+        National.add(String.valueOf(td.getFlipkartNational().getCollectionFees()));
+        National.add(String.valueOf(td.getFlipkartNational().getShippingFees()));
+        National.add(String.valueOf(td.getFlipkartNational().getCFCS()));
+        National.add(String.valueOf(td.getFlipkartNational().getGstOnCFCS()));
+        National.add(String.valueOf(td.getFlipkartNational().getTotalCharges()));
+        National.add(String.valueOf(td.getFlipkartNational().getBankSettlement()));
+        National.add(String.valueOf(td.getFlipkartNational().getTotalGstPayable()));
+        National.add(String.valueOf(td.getFlipkartNational().getTcs()));
+        National.add(String.valueOf(td.getFlipkartNational().getGstPayable()));
+        National.add(String.valueOf(td.getFlipkartNational().getProfit()));
+        National.add(String.valueOf(td.getFlipkartNational().getProfitPercentage()));
+
+        bundle.putStringArrayList("input", input);
+        bundle.putStringArrayList("Local", Local);
+        bundle.putStringArrayList("Zonal", Zonal);
+        bundle.putStringArrayList("National", National);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Local"));
+        tabLayout.addTab(tabLayout.newTab().setText("Zonal"));
+        tabLayout.addTab(tabLayout.newTab().setText("National"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(SavedData.this, getSupportFragmentManager(),
+                tabLayout.getTabCount(), bundle);
+        viewPager.setAdapter(flipkartSectionAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

@@ -4,27 +4,27 @@ import com.ecommerce.calculator.utils.FlipkartOutputModel;
 
 public class FlipkartCalculationResponse {
 
-        private FlipkartOutputModel Local;
-        private FlipkartOutputModel Zonal;
-        private FlipkartOutputModel National;
+        private FlipkartOutputModel flipkartLocal;
+        private FlipkartOutputModel flipkartZonal;
+        private FlipkartOutputModel flipkartNational;
 
-        public FlipkartCalculationResponse(FlipkartOutputModel Local, FlipkartOutputModel Zonal,
-                                              FlipkartOutputModel National) {
-            this.Local = Local;
-            this.Zonal = Zonal;
-            this.National = National;
+        public FlipkartCalculationResponse(FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal,
+                                              FlipkartOutputModel flipkartNational) {
+            this.flipkartLocal = flipkartLocal;
+            this.flipkartZonal = flipkartZonal;
+            this.flipkartNational = flipkartNational;
         }
 
-        public FlipkartOutputModel getLocal() {
-            return Local;
+        public FlipkartOutputModel getFlipkartLocal() {
+            return flipkartLocal;
         }
 
-        public FlipkartOutputModel getZonal() {
-            return Zonal;
+        public FlipkartOutputModel getFlipkartZonal() {
+            return flipkartZonal;
         }
 
-        public FlipkartOutputModel getNational() {
-            return National;
+        public FlipkartOutputModel getFlipkartNational() {
+            return flipkartNational;
         }
 
 }

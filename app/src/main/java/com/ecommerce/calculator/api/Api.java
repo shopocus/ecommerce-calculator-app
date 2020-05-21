@@ -233,19 +233,19 @@ public interface Api {
             @Field("gstPayableZonal") String gstPayableZonal,
             @Field("profitZonal") String profitZonal,
             @Field("profitPercentageZonal") String profitPercentageZonal,
-            @Field("commissionFeesRegional") String commissionFeesRegional,
-            @Field("fixedFeesRegional") String fixedFeesRegional,
-            @Field("collectionFeesRegional") String collectionFeesRegional,
-            @Field("shippingFeesRegional") String shippingFeesRegional,
-            @Field("CFCSRegional") String CFCSRegional,
-            @Field("gstOnCFCSRegional") String gstOnCFCSRegional,
-            @Field("totalChargesRegional") String totalChargesRegional,
-            @Field("bankSettlementRegional") String bankSettlementRegional,
-            @Field("totalGstPayableRegional") String totalGstPayableRegional,
-            @Field("tcsRegional") String tcsRegional,
-            @Field("gstPayableRegional") String gstPayableRegional,
-            @Field("profitRegional") String profitRegional,
-            @Field("profitPercentageRegional") String profitPercentageRegional
+            @Field("commissionFeesNational") String commissionFeesNational,
+            @Field("fixedFeesNational") String fixedFeesNational,
+            @Field("collectionFeesNational") String collectionFeesNational,
+            @Field("shippingFeesNational") String shippingFeesNational,
+            @Field("CFCSNational") String CFCSNational,
+            @Field("gstOnCFCSNational") String gstOnCFCSNational,
+            @Field("totalChargesNational") String totalChargesNational,
+            @Field("bankSettlementNational") String bankSettlementNational,
+            @Field("totalGstPayableNational") String totalGstPayableNational,
+            @Field("tcsNational") String tcsNational,
+            @Field("gstPayableNational") String gstPayableNational,
+            @Field("profitNational") String profitNational,
+            @Field("profitPercentageNational") String profitPercentageNational
     );
 
     @FormUrlEncoded

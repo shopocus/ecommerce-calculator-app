@@ -1,5 +1,7 @@
 package com.ecommerce.calculator.models;
 
+import com.ecommerce.calculator.utils.FlipkartOutputModel;
+
 public class TitleDataResponse {
 
     private String category;
@@ -7,6 +9,10 @@ public class TitleDataResponse {
     private String gstOnProduct;
     private String productPriceWithoutGst;
     private String weight;
+    private String length;
+    private String breadth;
+    private String height;
+    private String customerType;
     private String courier;
     private String payMode;
     private String inwardShipping;
@@ -29,20 +35,28 @@ public class TitleDataResponse {
     private MeeshoCalculationResponse metro;
     private MeeshoCalculationResponse restOfIndia;
     private MeeshoCalculationResponse kerela;
+    private FlipkartOutputModel flipkartLocal;
+    private FlipkartOutputModel flipkartZonal;
+    private FlipkartOutputModel flipkartNational;
     private String title;
 
     public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
-                             String courier, String payMode, String inwardShipping, String packagingExpense, String labour, String storageFee,
-                             String other, String discountAmount, String discountPercent, String bankSettlement, String totalMeeshoCommision,
-                             String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim, String profitPercentage,
-                             MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
-                             MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela) {
+                             String length, String breadth, String height, String customerType, String courier, String payMode, String inwardShipping,
+                             String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
+                             String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
+                             String gstClaim, String profitPercentage, MeeshoCalculationResponse local, MeeshoCalculationResponse regional,
+                             MeeshoCalculationResponse metro, MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela,
+                             FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational) {
         this.title = title;
         this.category = category;
         this.sellingPrice = sellingPrice;
         this.gstOnProduct = gstOnProduct;
         this.productPriceWithoutGst = productPriceWithoutGst;
         this.weight = weight;
+        this.length = length;
+        this.breadth = breadth;
+        this.height = height;
+        this.customerType = customerType;
         this.courier = courier;
         this.payMode = payMode;
         this.inwardShipping = inwardShipping;
@@ -65,6 +79,9 @@ public class TitleDataResponse {
         this.metro = metro;
         this.restOfIndia = restOfIndia;
         this.kerela = kerela;
+        this.flipkartLocal = flipkartLocal;
+        this.flipkartZonal = flipkartZonal;
+        this.flipkartNational = flipkartNational;
     }
 
     public String getTitle() {
@@ -104,6 +121,14 @@ public class TitleDataResponse {
     }
 
     public String getWeight() { return weight; }
+
+    public String getLength() { return length; }
+
+    public String getBreadth() { return breadth; }
+
+    public String getHeight() { return height; }
+
+    public String getCustomerType() { return customerType; }
 
     public String getCourier() { return courier; }
 
@@ -164,5 +189,11 @@ public class TitleDataResponse {
     public MeeshoCalculationResponse getKerela() {
         return kerela;
     }
+
+    public FlipkartOutputModel getFlipkartLocal() { return flipkartLocal; }
+
+    public FlipkartOutputModel getFlipkartZonal() { return flipkartZonal; }
+
+    public FlipkartOutputModel getFlipkartNational() { return flipkartNational; }
 
 }
