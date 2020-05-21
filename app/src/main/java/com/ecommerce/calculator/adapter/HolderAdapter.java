@@ -127,7 +127,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 call = RetrofitClient.getInstance().getApi().getCategoriesClubFactory();
                 break;
             case "flipkart":
-                call = RetrofitClient.getInstance().getApi().getCategoriesClubFactory();
+                call = RetrofitClient.getInstance().getApi().getCategoriesFlipkart();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + SharedPrefManager.getInstance(c).getCompany());

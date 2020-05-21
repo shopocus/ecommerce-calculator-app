@@ -183,6 +183,9 @@ public interface Api {
             @Field("customerType") String customerType
     );
 
+    @GET("flipkart/app/showCategory")
+    Call<category> getCategoriesFlipkart( );
+
     @FormUrlEncoded
     @POST("common/show/saved/title")
     Call<savedTitleResponse> getTitles(
