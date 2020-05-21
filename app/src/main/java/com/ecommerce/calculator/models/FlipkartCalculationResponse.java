@@ -19,11 +19,11 @@ public class FlipkartCalculationResponse {
             return Local;
         }
 
-        public FlipkartOutputModel getRegional() {
+        public FlipkartOutputModel getZonal() {
             return Zonal;
         }
 
-        public FlipkartOutputModel getMetro() {
+        public FlipkartOutputModel getNational() {
             return National;
         }
 

@@ -32,18 +32,14 @@ import androidx.viewpager.widget.ViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
-import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
-import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -550,6 +546,13 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
 
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getCommissionFees()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getFixedFees()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getCollectionFees()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getShippingFees()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getCFCS()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCFCS()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCharges()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTcs()));
@@ -557,19 +560,33 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfit()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
 
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getTotalGstPayable()));
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getTcs()));
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getGstPayable()));
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getProfit()));
-                    Zonal.add(String.valueOf(CalculateResponse.getRegional().getProfitPercentage()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getCommissionFees()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getFixedFees()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getCollectionFees()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getShippingFees()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getCFCS()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getGstOnCFCS()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getTotalCharges()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getBankSettlement()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getTotalGstPayable()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getTcs()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getGstPayable()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getProfit()));
+                    Zonal.add(String.valueOf(CalculateResponse.getZonal().getProfitPercentage()));
 
-                    National.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
-                    National.add(String.valueOf(CalculateResponse.getMetro().getTotalGstPayable()));
-                    National.add(String.valueOf(CalculateResponse.getMetro().getTcs()));
-                    National.add(String.valueOf(CalculateResponse.getMetro().getGstPayable()));
-                    National.add(String.valueOf(CalculateResponse.getMetro().getProfit()));
-                    National.add(String.valueOf(CalculateResponse.getMetro().getProfitPercentage()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getCommissionFees()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getFixedFees()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getCollectionFees()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getShippingFees()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getCFCS()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getGstOnCFCS()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getTotalCharges()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getBankSettlement()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getTotalGstPayable()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getTcs()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getGstPayable()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getProfit()));
+                    National.add(String.valueOf(CalculateResponse.getNational().getProfitPercentage()));
 
                     Bundle bundle = new Bundle();
                     bundle.putStringArrayList("Local", Local);
