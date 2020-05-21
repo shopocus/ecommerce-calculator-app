@@ -32,7 +32,7 @@ public class Zonal extends Fragment {
             Bundle bundle = this.getArguments();
             ArrayList<String> bundle_local = bundle.getStringArrayList("Zonal");
 
-            output text1 = new output("commission Fees", bundle_local.get(0));
+            output text1 = new output("Commission Fees", bundle_local.get(0));
             output text2 = new output("Fixed Fees", bundle_local.get(1));
             output text3 = new output("Collection Fees", bundle_local.get(2));
             output text4 = new output("Shipping Fees", bundle_local.get(3));

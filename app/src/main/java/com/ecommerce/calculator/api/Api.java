@@ -187,6 +187,71 @@ public interface Api {
     Call<category> getCategoriesFlipkart( );
 
     @FormUrlEncoded
+    @POST("flipkart/app/toSave")
+    Call<MessageResponse> savedFlipkart(
+            @Field("title") String title,
+            @Field("category") String category,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("packagingExpense") String packagingExpense,
+            @Field("labour") String labour,
+            @Field("storageFee") String storageFee,
+            @Field("other") String other,
+            @Field("discountPercent") String discountPercent,
+            @Field("discountAmount") String discountAmount,
+            @Field("weight") String weight,
+            @Field("length") String length,
+            @Field("breadth") String breadth,
+            @Field("height") String height,
+            @Field("payMode") String payMode,
+            @Field("customerType") String customerType,
+            @Field("commissionFeesLocal") String commissionFeesLocal,
+            @Field("fixedFeesLocal") String
+            @Field("bankSettlementLocal") String bankSettlementLocal,
+            @Field("totalCommisionLocal") String totalCommisionLocal,
+            @Field("totalGstPayableLocal") String totalGstPayableLocal,
+            @Field("tcsLocal") String tcsLocal,
+            @Field("gstPayableLocal") String gstPayableLocal,
+            @Field("gstClaimLocal") String gstClaimLocal,
+            @Field("profitLocal") String profitLocal,
+            @Field("profitPercentageLocal") String profitPercentageLocal,
+            @Field("bankSettlementRegional") String bankSettlementRegional,
+            @Field("totalCommisionRegional") String totalCommisionRegional,
+            @Field("totalGstPayableRegional") String totalGstPayableRegional,
+            @Field("tcsRegional") String tcsRegional,
+            @Field("gstPayableRegional") String gstPayableRegional,
+            @Field("gstClaimRegional") String gstClaimRegional,
+            @Field("profitRegional") String profitRegional,
+            @Field("profitPercentageRegional") String profitPercentageRegional,
+            @Field("bankSettlementMetro") String bankSettlementMetro,
+            @Field("totalCommisionMetro") String totalCommisionMetro,
+            @Field("totalGstPayableMetro") String totalGstPayableMetro,
+            @Field("tcsMetro") String tcsMetro,
+            @Field("gstPayableMetro") String gstPayableMetro,
+            @Field("gstClaimMetro") String gstClaimMetro,
+            @Field("profitMetro") String profitMetro,
+            @Field("profitPercentageMetro") String profitPercentageMetro,
+            @Field("bankSettlementRestOfIndia") String bankSettlementRestOfIndia,
+            @Field("totalCommisionRestOfIndia") String totalCommisionRestOfIndia,
+            @Field("totalGstPayableRestOfIndia") String totalGstPayableRestOfIndia,
+            @Field("tcsRestOfIndia") String tcsRestOfIndia,
+            @Field("gstPayableRestOfIndia") String gstPayableRestOfIndia,
+            @Field("gstClaimRestOfIndia") String gstClaimRestOfIndia,
+            @Field("profitRestOfIndia") String profitRestOfIndia,
+            @Field("profitPercentageRestOfIndia") String profitPercentageRestOfIndia,
+            @Field("bankSettlementKerela") String bankSettlementKerela,
+            @Field("totalCommisionKerela") String totalCommisionKerela,
+            @Field("totalGstPayableKerela") String totalGstPayableKerela,
+            @Field("tcsKerela") String tcsKerela,
+            @Field("gstPayableKerela") String gstPayableKerela,
+            @Field("gstClaimKerela") String gstClaimKerela,
+            @Field("profitKerela") String profitKerela,
+            @Field("profitPercentageKerela") String profitPercentageKerala
+    );
+
+    @FormUrlEncoded
     @POST("common/show/saved/title")
     Call<savedTitleResponse> getTitles(
             @Field("company") String company
