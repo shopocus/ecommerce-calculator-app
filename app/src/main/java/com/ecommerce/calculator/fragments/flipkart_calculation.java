@@ -34,12 +34,14 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -290,7 +292,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                         if (myText.equals("")) {
                             Toast.makeText(getContext(), "Enter the Title", Toast.LENGTH_SHORT).show();
                         } else {
-                           // save();
+                            save();
                         }
                     }
                 });
@@ -638,60 +640,65 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         });
     }
 
-//    public void save(){
-//        String title = String.valueOf(myText);
-//        String category = categoryFinal;
-//        String sellingPrice = num1.getText().toString().trim();
-//        String gstOnProduct = spinner_ans;
-//        String productPriceWithoutGst = num2.getText().toString().trim();
-//        String inwardShipping = num4.getText().toString().trim();
-//        String packagingExpense = num5.getText().toString().trim();
-//        String labour = num6.getText().toString().trim();
-//        String storageFee = num7.getText().toString().trim();
-//        String other = num8.getText().toString().trim();
-//        String discountPercent = num10.getText().toString().trim();
-//        String discountAmount = num9.getText().toString().trim();
-//        String weight = num11.getText().toString().trim();
-//
-//        Call<MessageResponse> call = RetrofitClient
-//                .getInstance()
-//                .getApi()
-//                .savedclubFactory(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-//                        storageFee, other, discountPercent, discountAmount, weight, paymentOption, customerTypeOption, Local.get(0), Local.get(1),
-//                        Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Zonal.get(0), Zonal.get(1),
-//                        Zonal.get(2), Zonal.get(3), Zonal.get(4), Zonal.get(5), Zonal.get(6), Zonal.get(7), National.get(0),
-//                        National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6), National.get(7));
-//
-//        call.enqueue(new Callback<MessageResponse>() {
-//            @Override
-//            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-//                if(response.isSuccessful()) {
-//                    MessageResponse dr = response.body();
-//                    if (dr.getMessage().equals("data_saved")) {
-//                        save.setImageResource(R.drawable.ic_bookmark);
-//                        save.setEnabled(false);
-//                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-//                                .setTitleText("Successfully Saved")
-//                                .setConfirmText("Ok")
-//                                .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
-//                                .show();
-//                    } else {
-//                        Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
-//                    }
-//                }else if(response.code() == 401){
-//                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
-//                    SharedPrefManager.getInstance(getContext()).clear();
-//                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
-//                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent_logout);
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<MessageResponse> call, Throwable t) {
-//                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    public void save(){
+        String title = String.valueOf(myText);
+        String category = categoryFinal;
+        String sellingPrice = num1.getText().toString().trim();
+        String gstOnProduct = spinner_ans;
+        String productPriceWithoutGst = num2.getText().toString().trim();
+        String inwardShipping = num4.getText().toString().trim();
+        String packagingExpense = num5.getText().toString().trim();
+        String labour = num6.getText().toString().trim();
+        String storageFee = num7.getText().toString().trim();
+        String other = num8.getText().toString().trim();
+        String discountPercent = num10.getText().toString().trim();
+        String discountAmount = num9.getText().toString().trim();
+        String weight = num11.getText().toString().trim();
+        String length = num12.getText().toString().trim();
+        String breadth = num13.getText().toString().trim();
+        String height = num14.getText().toString().trim();
+
+        Call<MessageResponse> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
+                        storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, paymentOption, customerTypeOption,
+                        Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
+                        Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
+                        Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),
+                        National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
+                        National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+
+        call.enqueue(new Callback<MessageResponse>() {
+            @Override
+            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                if(response.isSuccessful()) {
+                    MessageResponse dr = response.body();
+                    if (dr.getMessage().equals("data_saved")) {
+                        save.setImageResource(R.drawable.ic_bookmark);
+                        save.setEnabled(false);
+                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Successfully Saved")
+                                .setConfirmText("Ok")
+                                .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+                                .show();
+                    } else {
+                        Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
+                    }
+                }else if(response.code() == 401){
+                    Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
+                    SharedPrefManager.getInstance(getContext()).clear();
+                    Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                    intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent_logout);
+                }
+            }
+            @Override
+            public void onFailure(Call<MessageResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     public void share(){
         String content = "INPUT" + "\n\n" +
