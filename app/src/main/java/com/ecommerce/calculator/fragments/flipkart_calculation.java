@@ -66,7 +66,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
     private TextView textView;
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
-    RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery, radioButtonPrepaid, radioButtonOther;
+    RadioButton radioButton, radioButtonPostpaid, radioButtonBronze, radioButtonPrepaid, radioButtonSilver, radioButtonGold;
     String customerTypeOption,paymentOption;
     ViewPager viewPager;
     TabLayout tabLayout;
@@ -263,8 +263,11 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                 num9.setText("");
                 num10.setText("");
                 num11.setText("");
+                num12.setText("");
+                num13.setText("");
+                num14.setText("");
                 radioButtonPostpaid.setChecked(true);
-                radioButtonDelivery.setChecked(true);
+                radioButtonBronze.setChecked(true);
                 result_card.setVisibility(View.GONE);
             }
         });
@@ -343,9 +346,10 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         details = view.findViewById(R.id.details_dropdown);
         pp = view.findViewById(R.id.text_pp);
         radioButtonPostpaid = view.findViewById(R.id.radio_postpaid);
-        radioButtonDelivery = view.findViewById(R.id.radio_delivery);
+        radioButtonBronze = view.findViewById(R.id.radio_bronze);
         radioButtonPrepaid = view.findViewById(R.id.radio_prepaid);
-        radioButtonOther = view.findViewById(R.id.radio_other);
+        radioButtonSilver = view.findViewById(R.id.radio_silver);
+        radioButtonGold = view.findViewById(R.id.radio_gold);
         gst = view.findViewById(R.id.text_gst);
         weight = view.findViewById(R.id.text_weight);
         courier = view.findViewById(R.id.text_courier);
@@ -435,23 +439,28 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     break;
             }
             num11.setText(bundle_input.get(4));
-            if(bundle_input.get(5) == "prepaid"){
+            num12.setText(bundle_input.get(5));
+            num13.setText(bundle_input.get(6));
+            num14.setText(bundle_input.get(7));
+            if(bundle_input.get(8) == "prepaid"){
                 radioButtonPrepaid.setChecked(true);
             }else{
                 radioButtonPostpaid.setChecked(true);
             }
-            if(bundle_input.get(6) == "delhivery"){
-                radioButtonDelivery.setChecked(true);
+            if(bundle_input.get(9) == "bronze"){
+                radioButtonBronze.setChecked(true);
+            }else if(bundle_input.get(9) == "silver"){
+                radioButtonSilver.setChecked(true);
             }else{
-                radioButtonOther.setChecked(true);
+                radioButtonGold.setChecked(true);
             }
-            num4.setText(bundle_input.get(7));
-            num5.setText(bundle_input.get(8));
-            num6.setText(bundle_input.get(9));
-            num7.setText(bundle_input.get(10));
-            num8.setText(bundle_input.get(11));
-            num9.setText(bundle_input.get(12));
-            num10.setText(bundle_input.get(13));
+            num4.setText(bundle_input.get(10));
+            num5.setText(bundle_input.get(11));
+            num6.setText(bundle_input.get(12));
+            num7.setText(bundle_input.get(13));
+            num8.setText(bundle_input.get(14));
+            num9.setText(bundle_input.get(15));
+            num10.setText(bundle_input.get(16));
 
             String flag = "false";
             SharedPrefManager.getInstance(getActivity())

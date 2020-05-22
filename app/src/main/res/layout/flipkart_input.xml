@@ -384,13 +384,13 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
-                            android:id="@+id/radio_gold"
+                            android:id="@+id/radio_bronze"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="33"
-                            android:text="Gold" />
+                            android:text="Bronze" />
 
                         <RadioButton
                             android:id="@+id/radio_silver"
@@ -400,11 +400,11 @@
                             android:text="Silver" />
 
                         <RadioButton
-                            android:id="@+id/radio_bronze"
+                            android:id="@+id/radio_gold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="33"
-                            android:text="Bronze" />
+                            android:text="Gold" />
 
                     </RadioGroup>
 
