@@ -121,6 +121,11 @@ public class Menu extends AppCompatActivity {
         m.setImg(R.drawable.flipkart);
         menu.add(m);
 
+        m = new menu();
+        m.setTitle("Amazon");
+        m.setImg(R.drawable.amazon);
+        menu.add(m);
+
         return menu;
     }
 

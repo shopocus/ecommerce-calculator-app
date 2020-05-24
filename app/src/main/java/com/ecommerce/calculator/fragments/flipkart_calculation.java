@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
     RadioButton radioButton, radioButtonPostpaid, radioButtonBronze, radioButtonPrepaid, radioButtonSilver, radioButtonGold;
-    String customerTypeOption,paymentOption;
+    String customerTypeOption="bronze",paymentOption="postpaid";
     ViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();
@@ -232,6 +233,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 radioButton = view.findViewById(checkedId);
                 paymentOption = radioButton.getText().toString();
+                Log.d("pay", paymentOption);
             }
         });
 
@@ -666,12 +668,14 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         String length = num12.getText().toString().trim();
         String breadth = num13.getText().toString().trim();
         String height = num14.getText().toString().trim();
+        String payMode = paymentOption;
+        String customerType = customerTypeOption;
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-                        storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, paymentOption, customerTypeOption,
+                        storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType,
                         Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
                         Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
                         Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),

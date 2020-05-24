@@ -282,14 +282,14 @@
                                     android:checked="true"
                                     android:layout_gravity="center"
                                     android:layout_weight="50"
-                                    android:text="Delivery" />
+                                    android:text="delhivery" />
 
                                 <RadioButton
                                     android:id="@+id/radio_other"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="50"
-                                    android:text="Other" />
+                                    android:text="other" />
 
                             </RadioGroup>
 
@@ -334,14 +334,14 @@
                                     android:layout_height="wrap_content"
                                     android:checked="true"
                                     android:layout_weight="50"
-                                    android:text="Postpaid" />
+                                    android:text="postpaid" />
 
                                 <RadioButton
                                     android:id="@+id/radio_prepaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="50"
-                                    android:text="Prepaid" />
+                                    android:text="prepaid" />
 
                             </RadioGroup>
 

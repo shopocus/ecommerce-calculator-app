@@ -25,8 +25,6 @@ import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.fragments.National;
-import com.ecommerce.calculator.fragments.Zonal;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -182,7 +180,7 @@ public class SavedData extends AppCompatActivity {
         itemList.setAdapter(adapter);
 
         output text12 = new output("Bank Settlement", td.getBankSettlement());
-        output text13 = new output("Total Commission", td.getTotalMeeshoCommision());
+        output text13 = new output("Total Commission", td.getTotalCommision());
         output text14 = new output("Total GST Payable", td.getTotalGstPayable());
         output text15 = new output("TCS", td.getTcs());
         output text16 = new output("GST Payable", td.getGstPayable());
@@ -394,8 +392,8 @@ public class SavedData extends AppCompatActivity {
         output text4 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
         output text5 = new output("Weight", String.valueOf(td.getWeight()));
         output text6 = new output("Length", String.valueOf(td.getLength()));
-        output text7 = new output("Length", String.valueOf(td.getBreadth()));
-        output text8 = new output("Length", String.valueOf(td.getHeight()));
+        output text7 = new output("Breadth", String.valueOf(td.getBreadth()));
+        output text8 = new output("Height", String.valueOf(td.getHeight()));
         output text9 = new output("Customer Type", String.valueOf(td.getCustomerType()));
         output text10 = new output("Payment Mode", String.valueOf(td.getPaymentMode()));
         output text11 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));

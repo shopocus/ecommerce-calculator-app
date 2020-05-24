@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import com.ecommerce.calculator.adapter.PageAdapter;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -54,8 +55,8 @@ public class FragmentSelection extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Shopocus");
-        toolbar.setSubtitle(getResources().getString(R.string.app_name));
+        getSupportActionBar().setTitle(SharedPrefManager.getInstance(FragmentSelection.this).getCompany());
+       // toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));

@@ -68,7 +68,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     private String myText;
     RadioGroup radioGroup, radioGroupCourier;
     RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery, radioButtonPrepaid, radioButtonOther;
-    String courierOption,paymentOption;
+    String courierOption="delhivery",paymentOption="postpaid";
     ViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();

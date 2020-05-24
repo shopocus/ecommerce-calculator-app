@@ -390,21 +390,21 @@
                             android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="33"
-                            android:text="Bronze" />
+                            android:text="bronze" />
 
                         <RadioButton
                             android:id="@+id/radio_silver"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="33"
-                            android:text="Silver" />
+                            android:text="silver" />
 
                         <RadioButton
                             android:id="@+id/radio_gold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="33"
-                            android:text="Gold" />
+                            android:text="gold" />
 
                     </RadioGroup>
 
@@ -449,14 +449,14 @@
                             android:layout_height="wrap_content"
                             android:checked="true"
                             android:layout_weight="50"
-                            android:text="Postpaid" />
+                            android:text="postpaid" />
 
                         <RadioButton
                             android:id="@+id/radio_prepaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
-                            android:text="Prepaid" />
+                            android:text="prepaid" />
 
                     </RadioGroup>
 

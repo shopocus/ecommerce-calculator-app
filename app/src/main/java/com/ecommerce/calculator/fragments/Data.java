@@ -121,7 +121,7 @@ public class Data extends DialogFragment {
                         textViewByPrice.setText(td.getDiscountAmount());
                         textViewByPercentage.setText(td.getDiscountPercent());
                         textViewBankSettlement.setText(td.getBankSettlement());
-                        textViewTotalMeeshoCommision.setText(td.getTotalMeeshoCommision());
+                        textViewTotalMeeshoCommision.setText(td.getTotalCommision());
                         textViewProfit.setText(td.getProfit());
                         textViewTotalGstPayable.setText(td.getTotalGstPayable());
                         textViewTcs.setText(td.getTcs());

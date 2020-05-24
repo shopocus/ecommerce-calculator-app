@@ -469,7 +469,7 @@ public class input extends Fragment implements View.OnClickListener {
                     items[7] = CalculateResponse.getProfitPercentage();
 
                     output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                    output text2 = new output("Total Meesho Commision", String.valueOf(CalculateResponse.getTotalCommision()));
+                    output text2 = new output("Total Commision", String.valueOf(CalculateResponse.getTotalCommision()));
                     output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
                     output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
                     output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
@@ -522,7 +522,7 @@ public class input extends Fragment implements View.OnClickListener {
         String discountPercent = num10.getText().toString().trim();
         String discountAmount = num9.getText().toString().trim();
         String bankSettlement = String.valueOf(items[0]);
-        String totalMeeshoCommision = String.valueOf(items[1]);
+        String totalCommision = String.valueOf(items[1]);
         String profit = String.valueOf(items[2]);
         String totalGstPayable = String.valueOf(items[3]);
         String tcs = String.valueOf(items[4]);
@@ -534,7 +534,7 @@ public class input extends Fragment implements View.OnClickListener {
                 .getInstance()
                 .getApi()
                 .saved(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
-                        other, discountPercent, discountAmount, bankSettlement, totalMeeshoCommision, profit, totalGstPayable, tcs, gstPayable,
+                        other, discountPercent, discountAmount, bankSettlement, totalCommision, profit, totalGstPayable, tcs, gstPayable,
                         gstClaim, profitPercentage);
 
         call.enqueue(new Callback<MessageResponse>() {
@@ -582,7 +582,7 @@ public class input extends Fragment implements View.OnClickListener {
                 "Discount Amount: " + num9.getText().toString().trim() + "\n\n" +
                 "OUTPUT" + "\n" +
                 "Bank Settlement: " + items[0] + "\n" +
-                "Total Meesho Commision: " + items[1] + "\n" +
+                "Total Commision: " + items[1] + "\n" +
                 "Profit: " + items[2] + "\n" +
                 "Total GST Payable: " + items[3] + "\n" +
                 "Tcs: " + items[4] + "\n" +

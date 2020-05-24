@@ -23,7 +23,7 @@ public class TitleDataResponse {
     private String discountAmount;
     private String discountPercent;
     private String bankSettlement;
-    private String totalMeeshoCommision;
+    private String totalCommision;
     private String profit;
     private String totalGstPayable;
     private String tcs;
@@ -43,7 +43,7 @@ public class TitleDataResponse {
     public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
                              String length, String breadth, String height, String customerType, String courier, String payMode, String inwardShipping,
                              String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
-                             String bankSettlement, String totalMeeshoCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
+                             String bankSettlement, String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
                              String gstClaim, String profitPercentage, MeeshoCalculationResponse local, MeeshoCalculationResponse regional,
                              MeeshoCalculationResponse metro, MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela,
                              FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational) {
@@ -67,7 +67,7 @@ public class TitleDataResponse {
         this.discountAmount = discountAmount;
         this.discountPercent = discountPercent;
         this.bankSettlement = bankSettlement;
-        this.totalMeeshoCommision = totalMeeshoCommision;
+        this.totalCommision = totalCommision;
         this.profit = profit;
         this.totalGstPayable = totalGstPayable;
         this.tcs = tcs;
@@ -144,7 +144,7 @@ public class TitleDataResponse {
 
     public String getBankSettlement() { return bankSettlement; }
 
-    public String getTotalMeeshoCommision() { return totalMeeshoCommision; }
+    public String getTotalCommision() { return totalCommision; }
 
     public String getProfit(){
             return profit;
