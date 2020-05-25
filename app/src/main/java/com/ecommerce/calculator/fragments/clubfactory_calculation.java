@@ -28,7 +28,6 @@ import android.widget.TextView;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -232,7 +231,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
         });
 
-        radioGroup = view.findViewById(R.id.radioGroup);
+        radioGroup = view.findViewById(R.id.payMode);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -241,7 +240,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
         });
 
-        radioGroupCourier = view.findViewById(R.id.radioGroupCourier);
+        radioGroupCourier = view.findViewById(R.id.customerType);
         radioGroupCourier.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -385,10 +384,10 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         discounts = view.findViewById(R.id.discounts_dropdown);
         price = view.findViewById(R.id.text_price);
         percentage = view.findViewById(R.id.text_percentage);
-        num1 = view.findViewById(R.id.number1);
-        num2 = view.findViewById(R.id.number2);
+        num1 = view.findViewById(R.id.sellingPrice);
+        num2 = view.findViewById(R.id.purchasePrice);
 
-        num3 = view.findViewById(R.id.number3);
+        num3 = view.findViewById(R.id.gst);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, gst_array);
         adapter1.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
         num3.setAdapter(adapter1);
@@ -402,14 +401,14 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
         });
 
-        num4 = view.findViewById(R.id.number4);
-        num5 = view.findViewById(R.id.number5);
-        num6 = view.findViewById(R.id.number6);
-        num7 = view.findViewById(R.id.number7);
-        num8 = view.findViewById(R.id.number8);
-        num9 = view.findViewById(R.id.number9);
-        num10 = view.findViewById(R.id.number10);
-        num11 = view.findViewById(R.id.number11);
+        num4 = view.findViewById(R.id.inwardShipping);
+        num5 = view.findViewById(R.id.packagingExpenses);
+        num6 = view.findViewById(R.id.labour);
+        num7 = view.findViewById(R.id.storageFee);
+        num8 = view.findViewById(R.id.otherCharges);
+        num9 = view.findViewById(R.id.discountByPrice);
+        num10 = view.findViewById(R.id.discountByPercentage);
+        num11 = view.findViewById(R.id.weight);
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 

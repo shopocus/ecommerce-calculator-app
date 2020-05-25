@@ -93,7 +93,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number1"
+                            android:id="@+id/sellingPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -161,7 +161,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number2"
+                            android:id="@+id/purchasePrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -198,7 +198,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <Spinner
-                            android:id="@+id/number3"
+                            android:id="@+id/gst"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
@@ -233,7 +233,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number11"
+                            android:id="@+id/weight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="15dp"
@@ -264,7 +264,7 @@
                             android:textColor="@color/colorPrimary"/>
 
                             <RadioGroup
-                                android:id="@+id/radioGroupCourier"
+                                android:id="@+id/customerType"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:weightSum="100"
@@ -318,7 +318,7 @@
                             android:textColor="@color/colorPrimary"/>
 
                             <RadioGroup
-                                android:id="@+id/radioGroup"
+                                android:id="@+id/payMode"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
@@ -408,7 +408,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number4"
+                            android:id="@+id/inwardShipping"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -449,7 +449,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number5"
+                            android:id="@+id/packagingExpenses"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -490,7 +490,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number6"
+                            android:id="@+id/labour"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -531,7 +531,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number7"
+                            android:id="@+id/storageFee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -572,7 +572,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number8"
+                            android:id="@+id/otherCharges"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -642,7 +642,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number9"
+                            android:id="@+id/discountByPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
@@ -683,7 +683,7 @@
                             android:textColor="@color/colorBase"/>
 
                         <EditText
-                            android:id="@+id/number10"
+                            android:id="@+id/discountByPercentage"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:visibility="gone"

@@ -452,7 +452,6 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getBreadth());
         input.add(td.getHeight());
         input.add(td.getCustomerType());
-        input.add(td.getCourier());
         input.add(td.getPaymentMode());
         input.add(td.getInwardShipping());
         input.add(td.getPackagingExpense());
