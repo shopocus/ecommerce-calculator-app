@@ -18,7 +18,7 @@
 
     <include
         android:id="@+id/clubfactory_input"
-        layout="@layout/clubfactory_input"/>
+        layout="@layout/common_input"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

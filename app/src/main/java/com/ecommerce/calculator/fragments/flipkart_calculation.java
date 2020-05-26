@@ -46,7 +46,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
 
     private ImageButton details, expenses, discounts, save, sendEmail, reset;
     private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice, discountByPercentage, weight, length, breadth, height;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout, courierBunch;
 
     CardView productDetailsCard, expensesCard, discountsCard;
     Spinner gstOnProduct, categories;
@@ -268,6 +268,9 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         radioButtonGold = view.findViewById(R.id.radio_gold);
         expenses = view.findViewById(R.id.expenses_dropdown);
         discounts = view.findViewById(R.id.discounts_dropdown);
+        courierBunch = view.findViewById(R.id.courierBunch);
+        courierBunch.setVisibility(View.GONE);
+
         sellingPrice = view.findViewById(R.id.sellingPrice);
         purchasePrice = view.findViewById(R.id.purchasePrice);
 

@@ -71,7 +71,7 @@ public class SavedData extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarGradiant(this);
-        setContentView(R.layout.saved_result_clubfactory);
+        setContentView(R.layout.saved_result_common);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

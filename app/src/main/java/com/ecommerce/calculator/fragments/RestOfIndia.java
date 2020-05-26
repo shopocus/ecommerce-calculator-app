@@ -22,7 +22,7 @@ public class RestOfIndia extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_local, container, false);
+        View view = inflater.inflate(R.layout.result_common_fragment, container, false);
 
         result = view.findViewById(R.id.text_view_result);
 

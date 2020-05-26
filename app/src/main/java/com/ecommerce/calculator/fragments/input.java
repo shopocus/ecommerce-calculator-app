@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
@@ -33,6 +34,8 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.tabs.TabLayout;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,13 +47,13 @@ import java.util.ArrayList;
 
 public class input extends Fragment implements View.OnClickListener {
 
-    private ImageButton details, expenses, discounts, save, sendEmail;
-    private TextView pp, gst, transport, packaging, labour, storage, other, price, percentage, line1, line2, line3, line4, line5,
-            line6, line7, rs1,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
-    private EditText num1, num2, num4, num5, num6, num7, num8, num9, num10;
-    LinearLayout linearLayout;
+    private ImageButton details, expenses, discounts, save, sendEmail, reset;
+    private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice, discountByPercentage;
+    LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch;
 
-    Spinner num3, categories;
+    CardView productDetailsCard, expensesCard, discountsCard;
+    ViewPager viewPager;
+    Spinner gstOnProduct, categories;
     String categoryFinal;
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
@@ -58,8 +61,9 @@ public class input extends Fragment implements View.OnClickListener {
     Double[] items = new Double[8] ;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
+    TabLayout tabLayout;
     private ProgressBar progressBar;
-    private TextView textView;
+    private TextView textView, line1, line2, line3, line4;
     private String myText;
 
     @Nullable
@@ -68,33 +72,17 @@ public class input extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.menu, container, false);
 
-        itemList = view.findViewById(R.id.text_view_result);
-        result_card = view.findViewById(R.id.result_card);
-        linearLayout = view.findViewById(R.id.linearlayout);
-
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                if (pp.getVisibility() == View.GONE) {
-                    pp.setVisibility(View.VISIBLE);
-                    rs1.setVisibility(View.VISIBLE);
-                    num2.setVisibility(View.VISIBLE);
-                    gst.setVisibility(View.VISIBLE);
-                    rs2.setVisibility(View.VISIBLE);
-                    num3.setVisibility(View.VISIBLE);
-                    line1.setVisibility(View.VISIBLE);
+                if (productDetailsCard.getVisibility() == View.GONE) {
+                    productDetailsCard.setVisibility(View.VISIBLE);
                     details.setRotation(180);
                 } else {
-                    pp.setVisibility(View.GONE);
-                    rs1.setVisibility(View.GONE);
-                    num2.setVisibility(View.GONE);
-                    gst.setVisibility(View.GONE);
-                    rs2.setVisibility(View.GONE);
-                    num3.setVisibility(View.GONE);
-                    line1.setVisibility(View.GONE);
+                    productDetailsCard.setVisibility(View.GONE);
                     details.setRotation(0);
                 }
             }
@@ -104,47 +92,11 @@ public class input extends Fragment implements View.OnClickListener {
         expenses.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (transport.getVisibility() == View.GONE) {
-                    transport.setVisibility(View.VISIBLE);
-                    rs3.setVisibility(View.VISIBLE);
-                    num4.setVisibility(View.VISIBLE);
-                    packaging.setVisibility(View.VISIBLE);
-                    rs4.setVisibility(View.VISIBLE);
-                    num5.setVisibility(View.VISIBLE);
-                    labour.setVisibility(View.VISIBLE);
-                    rs5.setVisibility(View.VISIBLE);
-                    num6.setVisibility(View.VISIBLE);
-                    storage.setVisibility(View.VISIBLE);
-                    rs6.setVisibility(View.VISIBLE);
-                    num7.setVisibility(View.VISIBLE);
-                    other.setVisibility(View.VISIBLE);
-                    rs7.setVisibility(View.VISIBLE);
-                    num8.setVisibility(View.VISIBLE);
-                    line2.setVisibility(View.VISIBLE);
-                    line3.setVisibility(View.VISIBLE);
-                    line4.setVisibility(View.VISIBLE);
-                    line5.setVisibility(View.VISIBLE);
+                if (expensesCard.getVisibility() == View.GONE) {
+                    expensesCard.setVisibility(View.VISIBLE);
                     expenses.setRotation(180);
                 } else {
-                    transport.setVisibility(View.GONE);
-                    rs3.setVisibility(View.GONE);
-                    num4.setVisibility(View.GONE);
-                    packaging.setVisibility(View.GONE);
-                    rs4.setVisibility(View.GONE);
-                    num5.setVisibility(View.GONE);
-                    labour.setVisibility(View.GONE);
-                    rs5.setVisibility(View.GONE);
-                    num6.setVisibility(View.GONE);
-                    storage.setVisibility(View.GONE);
-                    rs6.setVisibility(View.GONE);
-                    num7.setVisibility(View.GONE);
-                    other.setVisibility(View.GONE);
-                    rs7.setVisibility(View.GONE);
-                    num8.setVisibility(View.GONE);
-                    line2.setVisibility(View.GONE);
-                    line3.setVisibility(View.GONE);
-                    line4.setVisibility(View.GONE);
-                    line5.setVisibility(View.GONE);
+                    expensesCard.setVisibility(View.GONE);
                     expenses.setRotation(0);
                 }
             }
@@ -156,23 +108,11 @@ public class input extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v)
             {
-                if (price.getVisibility() == View.GONE) {
-                    price.setVisibility(View.VISIBLE);
-                    rs8.setVisibility(View.VISIBLE);
-                    num9.setVisibility(View.VISIBLE);
-                    percentage.setVisibility(View.VISIBLE);
-                    rs9.setVisibility(View.VISIBLE);
-                    num10.setVisibility(View.VISIBLE);
-                    line6.setVisibility(View.VISIBLE);
+                if (discountsCard.getVisibility() == View.GONE) {
+                    discountsCard.setVisibility(View.VISIBLE);
                     discounts.setRotation(180);
                 } else {
-                    price.setVisibility(View.GONE);
-                    rs7.setVisibility(View.GONE);
-                    num9.setVisibility(View.GONE);
-                    percentage.setVisibility(View.GONE);
-                    rs8.setVisibility(View.GONE);
-                    num10.setVisibility(View.GONE);
-                    line6.setVisibility(View.GONE);
+                    discountsCard.setVisibility(View.GONE);
                     discounts.setRotation(0);
                 }
             }
@@ -195,24 +135,24 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
-        ImageButton reset = view.findViewById(R.id.reset);
+        reset = view.findViewById(R.id.reset);
         reset.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                num1.requestFocus();
-                num1.setText("");
+                sellingPrice.requestFocus();
+                sellingPrice.setText("");
                 categories.setSelection(0);
-                num2.setText("");
-                num3.setSelection(0);
-                num4.setText("");
-                num5.setText("");
-                num6.setText("");
-                num7.setText("");
-                num8.setText("");
-                num9.setText("");
-                num10.setText("");
+                purchasePrice.setText("");
+                gstOnProduct.setSelection(0);
+                inwardShipping.setText("");
+                packagingExpenses.setText("");
+                labour.setText("");
+                storageFee.setText("");
+                otherCharges.setText("");
+                discountByPrice.setText("");
+                discountByPercentage.setText("");
                 result_card.setVisibility(View.GONE);
             }
         });
@@ -290,41 +230,52 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
+        itemList = view.findViewById(R.id.text_view_result);
+        result_card = view.findViewById(R.id.result_card);
+        linearLayout = view.findViewById(R.id.linearlayout);
+
+        productDetailsCard = view.findViewById(R.id.productDetailsCard);
+        expensesCard = view.findViewById(R.id.expensesCard);
+        discountsCard = view.findViewById(R.id.discountsCard);
         details = view.findViewById(R.id.details_dropdown);
-        pp = view.findViewById(R.id.text_pp);
-        gst = view.findViewById(R.id.text_gst);
-        transport = view.findViewById(R.id.text_transport);
-        packaging = view.findViewById(R.id.text_packaging);
-        labour = view.findViewById(R.id.text_labour);
-        storage = view.findViewById(R.id.text_Storage);
-        other = view.findViewById(R.id.text_other);
+        expenses = view.findViewById(R.id.expenses_dropdown);
+        discounts = view.findViewById(R.id.discounts_dropdown);
+        weightBunch = view.findViewById(R.id.weightBunch);
+        lengthBunch = view.findViewById(R.id.lengthBunch);
+        breadthBunch = view.findViewById(R.id.breadthBunch);
+        heightBunch = view.findViewById(R.id.heightBunch);
+        customerTypeBunch = view.findViewById(R.id.customerTypeBunch);
+        payModeBunch = view.findViewById(R.id.payModeBunch);
+        courierBunch = view.findViewById(R.id.courierBunch);
+
+        //tabLayout = view.findViewById(R.id.tab_layout);
+        //tabLayout.setVisibility(View.GONE);
+        //viewPager = view.findViewById(R.id.viewPager);
+        //viewPager.setVisibility(View.GONE);
         line1 = view.findViewById(R.id.line1);
         line2 = view.findViewById(R.id.line2);
         line3 = view.findViewById(R.id.line3);
         line4 = view.findViewById(R.id.line4);
-        line5 = view.findViewById(R.id.line5);
-        line6 = view.findViewById(R.id.line6);
-        rs1 = view.findViewById(R.id.rs1);
-        rs2 = view.findViewById(R.id.rs2);
-        rs3 = view.findViewById(R.id.rs3);
-        rs4 = view.findViewById(R.id.rs4);
-        rs5 = view.findViewById(R.id.rs5);
-        rs6 = view.findViewById(R.id.rs6);
-        rs7 = view.findViewById(R.id.rs7);
-        rs8 = view.findViewById(R.id.rs8);
-        rs9 = view.findViewById(R.id.rs9);
-        expenses = view.findViewById(R.id.expenses_dropdown);
-        discounts = view.findViewById(R.id.discounts_dropdown);
-        price = view.findViewById(R.id.text_price);
-        percentage = view.findViewById(R.id.text_percentage);
-        num1 = view.findViewById(R.id.sellingPrice);
-        num2 = view.findViewById(R.id.purchasePrice);
+        lengthBunch.setVisibility(View.GONE);
+        breadthBunch.setVisibility(View.GONE);
+        heightBunch.setVisibility(View.GONE);
+        customerTypeBunch.setVisibility(View.GONE);
+        weightBunch.setVisibility(View.GONE);
+        payModeBunch.setVisibility(View.GONE);
+        courierBunch.setVisibility(View.GONE);
+        line1.setVisibility(View.GONE);
+        line2.setVisibility(View.GONE);
+        line3.setVisibility(View.GONE);
+        line4.setVisibility(View.GONE);
 
-        num3 = view.findViewById(R.id.gst);
+        sellingPrice = view.findViewById(R.id.sellingPrice);
+        purchasePrice = view.findViewById(R.id.purchasePrice);
+
+        gstOnProduct = view.findViewById(R.id.gst);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_activated_1, gst_array);
         adapter1.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-        num3.setAdapter(adapter1);
-        num3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        gstOnProduct.setAdapter(adapter1);
+        gstOnProduct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinner_ans = gst_array[position];
@@ -334,13 +285,13 @@ public class input extends Fragment implements View.OnClickListener {
             }
         });
 
-        num4 = view.findViewById(R.id.inwardShipping);
-        num5 = view.findViewById(R.id.packagingExpenses);
-        num6 = view.findViewById(R.id.labour);
-        num7 = view.findViewById(R.id.storageFee);
-        num8 = view.findViewById(R.id.otherCharges);
-        num9 = view.findViewById(R.id.discountByPrice);
-        num10 = view.findViewById(R.id.discountByPercentage);
+        inwardShipping = view.findViewById(R.id.inwardShipping);
+        packagingExpenses = view.findViewById(R.id.packagingExpenses);
+        labour = view.findViewById(R.id.labour);
+        storageFee = view.findViewById(R.id.storageFee);
+        otherCharges = view.findViewById(R.id.otherCharges);
+        discountByPrice = view.findViewById(R.id.discountByPrice);
+        discountByPercentage = view.findViewById(R.id.discountByPercentage);
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
@@ -349,33 +300,33 @@ public class input extends Fragment implements View.OnClickListener {
             ArrayList<String> bundle_input = bundle.getStringArrayList("input");
             int selection = adapter.getPosition(bundle_input.get(0));
             categories.setSelection(selection);
-            num1.setText(bundle_input.get(1));
-            num2.setText(bundle_input.get(2));
+            sellingPrice.setText(bundle_input.get(1));
+            purchasePrice.setText(bundle_input.get(2));
             int value = Integer.parseInt(bundle_input.get(3));
             switch (value){
                 case 0:
-                    num3.setSelection(0);
+                    gstOnProduct.setSelection(0);
                     break;
                 case 5:
-                    num3.setSelection(1);
+                    gstOnProduct.setSelection(1);
                     break;
                 case 12:
-                    num3.setSelection(2);
+                    gstOnProduct.setSelection(2);
                     break;
                 case 18:
-                    num3.setSelection(3);
+                    gstOnProduct.setSelection(3);
                     break;
                 case 28:
-                    num3.setSelection(4);
+                    gstOnProduct.setSelection(4);
                     break;
             }
-            num4.setText(bundle_input.get(4));
-            num5.setText(bundle_input.get(5));
-            num6.setText(bundle_input.get(6));
-            num7.setText(bundle_input.get(7));
-            num8.setText(bundle_input.get(8));
-            num9.setText(bundle_input.get(9));
-            num10.setText(bundle_input.get(10));
+            inwardShipping.setText(bundle_input.get(4));
+            packagingExpenses.setText(bundle_input.get(5));
+            labour.setText(bundle_input.get(6));
+            storageFee.setText(bundle_input.get(7));
+            otherCharges.setText(bundle_input.get(8));
+            discountByPrice.setText(bundle_input.get(9));
+            discountByPercentage.setText(bundle_input.get(10));
 
             String flag = "false";
             SharedPrefManager.getInstance(getActivity())
@@ -385,67 +336,67 @@ public class input extends Fragment implements View.OnClickListener {
 
     protected void calculate() {
 
-        if (num1.getText().toString().isEmpty()) {
-            num1.setError("Selling Price is required");
-            num1.requestFocus();
+        if (sellingPrice.getText().toString().isEmpty()) {
+            sellingPrice.setError("Selling Price is required");
+            sellingPrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if (num2.getText().toString().isEmpty()) {
-            num2.setError("Purchase Price is required");
-            num2.requestFocus();
+        if (purchasePrice.getText().toString().isEmpty()) {
+            purchasePrice.setError("Purchase Price is required");
+            purchasePrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if(Double.parseDouble(num1.getText().toString()) <= 0){
-            num1.setError("Selling Price not valid");
-            num1.requestFocus();
+        if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
+            sellingPrice.setError("Selling Price not valid");
+            sellingPrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if(Double.parseDouble(num2.getText().toString()) <= 0){
-            num2.setError("Purchase Price is not valid");
-            num2.requestFocus();
+        if(Double.parseDouble(purchasePrice.getText().toString()) <= 0){
+            purchasePrice.setError("Purchase Price is not valid");
+            purchasePrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if(num4.getText().toString().isEmpty())
-            num4.setText("0");
-        if(num5.getText().toString().isEmpty())
-            num5.setText("0");
-        if(num6.getText().toString().isEmpty())
-            num6.setText("0");
-        if(num7.getText().toString().isEmpty())
-            num7.setText("0");
-        if(num8.getText().toString().isEmpty())
-            num8.setText("0");
-        if(num9.getText().toString().isEmpty())
-            num9.setText("0");
-        if(num10.getText().toString().isEmpty())
-            num10.setText("0");
+        if(inwardShipping.getText().toString().isEmpty())
+            inwardShipping.setText("0");
+        if(packagingExpenses.getText().toString().isEmpty())
+            packagingExpenses.setText("0");
+        if(labour.getText().toString().isEmpty())
+            labour.setText("0");
+        if(storageFee.getText().toString().isEmpty())
+            storageFee.setText("0");
+        if(otherCharges.getText().toString().isEmpty())
+            otherCharges.setText("0");
+        if(discountByPrice.getText().toString().isEmpty())
+            discountByPrice.setText("0");
+        if(discountByPercentage.getText().toString().isEmpty())
+            discountByPercentage.setText("0");
 
-        if (Double.parseDouble(num9.getText().toString()) > 0 && Double.parseDouble(num10.getText().toString()) > 0) {
-            num9.setError("One discount criteria valid at a time");
-            num9.requestFocus();
+        if (Double.parseDouble(discountByPrice.getText().toString()) > 0 && Double.parseDouble(discountByPercentage.getText().toString()) > 0) {
+            discountByPrice.setError("One discount criteria valid at a time");
+            discountByPrice.requestFocus();
             ButtonFinished();
             return;
         }
 
         String category = categoryFinal;
-        double number1 = Double.parseDouble(num1.getText().toString());
-        double number2 = Double.parseDouble(num2.getText().toString());
+        double number1 = Double.parseDouble(sellingPrice.getText().toString());
+        double number2 = Double.parseDouble(purchasePrice.getText().toString());
         double number3 = Double.parseDouble(spinner_ans);
-        double number4 = Double.parseDouble(num4.getText().toString());
-        double number5 = Double.parseDouble(num5.getText().toString());
-        double number6 = Double.parseDouble(num6.getText().toString());
-        double number7 = Double.parseDouble(num7.getText().toString());
-        double number8 = Double.parseDouble(num8.getText().toString());
-        double number9 = Double.parseDouble(num9.getText().toString());
-        double number10 = Double.parseDouble(num10.getText().toString());
+        double number4 = Double.parseDouble(inwardShipping.getText().toString());
+        double number5 = Double.parseDouble(packagingExpenses.getText().toString());
+        double number6 = Double.parseDouble(labour.getText().toString());
+        double number7 = Double.parseDouble(storageFee.getText().toString());
+        double number8 = Double.parseDouble(otherCharges.getText().toString());
+        double number9 = Double.parseDouble(discountByPrice.getText().toString());
+        double number10 = Double.parseDouble(discountByPercentage.getText().toString());
 
         Call<MeeshoCalculationResponse> call = RetrofitClient
                 .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
@@ -511,16 +462,16 @@ public class input extends Fragment implements View.OnClickListener {
     public void save(){
         String title = String.valueOf(myText);
         String category = categoryFinal;
-        String sellingPrice = num1.getText().toString().trim();
+        String sellingPrice = this.sellingPrice.getText().toString().trim();
         String gstOnProduct = spinner_ans;
-        String productPriceWithoutGst = num2.getText().toString().trim();
-        String inwardShipping = num4.getText().toString().trim();
-        String packagingExpense = num5.getText().toString().trim();
-        String labour = num6.getText().toString().trim();
-        String storageFee = num7.getText().toString().trim();
-        String other = num8.getText().toString().trim();
-        String discountPercent = num10.getText().toString().trim();
-        String discountAmount = num9.getText().toString().trim();
+        String productPriceWithoutGst = purchasePrice.getText().toString().trim();
+        String inwardShipping = this.inwardShipping.getText().toString().trim();
+        String packagingExpense = packagingExpenses.getText().toString().trim();
+        String labour = this.labour.getText().toString().trim();
+        String storageFee = this.storageFee.getText().toString().trim();
+        String other = otherCharges.getText().toString().trim();
+        String discountPercent = discountByPercentage.getText().toString().trim();
+        String discountAmount = discountByPrice.getText().toString().trim();
         String bankSettlement = String.valueOf(items[0]);
         String totalCommision = String.valueOf(items[1]);
         String profit = String.valueOf(items[2]);
@@ -570,16 +521,16 @@ public class input extends Fragment implements View.OnClickListener {
 
     public void share(){
         String content = "INPUT" + "\n" +
-                "Selling Price: " + num1.getText().toString().trim() + "\n" +
+                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
                 "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + num2.getText().toString().trim() + "\n" +
-                "Inward Shipping: " + num4.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + num5.getText().toString().trim() + "\n" +
-                "Labour: " + num6.getText().toString().trim() + "\n" +
-                "Storage Fee: " + num7.getText().toString().trim() + "\n" +
-                "Other: " + num8.getText().toString().trim() + "\n" +
-                "Discount Percent: " + num10.getText().toString().trim() + "\n" +
-                "Discount Amount: " + num9.getText().toString().trim() + "\n\n" +
+                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
+                "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
+                "Other: " + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
+                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
                 "OUTPUT" + "\n" +
                 "Bank Settlement: " + items[0] + "\n" +
                 "Total Commision: " + items[1] + "\n" +

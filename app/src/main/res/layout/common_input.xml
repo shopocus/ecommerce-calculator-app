@@ -67,7 +67,6 @@
 
 
                 <TextView
-                    android:id="@+id/line7"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -173,7 +172,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line1"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -208,7 +206,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line8"
+                    android:id="@+id/line1"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -217,6 +215,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/weightBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -245,7 +244,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line11"
+                    android:id="@+id/line2"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -254,6 +253,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/lengthBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -281,7 +281,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line12"
+                    android:id="@+id/line3"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -290,6 +290,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/breadthBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -317,7 +318,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line13"
+                    android:id="@+id/line4"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -326,6 +327,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/heightBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -352,22 +354,75 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/line9"
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorBase" />
-
                 <LinearLayout
+                    android:id="@+id/courierBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_courier"
+                        android:id="@+id/line9"
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:paddingTop="3dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorBase" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Courier: "
+                        android:textColor="@color/colorPrimary"/>
+
+                    <RadioGroup
+                        android:id="@+id/courier"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/radio_delhivery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:layout_gravity="center"
+                            android:layout_weight="50"
+                            android:text="delhivery" />
+
+                        <RadioButton
+                            android:id="@+id/radio_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:text="other" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/customerTypeBunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:paddingTop="3dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorBase" />
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
@@ -413,19 +468,20 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/line10"
-                    style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorBase" />
-
                 <LinearLayout
+                    android:id="@+id/payModeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/line10"
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:paddingTop="3dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorBase" />
 
                     <TextView
                         android:id="@+id/text_payment"
@@ -535,7 +591,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line2"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -572,7 +627,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line3"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -609,7 +663,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line4"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -646,7 +699,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line5"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -752,7 +804,6 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/line6"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
