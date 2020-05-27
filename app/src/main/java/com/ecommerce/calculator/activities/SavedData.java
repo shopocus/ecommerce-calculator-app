@@ -1,16 +1,21 @@
 package com.ecommerce.calculator.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,6 +71,8 @@ public class SavedData extends AppCompatActivity {
     ArrayList<String> National = new ArrayList<>();
     ViewPager viewPager;
     LoadingDialog loadingDialog;
+    ListView mainList;
+   // ScrollView scrollView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,10 +91,17 @@ public class SavedData extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearlayout);
         input_card = findViewById(R.id.input_card);
         output_card = findViewById(R.id.result_card);
-        buttons = findViewById(R.id.buttons);
+//        buttons = findViewById(R.id.buttons);
         textViewTitle = findViewById(R.id.title);
         itemList = findViewById(R.id.text_view_input);
         result = findViewById(R.id.text_view_result);
+      //  mainList = findViewById(R.id.mainList);
+     //   scrollView = findViewById(R.id.scrollView);
+
+//        View header = getLayoutInflater().inflate(R.layout.saved_input_card, null);
+//        View footer = getLayoutInflater().inflate(R.layout.saved_result_card, null);
+//        mainList.addHeaderView(header);
+//        mainList.addFooterView(footer);
 
         edit = findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -425,6 +439,7 @@ public class SavedData extends AppCompatActivity {
 
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(itemList);
 
         ArrayList<String> title = new ArrayList<>();
         title.add("Category");
@@ -516,6 +531,29 @@ public class SavedData extends AppCompatActivity {
         FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(flipkartSectionAdapter);
+//        viewPager.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                viewPager.getParent().requestDisallowInterceptTouchEvent(false);
+//                return false;
+//            }
+//        });
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                if(position != )
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -533,5 +571,25 @@ public class SavedData extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView){
+        ListAdapter listAdapter = listView.getAdapter();
+        if(listAdapter == null)
+            return;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i=0;i<listAdapter.getCount();i++){
+            view = listAdapter.getView(i, view, listView);
+            if(i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup .LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

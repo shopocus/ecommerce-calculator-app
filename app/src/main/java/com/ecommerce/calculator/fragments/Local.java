@@ -3,10 +3,14 @@ package com.ecommerce.calculator.fragments;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ScrollView;
+
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.models.output;
 import java.util.ArrayList;
@@ -14,6 +18,7 @@ import java.util.ArrayList;
 public class Local extends Fragment {
 
     ListView result;
+    ScrollView scrollView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,21 @@ public class Local extends Fragment {
         View view = inflater.inflate(R.layout.result_common_fragment, container, false);
 
         result = view.findViewById(R.id.text_view_result);
+        scrollView = view.findViewById(R.id.scrollView);
+
+//        result.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                scrollView.requestDisallowInterceptTouchEvent(true);
+//                int action = event.getActionMasked();
+//                switch (action){
+//                    case MotionEvent.ACTION_UP:
+//                        scrollView.requestDisallowInterceptTouchEvent(false);
+//                        break;
+//                }
+//                return false;
+//            }
+//        });
 
         Bundle bundle = this.getArguments();
         ArrayList<String> bundle_local = bundle.getStringArrayList("Local");
@@ -50,6 +70,8 @@ public class Local extends Fragment {
 
         OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
         result.setAdapter(adapter);
+       // SavedData.setListViewHeightBasedOnChildren(result);
+
         return view;
     }
 }
