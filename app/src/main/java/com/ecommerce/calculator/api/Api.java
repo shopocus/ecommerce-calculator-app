@@ -1,5 +1,6 @@
 package com.ecommerce.calculator.api;
 
+import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
@@ -251,24 +252,31 @@ public interface Api {
             @Field("profitPercentageNational") String profitPercentageNational
     );
 
-//    @FormUrlEncoded
-//    @POST("amazon/app/calculate")
-//    Call<AmazonCalculationResponse> amazonCalculation(
-//            @Field("category") String category,
-//            @Field("sellingPrice") double sellingPrice,
-//            @Field("gstOnProduct") double gstOnProduct,
-//            @Field("productPriceWithoutGst") double productPriceWithoutGst,
-//            @Field("inwardShipping") double inwardShipping,
-//            @Field("packagingExpense") double packagingExpense,
-//            @Field("labour") double labour,
-//            @Field("storageFee") double storageFee,
-//            @Field("other") double other,
-//            @Field("discountPercent") double discountPercent,
-//            @Field("discountAmount") double discountAmount,
-//            @Field("weight") double weight,
-//            @Field("payMode") String payMode,
-//            @Field("courier") String courier
-//    );
+    @FormUrlEncoded
+    @POST("amazon/app/calculate")
+    Call<AmazonCalculationResponse> amazonCalculation(
+            @Field("category") String category,
+            @Field("subcategory") String subcategory,
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("packagingExpense") double packagingExpense,
+            @Field("labour") double labour,
+            @Field("storageFee") double storageFee,
+            @Field("other") double other,
+            @Field("discountPercent") double discountPercent,
+            @Field("discountAmount") double discountAmount,
+            @Field("weight") double weight,
+            @Field("length") double length,
+            @Field("breadth") double breadth,
+            @Field("height") double height,
+            @Field("shipmentType") String shipmentType,
+            @Field("easyShipType") String easyShipType,
+            @Field("selfShipLocal") double selfShipLocal,
+            @Field("selfShipRegional") double selfShipRegional,
+            @Field("selfShipNational") double selfShipNational
+    );
 
     @GET("amazon/app/showCategory")
     Call<category> getCategoriesAmazon( );
@@ -278,6 +286,72 @@ public interface Api {
     @FormUrlEncoded
     Call<subCategory> getSubCategoriesAmazon(
             @Field("category") String category
+    );
+
+    @FormUrlEncoded
+    @POST("amazon/app/toSave")
+    Call<MessageResponse> savedAmazon(
+            @Field("title") String title,
+            @Field("category") String category,
+            @Field("subcategory") String subcategory,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("packagingExpense") String packagingExpense,
+            @Field("labour") String labour,
+            @Field("storageFee") String storageFee,
+            @Field("other") String other,
+            @Field("discountPercent") String discountPercent,
+            @Field("discountAmount") String discountAmount,
+            @Field("weight") String weight,
+            @Field("length") String length,
+            @Field("breadth") String breadth,
+            @Field("height") String height,
+            @Field("shipmentType") String shipmentType,
+            @Field("easyShipType") String easyShipType,
+            @Field("selfShipLocal") String commissionFeesLocal,
+            @Field("selfShipRegional") String fixedFeesLocal,
+            @Field("selfShipNational") String collectionFeesLocal,
+            @Field("referralFeesLocal") String referralFeesLocal,
+            @Field("closingFeesLocal") String closingFeesLocal,
+            @Field("shippingFeesLocal") String shippingFeesLocal,
+            @Field("RCSLocal") String RCSLocal,
+            @Field("gstOnRCSLocal") String gstOnRCSLocal,
+            @Field("totalChargesLocal") String totalChargesLocal,
+            @Field("gstClaimLocal") String gstClaimLocal,
+            @Field("bankSettlementLocal") String bankSettlementLocal,
+            @Field("totalGstPayableLocal") String totalGstPayableLocal,
+            @Field("tcsLocal") String tcsLocal,
+            @Field("gstPayableLocal") String gstPayableLocal,
+            @Field("profitLocal") String profitLocal,
+            @Field("profitPercentageLocal") String profitPercentageLocal,
+            @Field("referralFeesRegional") String referralFeesRegional,
+            @Field("closingFeesRegional") String closingFeesRegional,
+            @Field("shippingFeesRegional") String shippingFeesRegional,
+            @Field("RCSRegional") String RCSRegional,
+            @Field("gstOnRCSRegional") String gstOnRCSRegional,
+            @Field("totalChargesRegional") String totalChargesRegional,
+            @Field("gstClaimRegional") String gstClaimRegional,
+            @Field("bankSettlementRegional") String bankSettlementRegional,
+            @Field("totalGstPayableRegional") String totalGstPayableRegional,
+            @Field("tcsRegional") String tcsRegional,
+            @Field("gstPayableRegional") String gstPayableRegional,
+            @Field("profitRegional") String profitRegional,
+            @Field("profitPercentageRegional") String profitPercentageRegional,
+            @Field("referralFeesNational") String referralFeesNational,
+            @Field("closingFeesNational") String closingFeesNational,
+            @Field("shippingFeesNational") String shippingFeesNational,
+            @Field("RCSNational") String RCSNational,
+            @Field("gstOnRCSNational") String gstOnRCSNational,
+            @Field("totalChargesNational") String totalChargesNational,
+            @Field("gstClaimNational") String gstClaimNational,
+            @Field("bankSettlementNational") String bankSettlementNational,
+            @Field("totalGstPayableNational") String totalGstPayableNational,
+            @Field("tcsNational") String tcsNational,
+            @Field("gstPayableNational") String gstPayableNational,
+            @Field("profitNational") String profitNational,
+            @Field("profitPercentageNational") String profitPercentageNational
     );
 
     @FormUrlEncoded

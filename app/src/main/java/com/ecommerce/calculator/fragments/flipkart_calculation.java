@@ -373,13 +373,6 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
             return;
         }
 
-        if (weight.getText().toString().isEmpty()) {
-            weight.setError("Weight is required");
-            weight.requestFocus();
-            ButtonFinished();
-            return;
-        }
-
         if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
             sellingPrice.setError("Selling Price not valid");
             sellingPrice.requestFocus();

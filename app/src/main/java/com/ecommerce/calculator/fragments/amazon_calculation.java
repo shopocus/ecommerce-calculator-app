@@ -46,7 +46,8 @@ import retrofit2.Response;
 public class amazon_calculation extends Fragment implements View.OnClickListener  {
 
         private ImageButton details, expenses, discounts, save, sendEmail, reset;
-        private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice, discountByPercentage, weight, length, breadth, height;
+        private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice,
+                discountByPercentage, weight, length, breadth, height, selfshipLocal, selfshipRegional, selfshipNational;
         LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch, selfshipLocalBunch,
                 selfshipRegionalBunch, selfshipNationalBunch, easyShipmentTypeBunch;
 
@@ -333,6 +334,9 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             length = view.findViewById(R.id.length);
             breadth = view.findViewById(R.id.breadth);
             height = view.findViewById(R.id.height);
+            selfshipLocal = view.findViewById(R.id.selfshipLocal);
+            selfshipRegional = view.findViewById(R.id.selfshipRegional);
+            selfshipNational = view.findViewById(R.id.selfshipNational);
             progressBar = view.findViewById(R.id.loader);
             textView = view.findViewById(R.id.calculate_textview);
             customerTypeBunch = view.findViewById(R.id.customerTypeBunch);
@@ -396,276 +400,303 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             }
         }
 
-//        protected void calculate() {
-//
-//            if (sellingPrice.getText().toString().isEmpty()) {
-//                sellingPrice.setError("Selling Price is required");
-//                sellingPrice.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (purchasePrice.getText().toString().isEmpty()) {
-//                purchasePrice.setError("Purchase Price is required");
-//                purchasePrice.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (weight.getText().toString().isEmpty()) {
-//                weight.setError("Weight is required");
-//                weight.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
-//                sellingPrice.setError("Selling Price not valid");
-//                sellingPrice.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if(Double.parseDouble(purchasePrice.getText().toString()) <= 0){
-//                purchasePrice.setError("Purchase Price is not valid");
-//                purchasePrice.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (weight.getText().toString().isEmpty()) {
-//                weight.setError("Weight is required");
-//                weight.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (length.getText().toString().isEmpty()) {
-//                length.setError("Length is required");
-//                length.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (breadth.getText().toString().isEmpty()) {
-//                breadth.setError("Breadth is required");
-//                breadth.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if (height.getText().toString().isEmpty()) {
-//                height.setError("Height is required");
-//                height.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            if(inwardShipping.getText().toString().isEmpty())
-//                inwardShipping.setText("0");
-//            if(packagingExpenses.getText().toString().isEmpty())
-//                packagingExpenses.setText("0");
-//            if(labour.getText().toString().isEmpty())
-//                labour.setText("0");
-//            if(storageFee.getText().toString().isEmpty())
-//                storageFee.setText("0");
-//            if(otherCharges.getText().toString().isEmpty())
-//                otherCharges.setText("0");
-//            if(discountByPrice.getText().toString().isEmpty())
-//                discountByPrice.setText("0");
-//            if(discountByPercentage.getText().toString().isEmpty())
-//                discountByPercentage.setText("0");
-//
-//            if (Double.parseDouble(discountByPrice.getText().toString()) > 0 && Double.parseDouble(discountByPercentage.getText().toString()) > 0) {
-//                discountByPrice.setError("One discount criteria valid at a time");
-//                discountByPrice.requestFocus();
-//                ButtonFinished();
-//                return;
-//            }
-//
-//            String category = categoryFinal;
-//            double number1 = Double.parseDouble(sellingPrice.getText().toString());
-//            double number2 = Double.parseDouble(purchasePrice.getText().toString());
-//            double number3 = Double.parseDouble(spinner_ans);
-//            double number4 = Double.parseDouble(inwardShipping.getText().toString());
-//            double number5 = Double.parseDouble(packagingExpenses.getText().toString());
-//            double number6 = Double.parseDouble(labour.getText().toString());
-//            double number7 = Double.parseDouble(storageFee.getText().toString());
-//            double number8 = Double.parseDouble(otherCharges.getText().toString());
-//            double number9 = Double.parseDouble(discountByPrice.getText().toString());
-//            double number10 = Double.parseDouble(discountByPercentage.getText().toString());
-//            double number11 = Double.parseDouble(weight.getText().toString());
-//            double number12 = Double.parseDouble(length.getText().toString());
-//            double number13 = Double.parseDouble(breadth.getText().toString());
-//            double number14 = Double.parseDouble(height.getText().toString());
-//
-//            Call<FlipkartCalculationResponse> call = RetrofitClient
-//                    .getInstance().getApi().flipkartCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
-//                            number11, number12, number13, number14,);
-//
-//            call.enqueue(new Callback<FlipkartCalculationResponse>() {
-//                @Override
-//                public void onResponse(Call<FlipkartCalculationResponse> call, Response<FlipkartCalculationResponse> response) {
-//                    if(response.isSuccessful()) {
-//                        FlipkartCalculationResponse CalculateResponse = response.body();
-//                        ButtonFinished();
-//
-//                        result_card.setVisibility(View.VISIBLE);
-//                        tabLayout.removeAllTabs();
-//
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCommissionFees()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getFixedFees()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCollectionFees()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getShippingFees()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCFCS()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstOnCFCS()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalCharges()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getBankSettlement()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalGstPayable()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTcs()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstPayable()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfit()));
-//                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfitPercentage()));
-//
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCommissionFees()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getFixedFees()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCollectionFees()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getShippingFees()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCFCS()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstOnCFCS()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalCharges()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getBankSettlement()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalGstPayable()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTcs()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstPayable()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfit()));
-//                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfitPercentage()));
-//
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCommissionFees()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getFixedFees()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCollectionFees()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getShippingFees()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCFCS()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstOnCFCS()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalCharges()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getBankSettlement()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalGstPayable()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTcs()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstPayable()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfit()));
-//                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfitPercentage()));
-//
-//                        Bundle bundle = new Bundle();
-//                        bundle.putStringArrayList("Local", Local);
-//                        bundle.putStringArrayList("Zonal", Zonal);
-//                        bundle.putStringArrayList("National", National);
-//
-//                        tabLayout.addTab(tabLayout.newTab().setText("Local"));
-//                        tabLayout.addTab(tabLayout.newTab().setText("Zonal"));
-//                        tabLayout.addTab(tabLayout.newTab().setText("National"));
-//                        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-//                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-//                        FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
-//                        viewPager.setAdapter(flipkartSectionAdapter);
-//                        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-//                        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//                            @Override
-//                            public void onTabSelected(TabLayout.Tab tab) {
-//                                viewPager.setCurrentItem(tab.getPosition());
-//                            }
-//
-//                            @Override
-//                            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onTabReselected(TabLayout.Tab tab) {
-//
-//                            }
-//                        });
-//
-//
-//                        save.setImageResource(R.drawable.ic_bookmark_border);
-//                        save.setEnabled(true);
-//
-//                    }else if(response.code() == 501){
-//                        Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
-//                        SharedPrefManager.getInstance(getContext()).clear();
-//                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
-//                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(intent_logout);
-//                    }
-//                }
-//                @Override
-//                public void onFailure(Call<FlipkartCalculationResponse> call, Throwable t) {
-//                    ButtonFinished();
-//                    Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+        protected void calculate() {
 
-//        public void save(){
-//            String title = String.valueOf(myText);
-//            String category = categoryFinal;
-//            String sellingPrice = this.sellingPrice.getText().toString().trim();
-//            String gstOnProduct = spinner_ans;
-//            String productPriceWithoutGst = purchasePrice.getText().toString().trim();
-//            String inwardShipping = this.inwardShipping.getText().toString().trim();
-//            String packagingExpense = packagingExpenses.getText().toString().trim();
-//            String labour = this.labour.getText().toString().trim();
-//            String storageFee = this.storageFee.getText().toString().trim();
-//            String other = otherCharges.getText().toString().trim();
-//            String discountPercent = discountByPercentage.getText().toString().trim();
-//            String discountAmount = discountByPrice.getText().toString().trim();
-//            String weight = this.weight.getText().toString().trim();
-//            String length = this.length.getText().toString().trim();
-//            String breadth = this.breadth.getText().toString().trim();
-//            String height = this.height.getText().toString().trim();
-////            String payMode = paymentOption;
-////            String customerType = customerTypeOption;
-//
-//            Call<MessageResponse> call = RetrofitClient
-//                    .getInstance()
-//                    .getApi()
-//                    .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-//                            storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType,
-//                            Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
-//                            Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
-//                            Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),
-//                            National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
-//                            National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
-//
-//            call.enqueue(new Callback<MessageResponse>() {
-//                @Override
-//                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-//                    if(response.isSuccessful()) {
-//                        MessageResponse dr = response.body();
-//                        if (dr.getMessage().equals("data_saved")) {
-//                            save.setImageResource(R.drawable.ic_bookmark);
-//                            save.setEnabled(false);
-//                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
-//                                    .setTitleText("Successfully Saved")
-//                                    .setConfirmText("Ok")
-//                                    .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
-//                                    .show();
-//                        } else {
-//                            Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }else if(response.code() == 401){
-//                        Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
-//                        SharedPrefManager.getInstance(getContext()).clear();
-//                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
-//                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                        startActivity(intent_logout);
-//                    }
-//                }
-//                @Override
-//                public void onFailure(Call<MessageResponse> call, Throwable t) {
-//                    Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+            if (sellingPrice.getText().toString().isEmpty()) {
+                sellingPrice.setError("Selling Price is required");
+                sellingPrice.requestFocus();
+                ButtonFinished();
+                return;
+            }
+
+            if (purchasePrice.getText().toString().isEmpty()) {
+                purchasePrice.setError("Purchase Price is required");
+                purchasePrice.requestFocus();
+                ButtonFinished();
+                return;
+            }
+
+            if(shipmentTypeOption.equals("easyship")) {
+
+                if (weight.getText().toString().isEmpty()) {
+                    weight.setError("Weight is required");
+                    weight.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                if (length.getText().toString().isEmpty()) {
+                    length.setError("Length is required");
+                    length.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                if (breadth.getText().toString().isEmpty()) {
+                    breadth.setError("Breadth is required");
+                    breadth.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                if (height.getText().toString().isEmpty()) {
+                    height.setError("Height is required");
+                    height.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                selfshipLocal.setText(0);
+                selfshipRegional.setText(0);
+                selfshipNational.setText(0);
+            }
+            else{
+                if (selfshipLocal.getText().toString().isEmpty()) {
+                    selfshipLocal.setError("SelfShip Local is required");
+                    selfshipLocal.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                if (selfshipRegional.getText().toString().isEmpty()) {
+                    selfshipRegional.setError("SelfShip Regional is required");
+                    selfshipRegional.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                if (selfshipNational.getText().toString().isEmpty()) {
+                    selfshipNational.setError("SelfShip National is required");
+                    selfshipNational.requestFocus();
+                    ButtonFinished();
+                    return;
+                }
+
+                weight.setText(0);
+                length.setText(0);
+                height.setText(0);
+                breadth.setText(0);
+            }
+
+            if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
+                sellingPrice.setError("Selling Price not valid");
+                sellingPrice.requestFocus();
+                ButtonFinished();
+                return;
+            }
+
+            if(Double.parseDouble(purchasePrice.getText().toString()) <= 0){
+                purchasePrice.setError("Purchase Price is not valid");
+                purchasePrice.requestFocus();
+                ButtonFinished();
+                return;
+            }
+
+            if(inwardShipping.getText().toString().isEmpty())
+                inwardShipping.setText("0");
+            if(packagingExpenses.getText().toString().isEmpty())
+                packagingExpenses.setText("0");
+            if(labour.getText().toString().isEmpty())
+                labour.setText("0");
+            if(storageFee.getText().toString().isEmpty())
+                storageFee.setText("0");
+            if(otherCharges.getText().toString().isEmpty())
+                otherCharges.setText("0");
+            if(discountByPrice.getText().toString().isEmpty())
+                discountByPrice.setText("0");
+            if(discountByPercentage.getText().toString().isEmpty())
+                discountByPercentage.setText("0");
+
+            if (Double.parseDouble(discountByPrice.getText().toString()) > 0 && Double.parseDouble(discountByPercentage.getText().toString()) > 0) {
+                discountByPrice.setError("One discount criteria valid at a time");
+                discountByPrice.requestFocus();
+                ButtonFinished();
+                return;
+            }
+
+            String category = categoryFinal;
+            double number1 = Double.parseDouble(sellingPrice.getText().toString());
+            double number2 = Double.parseDouble(purchasePrice.getText().toString());
+            double number3 = Double.parseDouble(spinner_ans);
+            double number4 = Double.parseDouble(inwardShipping.getText().toString());
+            double number5 = Double.parseDouble(packagingExpenses.getText().toString());
+            double number6 = Double.parseDouble(labour.getText().toString());
+            double number7 = Double.parseDouble(storageFee.getText().toString());
+            double number8 = Double.parseDouble(otherCharges.getText().toString());
+            double number9 = Double.parseDouble(discountByPrice.getText().toString());
+            double number10 = Double.parseDouble(discountByPercentage.getText().toString());
+            double number11 = Double.parseDouble(weight.getText().toString());
+            double number12 = Double.parseDouble(length.getText().toString());
+            double number13 = Double.parseDouble(breadth.getText().toString());
+            double number14 = Double.parseDouble(height.getText().toString());
+
+            Call<FlipkartCalculationResponse> call = RetrofitClient
+                    .getInstance().getApi().flipkartCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
+                            number11, number12, number13, number14,);
+
+            call.enqueue(new Callback<FlipkartCalculationResponse>() {
+                @Override
+                public void onResponse(Call<FlipkartCalculationResponse> call, Response<FlipkartCalculationResponse> response) {
+                    if(response.isSuccessful()) {
+                        FlipkartCalculationResponse CalculateResponse = response.body();
+                        ButtonFinished();
+
+                        result_card.setVisibility(View.VISIBLE);
+                        tabLayout.removeAllTabs();
+
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCommissionFees()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getFixedFees()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCollectionFees()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getShippingFees()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCFCS()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstOnCFCS()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalCharges()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getBankSettlement()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalGstPayable()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTcs()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstPayable()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfit()));
+                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfitPercentage()));
+
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCommissionFees()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getFixedFees()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCollectionFees()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getShippingFees()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCFCS()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstOnCFCS()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalCharges()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getBankSettlement()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalGstPayable()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTcs()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstPayable()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfit()));
+                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfitPercentage()));
+
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCommissionFees()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getFixedFees()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCollectionFees()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getShippingFees()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCFCS()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstOnCFCS()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalCharges()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getBankSettlement()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalGstPayable()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTcs()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstPayable()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfit()));
+                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfitPercentage()));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putStringArrayList("Local", Local);
+                        bundle.putStringArrayList("Zonal", Zonal);
+                        bundle.putStringArrayList("National", National);
+
+                        tabLayout.addTab(tabLayout.newTab().setText("Local"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Zonal"));
+                        tabLayout.addTab(tabLayout.newTab().setText("National"));
+                        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+                        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+                        FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                        viewPager.setAdapter(flipkartSectionAdapter);
+                        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                            @Override
+                            public void onTabSelected(TabLayout.Tab tab) {
+                                viewPager.setCurrentItem(tab.getPosition());
+                            }
+
+                            @Override
+                            public void onTabUnselected(TabLayout.Tab tab) {
+
+                            }
+
+                            @Override
+                            public void onTabReselected(TabLayout.Tab tab) {
+
+                            }
+                        });
+
+
+                        save.setImageResource(R.drawable.ic_bookmark_border);
+                        save.setEnabled(true);
+
+                    }else if(response.code() == 501){
+                        Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
+                        SharedPrefManager.getInstance(getContext()).clear();
+                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent_logout);
+                    }
+                }
+                @Override
+                public void onFailure(Call<FlipkartCalculationResponse> call, Throwable t) {
+                    ButtonFinished();
+                    Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        public void save(){
+            String title = String.valueOf(myText);
+            String category = categoryFinal;
+            String sellingPrice = this.sellingPrice.getText().toString().trim();
+            String gstOnProduct = spinner_ans;
+            String productPriceWithoutGst = purchasePrice.getText().toString().trim();
+            String inwardShipping = this.inwardShipping.getText().toString().trim();
+            String packagingExpense = packagingExpenses.getText().toString().trim();
+            String labour = this.labour.getText().toString().trim();
+            String storageFee = this.storageFee.getText().toString().trim();
+            String other = otherCharges.getText().toString().trim();
+            String discountPercent = discountByPercentage.getText().toString().trim();
+            String discountAmount = discountByPrice.getText().toString().trim();
+            String weight = this.weight.getText().toString().trim();
+            String length = this.length.getText().toString().trim();
+            String breadth = this.breadth.getText().toString().trim();
+            String height = this.height.getText().toString().trim();
+//            String payMode = paymentOption;
+//            String customerType = customerTypeOption;
+
+            Call<MessageResponse> call = RetrofitClient
+                    .getInstance()
+                    .getApi()
+                    .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
+                            storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType,
+                            Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
+                            Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
+                            Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),
+                            National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
+                            National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+
+            call.enqueue(new Callback<MessageResponse>() {
+                @Override
+                public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+                    if(response.isSuccessful()) {
+                        MessageResponse dr = response.body();
+                        if (dr.getMessage().equals("data_saved")) {
+                            save.setImageResource(R.drawable.ic_bookmark);
+                            save.setEnabled(false);
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Successfully Saved")
+                                    .setConfirmText("Ok")
+                                    .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
+                                    .show();
+                        } else {
+                            Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
+                        }
+                    }else if(response.code() == 401){
+                        Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
+                        SharedPrefManager.getInstance(getContext()).clear();
+                        Intent intent_logout = new Intent(getContext(), HomeScreen.class);
+                        intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent_logout);
+                    }
+                }
+                @Override
+                public void onFailure(Call<MessageResponse> call, Throwable t) {
+                    Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         public void share(){
             String content = "INPUT" + "\n\n" +
