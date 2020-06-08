@@ -281,9 +281,8 @@ public interface Api {
     @GET("amazon/app/showCategory")
     Call<category> getCategoriesAmazon( );
 
-
-    @GET("amazon/app/showSubCategory")
     @FormUrlEncoded
+    @POST("amazon/app/showSubCategory")
     Call<subCategory> getSubCategoriesAmazon(
             @Field("category") String category
     );
@@ -310,9 +309,9 @@ public interface Api {
             @Field("height") String height,
             @Field("shipmentType") String shipmentType,
             @Field("easyShipType") String easyShipType,
-            @Field("selfShipLocal") String commissionFeesLocal,
-            @Field("selfShipRegional") String fixedFeesLocal,
-            @Field("selfShipNational") String collectionFeesLocal,
+            @Field("selfShipLocal") String selfShipLocal,
+            @Field("selfShipRegional") String selfShipRegional,
+            @Field("selfShipNational") String selfShipNational,
             @Field("referralFeesLocal") String referralFeesLocal,
             @Field("closingFeesLocal") String closingFeesLocal,
             @Field("shippingFeesLocal") String shippingFeesLocal,

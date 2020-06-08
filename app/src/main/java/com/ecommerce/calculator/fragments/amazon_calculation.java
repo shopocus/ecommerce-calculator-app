@@ -30,6 +30,9 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
+import com.ecommerce.calculator.models.AmazonCalculationResponse;
+import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.subCategory;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.api.RetrofitClient;
@@ -39,6 +42,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,7 +57,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
         CardView productDetailsCard, expensesCard, discountsCard;
         Spinner gstOnProduct, categories, subCategories;
-        String categoryFinal;
+        String categoryFinal, subCategoryFinal;
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> subList = new ArrayList<>();
         ListView itemList;
@@ -69,7 +73,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         ViewPager viewPager;
         TabLayout tabLayout;
         ArrayList<String> Local = new ArrayList<>();
-        ArrayList<String> Zonal = new ArrayList<>();
+        ArrayList<String> Regional = new ArrayList<>();
         ArrayList<String> National = new ArrayList<>();
 
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -135,7 +139,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     if (focusedView != null) {
                         inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                     }
-                  //  calculate();
+                    calculate();
                 }
             });
 
@@ -227,7 +231,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                             if (myText.equals("")) {
                                 Toast.makeText(getContext(), "Enter the Title", Toast.LENGTH_SHORT).show();
                             } else {
-                               // save();
+                                save();
                             }
                         }
                     });
@@ -269,7 +273,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     categoryFinal = list.get(position);
                     Toast.makeText(getActivity(), categoryFinal, Toast.LENGTH_SHORT).show();
-                   // subCategories(categoryFinal);
+                    subCategories(categoryFinal);
                 }
 
                 @Override
@@ -278,6 +282,18 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             });
 
             subCategories = view.findViewById(R.id.subCategory);
+
+            subCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    subCategoryFinal = subList.get(position);
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             itemList = view.findViewById(R.id.text_view_result);
             result_card = view.findViewById(R.id.result_card);
@@ -416,6 +432,8 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 return;
             }
 
+            double number11=0, number12=0, number13=0, number14=0, number15=0, number16=0, number17=0;
+
             if(shipmentTypeOption.equals("easyship")) {
 
                 if (weight.getText().toString().isEmpty()) {
@@ -445,10 +463,13 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     ButtonFinished();
                     return;
                 }
-
-                selfshipLocal.setText(0);
-                selfshipRegional.setText(0);
-                selfshipNational.setText(0);
+                number11 = Double.parseDouble(weight.getText().toString());
+                number12 = Double.parseDouble(length.getText().toString());
+                number13 = Double.parseDouble(breadth.getText().toString());
+                number14 = Double.parseDouble(height.getText().toString());
+//                selfshipLocal.setText(0);
+//                selfshipRegional.setText(0);
+//                selfshipNational.setText(0);
             }
             else{
                 if (selfshipLocal.getText().toString().isEmpty()) {
@@ -472,10 +493,14 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     return;
                 }
 
-                weight.setText(0);
-                length.setText(0);
-                height.setText(0);
-                breadth.setText(0);
+                number15 = Double.parseDouble(selfshipLocal.getText().toString());
+                number16 = Double.parseDouble(selfshipRegional.getText().toString());
+                number17 = Double.parseDouble(selfshipNational.getText().toString());
+
+//                weight.setText(0);
+//                length.setText(0);
+//                height.setText(0);
+//                breadth.setText(0);
             }
 
             if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
@@ -515,6 +540,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             }
 
             String category = categoryFinal;
+            String subCategory = subCategoryFinal;
             double number1 = Double.parseDouble(sellingPrice.getText().toString());
             double number2 = Double.parseDouble(purchasePrice.getText().toString());
             double number3 = Double.parseDouble(spinner_ans);
@@ -525,78 +551,79 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             double number8 = Double.parseDouble(otherCharges.getText().toString());
             double number9 = Double.parseDouble(discountByPrice.getText().toString());
             double number10 = Double.parseDouble(discountByPercentage.getText().toString());
-            double number11 = Double.parseDouble(weight.getText().toString());
-            double number12 = Double.parseDouble(length.getText().toString());
-            double number13 = Double.parseDouble(breadth.getText().toString());
-            double number14 = Double.parseDouble(height.getText().toString());
 
-            Call<FlipkartCalculationResponse> call = RetrofitClient
-                    .getInstance().getApi().flipkartCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
-                            number11, number12, number13, number14,);
+//            double number15 = Double.parseDouble(selfshipLocal.getText().toString());
+//            double number16 = Double.parseDouble(selfshipRegional.getText().toString());
+//            double number17 = Double.parseDouble(selfshipNational.getText().toString());
 
-            call.enqueue(new Callback<FlipkartCalculationResponse>() {
+            Call<AmazonCalculationResponse> call = RetrofitClient
+                    .getInstance().getApi().amazonCalculation(category, subCategory, number1, number3, number2, number4, number5, number6, number7,
+                            number8, number10, number9, number11, number12, number13, number14,shipmentTypeOption, easyShipmentTypeOption,
+                            number15, number16, number17);
+
+            call.enqueue(new Callback<AmazonCalculationResponse>() {
                 @Override
-                public void onResponse(Call<FlipkartCalculationResponse> call, Response<FlipkartCalculationResponse> response) {
+                public void onResponse(Call<AmazonCalculationResponse> call, Response<AmazonCalculationResponse> response) {
                     if(response.isSuccessful()) {
-                        FlipkartCalculationResponse CalculateResponse = response.body();
+                        AmazonCalculationResponse CalculateResponse = response.body();
                         ButtonFinished();
 
                         result_card.setVisibility(View.VISIBLE);
                         tabLayout.removeAllTabs();
 
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCommissionFees()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getFixedFees()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCollectionFees()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getShippingFees()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCFCS()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstOnCFCS()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalCharges()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getBankSettlement()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalGstPayable()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTcs()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstPayable()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfit()));
-                        Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfitPercentage()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getReferralFees()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getClosingFees()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getShippingFees()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getRCS()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstOnRCS()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalCharges()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstClaim()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getBankSettlement()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalGstPayable()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTcs()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstPayable()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfit()));
+                        Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfitPercentage()));
 
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCommissionFees()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getFixedFees()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCollectionFees()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getShippingFees()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getCFCS()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstOnCFCS()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalCharges()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getBankSettlement()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalGstPayable()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTcs()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstPayable()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfit()));
-                        Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfitPercentage()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getReferralFees()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getClosingFees()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getShippingFees()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getRCS()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstOnRCS()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalCharges()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstClaim()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getBankSettlement()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalGstPayable()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTcs()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstPayable()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfit()));
+                        Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfitPercentage()));
 
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCommissionFees()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getFixedFees()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCollectionFees()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getShippingFees()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getCFCS()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstOnCFCS()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalCharges()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getBankSettlement()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalGstPayable()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTcs()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstPayable()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfit()));
-                        National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfitPercentage()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getReferralFees()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getClosingFees()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getShippingFees()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getRCS()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstOnRCS()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalCharges()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstClaim()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getBankSettlement()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalGstPayable()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getTcs()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
+                        National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
 
                         Bundle bundle = new Bundle();
                         bundle.putStringArrayList("Local", Local);
-                        bundle.putStringArrayList("Zonal", Zonal);
+                        bundle.putStringArrayList("Regional", Regional);
                         bundle.putStringArrayList("National", National);
 
                         tabLayout.addTab(tabLayout.newTab().setText("Local"));
-                        tabLayout.addTab(tabLayout.newTab().setText("Zonal"));
+                        tabLayout.addTab(tabLayout.newTab().setText("Regional"));
                         tabLayout.addTab(tabLayout.newTab().setText("National"));
                         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-                        FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                        AmazonSectionAdapter flipkartSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
                         viewPager.setAdapter(flipkartSectionAdapter);
                         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
                         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -629,7 +656,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     }
                 }
                 @Override
-                public void onFailure(Call<FlipkartCalculationResponse> call, Throwable t) {
+                public void onFailure(Call<AmazonCalculationResponse> call, Throwable t) {
                     ButtonFinished();
                     Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
                 }
@@ -639,6 +666,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         public void save(){
             String title = String.valueOf(myText);
             String category = categoryFinal;
+            String subCategory = subCategoryFinal;
             String sellingPrice = this.sellingPrice.getText().toString().trim();
             String gstOnProduct = spinner_ans;
             String productPriceWithoutGst = purchasePrice.getText().toString().trim();
@@ -653,18 +681,22 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             String length = this.length.getText().toString().trim();
             String breadth = this.breadth.getText().toString().trim();
             String height = this.height.getText().toString().trim();
+            String ssLocal = this.selfshipLocal.getText().toString().trim();
+            String ssRegional = this.selfshipRegional.getText().toString().trim();
+            String ssNational = this.selfshipNational.getText().toString().trim();
 //            String payMode = paymentOption;
 //            String customerType = customerTypeOption;
 
             Call<MessageResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-                            storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType,
-                            Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
-                            Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
-                            Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),
-                            National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
+                    .savedAmazon(title, category, subCategory, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense,
+                            labour, storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, shipmentTypeOption,
+                            easyShipmentTypeOption, ssLocal, ssRegional, ssNational, Local.get(0), Local.get(1), Local.get(2), Local.get(3),
+                            Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8), Local.get(9), Local.get(10), Local.get(11),
+                            Local.get(12), Regional.get(0), Regional.get(1), Regional.get(2), Regional.get(3), Regional.get(4),
+                            Regional.get(5), Regional.get(6), Regional.get(7), Regional.get(8), Regional.get(9), Regional.get(10), Regional.get(11),
+                            Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
                             National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
 
             call.enqueue(new Callback<MessageResponse>() {
@@ -723,14 +755,14 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     "Profit: " + Local.get(6) + "\n" +
                     "Profit Percentage: " + Local.get(7) + "\n" +
                     "Regional" + "\n" +
-                    "Bank Settlement: " + Zonal.get(0) + "\n" +
-                    "Total Commision: " + Zonal.get(1) + "\n" +
-                    "Total GST Payable: " + Zonal.get(2) + "\n" +
-                    "Tcs: " + Zonal.get(3) + "\n" +
-                    "GST Payable: " + Zonal.get(4) + "\n" +
-                    "GST Claim: " + Zonal.get(5) + "\n" +
-                    "Profit: " + Zonal.get(6) + "\n" +
-                    "Profit Percentage: " + Zonal.get(7) + "\n" +
+                    "Bank Settlement: " + Regional.get(0) + "\n" +
+                    "Total Commision: " + Regional.get(1) + "\n" +
+                    "Total GST Payable: " + Regional.get(2) + "\n" +
+                    "Tcs: " + Regional.get(3) + "\n" +
+                    "GST Payable: " + Regional.get(4) + "\n" +
+                    "GST Claim: " + Regional.get(5) + "\n" +
+                    "Profit: " + Regional.get(6) + "\n" +
+                    "Profit Percentage: " + Regional.get(7) + "\n" +
                     "Metro" + "\n" +
                     "Bank Settlement: " + National.get(0) + "\n" +
                     "Total Commision: " + National.get(1) + "\n" +

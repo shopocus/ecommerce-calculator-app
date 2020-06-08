@@ -1,30 +1,28 @@
 package com.ecommerce.calculator.models;
 
-import com.ecommerce.calculator.utils.FlipkartOutputModel;
+import com.ecommerce.calculator.utils.AmazonOutputModel;
 
 public class AmazonCalculationResponse {
 
-    private FlipkartOutputModel flipkartLocal;
-    private FlipkartOutputModel flipkartZonal;
-    private FlipkartOutputModel flipkartNational;
+    private AmazonOutputModel amazonLocal;
+    private AmazonOutputModel amazonRegional;
+    private AmazonOutputModel amazonNational;
 
-    public AmazonCalculationResponse(FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal,
-                                       FlipkartOutputModel flipkartNational) {
-        this.flipkartLocal = flipkartLocal;
-        this.flipkartZonal = flipkartZonal;
-        this.flipkartNational = flipkartNational;
+    public AmazonCalculationResponse(AmazonOutputModel amazonLocal, AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational) {
+        this.amazonLocal = amazonLocal;
+        this.amazonRegional = amazonRegional;
+        this.amazonNational = amazonNational;
     }
 
-    public FlipkartOutputModel getFlipkartLocal() {
-        return flipkartLocal;
+    public AmazonOutputModel getAmazonLocal() {
+        return amazonLocal;
     }
 
-    public FlipkartOutputModel getFlipkartZonal() {
-        return flipkartZonal;
+    public AmazonOutputModel getAmazonRegional() {
+        return amazonRegional;
     }
 
-    public FlipkartOutputModel getFlipkartNational() {
-        return flipkartNational;
+    public AmazonOutputModel getAmazonNational() {
+        return amazonNational;
     }
-
 }
