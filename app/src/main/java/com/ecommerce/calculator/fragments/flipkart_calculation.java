@@ -144,7 +144,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
             }
         });
 
-        customerType = view.findViewById(R.id.customerType);
+        customerType = view.findViewById(R.id.easyShipmentType);
         customerType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

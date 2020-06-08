@@ -70,7 +70,7 @@ public class Local extends Fragment {
 
         OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
         result.setAdapter(adapter);
-       // SavedData.setListViewHeightBasedOnChildren(result);
+        SavedData.setListViewHeightBasedOnChildren(result);
 
         return view;
     }

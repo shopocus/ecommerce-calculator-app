@@ -9,6 +9,7 @@ import android.widget.ListView;
 import androidx.fragment.app.Fragment;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.models.output;
 
@@ -63,6 +64,7 @@ public class National extends Fragment {
 
             OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
             result.setAdapter(adapter);
+            SavedData.setListViewHeightBasedOnChildren(result);
             return view;
         }
 

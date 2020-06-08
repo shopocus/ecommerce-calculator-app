@@ -9,13 +9,16 @@ import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.MessageResponse;
+import com.ecommerce.calculator.models.subCategory;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 
 public interface Api {
 
@@ -246,6 +249,35 @@ public interface Api {
             @Field("gstPayableNational") String gstPayableNational,
             @Field("profitNational") String profitNational,
             @Field("profitPercentageNational") String profitPercentageNational
+    );
+
+//    @FormUrlEncoded
+//    @POST("amazon/app/calculate")
+//    Call<AmazonCalculationResponse> amazonCalculation(
+//            @Field("category") String category,
+//            @Field("sellingPrice") double sellingPrice,
+//            @Field("gstOnProduct") double gstOnProduct,
+//            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+//            @Field("inwardShipping") double inwardShipping,
+//            @Field("packagingExpense") double packagingExpense,
+//            @Field("labour") double labour,
+//            @Field("storageFee") double storageFee,
+//            @Field("other") double other,
+//            @Field("discountPercent") double discountPercent,
+//            @Field("discountAmount") double discountAmount,
+//            @Field("weight") double weight,
+//            @Field("payMode") String payMode,
+//            @Field("courier") String courier
+//    );
+
+    @GET("amazon/app/showCategory")
+    Call<category> getCategoriesAmazon( );
+
+
+    @GET("amazon/app/showSubCategory")
+    @FormUrlEncoded
+    Call<subCategory> getSubCategoriesAmazon(
+            @Field("category") String category
     );
 
     @FormUrlEncoded

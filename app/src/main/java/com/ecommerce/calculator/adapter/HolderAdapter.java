@@ -71,6 +71,11 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("flipkart");
                     categories();
                 }
+                else if (menu.get(position).getTitle().equals("Amazon")){
+                    SharedPrefManager.getInstance(c)
+                            .saveCompany("amazon");
+                    categories();
+                }
                 else {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();
@@ -128,6 +133,9 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 break;
             case "flipkart":
                 call = RetrofitClient.getInstance().getApi().getCategoriesFlipkart();
+                break;
+            case "amazon":
+                call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + SharedPrefManager.getInstance(c).getCompany());

@@ -65,6 +65,31 @@
 
                 </LinearLayout>
 
+                <TextView
+                    style="?android:attr/listSeparatorTextViewStyle"
+                    android:paddingTop="3dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBase" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textViewSubCategory"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Sub Category: "
+                        android:textColor="@color/colorPrimary"/>
+
+                    <Spinner
+                        android:id="@+id/subCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
 
                 <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
@@ -205,6 +230,114 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/shipmentTypeBunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/line"
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:paddingTop="3dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorBase" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Shipment Type: "
+                        android:textColor="@color/colorPrimary"/>
+
+                    <RadioGroup
+                        android:id="@+id/shipmentType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/radio_easyship"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:layout_gravity="center"
+                            android:layout_weight="50"
+                            android:text="easyship" />
+
+                        <RadioButton
+                            android:id="@+id/radio_selfship"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:text="selfship" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/easyShipmentTypeBunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/line0"
+                        style="?android:attr/listSeparatorTextViewStyle"
+                        android:paddingTop="3dp"
+                        android:gravity="center_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorBase" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Easy Shipment Type: "
+                        android:textColor="@color/colorPrimary"/>
+
+                    <RadioGroup
+                        android:id="@+id/easyShipmentType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="100"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/radio_prime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:layout_gravity="center"
+                            android:layout_weight="50"
+                            android:text="prime" />
+
+                        <RadioButton
+                            android:id="@+id/radio_nonPrime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:text="non prime" />
+
+                    </RadioGroup>
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/line1"
                     style="?android:attr/listSeparatorTextViewStyle"
@@ -236,6 +369,36 @@
 
                     <EditText
                         android:id="@+id/weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/selfshipLocalBunch"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_selfshipLocal"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Selfship Local: "
+                        android:textColor="@color/colorPrimary"/>
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/gm1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Gm."-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:textColor="@color/colorBase"/>-->
+
+                    <EditText
+                        android:id="@+id/selfshipLocal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
@@ -280,6 +443,35 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/selfshipRegionalBunch"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_selfshipRegional"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Selfship Regional: "
+                        android:textColor="@color/colorPrimary"/>
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="cm"-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:textColor="@color/colorBase"/>-->
+
+                    <EditText
+                        android:id="@+id/selfshipRegional"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
                 <TextView
                     android:id="@+id/line3"
                     style="?android:attr/listSeparatorTextViewStyle"
@@ -310,6 +502,35 @@
 
                     <EditText
                         android:id="@+id/breadth"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/selfshipNationalBunch"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_selfshipNational"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:text="Selfship National: "
+                        android:textColor="@color/colorPrimary"/>
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="cm"-->
+<!--                        android:textSize="15dp"-->
+<!--                        android:textColor="@color/colorBase"/>-->
+
+                    <EditText
+                        android:id="@+id/selfshipNational"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15dp"
@@ -430,7 +651,7 @@
                         android:textColor="@color/colorPrimary"/>
 
                     <RadioGroup
-                        android:id="@+id/customerType"
+                        android:id="@+id/easyShipmentType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:weightSum="100"

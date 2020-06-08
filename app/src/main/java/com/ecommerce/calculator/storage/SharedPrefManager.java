@@ -108,6 +108,26 @@ public class SharedPrefManager {
         return list;
     }
 
+    public void saveSubList(ArrayList<String> list) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString("subList", json);
+
+        editor.apply();
+    }
+
+    public ArrayList<String> getSubList(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("subList", null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        ArrayList<String> list = gson.fromJson(json, type);
+        return list;
+    }
+
     public void saveTitle(String title){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
