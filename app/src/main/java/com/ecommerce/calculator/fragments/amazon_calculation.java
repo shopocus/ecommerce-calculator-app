@@ -69,7 +69,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         private String myText;
         RadioGroup shipmentType, easyShipmentType;
         RadioButton radioButton, radioButtonPostpaid, radioButtonBronze, radioButtonPrepaid, radioButtonSilver, radioButtonGold;
-        String easyShipmentTypeOption ="prime", shipmentTypeOption ="easyship";
+        String easyShipmentTypeOption ="prime", shipmentTypeOption ="easyShip";
         ViewPager viewPager;
         TabLayout tabLayout;
         ArrayList<String> Local = new ArrayList<>();
@@ -149,7 +149,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     radioButton = view.findViewById(checkedId);
                     shipmentTypeOption = radioButton.getText().toString();
-                    if(shipmentTypeOption.equals("easyship")){
+                    if(shipmentTypeOption.equals("easyShip")){
                         easyShipmentTypeBunch.setVisibility(View.VISIBLE);
                         weightBunch.setVisibility(View.VISIBLE);
                         lengthBunch.setVisibility(View.VISIBLE);
@@ -434,7 +434,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
             double number11=0, number12=0, number13=0, number14=0, number15=0, number16=0, number17=0;
 
-            if(shipmentTypeOption.equals("easyship")) {
+            if(shipmentTypeOption.equals("easyShip")) {
 
                 if (weight.getText().toString().isEmpty()) {
                     weight.setError("Weight is required");

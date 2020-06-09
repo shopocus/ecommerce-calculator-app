@@ -271,14 +271,14 @@
                             android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="50"
-                            android:text="easyship" />
+                            android:text="easyShip" />
 
                         <RadioButton
                             android:id="@+id/radio_selfship"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
-                            android:text="selfship" />
+                            android:text="selfShip" />
 
                     </RadioGroup>
 
@@ -332,7 +332,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="50"
-                            android:text="non prime" />
+                            android:text="nonPrime" />
 
                     </RadioGroup>
 
@@ -651,7 +651,7 @@
                         android:textColor="@color/colorPrimary"/>
 
                     <RadioGroup
-                        android:id="@+id/easyShipmentType"
+                        android:id="@+id/customerType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:weightSum="100"

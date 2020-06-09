@@ -1,10 +1,12 @@
 package com.ecommerce.calculator.models;
 
+import com.ecommerce.calculator.utils.AmazonOutputModel;
 import com.ecommerce.calculator.utils.FlipkartOutputModel;
 
 public class TitleDataResponse {
 
     private String category;
+    private String subcategory;
     private String sellingPrice;
     private String gstOnProduct;
     private String productPriceWithoutGst;
@@ -30,6 +32,11 @@ public class TitleDataResponse {
     private String gstPayable;
     private String gstClaim;
     private String profitPercentage;
+    private String shipmentType;
+    private String easyShipType;
+    private String selfShipLocal;
+    private String selfShipRegional;
+    private String selfShipNational;
     private MeeshoCalculationResponse local;
     private MeeshoCalculationResponse regional;
     private MeeshoCalculationResponse metro;
@@ -38,17 +45,23 @@ public class TitleDataResponse {
     private FlipkartOutputModel flipkartLocal;
     private FlipkartOutputModel flipkartZonal;
     private FlipkartOutputModel flipkartNational;
+    private AmazonOutputModel amazonLocal;
+    private AmazonOutputModel amazonRegional;
+    private AmazonOutputModel amazonNational;
     private String title;
 
-    public TitleDataResponse(String title, String category, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
+    public TitleDataResponse(String title, String category, String subcategory, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
                              String length, String breadth, String height, String customerType, String courier, String payMode, String inwardShipping,
                              String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
                              String bankSettlement, String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
-                             String gstClaim, String profitPercentage, MeeshoCalculationResponse local, MeeshoCalculationResponse regional,
+                             String gstClaim, String profitPercentage, String shipmentType, String easyShipType, String selfShipLocal,
+                             String selfShipRegional, String selfShipNational, MeeshoCalculationResponse local, MeeshoCalculationResponse regional,
                              MeeshoCalculationResponse metro, MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela,
-                             FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational) {
+                             FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational,
+                             AmazonOutputModel amazonLocal, AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational) {
         this.title = title;
         this.category = category;
+        this.subcategory = subcategory;
         this.sellingPrice = sellingPrice;
         this.gstOnProduct = gstOnProduct;
         this.productPriceWithoutGst = productPriceWithoutGst;
@@ -66,6 +79,11 @@ public class TitleDataResponse {
         this.other = other;
         this.discountAmount = discountAmount;
         this.discountPercent = discountPercent;
+        this.shipmentType = shipmentType;
+        this.easyShipType = easyShipType;
+        this.selfShipLocal = selfShipLocal;
+        this.selfShipRegional = selfShipRegional;
+        this.selfShipNational = selfShipNational;
         this.bankSettlement = bankSettlement;
         this.totalCommision = totalCommision;
         this.profit = profit;
@@ -82,6 +100,9 @@ public class TitleDataResponse {
         this.flipkartLocal = flipkartLocal;
         this.flipkartZonal = flipkartZonal;
         this.flipkartNational = flipkartNational;
+        this.amazonLocal = amazonLocal;
+        this.amazonRegional = amazonRegional;
+        this.amazonNational = amazonNational;
     }
 
     public String getTitle() {
@@ -90,6 +111,10 @@ public class TitleDataResponse {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
     }
 
     public String getSellingPrice() {
@@ -141,6 +166,25 @@ public class TitleDataResponse {
     public String getDiscountAmount(){ return discountAmount; }
 
     public String getDiscountPercent(){ return discountPercent; }
+
+    public String getShipmentType() {
+        return shipmentType;
+    }
+
+    public String getEasyShipType(){
+        return  easyShipType;
+    }
+    public String getSelfShipLocal(){
+        return selfShipLocal;
+    }
+
+    public String getSelfShipRegional(){
+        return  selfShipRegional;
+    }
+
+    public String getSelfShipNational(){
+        return selfShipNational;
+    }
 
     public String getBankSettlement() { return bankSettlement; }
 
@@ -195,5 +239,17 @@ public class TitleDataResponse {
     public FlipkartOutputModel getFlipkartZonal() { return flipkartZonal; }
 
     public FlipkartOutputModel getFlipkartNational() { return flipkartNational; }
+
+    public AmazonOutputModel getAmazonLocal() {
+        return amazonLocal;
+    }
+
+    public AmazonOutputModel getAmazonRegional() {
+        return amazonRegional;
+    }
+
+    public AmazonOutputModel getAmazonNational() {
+        return amazonNational;
+    }
 
 }
