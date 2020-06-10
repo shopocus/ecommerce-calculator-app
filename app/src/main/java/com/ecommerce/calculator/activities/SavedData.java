@@ -724,7 +724,10 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        tabLayout.addTab(tabLayout.newTab().setText("National"));
+        if(td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength()*td.getEasyShip().getBreadth()*td.getEasyShip().getHeight()/5 <= 12000) {
+            tabLayout.addTab(tabLayout.newTab().setText("National"));
+        }
+       // tabLayout.addTab(tabLayout.newTab().setText("National"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(SavedData.this, getSupportFragmentManager(),

@@ -31,6 +31,16 @@ public class AmazonNational extends Fragment {
 
         Bundle bundle = this.getArguments();
         ArrayList<String> bundle_national = bundle.getStringArrayList("National");
+//        ArrayList<String> bundle_input = bundle.getStringArrayList("input");
+//
+//        double num1 = Double.parseDouble(bundle_input.get(0));
+//        double num2 = Double.parseDouble(bundle_input.get(1));
+//        double num3 = Double.parseDouble(bundle_input.get(2));
+//        double num4 = Double.parseDouble(bundle_input.get(3));
+//
+//        if(num1 > 12000 || num2*num3*num4/5 > 12000){
+//
+//        }
 
         output text1 = new output("Referral Fees", bundle_national.get(0));
         output text2 = new output("Closing Fees", bundle_national.get(1));

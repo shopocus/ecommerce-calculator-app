@@ -189,8 +189,11 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     sellingPrice.requestFocus();
                     sellingPrice.setText("");
                     categories.setSelection(0);
+                    subCategories.setSelection(0);
                     purchasePrice.setText("");
                     gstOnProduct.setSelection(0);
+                    radioButtonEasyShip.setChecked(true);
+                    radioButtonPrime.setChecked(true);
                     inwardShipping.setText("");
                     packagingExpenses.setText("");
                     labour.setText("");
@@ -202,6 +205,9 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     length.setText("");
                     breadth.setText("");
                     height.setText("");
+                    selfshipLocal.setText("");
+                    selfshipRegional.setText("");
+                    selfshipNational.setText("");
 //                    radioButtonPostpaid.setChecked(true);
 //                    radioButtonBronze.setChecked(true);
                     result_card.setVisibility(View.GONE);
@@ -616,6 +622,12 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
 
+//                        ArrayList<String> input = new ArrayList<>();
+//                        input.add(weight.getText().toString());
+//                        input.add(length.getText().toString());
+//                        input.add(breadth.getText().toString());
+//                        input.add(height.getText().toString());
+
                         Bundle bundle = new Bundle();
                         bundle.putStringArrayList("Local", Local);
                         bundle.putStringArrayList("Regional", Regional);
@@ -623,7 +635,10 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
                         tabLayout.addTab(tabLayout.newTab().setText("Local"));
                         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-                        tabLayout.addTab(tabLayout.newTab().setText("National"));
+                        if(Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString())*
+                                Double.parseDouble(breadth.getText().toString())*Double.parseDouble(height.getText().toString())/5 <= 12000) {
+                            tabLayout.addTab(tabLayout.newTab().setText("National"));
+                        }
                         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
                         AmazonSectionAdapter flipkartSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
