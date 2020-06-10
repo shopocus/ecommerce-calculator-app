@@ -55,7 +55,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice,
                 discountByPercentage, weight, length, breadth, height, selfshipLocal, selfshipRegional, selfshipNational;
         LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch, selfshipLocalBunch,
-                selfshipRegionalBunch, selfshipNationalBunch, easyShipmentTypeBunch;
+                selfshipRegionalBunch, selfshipNationalBunch, easyShipmentTypeBunch, shipmentTypeBunch, subCategoryBunch;
 
         CardView productDetailsCard, expensesCard, discountsCard;
         Spinner gstOnProduct, categories, subCategories;
@@ -316,7 +316,12 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             lengthBunch = view.findViewById(R.id.lengthBunch);
             breadthBunch = view.findViewById(R.id.breadthBunch);
             heightBunch = view.findViewById(R.id.heightBunch);
+            subCategoryBunch = view.findViewById(R.id.subCategoryBunch);
+            subCategoryBunch.setVisibility(View.VISIBLE);
+            shipmentTypeBunch = view.findViewById(R.id.shipmentTypeBunch);
+            shipmentTypeBunch.setVisibility(View.VISIBLE);
             easyShipmentTypeBunch = view.findViewById(R.id.easyShipmentTypeBunch);
+            easyShipmentTypeBunch.setVisibility(View.VISIBLE);
             selfshipLocalBunch = view.findViewById(R.id.selfshipLocalBunch);
             selfshipRegionalBunch = view.findViewById(R.id.selfshipRegionalBunch);
             selfshipNationalBunch = view.findViewById(R.id.selfshipNationalBunch);

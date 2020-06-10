@@ -74,8 +74,10 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/subCategoryBunch"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/textViewSubCategory"
@@ -234,6 +236,7 @@
                     android:id="@+id/shipmentTypeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
@@ -288,6 +291,7 @@
                     android:id="@+id/easyShipmentTypeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
