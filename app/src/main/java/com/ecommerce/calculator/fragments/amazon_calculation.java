@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
+import com.ecommerce.calculator.activities.LoadingDialog;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -38,6 +39,7 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.ecommerce.calculator.utils.NonScrollListView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -751,11 +753,24 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         public void share(){
             String content = "INPUT" + "\n\n" +
                     "Category: " + categoryFinal + "\n" +
+                    "Sub Category: " + subCategoryFinal + "\n" +
                     "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
                     "GST On Product: " + spinner_ans + "\n" +
                     "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                    "Weight: " + weight.getText().toString().trim() + "\n" +
-                    "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
+                    "Shipment Type: " + shipmentTypeOption + "\n";
+            String content1 = "";
+                    if(shipmentTypeOption.equals("easyShip")){
+                        content1 = "Easy Shipment Type: " + easyShipmentTypeOption + "\n" +
+                                "Weight: " + weight.getText().toString().trim() + "\n" +
+                                "Length: " + length.getText().toString().trim() + "\n" +
+                                "Breadth: " + breadth.getText().toString().trim() + "\n" +
+                                "Height: " + height.getText().toString().trim() + "\n";
+                    }else {
+                        content1 = "Self Ship Local: " + selfshipLocal.getText().toString().trim() + "\n" +
+                        "Self Ship Regional: " + selfshipRegional.getText().toString().trim() + "\n" +
+                        "Self Ship National: " + selfshipNational.getText().toString().trim() + "\n";
+                    }
+                    String content2 = "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
                     "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
                     "Labour: " + labour.getText().toString().trim() + "\n" +
                     "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
@@ -764,37 +779,55 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
                     "OUTPUT" + "\n\n" +
                     "Local" + "\n" +
-                    "Bank Settlement: " + Local.get(0) + "\n" +
-                    "Total Commision: " + Local.get(1) + "\n" +
-                    "Total GST Payable: " + Local.get(2) + "\n" +
-                    "Tcs: " + Local.get(3) + "\n" +
-                    "GST Payable: " + Local.get(4) + "\n" +
-                    "GST Claim: " + Local.get(5) + "\n" +
-                    "Profit: " + Local.get(6) + "\n" +
-                    "Profit Percentage: " + Local.get(7) + "\n" +
+                            "Referral Fees: " + Local.get(0) + "\n" +
+                            "Closing Fees: " + Local.get(1) + "\n" +
+                            "Shipping Fees: " + Local.get(2) + "\n" +
+                            "Referral + Closing + Shipping Fees: " + Local.get(3) + "\n" +
+                            "GST On RCS: " + Local.get(4) + "\n" +
+                            "Total Charges: " + Local.get(5) + "\n" +
+                            "GST Claim: " + Local.get(6) + "\n" +
+                            "Bank Settlement: " + Local.get(7) + "\n" +
+                            "Total GST Payable: " + Local.get(8) + "\n" +
+                            "Tcs: " + Local.get(9) + "\n" +
+                            "GST Payable: " + Local.get(10) + "\n" +
+                            "Profit: " + Local.get(11) + "\n" +
+                            "Profit Percentage: " + Local.get(12) + "\n\n" +
                     "Regional" + "\n" +
-                    "Bank Settlement: " + Regional.get(0) + "\n" +
-                    "Total Commision: " + Regional.get(1) + "\n" +
-                    "Total GST Payable: " + Regional.get(2) + "\n" +
-                    "Tcs: " + Regional.get(3) + "\n" +
-                    "GST Payable: " + Regional.get(4) + "\n" +
-                    "GST Claim: " + Regional.get(5) + "\n" +
-                    "Profit: " + Regional.get(6) + "\n" +
-                    "Profit Percentage: " + Regional.get(7) + "\n" +
-                    "Metro" + "\n" +
-                    "Bank Settlement: " + National.get(0) + "\n" +
-                    "Total Commision: " + National.get(1) + "\n" +
-                    "Total GST Payable: " + National.get(2) + "\n" +
-                    "Tcs: " + National.get(3) + "\n" +
-                    "GST Payable: " + National.get(4) + "\n" +
-                    "GST Claim: " + National.get(5) + "\n" +
-                    "Profit: " + National.get(6) + "\n" +
-                    "Profit Percentage: " + National.get(7) + "\n" +
-                    "Rest Of India" + "\n";
+                            "Referral Fees: " + Regional.get(0) + "\n" +
+                            "Closing Fees: " + Regional.get(1) + "\n" +
+                            "Shipping Fees: " + Regional.get(2) + "\n" +
+                            "Referral + Closing + Shipping Fees: " + Regional.get(3) + "\n" +
+                            "GST On RCS: " + Regional.get(4) + "\n" +
+                            "Total Charges: " + Regional.get(5) + "\n" +
+                            "GST Claim: " + Regional.get(6) + "\n" +
+                            "Bank Settlement: " + Regional.get(7) + "\n" +
+                            "Total GST Payable: " + Regional.get(8) + "\n" +
+                            "Tcs: " + Regional.get(9) + "\n" +
+                            "GST Payable: " + Regional.get(10) + "\n" +
+                            "Profit: " + Regional.get(11) + "\n" +
+                            "Profit Percentage: " + Regional.get(12) + "\n\n";
+                    String content3 = "";
+            if(Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString())*
+                    Double.parseDouble(breadth.getText().toString())*Double.parseDouble(height.getText().toString())/5 <= 12000) {
+                content3 = "National" + "\n" +
+                        "Referral Fees: " + National.get(0) + "\n" +
+                        "Closing Fees: " + National.get(1) + "\n" +
+                        "Shipping Fees: " + National.get(2) + "\n" +
+                        "Referral + Closing + Shipping Fees: " + National.get(3) + "\n" +
+                        "GST On RCS: " + National.get(4) + "\n" +
+                        "Total Charges: " + National.get(5) + "\n" +
+                        "GST Claim: " + National.get(6) + "\n" +
+                        "Bank Settlement: " + National.get(7) + "\n" +
+                        "Total GST Payable: " + National.get(8) + "\n" +
+                        "Tcs: " + National.get(9) + "\n" +
+                        "GST Payable: " + National.get(10) + "\n" +
+                        "Profit: " + National.get(11) + "\n" +
+                        "Profit Percentage: " + National.get(12) + "\n";
+            }
 
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            String shareBody = content;
+            String shareBody = content + content1 + content2 +content3;
             String shareSub = "Your Bill";
             intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
             intent.putExtra(Intent.EXTRA_TEXT, shareBody);
