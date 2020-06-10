@@ -68,7 +68,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         private TextView textView;
         private String myText;
         RadioGroup shipmentType, easyShipmentType;
-        RadioButton radioButton, radioButtonPostpaid, radioButtonBronze, radioButtonPrepaid, radioButtonSilver, radioButtonGold;
+        RadioButton radioButton, radioButtonEasyShip, radioButtonSelfShip, radioButtonPrime, radioButtonNonPrime;
         String easyShipmentTypeOption ="prime", shipmentTypeOption ="easyShip";
         ViewPager viewPager;
         TabLayout tabLayout;
@@ -312,11 +312,10 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             selfshipLocalBunch = view.findViewById(R.id.selfshipLocalBunch);
             selfshipRegionalBunch = view.findViewById(R.id.selfshipRegionalBunch);
             selfshipNationalBunch = view.findViewById(R.id.selfshipNationalBunch);
-//            radioButtonPostpaid = view.findViewById(R.id.radio_postpaid);
-//            radioButtonBronze = view.findViewById(R.id.radio_bronze);
-//            radioButtonPrepaid = view.findViewById(R.id.radio_prepaid);
-//            radioButtonSilver = view.findViewById(R.id.radio_silver);
-//            radioButtonGold = view.findViewById(R.id.radio_gold);
+            radioButtonEasyShip = view.findViewById(R.id.radio_easyship);
+            radioButtonSelfShip = view.findViewById(R.id.radio_selfship);
+            radioButtonPrime = view.findViewById(R.id.radio_prime);
+            radioButtonNonPrime = view.findViewById(R.id.radio_nonPrime);
             expenses = view.findViewById(R.id.expenses_dropdown);
             discounts = view.findViewById(R.id.discounts_dropdown);
             courierBunch = view.findViewById(R.id.courierBunch);
@@ -366,9 +365,12 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 ArrayList<String> bundle_input = bundle.getStringArrayList("input");
                 int selection = adapter.getPosition(bundle_input.get(0));
                 categories.setSelection(selection);
-                sellingPrice.setText(bundle_input.get(1));
-                purchasePrice.setText(bundle_input.get(2));
-                int value = Integer.parseInt(bundle_input.get(3));
+
+                selection = adapter.getPosition(bundle_input.get(1));
+                subCategories.setSelection(selection);
+                sellingPrice.setText(bundle_input.get(2));
+                purchasePrice.setText(bundle_input.get(3));
+                int value = Integer.parseInt(bundle_input.get(4));
                 switch (value){
                     case 0:
                         gstOnProduct.setSelection(0);
@@ -386,29 +388,30 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         gstOnProduct.setSelection(4);
                         break;
                 }
-                weight.setText(bundle_input.get(4));
-                length.setText(bundle_input.get(5));
-                breadth.setText(bundle_input.get(6));
-                height.setText(bundle_input.get(7));
-//                if(bundle_input.get(9).equals("prepaid")){
-//                    radioButtonPrepaid.setChecked(true);
-//                }else{
-//                    radioButtonPostpaid.setChecked(true);
-//                }
-//                if(bundle_input.get(8).equals("bronze")){
-//                    radioButtonBronze.setChecked(true);
-//                }else if(bundle_input.get(8).equals("silver")){
-//                    radioButtonSilver.setChecked(true);
-//                }else{
-//                    radioButtonGold.setChecked(true);
-//                }
-                inwardShipping.setText(bundle_input.get(10));
-                packagingExpenses.setText(bundle_input.get(11));
-                labour.setText(bundle_input.get(12));
-                storageFee.setText(bundle_input.get(13));
-                otherCharges.setText(bundle_input.get(14));
-                discountByPrice.setText(bundle_input.get(15));
-                discountByPercentage.setText(bundle_input.get(16));
+                inwardShipping.setText(bundle_input.get(5));
+                packagingExpenses.setText(bundle_input.get(6));
+                labour.setText(bundle_input.get(7));
+                storageFee.setText(bundle_input.get(8));
+                otherCharges.setText(bundle_input.get(9));
+                discountByPrice.setText(bundle_input.get(10));
+                discountByPercentage.setText(bundle_input.get(11));
+                if(bundle_input.get(12).equals("easyShip")){
+                    radioButtonEasyShip.setChecked(true);
+                    if(bundle_input.get(13).equals("prime")){
+                        radioButtonPrime.setChecked(true);
+                    }else{
+                        radioButtonNonPrime.setChecked(true);
+                    }
+                    weight.setText(bundle_input.get(14));
+                    length.setText(bundle_input.get(15));
+                    breadth.setText(bundle_input.get(16));
+                    height.setText(bundle_input.get(17));
+                }else{
+                    radioButtonSelfShip.setChecked(true);
+                    selfshipLocal.setText(bundle_input.get(13));
+                    selfshipRegional.setText(bundle_input.get(14));
+                    selfshipNational.setText(bundle_input.get(15));
+                }
 
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())

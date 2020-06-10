@@ -2,6 +2,8 @@ package com.ecommerce.calculator.models;
 
 import com.ecommerce.calculator.utils.AmazonOutputModel;
 import com.ecommerce.calculator.utils.FlipkartOutputModel;
+import com.ecommerce.calculator.utils.easyShipModel;
+import com.ecommerce.calculator.utils.selfShipModel;
 
 public class TitleDataResponse {
 
@@ -33,10 +35,6 @@ public class TitleDataResponse {
     private String gstClaim;
     private String profitPercentage;
     private String shipmentType;
-    private String easyShipType;
-    private String selfShipLocal;
-    private String selfShipRegional;
-    private String selfShipNational;
     private MeeshoCalculationResponse local;
     private MeeshoCalculationResponse regional;
     private MeeshoCalculationResponse metro;
@@ -48,17 +46,19 @@ public class TitleDataResponse {
     private AmazonOutputModel amazonLocal;
     private AmazonOutputModel amazonRegional;
     private AmazonOutputModel amazonNational;
+    private easyShipModel easyShip;
+    private selfShipModel selfShip;
     private String title;
 
     public TitleDataResponse(String title, String category, String subcategory, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight,
                              String length, String breadth, String height, String customerType, String courier, String payMode, String inwardShipping,
                              String packagingExpense, String labour, String storageFee, String other, String discountAmount, String discountPercent,
                              String bankSettlement, String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable,
-                             String gstClaim, String profitPercentage, String shipmentType, String easyShipType, String selfShipLocal,
-                             String selfShipRegional, String selfShipNational, MeeshoCalculationResponse local, MeeshoCalculationResponse regional,
-                             MeeshoCalculationResponse metro, MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela,
-                             FlipkartOutputModel flipkartLocal, FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational,
-                             AmazonOutputModel amazonLocal, AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational) {
+                             String gstClaim, String profitPercentage, String shipmentType, easyShipModel easyShip, selfShipModel selfShip,
+                             MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
+                             MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela, FlipkartOutputModel flipkartLocal,
+                             FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational, AmazonOutputModel amazonLocal,
+                             AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational) {
         this.title = title;
         this.category = category;
         this.subcategory = subcategory;
@@ -80,10 +80,8 @@ public class TitleDataResponse {
         this.discountAmount = discountAmount;
         this.discountPercent = discountPercent;
         this.shipmentType = shipmentType;
-        this.easyShipType = easyShipType;
-        this.selfShipLocal = selfShipLocal;
-        this.selfShipRegional = selfShipRegional;
-        this.selfShipNational = selfShipNational;
+        this.easyShip = easyShip;
+        this.selfShip = selfShip;
         this.bankSettlement = bankSettlement;
         this.totalCommision = totalCommision;
         this.profit = profit;
@@ -171,19 +169,12 @@ public class TitleDataResponse {
         return shipmentType;
     }
 
-    public String getEasyShipType(){
-        return  easyShipType;
-    }
-    public String getSelfShipLocal(){
-        return selfShipLocal;
+    public easyShipModel getEasyShip(){
+        return easyShip;
     }
 
-    public String getSelfShipRegional(){
-        return  selfShipRegional;
-    }
-
-    public String getSelfShipNational(){
-        return selfShipNational;
+    public selfShipModel getSelfShip(){
+        return selfShip;
     }
 
     public String getBankSettlement() { return bankSettlement; }

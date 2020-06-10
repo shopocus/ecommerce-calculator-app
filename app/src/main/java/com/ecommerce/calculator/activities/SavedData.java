@@ -601,25 +601,25 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text4);
         outputList.add(text5);
         outputList.add(text6);
-      //  if(String.valueOf(td.getShipmentType()).equals("easyShip")) {
-            output text7 = new output("EasyShip Type", td.getEasyShipType());
-            output text8 = new output("Weight", String.valueOf(td.getWeight()));
-            output text9 = new output("Length", String.valueOf(td.getLength()));
-            output text10 = new output("Breadth", String.valueOf(td.getBreadth()));
-            output text11 = new output("Height", String.valueOf(td.getHeight()));
+        if(String.valueOf(td.getShipmentType()).equals("easyShip")) {
+            output text7 = new output("EasyShip Type", td.getEasyShip().getEasyShipType());
+            output text8 = new output("Weight", String.valueOf(td.getEasyShip().getWeight()));
+            output text9 = new output("Length", String.valueOf(td.getEasyShip().getLength()));
+            output text10 = new output("Breadth", String.valueOf(td.getEasyShip().getBreadth()));
+            output text11 = new output("Height", String.valueOf(td.getEasyShip().getHeight()));
             outputList.add(text7);
             outputList.add(text8);
             outputList.add(text9);
             outputList.add(text10);
             outputList.add(text11);
-       // }else {
-            output text12 = new output("SelfShipLocal", String.valueOf(td.getSelfShipLocal()));
-            output text13 = new output("SelfShipRegional", String.valueOf(td.getSelfShipRegional()));
-            output text14 = new output("SelfShipNational", String.valueOf(td.getSelfShipNational()));
+        }else {
+            output text12 = new output("SelfShipLocal", String.valueOf(td.getSelfShip().getSelfShipLocal()));
+            output text13 = new output("SelfShipRegional", String.valueOf(td.getSelfShip().getSelfShipRegional()));
+            output text14 = new output("SelfShipNational", String.valueOf(td.getSelfShip().getSelfShipNational()));
             outputList.add(text12);
             outputList.add(text13);
             outputList.add(text14);
-       // }
+        }
         outputList.add(text15);
         outputList.add(text16);
         outputList.add(text17);
@@ -654,15 +654,6 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getSellingPrice());
         input.add(td.getProductPriceWithoutGst());
         input.add(td.getGstOnProduct());
-        input.add(td.getShipmentType());
-        input.add(td.getEasyShipType());
-        input.add(td.getWeight());
-        input.add(td.getLength());
-        input.add(td.getBreadth());
-        input.add(td.getHeight());
-        input.add(td.getSelfShipLocal());
-        input.add(td.getSelfShipRegional());
-        input.add(td.getSelfShipNational());
         input.add(td.getInwardShipping());
         input.add(td.getPackagingExpense());
         input.add(td.getLabour());
@@ -670,6 +661,19 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getOther());
         input.add(td.getDiscountAmount());
         input.add(td.getDiscountPercent());
+        input.add(td.getShipmentType());
+        if(String.valueOf(td.getShipmentType()).equals("easyShip")) {
+            input.add(td.getEasyShip().getEasyShipType());
+            input.add(String.valueOf(td.getEasyShip().getWeight()));
+            input.add(String.valueOf(td.getEasyShip().getLength()));
+            input.add(String.valueOf(td.getEasyShip().getBreadth()));
+            input.add(String.valueOf(td.getEasyShip().getHeight()));
+        }
+        else {
+            input.add(String.valueOf(td.getSelfShip().getSelfShipLocal()));
+            input.add(String.valueOf(td.getSelfShip().getSelfShipRegional()));
+            input.add(String.valueOf(td.getSelfShip().getSelfShipNational()));
+        }
 
         Local.add(String.valueOf(td.getAmazonLocal().getReferralFees()));
         Local.add(String.valueOf(td.getAmazonLocal().getClosingFees()));
