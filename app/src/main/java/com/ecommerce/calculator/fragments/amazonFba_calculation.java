@@ -704,9 +704,9 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             String gstOnProduct = spinner_ans;
             String productPriceWithoutGst = purchasePrice.getText().toString().trim();
             String inwardShipping = this.inwardShipping.getText().toString().trim();
-            String packagingExpense = packagingExpenses.getText().toString().trim();
-            String labour = this.labour.getText().toString().trim();
-            String storageFee = this.storageFee.getText().toString().trim();
+//            String packagingExpense = packagingExpenses.getText().toString().trim();
+//            String labour = this.labour.getText().toString().trim();
+//            String storageFee = this.storageFee.getText().toString().trim();
             String other = otherCharges.getText().toString().trim();
             String discountPercent = discountByPercentage.getText().toString().trim();
             String discountAmount = discountByPrice.getText().toString().trim();
@@ -714,23 +714,22 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             String length = this.length.getText().toString().trim();
             String breadth = this.breadth.getText().toString().trim();
             String height = this.height.getText().toString().trim();
-            String ssLocal = this.selfshipLocal.getText().toString().trim();
-            String ssRegional = this.selfshipRegional.getText().toString().trim();
-            String ssNational = this.selfshipNational.getText().toString().trim();
+//            String ssLocal = this.selfshipLocal.getText().toString().trim();
+//            String ssRegional = this.selfshipRegional.getText().toString().trim();
+//            String ssNational = this.selfshipNational.getText().toString().trim();
 //            String payMode = paymentOption;
 //            String customerType = customerTypeOption;
 
             Call<MessageResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .savedAmazon(title, category, subCategory, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense,
-                            labour, storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, shipmentTypeOption,
-                            easyShipmentTypeOption, ssLocal, ssRegional, ssNational, Local.get(0), Local.get(1), Local.get(2), Local.get(3),
+                    .savedAmazonFba(title, category, subCategory, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, other,
+                            discountPercent, discountAmount, weight, length, breadth, height, Local.get(0), Local.get(1), Local.get(2), Local.get(3),
                             Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8), Local.get(9), Local.get(10), Local.get(11),
                             Local.get(12), Regional.get(0), Regional.get(1), Regional.get(2), Regional.get(3), Regional.get(4),
                             Regional.get(5), Regional.get(6), Regional.get(7), Regional.get(8), Regional.get(9), Regional.get(10), Regional.get(11),
-                            Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
-                            National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+                            Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5),
+                            National.get(6), National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
 
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
@@ -770,23 +769,11 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
                     "GST On Product: " + spinner_ans + "\n" +
                     "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                    "Shipment Type: " + shipmentTypeOption + "\n";
-            String content1 = "";
-            if(shipmentTypeOption.equals("easyShip")){
-                content1 = "Easy Shipment Type: " + easyShipmentTypeOption + "\n" +
-                        "Weight: " + weight.getText().toString().trim() + "\n" +
-                        "Length: " + length.getText().toString().trim() + "\n" +
-                        "Breadth: " + breadth.getText().toString().trim() + "\n" +
-                        "Height: " + height.getText().toString().trim() + "\n";
-            }else {
-                content1 = "Self Ship Local: " + selfshipLocal.getText().toString().trim() + "\n" +
-                        "Self Ship Regional: " + selfshipRegional.getText().toString().trim() + "\n" +
-                        "Self Ship National: " + selfshipNational.getText().toString().trim() + "\n";
-            }
-            String content2 = "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                    "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                    "Labour: " + labour.getText().toString().trim() + "\n" +
-                    "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
+                    "Weight: " + weight.getText().toString().trim() + "\n" +
+                    "Length: " + length.getText().toString().trim() + "\n" +
+                    "Breadth: " + breadth.getText().toString().trim() + "\n" +
+                    "Height: " + height.getText().toString().trim() + "\n" +
+                    "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
                     "Other: " + otherCharges.getText().toString().trim() + "\n" +
                     "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
                     "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
@@ -795,8 +782,8 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     "Referral Fees: " + Local.get(0) + "\n" +
                     "Closing Fees: " + Local.get(1) + "\n" +
                     "Shipping Fees: " + Local.get(2) + "\n" +
-                    "Referral + Closing + Shipping Fees: " + Local.get(3) + "\n" +
-                    "GST On RCS: " + Local.get(4) + "\n" +
+                    "RCF: " + Local.get(3) + "\n" +
+                    "GST On RCF: " + Local.get(4) + "\n" +
                     "Total Charges: " + Local.get(5) + "\n" +
                     "GST Claim: " + Local.get(6) + "\n" +
                     "Bank Settlement: " + Local.get(7) + "\n" +
@@ -809,8 +796,8 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     "Referral Fees: " + Regional.get(0) + "\n" +
                     "Closing Fees: " + Regional.get(1) + "\n" +
                     "Shipping Fees: " + Regional.get(2) + "\n" +
-                    "Referral + Closing + Shipping Fees: " + Regional.get(3) + "\n" +
-                    "GST On RCS: " + Regional.get(4) + "\n" +
+                    "RCF: " + Regional.get(3) + "\n" +
+                    "GST On RCF: " + Regional.get(4) + "\n" +
                     "Total Charges: " + Regional.get(5) + "\n" +
                     "GST Claim: " + Regional.get(6) + "\n" +
                     "Bank Settlement: " + Regional.get(7) + "\n" +
@@ -819,15 +806,15 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     "GST Payable: " + Regional.get(10) + "\n" +
                     "Profit: " + Regional.get(11) + "\n" +
                     "Profit Percentage: " + Regional.get(12) + "\n\n";
-            String content3 = "";
+            String content1 = "";
             if(Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString())*
                     Double.parseDouble(breadth.getText().toString())*Double.parseDouble(height.getText().toString())/5 <= 12000) {
-                content3 = "National" + "\n" +
+                content1 = "National" + "\n" +
                         "Referral Fees: " + National.get(0) + "\n" +
                         "Closing Fees: " + National.get(1) + "\n" +
                         "Shipping Fees: " + National.get(2) + "\n" +
-                        "Referral + Closing + Shipping Fees: " + National.get(3) + "\n" +
-                        "GST On RCS: " + National.get(4) + "\n" +
+                        "RCF: " + National.get(3) + "\n" +
+                        "GST On RCF: " + National.get(4) + "\n" +
                         "Total Charges: " + National.get(5) + "\n" +
                         "GST Claim: " + National.get(6) + "\n" +
                         "Bank Settlement: " + National.get(7) + "\n" +
@@ -840,7 +827,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            String shareBody = content + content1 + content2 +content3;
+            String shareBody = content + content1;
             String shareSub = "Your Bill";
             intent.putExtra(Intent.EXTRA_SUBJECT, shareSub);
             intent.putExtra(Intent.EXTRA_TEXT, shareBody);

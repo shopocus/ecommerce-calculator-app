@@ -373,7 +373,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("amazon/app/fba/toSave")
-    Call<AmazonCalculationResponse> savedAmazonFba(
+    Call<MessageResponse> savedAmazonFba(
             @Field("title") String title,
             @Field("category") String category,
             @Field("subcategory") String subcategory,
