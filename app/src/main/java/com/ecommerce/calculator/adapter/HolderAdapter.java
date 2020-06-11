@@ -76,6 +76,11 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("amazon");
                     categories();
                 }
+                else if (menu.get(position).getTitle().equals("Amazon Fba")){
+                    SharedPrefManager.getInstance(c)
+                            .saveCompany("amazonfba");
+                    categories();
+                }
                 else {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();
@@ -135,6 +140,9 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 call = RetrofitClient.getInstance().getApi().getCategoriesFlipkart();
                 break;
             case "amazon":
+                call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
+                break;
+            case "amazonfba":
                 call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
                 break;
             default:

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.ecommerce.calculator.fragments.flipkart_calculation;
 import com.ecommerce.calculator.fragments.amazon_calculation;
+import com.ecommerce.calculator.fragments.amazonFba_calculation;
 import com.ecommerce.calculator.fragments.input;
 import com.ecommerce.calculator.fragments.clubfactory_calculation;
 import com.ecommerce.calculator.fragments.saved;
@@ -49,6 +50,11 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 amazon_calculation amazon_calculation = new amazon_calculation();
                 amazon_calculation.setArguments(bundle);
                 return amazon_calculation;
+            }
+            else if (SharedPrefManager.getInstance(c).getCompany().equals("amazonfba")) {
+                amazonFba_calculation amazonFba_calculation = new amazonFba_calculation();
+                amazonFba_calculation.setArguments(bundle);
+                return amazonFba_calculation;
             }
         }else {
             saved saved = new saved();

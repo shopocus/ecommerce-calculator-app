@@ -816,6 +816,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/line11"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -824,6 +825,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/packagingExpensesBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -852,6 +854,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/line12"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -860,6 +863,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/labourBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -888,6 +892,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/line13"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -896,6 +901,7 @@
                     android:background="@color/colorBase" />
 
                 <LinearLayout
+                    android:id="@+id/storageFeeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

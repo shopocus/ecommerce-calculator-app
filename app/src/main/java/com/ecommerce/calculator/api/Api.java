@@ -354,6 +354,82 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("amazon/app/fba/calculate")
+    Call<AmazonCalculationResponse> amazonFbaCalculation(
+            @Field("category") String category,
+            @Field("subcategory") String subcategory,
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("other") double other,
+            @Field("discountPercent") double discountPercent,
+            @Field("discountAmount") double discountAmount,
+            @Field("weight") double weight,
+            @Field("length") double length,
+            @Field("breadth") double breadth,
+            @Field("height") double height
+    );
+
+    @FormUrlEncoded
+    @POST("amazon/app/fba/toSave")
+    Call<AmazonCalculationResponse> savedAmazonFba(
+            @Field("title") String title,
+            @Field("category") String category,
+            @Field("subcategory") String subcategory,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("other") String other,
+            @Field("discountPercent") String discountPercent,
+            @Field("discountAmount") String discountAmount,
+            @Field("weight") String weight,
+            @Field("length") String length,
+            @Field("breadth") String breadth,
+            @Field("height") String height,
+            @Field("referralFeesLocal") String referralFeesLocal,
+            @Field("closingFeesLocal") String closingFeesLocal,
+            @Field("shippingFeesLocal") String shippingFeesLocal,
+            @Field("RCFLocal") String RCFLocal,
+            @Field("gstOnRCFLocal") String gstOnRCFLocal,
+            @Field("totalChargesLocal") String totalChargesLocal,
+            @Field("gstClaimLocal") String gstClaimLocal,
+            @Field("bankSettlementLocal") String bankSettlementLocal,
+            @Field("totalGstPayableLocal") String totalGstPayableLocal,
+            @Field("tcsLocal") String tcsLocal,
+            @Field("gstPayableLocal") String gstPayableLocal,
+            @Field("profitLocal") String profitLocal,
+            @Field("profitPercentageLocal") String profitPercentageLocal,
+            @Field("referralFeesRegional") String referralFeesRegional,
+            @Field("closingFeesRegional") String closingFeesRegional,
+            @Field("shippingFeesRegional") String shippingFeesRegional,
+            @Field("RCFRegional") String RCSRegional,
+            @Field("gstOnRCFRegional") String gstOnRCSRegional,
+            @Field("totalChargesRegional") String totalChargesRegional,
+            @Field("gstClaimRegional") String gstClaimRegional,
+            @Field("bankSettlementRegional") String bankSettlementRegional,
+            @Field("totalGstPayableRegional") String totalGstPayableRegional,
+            @Field("tcsRegional") String tcsRegional,
+            @Field("gstPayableRegional") String gstPayableRegional,
+            @Field("profitRegional") String profitRegional,
+            @Field("profitPercentageRegional") String profitPercentageRegional,
+            @Field("referralFeesNational") String referralFeesNational,
+            @Field("closingFeesNational") String closingFeesNational,
+            @Field("shippingFeesNational") String shippingFeesNational,
+            @Field("RCFNational") String RCSNational,
+            @Field("gstOnRCFNational") String gstOnRCSNational,
+            @Field("totalChargesNational") String totalChargesNational,
+            @Field("gstClaimNational") String gstClaimNational,
+            @Field("bankSettlementNational") String bankSettlementNational,
+            @Field("totalGstPayableNational") String totalGstPayableNational,
+            @Field("tcsNational") String tcsNational,
+            @Field("gstPayableNational") String gstPayableNational,
+            @Field("profitNational") String profitNational,
+            @Field("profitPercentageNational") String profitPercentageNational
+    );
+
+    @FormUrlEncoded
     @POST("common/show/saved/title")
     Call<savedTitleResponse> getTitles(
             @Field("company") String company
