@@ -12,6 +12,7 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.models.output;
+import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,10 @@ public class AmazonLocal extends Fragment {
         output text3 = new output("Shipping Fees", bundle_local.get(2));
         output text4 = new output("RCS", bundle_local.get(3));
         output text5 = new output("GST On RCS", bundle_local.get(4));
+        if(SharedPrefManager.getInstance(getActivity()).getCompany().equals("amazonfba")){
+            text4 = new output("RCF", bundle_local.get(4));
+            text5 = new output("GST ON RCF", bundle_local.get(5));
+        }
         output text6 = new output("Total Charges", bundle_local.get(5));
         output text7 = new output("GST Claim", bundle_local.get(6));
         output text8 = new output("Bank Settlement", bundle_local.get(7));
