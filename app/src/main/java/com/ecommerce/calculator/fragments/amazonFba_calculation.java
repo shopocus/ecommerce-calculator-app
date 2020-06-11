@@ -410,30 +410,31 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                         gstOnProduct.setSelection(4);
                         break;
                 }
-                inwardShipping.setText(bundle_input.get(5));
-                packagingExpenses.setText(bundle_input.get(6));
-                labour.setText(bundle_input.get(7));
-                storageFee.setText(bundle_input.get(8));
-                otherCharges.setText(bundle_input.get(9));
-                discountByPrice.setText(bundle_input.get(10));
-                discountByPercentage.setText(bundle_input.get(11));
-                if(bundle_input.get(12).equals("easyShip")){
-                    radioButtonEasyShip.setChecked(true);
-                    if(bundle_input.get(13).equals("prime")){
-                        radioButtonPrime.setChecked(true);
-                    }else{
-                        radioButtonNonPrime.setChecked(true);
-                    }
-                    weight.setText(bundle_input.get(14));
-                    length.setText(bundle_input.get(15));
-                    breadth.setText(bundle_input.get(16));
-                    height.setText(bundle_input.get(17));
-                }else{
-                    radioButtonSelfShip.setChecked(true);
-                    selfshipLocal.setText(bundle_input.get(13));
-                    selfshipRegional.setText(bundle_input.get(14));
-                    selfshipNational.setText(bundle_input.get(15));
-                }
+                weight.setText(bundle_input.get(5));
+                length.setText(bundle_input.get(6));
+                breadth.setText(bundle_input.get(7));
+                height.setText(bundle_input.get(8));
+                inwardShipping.setText(bundle_input.get(9));
+//                packagingExpenses.setText(bundle_input.get(6));
+//                labour.setText(bundle_input.get(7));
+//                storageFee.setText(bundle_input.get(8));
+                otherCharges.setText(bundle_input.get(10));
+                discountByPrice.setText(bundle_input.get(11));
+                discountByPercentage.setText(bundle_input.get(12));
+//                if(bundle_input.get(12).equals("easyShip")){
+//                    radioButtonEasyShip.setChecked(true);
+//                    if(bundle_input.get(13).equals("prime")){
+//                        radioButtonPrime.setChecked(true);
+//                    }else{
+//                        radioButtonNonPrime.setChecked(true);
+//                    }
+
+//                }else{
+//                    radioButtonSelfShip.setChecked(true);
+//                    selfshipLocal.setText(bundle_input.get(13));
+//                    selfshipRegional.setText(bundle_input.get(14));
+//                    selfshipNational.setText(bundle_input.get(15));
+//                }
 
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())

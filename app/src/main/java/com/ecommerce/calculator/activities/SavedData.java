@@ -151,6 +151,9 @@ public class SavedData extends AppCompatActivity {
                             case "amazon":
                                 amazonData(td);
                                 break;
+                            case "amazonfba":
+                                amazonFbaData(td);
+                                break;
                         }
                     }
                 }else if(response.code() == 401){
@@ -728,6 +731,174 @@ public class SavedData extends AppCompatActivity {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
        // tabLayout.addTab(tabLayout.newTab().setText("National"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
+        AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(SavedData.this, getSupportFragmentManager(),
+                tabLayout.getTabCount(), bundle);
+        viewPager.setAdapter(amazonSectionAdapter);
+//        viewPager.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                viewPager.getParent().requestDisallowInterceptTouchEvent(false);
+//                return false;
+//            }
+//        });
+//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                if(position != )
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    void amazonFbaData(TitleDataResponse td){
+        viewPager.setVisibility(View.VISIBLE);
+        tabLayout.setVisibility(View.VISIBLE);
+        output text1 = new output("Category", String.valueOf(td.getCategory()));
+        output text2 = new output("subcategory", String.valueOf(td.getSubcategory()));
+        output text3 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
+        output text4 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
+        output text5 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
+        output text6 = new output("Weight", String.valueOf(td.getWeight()));
+        output text7 = new output("Length", String.valueOf(td.getLength()));
+        output text8 = new output("Breadth", String.valueOf(td.getBreadth()));
+        output text9 = new output("Height", String.valueOf(td.getHeight()));
+        output text10 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
+        output text11 = new output("Other Charges", String.valueOf(td.getOther()));
+        output text12 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
+        output text13 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+
+        ArrayList<output> outputList = new ArrayList<>();
+        outputList.add(text1);
+        outputList.add(text2);
+        outputList.add(text3);
+        outputList.add(text4);
+        outputList.add(text5);
+        outputList.add(text6);
+        outputList.add(text7);
+        outputList.add(text8);
+        outputList.add(text9);
+        outputList.add(text10);
+        outputList.add(text11);
+        outputList.add(text12);
+        outputList.add(text13);
+
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
+        itemList.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(itemList);
+//
+//        ArrayList<String> title = new ArrayList<>();
+//        title.add("Category");
+//        title.add("Selling Price");
+//        title.add("Purchase Price");
+//        title.add("GST on Product");
+//        title.add("Weight");
+//        title.add("Courier");
+//        title.add("Payment Mode");
+//        title.add("Inward Shipping");
+//        title.add("Packaging Expenses");
+//        title.add("Labour");
+//        title.add("Storage Fees");
+//        title.add("Other Charges");
+//        title.add("Discount on Price");
+//        title.add("Discount Percentage");
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getCategory());
+        input.add(td.getSubcategory());
+        input.add(td.getSellingPrice());
+        input.add(td.getProductPriceWithoutGst());
+        input.add(td.getGstOnProduct());
+        input.add(td.getWeight());
+        input.add(td.getLength());
+        input.add(td.getBreadth());
+        input.add(td.getHeight());
+        input.add(td.getInwardShipping());
+        input.add(td.getOther());
+        input.add(td.getDiscountAmount());
+        input.add(td.getDiscountPercent());
+
+
+        Local.add(String.valueOf(td.getAmazonLocal().getReferralFees()));
+        Local.add(String.valueOf(td.getAmazonLocal().getClosingFees()));
+        Local.add(String.valueOf(td.getAmazonLocal().getShippingFees()));
+        Local.add(String.valueOf(td.getAmazonLocal().getRCF()));
+        Local.add(String.valueOf(td.getAmazonLocal().getGstOnRCF()));
+        Local.add(String.valueOf(td.getAmazonLocal().getTotalCharges()));
+        Local.add(String.valueOf(td.getAmazonLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getAmazonLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getAmazonLocal().getTotalGstPayable()));
+        Local.add(String.valueOf(td.getAmazonLocal().getTcs()));
+        Local.add(String.valueOf(td.getAmazonLocal().getGstPayable()));
+        Local.add(String.valueOf(td.getAmazonLocal().getProfit()));
+        Local.add(String.valueOf(td.getAmazonLocal().getProfitPercentage()));
+
+        Regional.add(String.valueOf(td.getAmazonRegional().getReferralFees()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getClosingFees()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getShippingFees()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getRCF()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getGstOnRCF()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getTotalCharges()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getGstClaim()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getBankSettlement()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getTotalGstPayable()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getTcs()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getGstPayable()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getProfit()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getProfitPercentage()));
+
+        National.add(String.valueOf(td.getAmazonNational().getReferralFees()));
+        National.add(String.valueOf(td.getAmazonNational().getClosingFees()));
+        National.add(String.valueOf(td.getAmazonNational().getShippingFees()));
+        National.add(String.valueOf(td.getAmazonNational().getRCF()));
+        National.add(String.valueOf(td.getAmazonNational().getGstOnRCF()));
+        National.add(String.valueOf(td.getAmazonNational().getTotalCharges()));
+        National.add(String.valueOf(td.getAmazonNational().getGstClaim()));
+        National.add(String.valueOf(td.getAmazonNational().getBankSettlement()));
+        National.add(String.valueOf(td.getAmazonNational().getTotalGstPayable()));
+        National.add(String.valueOf(td.getAmazonNational().getTcs()));
+        National.add(String.valueOf(td.getAmazonNational().getGstPayable()));
+        National.add(String.valueOf(td.getAmazonNational().getProfit()));
+        National.add(String.valueOf(td.getAmazonNational().getProfitPercentage()));
+
+        bundle.putStringArrayList("input", input);
+        bundle.putStringArrayList("Local", Local);
+        bundle.putStringArrayList("Regional", Regional);
+        bundle.putStringArrayList("National", National);
+
+        tabLayout.addTab(tabLayout.newTab().setText("Local"));
+        tabLayout.addTab(tabLayout.newTab().setText("Regional"));
+        if(td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength()*td.getEasyShip().getBreadth()*td.getEasyShip().getHeight()/5 <= 12000) {
+            tabLayout.addTab(tabLayout.newTab().setText("National"));
+        }
+        // tabLayout.addTab(tabLayout.newTab().setText("National"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(SavedData.this, getSupportFragmentManager(),
