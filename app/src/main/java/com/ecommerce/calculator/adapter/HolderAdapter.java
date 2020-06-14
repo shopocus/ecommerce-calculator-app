@@ -78,7 +78,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                 }
                 else if (menu.get(position).getTitle().equals("Amazon Fba")){
                     SharedPrefManager.getInstance(c)
-                            .saveCompany("amazonfba");
+                            .saveCompany("amazonFba");
                     categories();
                 }
                 else {
@@ -142,7 +142,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             case "amazon":
                 call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
                 break;
-            case "amazonfba":
+            case "amazonFba":
                 call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
                 break;
             default:

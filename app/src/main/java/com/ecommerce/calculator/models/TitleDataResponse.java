@@ -46,6 +46,9 @@ public class TitleDataResponse {
     private AmazonOutputModel amazonLocal;
     private AmazonOutputModel amazonRegional;
     private AmazonOutputModel amazonNational;
+    private AmazonOutputModel amazonFbaLocal;
+    private AmazonOutputModel amazonFbaRegional;
+    private AmazonOutputModel amazonFbaNational;
     private easyShipModel easyShip;
     private selfShipModel selfShip;
     private String title;
@@ -58,7 +61,8 @@ public class TitleDataResponse {
                              MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
                              MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela, FlipkartOutputModel flipkartLocal,
                              FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational, AmazonOutputModel amazonLocal,
-                             AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational) {
+                             AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational, AmazonOutputModel amazonFbaLocal, AmazonOutputModel
+                             amazonFbaRegional, AmazonOutputModel amazonFbaNational) {
         this.title = title;
         this.category = category;
         this.subcategory = subcategory;
@@ -101,6 +105,9 @@ public class TitleDataResponse {
         this.amazonLocal = amazonLocal;
         this.amazonRegional = amazonRegional;
         this.amazonNational = amazonNational;
+        this.amazonFbaLocal = amazonFbaLocal;
+        this.amazonFbaRegional = amazonFbaRegional;
+        this.amazonFbaNational = amazonFbaNational;
     }
 
     public String getTitle() {
@@ -242,5 +249,11 @@ public class TitleDataResponse {
     public AmazonOutputModel getAmazonNational() {
         return amazonNational;
     }
+
+    public AmazonOutputModel getAmazonFbaLocal() { return amazonFbaLocal; }
+
+    public AmazonOutputModel getAmazonFbaRegional() { return amazonFbaRegional; }
+
+    public AmazonOutputModel getAmazonFbaNational() { return amazonFbaNational; }
 
 }

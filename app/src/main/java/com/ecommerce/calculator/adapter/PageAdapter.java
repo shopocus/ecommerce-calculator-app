@@ -51,7 +51,7 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 amazon_calculation.setArguments(bundle);
                 return amazon_calculation;
             }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("amazonfba")) {
+            else if (SharedPrefManager.getInstance(c).getCompany().equals("amazonFba")) {
                 amazonFba_calculation amazonFba_calculation = new amazonFba_calculation();
                 amazonFba_calculation.setArguments(bundle);
                 return amazonFba_calculation;

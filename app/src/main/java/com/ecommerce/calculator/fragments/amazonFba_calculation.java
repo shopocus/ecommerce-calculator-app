@@ -34,6 +34,7 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.AmazonCalculationResponse;
+import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.models.subCategory;
@@ -582,15 +583,15 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 //            double number16 = Double.parseDouble(selfshipRegional.getText().toString());
 //            double number17 = Double.parseDouble(selfshipNational.getText().toString());
 
-            Call<AmazonCalculationResponse> call = RetrofitClient
+            Call<AmazonFbaCalculationResponse> call = RetrofitClient
                     .getInstance().getApi().amazonFbaCalculation(category, subCategory, number1, number3, number2, number4, number5, number7, number6,
                             number8, number9, number10, number11);
 
-            call.enqueue(new Callback<AmazonCalculationResponse>() {
+            call.enqueue(new Callback<AmazonFbaCalculationResponse>() {
                 @Override
-                public void onResponse(Call<AmazonCalculationResponse> call, Response<AmazonCalculationResponse> response) {
+                public void onResponse(Call<AmazonFbaCalculationResponse> call, Response<AmazonFbaCalculationResponse> response) {
                     if(response.isSuccessful()) {
-                        AmazonCalculationResponse CalculateResponse = response.body();
+                        AmazonFbaCalculationResponse CalculateResponse = response.body();
                         ButtonFinished();
 
                         result_card.setVisibility(View.VISIBLE);
@@ -651,8 +652,8 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
                         tabLayout.addTab(tabLayout.newTab().setText("Local"));
                         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-                        if(Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString())*
-                                Double.parseDouble(breadth.getText().toString())*Double.parseDouble(height.getText().toString())/5 <= 12000) {
+                        if(Double.parseDouble(weight.getText().toString()) <= 30000 || Double.parseDouble(length.getText().toString())*
+                                Double.parseDouble(breadth.getText().toString())*Double.parseDouble(height.getText().toString())/5 <= 30000) {
                             tabLayout.addTab(tabLayout.newTab().setText("National"));
                         }
                         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -690,7 +691,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     }
                 }
                 @Override
-                public void onFailure(Call<AmazonCalculationResponse> call, Throwable t) {
+                public void onFailure(Call<AmazonFbaCalculationResponse> call, Throwable t) {
                     ButtonFinished();
                     Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
                 }

@@ -151,7 +151,7 @@ public class SavedData extends AppCompatActivity {
                             case "amazon":
                                 amazonData(td);
                                 break;
-                            case "amazonfba":
+                            case "amazonFba":
                                 amazonFbaData(td);
                                 break;
                         }
@@ -846,47 +846,47 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getDiscountPercent());
 
 
-        Local.add(String.valueOf(td.getAmazonLocal().getReferralFees()));
-        Local.add(String.valueOf(td.getAmazonLocal().getClosingFees()));
-        Local.add(String.valueOf(td.getAmazonLocal().getShippingFees()));
-        Local.add(String.valueOf(td.getAmazonLocal().getRCF()));
-        Local.add(String.valueOf(td.getAmazonLocal().getGstOnRCF()));
-        Local.add(String.valueOf(td.getAmazonLocal().getTotalCharges()));
-        Local.add(String.valueOf(td.getAmazonLocal().getGstClaim()));
-        Local.add(String.valueOf(td.getAmazonLocal().getBankSettlement()));
-        Local.add(String.valueOf(td.getAmazonLocal().getTotalGstPayable()));
-        Local.add(String.valueOf(td.getAmazonLocal().getTcs()));
-        Local.add(String.valueOf(td.getAmazonLocal().getGstPayable()));
-        Local.add(String.valueOf(td.getAmazonLocal().getProfit()));
-        Local.add(String.valueOf(td.getAmazonLocal().getProfitPercentage()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getReferralFees()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getClosingFees()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getShippingFees()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getRCF()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstOnRCF()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getTotalCharges()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getTotalGstPayable()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getTcs()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstPayable()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getProfit()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getProfitPercentage()));
 
-        Regional.add(String.valueOf(td.getAmazonRegional().getReferralFees()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getClosingFees()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getShippingFees()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getRCF()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getGstOnRCF()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getTotalCharges()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getGstClaim()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getBankSettlement()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getTotalGstPayable()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getTcs()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getGstPayable()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getProfit()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getProfitPercentage()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getReferralFees()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getClosingFees()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getShippingFees()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getRCF()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstOnRCF()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getTotalCharges()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstClaim()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getBankSettlement()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getTotalGstPayable()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getTcs()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstPayable()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getProfit()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getProfitPercentage()));
 
-        National.add(String.valueOf(td.getAmazonNational().getReferralFees()));
-        National.add(String.valueOf(td.getAmazonNational().getClosingFees()));
-        National.add(String.valueOf(td.getAmazonNational().getShippingFees()));
-        National.add(String.valueOf(td.getAmazonNational().getRCF()));
-        National.add(String.valueOf(td.getAmazonNational().getGstOnRCF()));
-        National.add(String.valueOf(td.getAmazonNational().getTotalCharges()));
-        National.add(String.valueOf(td.getAmazonNational().getGstClaim()));
-        National.add(String.valueOf(td.getAmazonNational().getBankSettlement()));
-        National.add(String.valueOf(td.getAmazonNational().getTotalGstPayable()));
-        National.add(String.valueOf(td.getAmazonNational().getTcs()));
-        National.add(String.valueOf(td.getAmazonNational().getGstPayable()));
-        National.add(String.valueOf(td.getAmazonNational().getProfit()));
-        National.add(String.valueOf(td.getAmazonNational().getProfitPercentage()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getReferralFees()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getClosingFees()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getShippingFees()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getRCF()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstOnRCF()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getTotalCharges()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstClaim()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getBankSettlement()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getTotalGstPayable()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getTcs()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstPayable()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getProfit()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getProfitPercentage()));
 
         bundle.putStringArrayList("input", input);
         bundle.putStringArrayList("Local", Local);
@@ -895,7 +895,7 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        if(td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength()*td.getEasyShip().getBreadth()*td.getEasyShip().getHeight()/5 <= 12000) {
+        if(Double.parseDouble(td.getWeight()) <= 30000 || Double.parseDouble(td.getLength())*Double.parseDouble(td.getBreadth())*Double.parseDouble(td.getHeight())/5 <= 30000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
         // tabLayout.addTab(tabLayout.newTab().setText("National"));

@@ -1,6 +1,7 @@
 package com.ecommerce.calculator.api;
 
 import com.ecommerce.calculator.models.AmazonCalculationResponse;
+import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
@@ -355,7 +356,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("amazon/app/fba/calculate")
-    Call<AmazonCalculationResponse> amazonFbaCalculation(
+    Call<AmazonFbaCalculationResponse> amazonFbaCalculation(
             @Field("category") String category,
             @Field("subcategory") String subcategory,
             @Field("sellingPrice") double sellingPrice,
