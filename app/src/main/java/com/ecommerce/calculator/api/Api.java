@@ -4,6 +4,7 @@ import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.DefaultResponse;
+import com.ecommerce.calculator.models.EbayCalculationResponse;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
 import com.ecommerce.calculator.models.LoginResponse;
 import com.ecommerce.calculator.models.MeeshoCalculationResponse;
@@ -428,6 +429,56 @@ public interface Api {
             @Field("gstPayableNational") String gstPayableNational,
             @Field("profitNational") String profitNational,
             @Field("profitPercentageNational") String profitPercentageNational
+    );
+
+    @FormUrlEncoded
+    @POST("ebay/app/calculate")
+    Call<EbayCalculationResponse> ebayCalculation(
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("packagingExpense") double packagingExpense,
+            @Field("labour") double labour,
+            @Field("storageFee") double storageFee,
+            @Field("other") double other,
+            @Field("discountPercent") double discountPercent,
+            @Field("discountAmount") double discountAmount,
+            @Field("commission") double commission,
+            @Field("shipping") double shipping,
+            @Field("paymentGatewayCharge") double paymentGatewayCharge
+    );
+
+    @FormUrlEncoded
+    @POST("ebay/app/toSave")
+    Call<MessageResponse> savedEbay(
+            @Field("title") String title,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("packagingExpense") String packagingExpense,
+            @Field("labour") String labour,
+            @Field("storageFee") String storageFee,
+            @Field("other") String other,
+            @Field("discountAmount") String discountAmount,
+            @Field("discountPercent") String discountPercent,
+            @Field("commission") String commission,
+            @Field("shipping") String shipping,
+            @Field("paymentGatewayCharge") String paymentGatewayCharge,
+            @Field("commissionFees")  String commissionFees,
+            @Field("shippingFees") String shippingFees,
+            @Field("paymentGatewayCharge") String paymentGatewayCharge,
+            @Field("CSP") String CSP,
+            @Field("gstOnCSP") String gstOnCSP,
+            @Field("totalCharges") String totalCharges,
+            @Field("bankSettlement") String bankSettlement,
+            @Field("totalGstPayable") String totalGstPayable,
+            @Field("gstClaim") String gstClaim,
+            @Field("tcs") String tcs,
+            @Field("gstPayable") String gstPayable,
+            @Field("profit") String profit,
+            @Field("profitPercentage") String profitPercentage
     );
 
     @FormUrlEncoded

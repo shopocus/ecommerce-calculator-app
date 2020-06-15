@@ -81,6 +81,10 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("amazonFba");
                     categories();
                 }
+                else if (menu.get(position).getTitle().equals("Ebay")){
+                    SharedPrefManager.getInstance(c)
+                            .saveCompany("ebay");
+                }
                 else {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();
