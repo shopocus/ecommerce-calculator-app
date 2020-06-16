@@ -27,6 +27,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
+import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
@@ -62,7 +64,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
     RadioGroup payMode, customerType;
     RadioButton radioButton, radioButtonPostpaid, radioButtonBronze, radioButtonPrepaid, radioButtonSilver, radioButtonGold;
     String customerTypeOption="bronze",paymentOption="postpaid";
-    ViewPager viewPager;
+    HeightWrappingViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();
     ArrayList<String> Zonal = new ArrayList<>();

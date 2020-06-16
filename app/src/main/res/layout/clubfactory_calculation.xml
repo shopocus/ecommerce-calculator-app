@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tabLayout">-->
 
-    <androidx.viewpager.widget.ViewPager
+    <com.ecommerce.calculator.HeightWrappingViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="180dp"

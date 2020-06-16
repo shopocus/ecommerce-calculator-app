@@ -52,7 +52,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice,
             discountByPercentage, shipping, paymentGatewayCharge, commission;
     LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch , commissionBunch,
-    paymentGatewayChargeBunch, shippingBunch;
+    paymentGatewayChargeBunch, shippingBunch, categoryBunch;
 
     CardView productDetailsCard, expensesCard, discountsCard;
     ViewPager viewPager;
@@ -61,12 +61,12 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
-    Double[] items = new Double[8] ;
+    Double[] items = new Double[13] ;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     TabLayout tabLayout;
     private ProgressBar progressBar;
-    private TextView textView, line1, line2, line3, line4, line14, line15, line16;
+    private TextView textView, line1, line2, line3, line4, line14, line15, line16, line17;
     private String myText;
 
     @Nullable
@@ -258,6 +258,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         details = view.findViewById(R.id.details_dropdown);
         expenses = view.findViewById(R.id.expenses_dropdown);
         discounts = view.findViewById(R.id.discounts_dropdown);
+        categoryBunch = view.findViewById(R.id.categoryBunch);
         weightBunch = view.findViewById(R.id.weightBunch);
         lengthBunch = view.findViewById(R.id.lengthBunch);
         breadthBunch = view.findViewById(R.id.breadthBunch);
@@ -280,6 +281,8 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         line2 = view.findViewById(R.id.line2);
         line3 = view.findViewById(R.id.line3);
         line4 = view.findViewById(R.id.line4);
+        line17 = view.findViewById(R.id.line17);
+        categoryBunch.setVisibility(View.GONE);
         lengthBunch.setVisibility(View.GONE);
         breadthBunch.setVisibility(View.GONE);
         heightBunch.setVisibility(View.GONE);
@@ -291,6 +294,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         line2.setVisibility(View.GONE);
         line3.setVisibility(View.GONE);
         line4.setVisibility(View.GONE);
+        line17.setVisibility(View.GONE);
 
         sellingPrice = view.findViewById(R.id.sellingPrice);
         purchasePrice = view.findViewById(R.id.purchasePrice);
@@ -390,6 +394,51 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         if(Double.parseDouble(purchasePrice.getText().toString()) <= 0){
             purchasePrice.setError("Purchase Price is not valid");
             purchasePrice.requestFocus();
+            ButtonFinished();
+            return;
+        }
+
+        if(commission.getText().toString().isEmpty()){
+            expensesCard.setVisibility(View.VISIBLE);
+            shippingBunch.setVisibility(View.VISIBLE);
+            paymentGatewayChargeBunch.setVisibility(View.VISIBLE);
+            commissionBunch.setVisibility(View.VISIBLE);
+            line14.setVisibility(View.VISIBLE);
+            line15.setVisibility(View.VISIBLE);
+            line16.setVisibility(View.VISIBLE);
+            expenses.setRotation(180);
+            commission.setError("Commission is Required");
+            commission.requestFocus();
+            ButtonFinished();
+            return;
+        }
+
+        if(shipping.getText().toString().isEmpty()){
+            expensesCard.setVisibility(View.VISIBLE);
+            shippingBunch.setVisibility(View.VISIBLE);
+            paymentGatewayChargeBunch.setVisibility(View.VISIBLE);
+            commissionBunch.setVisibility(View.VISIBLE);
+            line14.setVisibility(View.VISIBLE);
+            line15.setVisibility(View.VISIBLE);
+            line16.setVisibility(View.VISIBLE);
+            expenses.setRotation(180);
+            shipping.setError("Shipping is Required");
+            shipping.requestFocus();
+            ButtonFinished();
+            return;
+        }
+
+        if(paymentGatewayCharge.getText().toString().isEmpty()){
+            expensesCard.setVisibility(View.VISIBLE);
+            shippingBunch.setVisibility(View.VISIBLE);
+            paymentGatewayChargeBunch.setVisibility(View.VISIBLE);
+            commissionBunch.setVisibility(View.VISIBLE);
+            line14.setVisibility(View.VISIBLE);
+            line15.setVisibility(View.VISIBLE);
+            line16.setVisibility(View.VISIBLE);
+            expenses.setRotation(180);
+            paymentGatewayCharge.setError("Payment Gateway Charge is Required");
+            paymentGatewayCharge.requestFocus();
             ButtonFinished();
             return;
         }

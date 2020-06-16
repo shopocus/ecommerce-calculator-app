@@ -81,9 +81,13 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("amazonFba");
                     categories();
                 }
-                else if (menu.get(position).getTitle().equals("Ebay")){
+                else if (menu.get(position).getTitle().equals("ebay")){
                     SharedPrefManager.getInstance(c)
                             .saveCompany("ebay");
+                    loadingDialog.dismissDialog();
+                    Intent intent = new Intent(c , FragmentSelection.class);
+//                    intent.putExtra(KEY,0);
+                    c.startActivity(intent);
                 }
                 else {
                     loadingDialog.dismissDialog();

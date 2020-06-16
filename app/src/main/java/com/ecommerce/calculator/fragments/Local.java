@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -70,8 +71,8 @@ public class Local extends Fragment {
 
         OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
         result.setAdapter(adapter);
+        result.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         SavedData.setListViewHeightBasedOnChildren(result);
-
         return view;
     }
 }

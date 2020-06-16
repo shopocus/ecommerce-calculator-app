@@ -131,6 +131,11 @@ public class Menu extends AppCompatActivity {
         m.setImg(R.drawable.amazon);
         menu.add(m);
 
+        m = new menu();
+        m.setTitle("ebay");
+        m.setImg(R.drawable.ebay);
+        menu.add(m);
+
         return menu;
     }
 

@@ -468,7 +468,7 @@ public interface Api {
             @Field("paymentGatewayCharge") String paymentGatewayCharge,
             @Field("commissionFees")  String commissionFees,
             @Field("shippingFees") String shippingFees,
-            @Field("paymentGatewayCharge") String paymentGatewayCharge,
+            @Field("paymentGatewayFees") String paymentGatewayFees,
             @Field("CSP") String CSP,
             @Field("gstOnCSP") String gstOnCSP,
             @Field("totalCharges") String totalCharges,

@@ -29,6 +29,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.LoadingDialog;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
@@ -72,7 +73,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         RadioGroup shipmentType, easyShipmentType;
         RadioButton radioButton, radioButtonEasyShip, radioButtonSelfShip, radioButtonPrime, radioButtonNonPrime;
         String easyShipmentTypeOption ="prime", shipmentTypeOption ="easyShip";
-        ViewPager viewPager;
+        HeightWrappingViewPager viewPager;
         TabLayout tabLayout;
         ArrayList<String> Local = new ArrayList<>();
         ArrayList<String> Regional = new ArrayList<>();

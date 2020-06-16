@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+
+import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
@@ -66,7 +68,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     RadioGroup payMode, courier;
     RadioButton radioButton, radioButtonPostpaid, radioButtonDelivery, radioButtonPrepaid, radioButtonOther;
     String courierOption="delhivery",paymentOption="postpaid";
-    ViewPager viewPager;
+    HeightWrappingViewPager viewPager;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();
     ArrayList<String> Regional = new ArrayList<>();

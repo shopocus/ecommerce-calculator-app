@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
@@ -64,6 +65,7 @@ public class FlipkartLocal extends Fragment {
 
             OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
             result.setAdapter(adapter);
+            result.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             SavedData.setListViewHeightBasedOnChildren(result);
             return view;
         }

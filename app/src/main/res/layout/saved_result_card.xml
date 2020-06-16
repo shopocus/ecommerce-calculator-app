@@ -44,10 +44,10 @@
                     android:layout_height="wrap_content">
                 </com.google.android.material.tabs.TabLayout>
 
-                <androidx.viewpager.widget.ViewPager
+                <com.ecommerce.calculator.HeightWrappingViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:paddingTop="10dp"/>
 

@@ -3,7 +3,7 @@ package com.ecommerce.calculator.models;
 public class EbayCalculationResponse {
     private double commissionFees;
     private double shippingFees;
-    private double paymentGatewayCharge;
+    private double paymentGatewayFees;
     private double CSP;
     private double gstOnCSP;
     private double totalCharges;
@@ -15,12 +15,12 @@ public class EbayCalculationResponse {
     private double profit;
     private  double profitPercentage;
 
-    public EbayCalculationResponse(double commissionFees, double shippingFees, double paymentGatewayCharge, double CSP, double gstOnCSP,
+    public EbayCalculationResponse(double commissionFees, double shippingFees, double paymentGatewayFees, double CSP, double gstOnCSP,
                                    double totalCharges, double bankSettlement, double totalGstPayable, double gstClaim,  double tcs,
                                      double gstPayable, double profit, double profitPercentage) {
         this.commissionFees = commissionFees;
         this.shippingFees = shippingFees;
-        this.paymentGatewayCharge = paymentGatewayCharge;
+        this.paymentGatewayFees = paymentGatewayFees;
         this.CSP = CSP;
         this.gstOnCSP = gstOnCSP;
         this.totalCharges = totalCharges;
@@ -42,7 +42,7 @@ public class EbayCalculationResponse {
     }
 
     public double getPaymentGatewayCharge() {
-        return paymentGatewayCharge;
+        return paymentGatewayFees;
     }
 
     public double getCSP() {

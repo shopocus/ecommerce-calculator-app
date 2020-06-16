@@ -48,6 +48,7 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
+                    android:id="@+id/categoryBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -66,6 +67,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/line17"
                     style="?android:attr/listSeparatorTextViewStyle"
                     android:paddingTop="3dp"
                     android:gravity="center_horizontal"
@@ -949,14 +951,14 @@
                         android:id="@+id/text_Commission"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Storage fees: "
+                        android:text="Commission: "
                         android:textColor="@color/colorPrimary"/>
 
                     <TextView
                         android:id="@+id/rs12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="%"
                         android:textSize="15dp"
                         android:textColor="@color/colorBase"/>
 
@@ -989,7 +991,7 @@
                         android:id="@+id/text_Shipping"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:text="Storage fees: "
+                        android:text="Shipping: "
                         android:textColor="@color/colorPrimary"/>
 
                     <TextView
@@ -1036,7 +1038,7 @@
                         android:id="@+id/rs10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="%"
                         android:textSize="15dp"
                         android:textColor="@color/colorBase"/>
 
