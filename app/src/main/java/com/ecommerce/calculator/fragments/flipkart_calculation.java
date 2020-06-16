@@ -72,7 +72,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.flipkart_calculation, container, false);
+        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new View.OnClickListener()

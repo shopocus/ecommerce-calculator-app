@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+
+import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import android.view.LayoutInflater;
@@ -52,7 +55,7 @@ public class input extends Fragment implements View.OnClickListener {
     LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch;
 
     CardView productDetailsCard, expensesCard, discountsCard;
-    ViewPager viewPager;
+    HeightWrappingViewPager viewPager;
     Spinner gstOnProduct, categories;
     String categoryFinal;
     ArrayList<String> list = new ArrayList<>();
@@ -70,7 +73,7 @@ public class input extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.menu, container, false);
+        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()
@@ -248,10 +251,10 @@ public class input extends Fragment implements View.OnClickListener {
         payModeBunch = view.findViewById(R.id.payModeBunch);
         courierBunch = view.findViewById(R.id.courierBunch);
 
-        //tabLayout = view.findViewById(R.id.tab_layout);
-        //tabLayout.setVisibility(View.GONE);
-        //viewPager = view.findViewById(R.id.viewPager);
-        //viewPager.setVisibility(View.GONE);
+        tabLayout = view.findViewById(R.id.tab_layout);
+        tabLayout.setVisibility(View.GONE);
+        viewPager = view.findViewById(R.id.viewPager);
+        viewPager.setVisibility(View.GONE);
         line1 = view.findViewById(R.id.line1);
         line2 = view.findViewById(R.id.line2);
         line3 = view.findViewById(R.id.line3);
@@ -409,6 +412,7 @@ public class input extends Fragment implements View.OnClickListener {
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
+                    itemList.setVisibility(View.VISIBLE);
 
                     items[0] = CalculateResponse.getBankSettlement();
                     items[1] = CalculateResponse.getTotalCommision();
@@ -440,6 +444,7 @@ public class input extends Fragment implements View.OnClickListener {
 
                     OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
                     itemList.setAdapter(adapter);
+                    SavedData.setListViewHeightBasedOnChildren(itemList);
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);

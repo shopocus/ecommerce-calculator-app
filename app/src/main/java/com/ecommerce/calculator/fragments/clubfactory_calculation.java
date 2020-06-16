@@ -80,7 +80,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.clubfactory_calculation, container, false);
+        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
 
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);

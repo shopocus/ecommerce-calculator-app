@@ -154,6 +154,9 @@ public class SavedData extends AppCompatActivity {
                             case "amazonFba":
                                 amazonFbaData(td);
                                 break;
+                            case "ebay":
+                                ebayData(td);
+                                break;
                         }
                     }
                 }else if(response.code() == 401){
@@ -199,6 +202,7 @@ public class SavedData extends AppCompatActivity {
 
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, inputList);
         itemList.setAdapter(adapter);
+        SavedData.setListViewHeightBasedOnChildren(itemList);
 
         output text12 = new output("Bank Settlement", td.getBankSettlement());
         output text13 = new output("Total Commission", td.getTotalCommision());
@@ -252,6 +256,7 @@ public class SavedData extends AppCompatActivity {
 
         OutputListAdapter adapterOutput = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         result.setAdapter(adapterOutput);
+        SavedData.setListViewHeightBasedOnChildren(result);
     }
 
     void clubFactoryData(TitleDataResponse td){
@@ -290,6 +295,7 @@ public class SavedData extends AppCompatActivity {
 
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(itemList);
 
         ArrayList<String> title = new ArrayList<>();
         title.add("Category");
@@ -946,6 +952,108 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
+    void ebayData(TitleDataResponse td){
+        result.setVisibility(View.VISIBLE);
+        output text1 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
+        output text2 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
+        output text3 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
+        output text4 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
+        output text5 = new output("Packaging Expenses", String.valueOf(td.getPackagingExpense()));
+        output text6 = new output("Labour", String.valueOf(td.getLabour()));
+        output text7 = new output("Storage fees", String.valueOf(td.getStorageFee()));
+        output text8 = new output("Commission", String.valueOf(td.getCommission()));
+        output text9 = new output("Shipping", String.valueOf(td.getShipping()));
+        output text10 = new output("Payment Gateway Charge", String.valueOf(td.getPaymentGatewayCharge()));
+        output text11 = new output("Other Charges", String.valueOf(td.getOther()));
+        output text12 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
+        output text13 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+
+        ArrayList<output> inputList = new ArrayList<>();
+        inputList.add(text1);
+        inputList.add(text2);
+        inputList.add(text3);
+        inputList.add(text4);
+        inputList.add(text5);
+        inputList.add(text6);
+        inputList.add(text7);
+        inputList.add(text8);
+        inputList.add(text9);
+        inputList.add(text10);
+        inputList.add(text11);
+        inputList.add(text12);
+        inputList.add(text13);
+
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, inputList);
+        itemList.setAdapter(adapter);
+        SavedData.setListViewHeightBasedOnChildren(itemList);
+
+        output text14 = new output("Commission Fees", td.getCommissionFees());
+        output text15 = new output("Shipping Fees", td.getShippingFees());
+        output text16 = new output("Payment Gateway Charge", td.getPaymentGatewayFees());
+        output text17 = new output("CSP", td.getCSP());
+        output text18 = new output("GST On CSP", td.getGstOnCSP());
+        output text19 = new output("Total Charges", td.getTotalCharges());
+        output text20 = new output("Bank Settlement", td.getBankSettlement());
+        output text21 = new output("Total GST Payable", td.getTotalGstPayable());
+        output text22 = new output("GST Claim", td.getGstClaim());
+        output text23 = new output("TCS", td.getTcs());
+        output text24 = new output("GST Payable", td.getGstPayable());
+        output text25 = new output("Profit", td.getProfit());
+        output text26 = new output("Profit Percentage", td.getProfitPercentage());
+
+        ArrayList<output> outputList = new ArrayList<>();
+        outputList.add(text14);
+        outputList.add(text15);
+        outputList.add(text16);
+        outputList.add(text17);
+        outputList.add(text18);
+        outputList.add(text19);
+        outputList.add(text20);
+        outputList.add(text21);
+        outputList.add(text22);
+        outputList.add(text23);
+        outputList.add(text24);
+        outputList.add(text25);
+        outputList.add(text26);
+
+//        ArrayList<String> title = new ArrayList<>();
+//        title.add("Category");
+//        title.add("Selling Price");
+//        title.add("Purchase Price");
+//        title.add("GST on Product");
+//        title.add("Weight");
+//        title.add("Courier");
+//        title.add("Payment Mode");
+//        title.add("Inward Shipping");
+//        title.add("Packaging Expenses");
+//        title.add("Labour");
+//        title.add("Storage Fees");
+//        title.add("Other Charges");
+//        title.add("Discount on Price");
+//        title.add("Discount Percentage");
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getSellingPrice());
+        input.add(td.getProductPriceWithoutGst());
+        input.add(td.getGstOnProduct());
+        input.add(td.getInwardShipping());
+        input.add(td.getPackagingExpense());
+        input.add(td.getLabour());
+        input.add(td.getStorageFee());
+        input.add(td.getCommission());
+        input.add(td.getShipping());
+        input.add(td.getPaymentGatewayCharge());
+        input.add(td.getOther());
+        input.add(td.getDiscountAmount());
+        input.add(td.getDiscountPercent());
+
+        bundle.putStringArrayList("input", input);
+
+        OutputListAdapter adapterOutput = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
+        result.setAdapter(adapterOutput);
+        SavedData.setListViewHeightBasedOnChildren(result);
+    }
+
     public static void setListViewHeightBasedOnChildren(ListView listView){
         ListAdapter listAdapter = listView.getAdapter();
         if(listAdapter == null)
@@ -958,7 +1066,7 @@ public class SavedData extends AppCompatActivity {
             if(i == 0)
                 view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
             view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
+            totalHeight += view.getMeasuredHeight() + 4;
         }
         ViewGroup .LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));

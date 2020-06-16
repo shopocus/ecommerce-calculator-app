@@ -27,8 +27,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
+import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.EbayCalculationResponse;
@@ -55,7 +57,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     paymentGatewayChargeBunch, shippingBunch, categoryBunch;
 
     CardView productDetailsCard, expensesCard, discountsCard;
-    ViewPager viewPager;
+    HeightWrappingViewPager viewPager;
     Spinner gstOnProduct, categories;
     String categoryFinal;
     ArrayList<String> list = new ArrayList<>();
@@ -73,7 +75,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.menu, container, false);
+        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new View.OnClickListener()
@@ -273,10 +275,10 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         line15 = view.findViewById(R.id.line15);
         line16 = view.findViewById(R.id.line16);
 
-        //tabLayout = view.findViewById(R.id.tab_layout);
-        //tabLayout.setVisibility(View.GONE);
-        //viewPager = view.findViewById(R.id.viewPager);
-        //viewPager.setVisibility(View.GONE);
+        tabLayout = view.findViewById(R.id.tab_layout);
+        tabLayout.setVisibility(View.GONE);
+        viewPager = view.findViewById(R.id.viewPager);
+        viewPager.setVisibility(View.GONE);
         line1 = view.findViewById(R.id.line1);
         line2 = view.findViewById(R.id.line2);
         line3 = view.findViewById(R.id.line3);
@@ -351,16 +353,16 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                     gstOnProduct.setSelection(4);
                     break;
             }
-            inwardShipping.setText(bundle_input.get(5));
-            packagingExpenses.setText(bundle_input.get(6));
-            labour.setText(bundle_input.get(7));
-            storageFee.setText(bundle_input.get(8));
-            commission.setText(bundle_input.get(9));
-            shipping.setText(bundle_input.get(10));
-            paymentGatewayCharge.setText(bundle_input.get(11));
-            otherCharges.setText(bundle_input.get(12));
-            discountByPrice.setText(bundle_input.get(13));
-            discountByPercentage.setText(bundle_input.get(14));
+            inwardShipping.setText(bundle_input.get(3));
+            packagingExpenses.setText(bundle_input.get(4));
+            labour.setText(bundle_input.get(5));
+            storageFee.setText(bundle_input.get(6));
+            commission.setText(bundle_input.get(7));
+            shipping.setText(bundle_input.get(8));
+            paymentGatewayCharge.setText(bundle_input.get(9));
+            otherCharges.setText(bundle_input.get(10));
+            discountByPrice.setText(bundle_input.get(11));
+            discountByPercentage.setText(bundle_input.get(12));
 
             String flag = "false";
             SharedPrefManager.getInstance(getActivity())
@@ -492,6 +494,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
+                    itemList.setVisibility(View.VISIBLE);
 
                     items[0] = CalculateResponse.getCommissionFees();
                     items[1] = CalculateResponse.getShippingFees();
@@ -538,6 +541,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
 
                     OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
                     itemList.setAdapter(adapter);
+                    SavedData.setListViewHeightBasedOnChildren(itemList);
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
