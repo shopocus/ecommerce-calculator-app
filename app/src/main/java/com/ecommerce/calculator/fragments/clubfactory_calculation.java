@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ProgressBar;
@@ -64,6 +65,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     CardView result_card;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
+    ScrollView scrollView;
     private ProgressBar progressBar;
     private TextView textView, line2, line3, line4;
     private String myText;
@@ -83,12 +85,6 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.common_calculation, container, false);
-
-        itemList = view.findViewById(R.id.text_view_result);
-        result_card = view.findViewById(R.id.result_card);
-        linearLayout = view.findViewById(R.id.linearlayout);
-        viewPager = view.findViewById(R.id.viewPager);
-        tabLayout = view.findViewById(R.id.tab_layout);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener() {
@@ -237,6 +233,13 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        itemList = view.findViewById(R.id.text_view_result);
+        result_card = view.findViewById(R.id.result_card);
+        scrollView = view.findViewById(R.id.scrollView);
+        linearLayout = view.findViewById(R.id.linearlayout);
+        viewPager = view.findViewById(R.id.viewPager);
+        tabLayout = view.findViewById(R.id.tab_layout);
 
         categories = view.findViewById(R.id.category);
 
@@ -528,6 +531,13 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
+
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
 
                 } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();

@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +68,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
     private ProgressBar progressBar;
     private TextView textView;
     private String myText;
+    ScrollView scrollView;
     RadioGroup shipmentType, easyShipmentType;
     RadioButton radioButton, radioButtonEasyShip, radioButtonSelfShip, radioButtonPrime, radioButtonNonPrime;
     String easyShipmentTypeOption = "prime", shipmentTypeOption = "easyShip";
@@ -264,7 +266,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 categoryFinal = list.get(position);
-                Toast.makeText(getActivity(), categoryFinal, Toast.LENGTH_SHORT).show();
                 subCategories(categoryFinal);
             }
 
@@ -292,6 +293,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         linearLayout = view.findViewById(R.id.linearlayout);
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tab_layout);
+        scrollView = view.findViewById(R.id.scrollView);
         productDetailsCard = view.findViewById(R.id.productDetailsCard);
         expensesCard = view.findViewById(R.id.expensesCard);
         discountsCard = view.findViewById(R.id.discountsCard);
@@ -608,7 +610,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
                     tabLayout.addTab(tabLayout.newTab().setText("Local"));
                     tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-                    if (Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString()) *
+                    if (Double.parseDouble(weight.getText().toString()) <= 12000 && Double.parseDouble(length.getText().toString()) *
                             Double.parseDouble(breadth.getText().toString()) * Double.parseDouble(height.getText().toString()) / 5 <= 12000) {
                         tabLayout.addTab(tabLayout.newTab().setText("National"));
                     }
@@ -634,9 +636,15 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         }
                     });
 
-
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
+
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
 
                 } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();

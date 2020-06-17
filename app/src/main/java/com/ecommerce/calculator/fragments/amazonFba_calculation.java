@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +64,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
     CardView result_card;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
+    ScrollView scrollView;
     private ProgressBar progressBar;
     private TextView textView;
     private String myText;
@@ -215,7 +217,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 categoryFinal = list.get(position);
-                Toast.makeText(getActivity(), categoryFinal, Toast.LENGTH_SHORT).show();
                 subCategories(categoryFinal);
             }
 
@@ -243,6 +244,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
         linearLayout = view.findViewById(R.id.linearlayout);
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tab_layout);
+        scrollView = view.findViewById(R.id.scrollView);
         productDetailsCard = view.findViewById(R.id.productDetailsCard);
         expensesCard = view.findViewById(R.id.expensesCard);
         discountsCard = view.findViewById(R.id.discountsCard);
@@ -528,6 +530,13 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
 
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
+
                 } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
@@ -649,7 +658,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                 "Profit: " + Regional.get(11) + "\n" +
                 "Profit Percentage: " + Regional.get(12) + "\n\n";
         String content1 = "";
-        if (Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString()) *
+        if (Double.parseDouble(weight.getText().toString()) <= 12000 && Double.parseDouble(length.getText().toString()) *
                 Double.parseDouble(breadth.getText().toString()) * Double.parseDouble(height.getText().toString()) / 5 <= 12000) {
             content1 = "National" + "\n" +
                     "Referral Fees: " + National.get(0) + "\n" +

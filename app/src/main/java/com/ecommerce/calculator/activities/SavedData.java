@@ -649,7 +649,7 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        if (td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength() * td.getEasyShip().getBreadth() * td.getEasyShip().getHeight() / 5 <= 12000) {
+        if (td.getEasyShip().getWeight() <= 12000 && td.getEasyShip().getLength() * td.getEasyShip().getBreadth() * td.getEasyShip().getHeight() / 5 <= 12000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -777,7 +777,7 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        if (Double.parseDouble(td.getWeight()) <= 30000 || Double.parseDouble(td.getLength()) * Double.parseDouble(td.getBreadth()) * Double.parseDouble(td.getHeight()) / 5 <= 30000) {
+        if (Double.parseDouble(td.getWeight()) <= 30000 && Double.parseDouble(td.getLength()) * Double.parseDouble(td.getBreadth()) * Double.parseDouble(td.getHeight()) / 5 <= 30000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

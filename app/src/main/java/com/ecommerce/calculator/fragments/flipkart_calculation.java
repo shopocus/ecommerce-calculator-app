@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
     CardView result_card;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
+    ScrollView scrollView;
     private ProgressBar progressBar;
     private TextView textView;
     private String myText;
@@ -249,6 +251,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         linearLayout = view.findViewById(R.id.linearlayout);
         viewPager = view.findViewById(R.id.viewPager);
         tabLayout = view.findViewById(R.id.tab_layout);
+        scrollView = view.findViewById(R.id.scrollView);
         productDetailsCard = view.findViewById(R.id.productDetailsCard);
         expensesCard = view.findViewById(R.id.expensesCard);
         discountsCard = view.findViewById(R.id.discountsCard);
@@ -535,6 +538,13 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
+
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
 
                 } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();

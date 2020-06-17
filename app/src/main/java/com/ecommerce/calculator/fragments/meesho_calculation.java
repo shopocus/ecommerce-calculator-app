@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ProgressBar;
@@ -66,6 +67,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     Double[] items = new Double[8];
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
+    ScrollView scrollView;
     TabLayout tabLayout;
     private ProgressBar progressBar;
     private TextView textView, line1, line2, line3, line4;
@@ -226,6 +228,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);
         linearLayout = view.findViewById(R.id.linearlayout);
+        scrollView = view.findViewById(R.id.scrollView);
 
         productDetailsCard = view.findViewById(R.id.productDetailsCard);
         expensesCard = view.findViewById(R.id.expensesCard);
@@ -439,6 +442,14 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
+
+                    scrollView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            scrollView.fullScroll(View.FOCUS_DOWN);
+                        }
+                    });
+
                 } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
