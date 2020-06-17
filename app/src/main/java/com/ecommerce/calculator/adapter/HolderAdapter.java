@@ -2,6 +2,7 @@ package com.ecommerce.calculator.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,19 +31,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Filterable {
+public class HolderAdapter extends RecyclerView.Adapter<MyHolder> {
 
     public static final String KEY = "title";
 
     Context c;
     ArrayList<menu> menu;
-    ArrayList<menu> ListFull;
     LoadingDialog loadingDialog;
 
     public HolderAdapter(Context c, ArrayList<menu> menu, LoadingDialog loadingDialog) {
         this.c = c;
         this.menu = menu;
-        ListFull = new ArrayList<>(menu);
         this.loadingDialog = loadingDialog;
     }
 
@@ -61,6 +60,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             @Override
             public void onItemClickListener(View v, int position) {
                 loadingDialog.startLoadingDialog();
+                v.setSelected(true);
                 if (menu.get(position).getTitle().equals("Meesho")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("meesho");
@@ -86,7 +86,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                             .saveCompany("ebay");
                     loadingDialog.dismissDialog();
                     Intent intent = new Intent(c, FragmentSelection.class);
-//                    intent.putExtra(KEY,0);
                     c.startActivity(intent);
                 } else {
                     loadingDialog.dismissDialog();
@@ -100,40 +99,6 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     public int getItemCount() {
         return menu.size();
     }
-
-    public Filter getFilter() {
-        return menuFilter;
-    }
-
-    private Filter menuFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<menu> filteredList = new ArrayList<>();
-
-            if (constraint == null || constraint.length() == 0) {
-                filteredList.addAll(ListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (menu item : ListFull) {
-                    if (item.getTitle().toLowerCase().contains(filterPattern)) {
-                        filteredList.add(item);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            menu.clear();
-            menu.addAll((ArrayList) results.values);
-            notifyDataSetChanged();
-        }
-    };
 
     protected void categories() {
         Call<category> call;

@@ -119,6 +119,5 @@ public class saved extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        onViewCreated(getView(), null);
     }
 }

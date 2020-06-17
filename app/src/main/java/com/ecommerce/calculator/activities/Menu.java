@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +45,6 @@ public class Menu extends AppCompatActivity {
 
     RecyclerView mrecyclerView;
     HolderAdapter holderAdapter;
-    SearchView searchView;
     LinearLayout linearLayout;
     Boolean isNetworkOk;
     LoadingDialog loadingDialog;
@@ -81,32 +81,18 @@ public class Menu extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Shopocus");
-        toolbar.setSubtitle(getResources().getString(R.string.app_name));
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         String flag = "false";
         SharedPrefManager.getInstance(Menu.this)
                 .saveFlag(flag);
 
         mrecyclerView = findViewById(R.id.menu);
-        mrecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        mrecyclerView.setLayoutManager(layoutManager);
 
         holderAdapter = new HolderAdapter(this, getMyList(), loadingDialog);
         mrecyclerView.setAdapter(holderAdapter);
-
-        searchView = findViewById(R.id.search);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                holderAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
     }
 
     private ArrayList<menu> getMyList() {

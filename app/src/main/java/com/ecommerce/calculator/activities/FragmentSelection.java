@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -29,6 +30,7 @@ public class FragmentSelection extends AppCompatActivity {
 
     ViewPager viewPager;
     AdView mAdView;
+    TextView title;
 
     public static void setStatusBarGradiant(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -56,7 +58,30 @@ public class FragmentSelection extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(SharedPrefManager.getInstance(FragmentSelection.this).getCompany());
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        title = findViewById(R.id.title);
+        String company = SharedPrefManager.getInstance(FragmentSelection.this).getCompany();
+        switch (company) {
+            case "meesho":
+                title.setText("Meesho");
+                break;
+            case "clubFactory":
+                title.setText("Club Factory");
+                break;
+            case "flipkart":
+                title.setText("Flipkart");
+                break;
+            case "amazon":
+                title.setText("Amazon");
+                break;
+            case "amazonFba":
+                title.setText("Amazon Fba");
+                break;
+            case "ebay":
+                title.setText("Ebay");
+                break;
+        }
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));

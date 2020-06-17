@@ -1,4 +1,4 @@
-package com.ecommerce.calculator;
+package com.ecommerce.calculator.utils;
 
 import android.content.Context;
 
@@ -6,7 +6,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.util.AttributeSet;
 import android.view.View;
-
 
 public class HeightWrappingViewPager extends ViewPager {
 
@@ -30,7 +29,7 @@ public class HeightWrappingViewPager extends ViewPager {
                 int h = child.getMeasuredHeight();
                 if (h > height) height = h;
             }
-            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(height + 7, MeasureSpec.EXACTLY);
         }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

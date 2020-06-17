@@ -63,7 +63,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
 
-                            <com.ecommerce.calculator.HeightWrappingViewPager
+                            <com.ecommerce.calculator.utils.HeightWrappingViewPager
                                 android:id="@+id/viewPager"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

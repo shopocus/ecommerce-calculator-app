@@ -42,11 +42,11 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone"></com.google.android.material.tabs.TabLayout>
 
-                <com.ecommerce.calculator.HeightWrappingViewPager
+                <com.ecommerce.calculator.utils.HeightWrappingViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
+                    android:paddingVertical="5dp"
                     android:visibility="gone" />
 
                 <ListView

@@ -39,8 +39,7 @@ public class Profile extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Shopocus");
-        toolbar.setSubtitle("Business Calculator");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         textViewEmail = findViewById(R.id.textViewEmail);
         textViewName = findViewById(R.id.textViewName);

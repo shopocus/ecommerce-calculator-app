@@ -58,7 +58,7 @@ public class SavedData extends AppCompatActivity {
     ImageButton edit;
     ListView itemList, result;
     CardView input_card, output_card;
-    LinearLayout buttons, linearLayout;
+    LinearLayout linearLayout;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();
     ArrayList<String> Regional = new ArrayList<>();
@@ -69,6 +69,7 @@ public class SavedData extends AppCompatActivity {
     ArrayList<String> National = new ArrayList<>();
     ViewPager viewPager;
     LoadingDialog loadingDialog;
+    ImageButton backGo;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class SavedData extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.startLoadingDialog();
@@ -101,6 +102,14 @@ public class SavedData extends AppCompatActivity {
                 Intent intent = new Intent(SavedData.this, FragmentSelection.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
+            }
+        });
+
+        backGo = findViewById(R.id.backGo);
+        backGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SavedData.super.finish();
             }
         });
 
