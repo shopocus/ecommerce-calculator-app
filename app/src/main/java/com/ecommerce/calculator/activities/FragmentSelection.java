@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.gms.ads.AdRequest;
@@ -16,10 +17,12 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
 import com.ecommerce.calculator.R;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
+
 import com.ecommerce.calculator.fragments.saved;
 
 public class FragmentSelection extends AppCompatActivity {
@@ -40,7 +43,7 @@ public class FragmentSelection extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStatusBarGradiant(this);
         setContentView(R.layout.options_tab);
@@ -70,12 +73,12 @@ public class FragmentSelection extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getCurrentFocus();
                 if (focusedView != null) {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-                if(tab.getPosition() == 1) {
+                if (tab.getPosition() == 1) {
                     saved fragment = (saved) viewPager.getAdapter().instantiateItem(viewPager, tab.getPosition());
                     fragment.onResume();
                     viewPager.getAdapter().notifyDataSetChanged();

@@ -8,7 +8,7 @@ public class easyShipModel {
     private double height;
     private String easyShipType;
 
-    public easyShipModel(double weight,double length, double breadth, double height, String easyShipType) {
+    public easyShipModel(double weight, double length, double breadth, double height, String easyShipType) {
         this.weight = weight;
         this.length = length;
         this.breadth = breadth;
@@ -16,23 +16,23 @@ public class easyShipModel {
         this.easyShipType = easyShipType;
     }
 
-    public double getWeight(){
+    public double getWeight() {
         return weight;
     }
 
-    public double getLength(){
+    public double getLength() {
         return length;
     }
 
-    public double getBreadth(){
+    public double getBreadth() {
         return breadth;
     }
 
-    public double getHeight(){
+    public double getHeight() {
         return height;
     }
 
-    public String getEasyShipType(){
+    public String getEasyShipType() {
         return easyShipType;
     }
 }

@@ -15,13 +15,17 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,7 +79,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         String mobile_no = editTextMobile.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if (name.isEmpty() || email.isEmpty()  || mobile_no.isEmpty() || password.isEmpty()) {
+        if (name.isEmpty() || email.isEmpty() || mobile_no.isEmpty() || password.isEmpty()) {
             loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter All The Details", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
@@ -86,7 +90,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if(name.length() <2) {
+        if (name.length() < 2) {
             loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Name is too Short", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
@@ -108,7 +112,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if(!PASSWORD_PATTERN.matcher(password).matches()){
+        if (!PASSWORD_PATTERN.matcher(password).matches()) {
             loadingDialog.dismissDialog();
             Snackbar snackbar = Snackbar.make(constraintLayout, "Password Consists Atleast One Upper Case Character, One Number, One Special Symbol ", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
@@ -142,24 +146,21 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     intent.putExtra("mobile_no", mobile_no);
                     intent.putExtra("password", password);
                     startActivity(intent);
-                }
-                else if(dr.getMessage().equals("user_already_exist")) {
+                } else if (dr.getMessage().equals("user_already_exist")) {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Email Already Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);
                     textView.setTextSize(15);
                     snackbar.show();
-                }
-                else if(dr.getMessage().equals("mobileNo_already_exists")) {
+                } else if (dr.getMessage().equals("mobileNo_already_exists")) {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Mobile Number Already Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
                     textView.setTextColor(Color.WHITE);
                     textView.setTextSize(15);
                     snackbar.show();
-                }
-                else{
+                } else {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -186,7 +187,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         View focusedView = getCurrentFocus();
         if (focusedView != null) {
             inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);

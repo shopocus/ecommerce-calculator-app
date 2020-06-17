@@ -12,6 +12,7 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ProgressBar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -42,6 +44,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
@@ -60,7 +63,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
-    Double[] items = new Double[8] ;
+    Double[] items = new Double[8];
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     TabLayout tabLayout;
@@ -75,11 +78,9 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.common_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
-        details.setOnClickListener(new OnClickListener()
-        {
+        details.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 if (productDetailsCard.getVisibility() == View.GONE) {
                     productDetailsCard.setVisibility(View.VISIBLE);
                     details.setRotation(180);
@@ -105,11 +106,9 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
 
         discounts = view.findViewById(R.id.discounts_dropdown);
-        discounts.setOnClickListener(new OnClickListener()
-        {
+        discounts.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 if (discountsCard.getVisibility() == View.GONE) {
                     discountsCard.setVisibility(View.VISIBLE);
                     discounts.setRotation(180);
@@ -121,14 +120,12 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
 
         View calculate = view.findViewById(R.id.calculate);
-        calculate.setOnClickListener(new OnClickListener()
-        {
+        calculate.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 progressButton progressButton = new progressButton(getActivity(), v);
                 progressButton.ButtonActivated();
-                InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getActivity().getCurrentFocus();
                 if (focusedView != null) {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -138,11 +135,9 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
 
         reset = view.findViewById(R.id.reset);
-        reset.setOnClickListener(new OnClickListener()
-        {
+        reset.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 sellingPrice.requestFocus();
                 sellingPrice.setText("");
                 categories.setSelection(0);
@@ -160,11 +155,9 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
 
         save = view.findViewById(R.id.save);
-        save.setOnClickListener(new OnClickListener()
-        {
+        save.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 AlertDialog.Builder mydialog = new AlertDialog.Builder(getActivity());
                 mydialog.setTitle("Title");
 
@@ -172,18 +165,18 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                 title.setInputType(InputType.TYPE_CLASS_TEXT);
                 title.setHint("Enter Title");
                 title.requestFocus();
-                title.setPadding(70,40,50,40);
+                title.setPadding(70, 40, 50, 40);
                 mydialog.setView(title);
 
                 mydialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         myText = title.getText().toString();
-                                if (myText.equals("")) {
-                                    Toast.makeText(getContext(), "Enter the Title", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    save();
-                                }
+                        if (myText.equals("")) {
+                            Toast.makeText(getContext(), "Enter the Title", Toast.LENGTH_SHORT).show();
+                        } else {
+                            save();
+                        }
                     }
                 });
                 mydialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -197,11 +190,9 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
 
         sendEmail = view.findViewById(R.id.sendEmail);
-        sendEmail.setOnClickListener(new OnClickListener()
-        {
+        sendEmail.setOnClickListener(new OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 share();
             }
         });
@@ -282,6 +273,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 spinner_ans = gst_array[position];
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -297,7 +289,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         progressBar = view.findViewById(R.id.loader);
         textView = view.findViewById(R.id.calculate_textview);
 
-        if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
+        if (SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")) {
             Bundle bundle = this.getArguments();
             ArrayList<String> bundle_input = bundle.getStringArrayList("input");
             int selection = adapter.getPosition(bundle_input.get(0));
@@ -305,7 +297,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             sellingPrice.setText(bundle_input.get(1));
             purchasePrice.setText(bundle_input.get(2));
             int value = Integer.parseInt(bundle_input.get(3));
-            switch (value){
+            switch (value) {
                 case 0:
                     gstOnProduct.setSelection(0);
                     break;
@@ -334,7 +326,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             SharedPrefManager.getInstance(getActivity())
                     .saveFlag(flag);
         }
-        }
+    }
 
     protected void calculate() {
 
@@ -352,33 +344,33 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             return;
         }
 
-        if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
+        if (Double.parseDouble(sellingPrice.getText().toString()) <= 0) {
             sellingPrice.setError("Selling Price not valid");
             sellingPrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if(Double.parseDouble(purchasePrice.getText().toString()) <= 0){
+        if (Double.parseDouble(purchasePrice.getText().toString()) <= 0) {
             purchasePrice.setError("Purchase Price is not valid");
             purchasePrice.requestFocus();
             ButtonFinished();
             return;
         }
 
-        if(inwardShipping.getText().toString().isEmpty())
+        if (inwardShipping.getText().toString().isEmpty())
             inwardShipping.setText("0");
-        if(packagingExpenses.getText().toString().isEmpty())
+        if (packagingExpenses.getText().toString().isEmpty())
             packagingExpenses.setText("0");
-        if(labour.getText().toString().isEmpty())
+        if (labour.getText().toString().isEmpty())
             labour.setText("0");
-        if(storageFee.getText().toString().isEmpty())
+        if (storageFee.getText().toString().isEmpty())
             storageFee.setText("0");
-        if(otherCharges.getText().toString().isEmpty())
+        if (otherCharges.getText().toString().isEmpty())
             otherCharges.setText("0");
-        if(discountByPrice.getText().toString().isEmpty())
+        if (discountByPrice.getText().toString().isEmpty())
             discountByPrice.setText("0");
-        if(discountByPercentage.getText().toString().isEmpty())
+        if (discountByPercentage.getText().toString().isEmpty())
             discountByPercentage.setText("0");
 
         if (Double.parseDouble(discountByPrice.getText().toString()) > 0 && Double.parseDouble(discountByPercentage.getText().toString()) > 0) {
@@ -406,7 +398,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         call.enqueue(new Callback<MeeshoCalculationResponse>() {
             @Override
             public void onResponse(Call<MeeshoCalculationResponse> call, Response<MeeshoCalculationResponse> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     MeeshoCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
 
@@ -447,7 +439,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
 
                     save.setImageResource(R.drawable.ic_bookmark_border);
                     save.setEnabled(true);
-                }else if(response.code() == 501){
+                } else if (response.code() == 501) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
@@ -455,6 +447,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     startActivity(intent_logout);
                 }
             }
+
             @Override
             public void onFailure(Call<MeeshoCalculationResponse> call, Throwable t) {
                 ButtonFinished();
@@ -463,7 +456,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
     }
 
-    public void save(){
+    public void save() {
         String title = String.valueOf(myText);
         String category = categoryFinal;
         String sellingPrice = this.sellingPrice.getText().toString().trim();
@@ -488,14 +481,14 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .saved(title, category , sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
+                .saved(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
                         other, discountPercent, discountAmount, bankSettlement, totalCommision, profit, totalGstPayable, tcs, gstPayable,
                         gstClaim, profitPercentage);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
             public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     MessageResponse dr = response.body();
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
@@ -508,7 +501,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     } else {
                         Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
                     }
-                }else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
@@ -516,6 +509,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     startActivity(intent_logout);
                 }
             }
+
             @Override
             public void onFailure(Call<MessageResponse> call, Throwable t) {
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
@@ -523,7 +517,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
     }
 
-    public void share(){
+    public void share() {
         String content = "INPUT" + "\n" +
                 "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
                 "GST On Product: " + spinner_ans + "\n" +
@@ -554,7 +548,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         startActivity(Intent.createChooser(intent, "Share using"));
     }
 
-    void ButtonFinished(){
+    void ButtonFinished() {
         progressBar.setVisibility(View.GONE);
         textView.setText("Calculate");
     }

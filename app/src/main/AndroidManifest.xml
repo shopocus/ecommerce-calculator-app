@@ -4,23 +4,25 @@
     package="com.ecommerce.calculator">
 
     <dist:module dist:instant="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icon"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
-        <activity android:name=".activities.SplashScreen"
+        <activity
+            android:name=".activities.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,18 +31,27 @@
         </activity>
 
         <activity android:name=".activities.HomeScreen"></activity>
-        <activity android:name=".activities.Registration" android:parentActivityName=".activities.HomeScreen"></activity>
+        <activity
+            android:name=".activities.Registration"
+            android:parentActivityName=".activities.HomeScreen"></activity>
         <activity android:name=".activities.RegistrationOtpVerification"></activity>
-        <activity android:name=".activities.Login" android:parentActivityName=".activities.HomeScreen"></activity>
+        <activity
+            android:name=".activities.Login"
+            android:parentActivityName=".activities.HomeScreen"></activity>
         <activity android:name=".activities.ForgotPasswordGetEmail"></activity>
         <activity android:name=".activities.ForgotPasswordVerifyEmail"></activity>
         <activity android:name=".activities.GetNewPassword"></activity>
-        <activity android:name=".activities.FragmentSelection" android:parentActivityName=".activities.Menu"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+        <activity
+            android:name=".activities.FragmentSelection"
+            android:parentActivityName=".activities.Menu"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".activities.Menu"></activity>
-        <activity android:name=".activities.Profile" android:parentActivityName=".activities.Menu"></activity>
-        <activity android:name=".activities.SavedData" android:parentActivityName=".activities.FragmentSelection"></activity>
+        <activity
+            android:name=".activities.Profile"
+            android:parentActivityName=".activities.Menu"></activity>
+        <activity
+            android:name=".activities.SavedData"
+            android:parentActivityName=".activities.FragmentSelection"></activity>
 
     </application>
 

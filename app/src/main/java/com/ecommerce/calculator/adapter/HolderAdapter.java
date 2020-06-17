@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.ecommerce.calculator.R;
+
 import java.util.ArrayList;
+
 import com.ecommerce.calculator.activities.FragmentSelection;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.activities.LoadingDialog;
@@ -21,6 +25,7 @@ import com.ecommerce.calculator.holder.itemClick;
 import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +39,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     ArrayList<menu> ListFull;
     LoadingDialog loadingDialog;
 
-    public HolderAdapter(Context c, ArrayList<menu> menu, LoadingDialog loadingDialog){
+    public HolderAdapter(Context c, ArrayList<menu> menu, LoadingDialog loadingDialog) {
         this.c = c;
         this.menu = menu;
         ListFull = new ArrayList<>(menu);
@@ -56,40 +61,34 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             @Override
             public void onItemClickListener(View v, int position) {
                 loadingDialog.startLoadingDialog();
-                if (menu.get(position).getTitle().equals("Meesho")){
+                if (menu.get(position).getTitle().equals("Meesho")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("meesho");
                     categories();
-                }
-                else if (menu.get(position).getTitle().equals("Club Factory")){
+                } else if (menu.get(position).getTitle().equals("Club Factory")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("clubFactory");
                     categories();
-                }
-                else if (menu.get(position).getTitle().equals("Flipkart")){
+                } else if (menu.get(position).getTitle().equals("Flipkart")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("flipkart");
                     categories();
-                }
-                else if (menu.get(position).getTitle().equals("Amazon")){
+                } else if (menu.get(position).getTitle().equals("Amazon")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("amazon");
                     categories();
-                }
-                else if (menu.get(position).getTitle().equals("Amazon Fba")){
+                } else if (menu.get(position).getTitle().equals("Amazon Fba")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("amazonFba");
                     categories();
-                }
-                else if (menu.get(position).getTitle().equals("ebay")){
+                } else if (menu.get(position).getTitle().equals("ebay")) {
                     SharedPrefManager.getInstance(c)
                             .saveCompany("ebay");
                     loadingDialog.dismissDialog();
-                    Intent intent = new Intent(c , FragmentSelection.class);
+                    Intent intent = new Intent(c, FragmentSelection.class);
 //                    intent.putExtra(KEY,0);
                     c.startActivity(intent);
-                }
-                else {
+                } else {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT).show();
                 }
@@ -102,9 +101,10 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         return menu.size();
     }
 
-    public Filter getFilter(){
+    public Filter getFilter() {
         return menuFilter;
     }
+
     private Filter menuFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -130,14 +130,14 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             menu.clear();
-            menu.addAll((ArrayList)results.values);
+            menu.addAll((ArrayList) results.values);
             notifyDataSetChanged();
         }
     };
 
     protected void categories() {
         Call<category> call;
-        switch (SharedPrefManager.getInstance(c).getCompany()){
+        switch (SharedPrefManager.getInstance(c).getCompany()) {
             case "meesho":
                 call = RetrofitClient.getInstance().getApi().getCategories();
                 break;
@@ -161,7 +161,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
             @Override
             public void onResponse(Call<category> call, Response<category> response) {
                 loadingDialog.dismissDialog();
-                if(response.isSuccessful()) {
+                if (response.isSuccessful()) {
                     category category = response.body();
                     ArrayList<String> list = new ArrayList<>();
                     for (String s : category.getCategory()) {
@@ -169,10 +169,10 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
                     }
                     SharedPrefManager.getInstance(c)
                             .saveList(list);
-                    Intent intent = new Intent(c , FragmentSelection.class);
-                    intent.putExtra(KEY,0);
+                    Intent intent = new Intent(c, FragmentSelection.class);
+                    intent.putExtra(KEY, 0);
                     c.startActivity(intent);
-                }else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     loadingDialog.dismissDialog();
                     Toast.makeText(c, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(c).clear();

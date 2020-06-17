@@ -9,12 +9,15 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.google.android.material.snackbar.Snackbar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +40,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getCurrentFocus();
                 if (focusedView != null) {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -50,7 +53,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
         });
     }
 
-    void requestOtp(){
+    void requestOtp() {
 
         String emailSend = email.getText().toString().trim().toLowerCase();
 
@@ -81,7 +84,7 @@ public class ForgotPasswordGetEmail extends AppCompatActivity {
                     Intent intent = new Intent(ForgotPasswordGetEmail.this, ForgotPasswordVerifyEmail.class);
                     intent.putExtra("email", emailSend);
                     startActivity(intent);
-                } else if(messageResponse.getMessage().equals("Not_valid_user")) {
+                } else if (messageResponse.getMessage().equals("Not_valid_user")) {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Account Does Not Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);

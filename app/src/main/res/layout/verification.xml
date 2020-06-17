@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/constraintLayout"
     android:paddingHorizontal="30dp">
 
     <ImageView
@@ -77,13 +76,13 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
+                android:textAlignment="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toTopOf="@+id/textView4"
-                app:layout_constraintStart_toEndOf="@id/sep"
-                android:gravity="center" />
+                app:layout_constraintStart_toEndOf="@id/sep" />
 
             <EditText
                 android:id="@+id/otp_digit_2"
@@ -93,11 +92,11 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
-                android:textAlignment="center"
-                android:gravity="center"
                 android:paddingHorizontal="10dp"
+                android:textAlignment="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toBottomOf="@+id/otp_digit_1"
                 app:layout_constraintStart_toEndOf="@+id/otp_digit_1" />
@@ -110,11 +109,11 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
                 android:paddingHorizontal="10dp"
                 android:textAlignment="center"
-                android:gravity="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toBottomOf="@+id/otp_digit_2"
                 app:layout_constraintStart_toEndOf="@+id/otp_digit_2" />
@@ -127,11 +126,11 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
                 android:paddingHorizontal="10dp"
                 android:textAlignment="center"
-                android:gravity="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toBottomOf="@+id/otp_digit_3"
                 app:layout_constraintStart_toEndOf="@+id/otp_digit_3" />
@@ -144,11 +143,11 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
                 android:paddingHorizontal="10dp"
                 android:textAlignment="center"
-                android:gravity="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toBottomOf="@+id/otp_digit_4"
                 app:layout_constraintStart_toEndOf="@+id/otp_digit_4" />
@@ -161,11 +160,11 @@
                 android:background="@drawable/otp_background"
                 android:cursorVisible="true"
                 android:elevation="3dp"
+                android:gravity="center"
                 android:inputType="number"
                 android:maxLength="1"
                 android:paddingHorizontal="10dp"
                 android:textAlignment="center"
-                android:gravity="center"
                 android:textCursorDrawable="@null"
                 app:layout_constraintBottom_toBottomOf="@+id/otp_digit_5"
                 app:layout_constraintEnd_toStartOf="@id/sepe"
@@ -203,9 +202,9 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:background="@drawable/button_background"
             android:gravity="center"
             android:padding="10dp"
-            android:background="@drawable/button_background"
             android:text="Verify"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

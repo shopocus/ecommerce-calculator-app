@@ -31,38 +31,33 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0) {
+        if (position == 0) {
             if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
                 meesho_calculation input = new meesho_calculation();
                 input.setArguments(bundle);
                 return input;
-            }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
                 clubfactory_calculation.setArguments(bundle);
                 return clubfactory_calculation;
-            }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("flipkart")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("flipkart")) {
                 flipkart_calculation flipkart_calculation = new flipkart_calculation();
                 flipkart_calculation.setArguments(bundle);
                 return flipkart_calculation;
-            }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
                 amazon_calculation amazon_calculation = new amazon_calculation();
                 amazon_calculation.setArguments(bundle);
                 return amazon_calculation;
-            }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("amazonFba")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("amazonFba")) {
                 amazonFba_calculation amazonFba_calculation = new amazonFba_calculation();
                 amazonFba_calculation.setArguments(bundle);
                 return amazonFba_calculation;
-            }
-            else if (SharedPrefManager.getInstance(c).getCompany().equals("ebay")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("ebay")) {
                 ebay_calculation ebay_calculation = new ebay_calculation();
                 ebay_calculation.setArguments(bundle);
                 return ebay_calculation;
             }
-        }else {
+        } else {
             saved saved = new saved();
             return saved;
         }

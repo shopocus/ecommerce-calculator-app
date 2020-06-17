@@ -8,80 +8,80 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
+        android:layout_margin="16dp"
         android:elevation="8dp"
-        android:layout_margin="16dp">
+        app:cardCornerRadius="5dp">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:weightSum="100">
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:weightSum="100">
 
-        <TableRow>
+            <TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="15"
-                android:text="Name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="15"
+                    android:text="Name"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/textViewName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="85"
-                android:gravity="right"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="85"
+                    android:gravity="right"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="15"
-                android:text="Email"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="15"
+                    android:text="Email"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/textViewEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="85"
-                android:gravity="right"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/textViewEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="85"
+                    android:gravity="right"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="15"
-                android:text="Mobile"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="15"
+                    android:text="Mobile"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/textViewMobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="85"
-                android:gravity="right"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/textViewMobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="85"
+                    android:gravity="right"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            </TableRow>
 
-    </TableLayout>
+        </TableLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/linearlayout"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".activities.Menu">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:id="@id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:background="@drawable/toolbar"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/toolbar"
         android:paddingBottom="2dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -27,17 +27,16 @@
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="?attr/actionBarSize"
             android:layout_marginRight="16dp"
-            android:queryHint="Search Here"
-            android:iconifiedByDefault="false"/>
+            android:iconifiedByDefault="false"
+            android:minHeight="?attr/actionBarSize"
+            android:queryHint="Search Here" />
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/menu"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

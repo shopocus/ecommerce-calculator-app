@@ -13,6 +13,7 @@ import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.subCategory;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -56,7 +57,7 @@ public interface Api {
     );
 
     @GET("meesho/app/showCategory")
-    Call<category> getCategories( );
+    Call<category> getCategories();
 
     @FormUrlEncoded
     @POST("meesho/app/toSave")
@@ -103,7 +104,7 @@ public interface Api {
     );
 
     @GET("clubFactory/app/showCategory")
-    Call<category> getCategoriesClubFactory( );
+    Call<category> getCategoriesClubFactory();
 
     @FormUrlEncoded
     @POST("clubFactory/app/toSave")
@@ -188,7 +189,7 @@ public interface Api {
     );
 
     @GET("flipkart/app/showCategory")
-    Call<category> getCategoriesFlipkart( );
+    Call<category> getCategoriesFlipkart();
 
     @FormUrlEncoded
     @POST("flipkart/app/toSave")
@@ -279,7 +280,7 @@ public interface Api {
     );
 
     @GET("amazon/app/showCategory")
-    Call<category> getCategoriesAmazon( );
+    Call<category> getCategoriesAmazon();
 
     @FormUrlEncoded
     @POST("amazon/app/showSubCategory")
@@ -464,7 +465,7 @@ public interface Api {
             @Field("commission") String commission,
             @Field("shipping") String shipping,
             @Field("paymentGatewayCharge") String paymentGatewayCharge,
-            @Field("commissionFees")  String commissionFees,
+            @Field("commissionFees") String commissionFees,
             @Field("shippingFees") String shippingFees,
             @Field("paymentGatewayFees") String paymentGatewayFees,
             @Field("CSP") String CSP,
@@ -502,13 +503,13 @@ public interface Api {
             @Field("company") String company,
             @Field("title") String title,
             @Field("newTitle") String newTitle
-            );
+    );
 
     @FormUrlEncoded
     @POST("preRegister/sendOtp")
     Call<MessageResponse> otpSend(
-      @Field("email") String email,
-      @Field("mobile_no") String mobile_no
+            @Field("email") String email,
+            @Field("mobile_no") String mobile_no
     );
 
     @FormUrlEncoded
@@ -528,7 +529,7 @@ public interface Api {
     @POST("forgetPassword/verifyOtp")
     Call<MessageResponse> forgetPasswordOtpVerification(
             @Field("email") String email,
-      @Field("otp") String otp
+            @Field("otp") String otp
     );
 
     @FormUrlEncoded

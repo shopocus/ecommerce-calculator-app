@@ -9,8 +9,8 @@ public class category {
         this.category = category;
     }
 
-    public ArrayList<String> getCategory(){
+    public ArrayList<String> getCategory() {
         return category;
     }
-    
+
 }

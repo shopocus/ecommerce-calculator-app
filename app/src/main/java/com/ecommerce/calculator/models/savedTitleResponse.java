@@ -12,7 +12,9 @@ public class savedTitleResponse {
         this.message = message;
     }
 
-    public String getMessage() {return message; }
+    public String getMessage() {
+        return message;
+    }
 
     public List<Title> getTitle() {
         return title;

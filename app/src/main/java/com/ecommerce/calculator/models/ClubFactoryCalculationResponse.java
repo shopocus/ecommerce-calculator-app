@@ -19,8 +19,8 @@ public class ClubFactoryCalculationResponse {
     }
 
     public MeeshoCalculationResponse getLocal() {
-            return Local;
-        }
+        return Local;
+    }
 
     public MeeshoCalculationResponse getRegional() {
         return Regional;

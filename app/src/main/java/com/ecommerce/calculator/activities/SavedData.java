@@ -57,7 +57,7 @@ public class SavedData extends AppCompatActivity {
     private TextView textViewTitle;
     ImageButton edit;
     ListView itemList, result;
-    CardView input_card,output_card;
+    CardView input_card, output_card;
     LinearLayout buttons, linearLayout;
     TabLayout tabLayout;
     ArrayList<String> Local = new ArrayList<>();
@@ -107,7 +107,7 @@ public class SavedData extends AppCompatActivity {
         FetchData();
     }
 
-    public void FetchData(){
+    public void FetchData() {
         String company = SharedPrefManager.getInstance(SavedData.this).getCompany();
         String title = SharedPrefManager.getInstance(SavedData.this).getTitle();
         Call<TitleDataResponse> call = RetrofitClient
@@ -125,7 +125,7 @@ public class SavedData extends AppCompatActivity {
                         input_card.setVisibility(View.VISIBLE);
                         output_card.setVisibility(View.VISIBLE);
                         textViewTitle.setText(td.getTitle());
-                        switch (company){
+                        switch (company) {
                             case "meesho":
                                 meeshoSavedData(td);
                                 break;
@@ -146,13 +146,14 @@ public class SavedData extends AppCompatActivity {
                                 break;
                         }
                     }
-                }else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     Toast.makeText(SavedData.this, "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     Intent intent_logout = new Intent(SavedData.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
                 }
             }
+
             @Override
             public void onFailure(Call<TitleDataResponse> call, Throwable t) {
                 Toast.makeText(SavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
@@ -160,7 +161,7 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
-    void meeshoSavedData(TitleDataResponse td){
+    void meeshoSavedData(TitleDataResponse td) {
         result.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
         output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
@@ -246,7 +247,7 @@ public class SavedData extends AppCompatActivity {
         SavedData.setListViewHeightBasedOnChildren(result);
     }
 
-    void clubFactoryData(TitleDataResponse td){
+    void clubFactoryData(TitleDataResponse td) {
         viewPager.setVisibility(View.VISIBLE);
         tabLayout.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
@@ -381,7 +382,7 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
-    void flipkartData(TitleDataResponse td){
+    void flipkartData(TitleDataResponse td) {
         viewPager.setVisibility(View.VISIBLE);
         tabLayout.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
@@ -518,7 +519,7 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
-    void amazonData(TitleDataResponse td){
+    void amazonData(TitleDataResponse td) {
         viewPager.setVisibility(View.VISIBLE);
         tabLayout.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
@@ -542,7 +543,7 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text4);
         outputList.add(text5);
         outputList.add(text6);
-        if(String.valueOf(td.getShipmentType()).equals("easyShip")) {
+        if (String.valueOf(td.getShipmentType()).equals("easyShip")) {
             output text7 = new output("EasyShip Type", td.getEasyShip().getEasyShipType());
             output text8 = new output("Weight", String.valueOf(td.getEasyShip().getWeight()));
             output text9 = new output("Length", String.valueOf(td.getEasyShip().getLength()));
@@ -553,7 +554,7 @@ public class SavedData extends AppCompatActivity {
             outputList.add(text9);
             outputList.add(text10);
             outputList.add(text11);
-        }else {
+        } else {
             output text12 = new output("SelfShipLocal", String.valueOf(td.getSelfShip().getSelfShipLocal()));
             output text13 = new output("SelfShipRegional", String.valueOf(td.getSelfShip().getSelfShipRegional()));
             output text14 = new output("SelfShipNational", String.valueOf(td.getSelfShip().getSelfShipNational()));
@@ -587,14 +588,13 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getDiscountAmount());
         input.add(td.getDiscountPercent());
         input.add(td.getShipmentType());
-        if(String.valueOf(td.getShipmentType()).equals("easyShip")) {
+        if (String.valueOf(td.getShipmentType()).equals("easyShip")) {
             input.add(td.getEasyShip().getEasyShipType());
             input.add(String.valueOf(td.getEasyShip().getWeight()));
             input.add(String.valueOf(td.getEasyShip().getLength()));
             input.add(String.valueOf(td.getEasyShip().getBreadth()));
             input.add(String.valueOf(td.getEasyShip().getHeight()));
-        }
-        else {
+        } else {
             input.add(String.valueOf(td.getSelfShip().getSelfShipLocal()));
             input.add(String.valueOf(td.getSelfShip().getSelfShipRegional()));
             input.add(String.valueOf(td.getSelfShip().getSelfShipNational()));
@@ -649,7 +649,7 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        if(td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength()*td.getEasyShip().getBreadth()*td.getEasyShip().getHeight()/5 <= 12000) {
+        if (td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength() * td.getEasyShip().getBreadth() * td.getEasyShip().getHeight() / 5 <= 12000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -676,7 +676,7 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
-    void amazonFbaData(TitleDataResponse td){
+    void amazonFbaData(TitleDataResponse td) {
         viewPager.setVisibility(View.VISIBLE);
         tabLayout.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getCategory()));
@@ -777,7 +777,7 @@ public class SavedData extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Local"));
         tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-        if(Double.parseDouble(td.getWeight()) <= 30000 || Double.parseDouble(td.getLength())*Double.parseDouble(td.getBreadth())*Double.parseDouble(td.getHeight())/5 <= 30000) {
+        if (Double.parseDouble(td.getWeight()) <= 30000 || Double.parseDouble(td.getLength()) * Double.parseDouble(td.getBreadth()) * Double.parseDouble(td.getHeight()) / 5 <= 30000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -804,7 +804,7 @@ public class SavedData extends AppCompatActivity {
         });
     }
 
-    void ebayData(TitleDataResponse td){
+    void ebayData(TitleDataResponse td) {
         result.setVisibility(View.VISIBLE);
         output text1 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
         output text2 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
@@ -890,21 +890,21 @@ public class SavedData extends AppCompatActivity {
         SavedData.setListViewHeightBasedOnChildren(result);
     }
 
-    public static void setListViewHeightBasedOnChildren(ListView listView){
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
-        if(listAdapter == null)
+        if (listAdapter == null)
             return;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
         int totalHeight = 0;
         View view = null;
-        for (int i=0;i<listAdapter.getCount();i++){
+        for (int i = 0; i < listAdapter.getCount(); i++) {
             view = listAdapter.getView(i, view, listView);
-            if(i == 0)
+            if (i == 0)
                 view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
             view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
             totalHeight += view.getMeasuredHeight() + 4;
         }
-        ViewGroup .LayoutParams params = listView.getLayoutParams();
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
         listView.requestLayout();

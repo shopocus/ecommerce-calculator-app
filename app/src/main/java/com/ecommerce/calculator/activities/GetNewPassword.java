@@ -7,17 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import android.widget.TextView;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.regex.Pattern;
 
 public class GetNewPassword extends AppCompatActivity {
@@ -45,7 +50,7 @@ public class GetNewPassword extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getCurrentFocus();
                 if (focusedView != null) {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -55,12 +60,12 @@ public class GetNewPassword extends AppCompatActivity {
         });
     }
 
-    void updatePassword(){
+    void updatePassword() {
 
         String passwordSend = newPassword.getText().toString().trim();
         String confirmPasswordSend = confirmPassword.getText().toString().trim();
 
-        if(passwordSend.isEmpty() || confirmPasswordSend.isEmpty()){
+        if (passwordSend.isEmpty() || confirmPasswordSend.isEmpty()) {
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter The Required Fields", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -70,7 +75,7 @@ public class GetNewPassword extends AppCompatActivity {
             return;
         }
 
-        if(!passwordSend.equals(confirmPasswordSend)){
+        if (!passwordSend.equals(confirmPasswordSend)) {
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Enter Same Password", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);

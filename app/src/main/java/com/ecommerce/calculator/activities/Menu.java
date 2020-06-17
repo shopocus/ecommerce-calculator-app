@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.ecommerce.calculator.R;
+
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+
 import com.ecommerce.calculator.adapter.HolderAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -22,6 +25,7 @@ import com.ecommerce.calculator.models.menu;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.utils.NetworkHelper;
 import com.google.android.material.snackbar.Snackbar;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -29,7 +33,9 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,7 +68,7 @@ public class Menu extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearlayout);
 
         isNetworkOk = NetworkHelper.isNetworkAvailable(this);
-        if(!isNetworkOk) {
+        if (!isNetworkOk) {
             Snackbar snackbar = Snackbar.make(linearLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -103,7 +109,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    private ArrayList<menu> getMyList(){
+    private ArrayList<menu> getMyList() {
         ArrayList<menu> menu = new ArrayList<>();
 
         menu m = new menu();
@@ -140,14 +146,14 @@ public class Menu extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu){
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.profile, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.profile:
                 Intent intent = new Intent(Menu.this, Profile.class);
                 startActivity(intent);
@@ -196,7 +202,7 @@ public class Menu extends AppCompatActivity {
         alertDialog.show();
     }
 
-    void logout(){
+    void logout() {
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance().getApi().logout();
@@ -211,7 +217,7 @@ public class Menu extends AppCompatActivity {
                     Intent intent_logout = new Intent(Menu.this, HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
-                } else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     Snackbar snackbar = Snackbar.make(linearLayout, "Session Expire! Please Login Again", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);

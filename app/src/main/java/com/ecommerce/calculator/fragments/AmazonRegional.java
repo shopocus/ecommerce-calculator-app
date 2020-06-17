@@ -40,7 +40,7 @@ public class AmazonRegional extends Fragment {
         output text3 = new output("Shipping Fees", bundle_regional.get(2));
         output text4 = new output("RCS", bundle_regional.get(3));
         output text5 = new output("GST On RCS", bundle_regional.get(4));
-        if(SharedPrefManager.getInstance(getActivity()).getCompany().equals("amazonfba")){
+        if (SharedPrefManager.getInstance(getActivity()).getCompany().equals("amazonfba")) {
             text4 = new output("RCF", bundle_regional.get(4));
             text5 = new output("GST ON RCF", bundle_regional.get(5));
         }

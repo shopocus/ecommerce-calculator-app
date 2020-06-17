@@ -12,7 +12,7 @@ import com.ecommerce.calculator.fragments.AmazonLocal;
 import com.ecommerce.calculator.fragments.AmazonNational;
 import com.ecommerce.calculator.fragments.AmazonRegional;
 
-public class AmazonSectionAdapter  extends FragmentPagerAdapter {
+public class AmazonSectionAdapter extends FragmentPagerAdapter {
 
     int counttab;
     Context c;
@@ -28,7 +28,7 @@ public class AmazonSectionAdapter  extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch(position){
+        switch (position) {
             case 0:
                 AmazonLocal amazonLocal = new AmazonLocal();
                 amazonLocal.setArguments(bundle);

@@ -28,7 +28,7 @@ public class FlipkartSectionAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch(position){
+        switch (position) {
             case 0:
                 FlipkartLocal flipkartLocal = new FlipkartLocal();
                 flipkartLocal.setArguments(bundle);

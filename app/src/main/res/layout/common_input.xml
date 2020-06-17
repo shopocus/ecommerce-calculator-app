@@ -2,42 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/ic_refresh"
         android:layout_gravity="right"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="10dp"/>
+        android:background="@null"
+        android:src="@drawable/ic_refresh" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="5dp"
+        android:orientation="vertical"
         android:paddingBottom="30dp"
-        android:orientation="vertical">
+        android:scrollbars="vertical">
 
-        <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/inputDetailsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             app:cardCornerRadius="3dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="false">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/text_input"
                     android:layout_width="match_parent"
@@ -57,7 +58,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Category: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <Spinner
                         android:id="@+id/category"
@@ -69,11 +70,11 @@
                 <TextView
                     android:id="@+id/line17"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/subCategoryBunch"
@@ -86,7 +87,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Sub Category: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <Spinner
                         android:id="@+id/subCategory"
@@ -97,11 +98,11 @@
 
                 <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -112,21 +113,21 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Selling Price: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/sellingPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -136,26 +137,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
             android:layout_marginTop="16dp"
+            android:background="@color/light_grey"
             android:weightSum="100">
+
             <TextView
                 android:id="@+id/text_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Product Details"
+                android:layout_weight="10"
                 android:paddingLeft="3dp"
-                android:textSize="16sp"
-                android:layout_weight="10"/>
+                android:text="Product Details"
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/details_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="90"
+                android:backgroundTint="@color/light_grey"
                 android:gravity="left"
                 android:rotation="180"
-                android:backgroundTint="@color/light_grey"
                 android:src="@drawable/ic_arrow_drop_down" />
 
         </LinearLayout>
@@ -167,6 +169,7 @@
             app:cardCornerRadius="3dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="false">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,32 +184,32 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Purchase Price: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/purchasePrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,15 +220,15 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="GST on product: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <Spinner
                         android:id="@+id/gst"
@@ -238,44 +241,44 @@
                     android:id="@+id/shipmentTypeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/line"
                         style="?android:attr/listSeparatorTextViewStyle"
-                        android:paddingTop="3dp"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorBase" />
+                        android:background="@color/colorBase"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="3dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="Shipment Type: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioGroup
                         android:id="@+id/shipmentType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
-                        android:orientation="horizontal"
                         android:layout_marginVertical="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
                             android:id="@+id/radio_easyship"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="50"
+                            android:checked="true"
                             android:text="easyShip" />
 
                         <RadioButton
@@ -293,44 +296,44 @@
                     android:id="@+id/easyShipmentTypeBunch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/line0"
                         style="?android:attr/listSeparatorTextViewStyle"
-                        android:paddingTop="3dp"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorBase" />
+                        android:background="@color/colorBase"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="3dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="Easy Shipment Type: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioGroup
                         android:id="@+id/easyShipmentType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
-                        android:orientation="horizontal"
                         android:layout_marginVertical="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
                             android:id="@+id/radio_prime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="50"
+                            android:checked="true"
                             android:text="prime" />
 
                         <RadioButton
@@ -347,11 +350,11 @@
                 <TextView
                     android:id="@+id/line1"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/weightBunch"
@@ -363,55 +366,55 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Weight: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/gm1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Gm."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/weight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/selfshipLocalBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_selfshipLocal"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Selfship Local: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <EditText
                         android:id="@+id/selfshipLocal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line2"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/lengthBunch"
@@ -423,54 +426,54 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Length: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="cm"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/length"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/selfshipRegionalBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_selfshipRegional"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Selfship Regional: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <EditText
                         android:id="@+id/selfshipRegional"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line3"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/breadthBunch"
@@ -482,54 +485,54 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Breadth: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="cm"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/breadth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/selfshipNationalBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_selfshipNational"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Selfship National: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <EditText
                         android:id="@+id/selfshipNational"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line4"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/heightBunch"
@@ -541,21 +544,21 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Height: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="cm"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/height"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -568,38 +571,38 @@
                     <TextView
                         android:id="@+id/line9"
                         style="?android:attr/listSeparatorTextViewStyle"
-                        android:paddingTop="3dp"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorBase" />
+                        android:background="@color/colorBase"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="3dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="Courier: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioGroup
                         android:id="@+id/courier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
-                        android:orientation="horizontal"
                         android:layout_marginVertical="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
                             android:id="@+id/radio_delhivery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="50"
+                            android:checked="true"
                             android:text="delhivery" />
 
                         <RadioButton
@@ -621,38 +624,38 @@
 
                     <TextView
                         style="?android:attr/listSeparatorTextViewStyle"
-                        android:paddingTop="3dp"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorBase" />
+                        android:background="@color/colorBase"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="3dp" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="Customer Type: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioGroup
                         android:id="@+id/customerType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
-                        android:orientation="horizontal"
                         android:layout_marginVertical="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="100"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
                             android:id="@+id/radio_bronze"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_gravity="center"
                             android:layout_weight="33"
+                            android:checked="true"
                             android:text="bronze" />
 
                         <RadioButton
@@ -682,11 +685,11 @@
                     <TextView
                         android:id="@+id/line10"
                         style="?android:attr/listSeparatorTextViewStyle"
-                        android:paddingTop="3dp"
-                        android:gravity="center_horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorBase" />
+                        android:background="@color/colorBase"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="3dp" />
 
                     <TextView
                         android:id="@+id/text_payment"
@@ -694,14 +697,14 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="Payment Mode:"
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <RadioGroup
                         android:id="@+id/payMode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginVertical="10dp"
+                        android:orientation="horizontal"
                         android:weightSum="100"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -711,8 +714,8 @@
                             android:id="@+id/radio_postpaid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:layout_weight="50"
+                            android:checked="true"
                             android:text="postpaid" />
 
                         <RadioButton
@@ -731,16 +734,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
             android:layout_marginTop="16dp"
-            android:background="@color/light_grey">
+            android:background="@color/light_grey"
+            android:weightSum="100">
+
             <TextView
                 android:id="@+id/text_expenses"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="10"
                 android:paddingLeft="3dp"
                 android:text="Expenses"
-                android:layout_weight="10"
                 android:textSize="16sp" />
 
             <ImageButton
@@ -748,20 +752,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="90"
-                android:src="@drawable/ic_arrow_drop_down"
-                android:backgroundTint="@color/light_grey"/>
+                android:backgroundTint="@color/light_grey"
+                android:src="@drawable/ic_arrow_drop_down" />
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/expensesCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:visibility="gone"
             app:cardCornerRadius="3dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="false">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -776,33 +780,33 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Inward Shipping: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/inwardShipping"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line11"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/packagingExpensesBunch"
@@ -814,33 +818,33 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Packaging expenses: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/packagingExpenses"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line12"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/labourBunch"
@@ -852,33 +856,33 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Labour: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/labour"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line13"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:id="@+id/storageFeeBunch"
@@ -890,152 +894,152 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Storage fees: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/storageFee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line16"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
-                    android:visibility="gone"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/commissionBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_Commission"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Commission: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/commission"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line15"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:visibility="gone"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/shippingBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_Shipping"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Shipping: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/shipping"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/line14"
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:visibility="gone"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/paymentGatewayChargeBunch"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/text_payment_Gateway_Charge"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Payment Gateway Charge: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/paymentGatewayCharge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1046,22 +1050,22 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="Other charges: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/otherCharges"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -1070,15 +1074,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
             android:layout_marginTop="16dp"
-            android:background="@color/light_grey">
+            android:background="@color/light_grey"
+            android:weightSum="100">
+
             <TextView
                 android:id="@+id/text_discounts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="3dp"
                 android:layout_weight="10"
+                android:paddingLeft="3dp"
                 android:text="Discounts"
                 android:textSize="16sp" />
 
@@ -1087,20 +1092,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="90"
-                android:src="@drawable/ic_arrow_drop_down"
-                android:backgroundTint="@color/light_grey"/>
+                android:backgroundTint="@color/light_grey"
+                android:src="@drawable/ic_arrow_drop_down" />
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/discountsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:visibility="gone"
             app:cardCornerRadius="3dp"
             app:cardElevation="5dp"
             app:cardUseCompatPadding="false">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -1115,32 +1120,32 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="By Price: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rs."
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/discountByPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
                 <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:paddingTop="3dp"
-                    android:gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/colorBase" />
+                    android:background="@color/colorBase"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="3dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1151,22 +1156,22 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:text="By Percentage: "
-                        android:textColor="@color/colorPrimary"/>
+                        android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:id="@+id/rs9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="%"
-                        android:textSize="15dp"
-                        android:textColor="@color/colorBase"/>
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/discountByPercentage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:textSize="15dp" />
 
                 </LinearLayout>
 
@@ -1177,14 +1182,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp">
 
             <include
                 android:id="@+id/calculate"
                 layout="@layout/loader"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

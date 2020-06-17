@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activities.FragmentSelection">
 
     <ScrollView
@@ -18,7 +18,7 @@
 
             <include
                 android:id="@+id/common_input"
-                layout="@layout/common_input"/>
+                layout="@layout/common_input" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,13 +26,12 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="30dp">
 
-                <androidx.cardview.widget.CardView
+                <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/result_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:visibility="gone"
                     android:layout_marginTop="5dp"
+                    android:visibility="gone"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     app:cardUseCompatPadding="false">
@@ -46,46 +45,46 @@
                             android:id="@+id/output_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
                             android:gravity="center_horizontal"
                             android:paddingTop="16dp"
                             android:text="Result"
-                            android:layout_centerHorizontal="true"
                             android:textColor="@color/colorPrimaryDark" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_below="@+id/output_text">
+                            android:layout_below="@+id/output_text"
+                            android:orientation="vertical">
+
                             <com.google.android.material.tabs.TabLayout
                                 android:id="@+id/tab_layout"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            </com.google.android.material.tabs.TabLayout>
+                                android:layout_height="wrap_content"></com.google.android.material.tabs.TabLayout>
 
                             <com.ecommerce.calculator.HeightWrappingViewPager
                                 android:id="@+id/viewPager"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="10dp"/>
+                                android:paddingTop="10dp" />
 
                             <ListView
                                 android:id="@+id/text_view_result"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:visibility="gone"
+                                android:padding="5dp"
                                 android:scrollbars="none"
-                                android:padding="5dp">
-                            </ListView>
+                                android:visibility="gone"></ListView>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
-                                android:layout_marginBottom="16dp"
                                 android:layout_below="@+id/text_view_result"
+                                android:layout_marginBottom="16dp"
                                 android:orientation="horizontal"
                                 android:weightSum="100"
                                 tools:ignore="NotSibling">
+
                                 <ImageButton
                                     android:id="@+id/save"
                                     android:layout_width="match_parent"
@@ -94,16 +93,17 @@
                                     android:layout_centerVertical="true"
                                     android:layout_weight="50"
                                     android:background="@color/white"
-                                    android:src="@drawable/ic_bookmark_border"/>
+                                    android:src="@drawable/ic_bookmark_border" />
+
                                 <ImageButton
                                     android:id="@+id/sendEmail"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="50"
                                     android:layout_centerHorizontal="true"
                                     android:layout_centerVertical="true"
-                                    android:src="@drawable/ic_share"
-                                    android:background="@color/white"/>
+                                    android:layout_weight="50"
+                                    android:background="@color/white"
+                                    android:src="@drawable/ic_share" />
 
                             </LinearLayout>
 

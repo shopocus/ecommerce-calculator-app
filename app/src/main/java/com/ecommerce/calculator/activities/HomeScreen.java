@@ -10,14 +10,16 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.ecommerce.calculator.utils.NetworkHelper;
 import com.google.android.material.snackbar.Snackbar;
 
-public class HomeScreen  extends AppCompatActivity implements View.OnClickListener {
+public class HomeScreen extends AppCompatActivity implements View.OnClickListener {
 
     private boolean isNetworkOk;
     ConstraintLayout constraintLayout;
@@ -42,7 +44,7 @@ public class HomeScreen  extends AppCompatActivity implements View.OnClickListen
         constraintLayout = findViewById(R.id.constraintLayout);
 
         isNetworkOk = NetworkHelper.isNetworkAvailable(this);
-        if(!isNetworkOk) {
+        if (!isNetworkOk) {
             Snackbar snackbar = Snackbar.make(constraintLayout, "Please Connect to the Internet", Snackbar.LENGTH_SHORT);
             View snackView = snackbar.getView();
             TextView textView = snackView.findViewById(R.id.snackbar_text);

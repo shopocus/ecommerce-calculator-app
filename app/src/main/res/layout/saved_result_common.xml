@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
@@ -11,7 +10,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_saved_data_show"/>
+        layout="@layout/toolbar_saved_data_show" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -21,14 +20,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="16dp">
+            android:layout_margin="16dp"
+            android:orientation="vertical">
 
-            <include
-                layout="@layout/saved_input_card"/>
+            <include layout="@layout/saved_input_card" />
 
-            <include
-                layout="@layout/saved_result_card"/>
+            <include layout="@layout/saved_result_card" />
 
         </LinearLayout>
 

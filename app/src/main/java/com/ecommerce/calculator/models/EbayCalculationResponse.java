@@ -7,17 +7,17 @@ public class EbayCalculationResponse {
     private double CSP;
     private double gstOnCSP;
     private double totalCharges;
-    private  double bankSettlement;
-    private  double totalGstPayable;
-    private  double gstClaim;
-    private  double tcs;
-    private  double gstPayable;
+    private double bankSettlement;
+    private double totalGstPayable;
+    private double gstClaim;
+    private double tcs;
+    private double gstPayable;
     private double profit;
-    private  double profitPercentage;
+    private double profitPercentage;
 
     public EbayCalculationResponse(double commissionFees, double shippingFees, double paymentGatewayFees, double CSP, double gstOnCSP,
-                                   double totalCharges, double bankSettlement, double totalGstPayable, double gstClaim,  double tcs,
-                                     double gstPayable, double profit, double profitPercentage) {
+                                   double totalCharges, double bankSettlement, double totalGstPayable, double gstClaim, double tcs,
+                                   double gstPayable, double profit, double profitPercentage) {
         this.commissionFees = commissionFees;
         this.shippingFees = shippingFees;
         this.paymentGatewayFees = paymentGatewayFees;
@@ -61,27 +61,27 @@ public class EbayCalculationResponse {
         return bankSettlement;
     }
 
-    public double getProfit(){
+    public double getProfit() {
         return profit;
     }
 
-    public double getTotalGstPayable(){
+    public double getTotalGstPayable() {
         return totalGstPayable;
     }
 
-    public double getTcs(){
+    public double getTcs() {
         return tcs;
     }
 
-    public double getGstPayable(){
+    public double getGstPayable() {
         return gstPayable;
     }
 
-    public double getGstClaim(){
+    public double getGstClaim() {
         return gstClaim;
     }
 
-    public double getProfitPercentage(){
+    public double getProfitPercentage() {
         return profitPercentage;
     }
 }

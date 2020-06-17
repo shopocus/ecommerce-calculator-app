@@ -8,42 +8,41 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:queryHint="Search Here"
-            android:layout_marginTop="10dp"
-            android:iconifiedByDefault="false"
-            android:paddingBottom="5dp"/>
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:iconifiedByDefault="false"
+        android:paddingBottom="5dp"
+        android:queryHint="Search Here" />
 
     <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+        android:id="@+id/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:id="@+id/loader"
         app:trailingcircular_bigCircleRadius="30dp"
         app:trailingcircular_dotsColor="@color/colorBase"
         app:trailingcircular_dotsRadius="5dp"
-        app:trailingcircular_noOfTrailingDots="5"/>
+        app:trailingcircular_noOfTrailingDots="5" />
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No Saved Responses"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:text="No Saved Responses"
         android:textColor="@color/colorBase"
-        android:visibility="gone"/>
+        android:textSize="20dp"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginTop="16dp"
-        android:id="@+id/title_list"
-        />
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -9,22 +9,29 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.TitleAdapter;
 import com.ecommerce.calculator.R;
+
 import java.util.List;
+
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.Title;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader;
 
 public class saved extends Fragment {
@@ -50,10 +57,11 @@ public class saved extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(adapter != null)
-                adapter.getFilter().filter(newText);
+                if (adapter != null)
+                    adapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -91,7 +99,7 @@ public class saved extends Fragment {
                         text.setVisibility(View.VISIBLE);
                         loader.setVisibility(View.GONE);
                     }
-                }else if(response.code() == 401){
+                } else if (response.code() == 401) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getContext()).clear();
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);

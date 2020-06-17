@@ -11,15 +11,19 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.Locale;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,12 +67,14 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_1.clearFocus();
                     otp_digit_2.requestFocus();
                     otp_digit_2.setCursorVisible(true);
@@ -80,17 +86,18 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_2.clearFocus();
                     otp_digit_3.requestFocus();
                     otp_digit_3.setCursorVisible(true);
-                }
-                else if(s.length()==0){
+                } else if (s.length() == 0) {
                     otp_digit_2.clearFocus();
                     otp_digit_1.requestFocus();
                     otp_digit_1.setCursorVisible(true);
@@ -102,17 +109,18 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_3.clearFocus();
                     otp_digit_4.requestFocus();
                     otp_digit_4.setCursorVisible(true);
-                }
-                else if(s.length()==0){
+                } else if (s.length() == 0) {
                     otp_digit_3.clearFocus();
                     otp_digit_2.requestFocus();
                     otp_digit_2.setCursorVisible(true);
@@ -124,17 +132,18 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_4.clearFocus();
                     otp_digit_5.requestFocus();
                     otp_digit_5.setCursorVisible(true);
-                }
-                else if(s.length()==0){
+                } else if (s.length() == 0) {
                     otp_digit_4.clearFocus();
                     otp_digit_3.requestFocus();
                     otp_digit_3.setCursorVisible(true);
@@ -146,17 +155,18 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_5.clearFocus();
                     otp_digit_6.requestFocus();
                     otp_digit_6.setCursorVisible(true);
-                }
-                else if(s.length()==0){
+                } else if (s.length() == 0) {
                     otp_digit_5.clearFocus();
                     otp_digit_4.requestFocus();
                     otp_digit_4.setCursorVisible(true);
@@ -168,15 +178,16 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
+
             @Override
             public void afterTextChanged(Editable s) {
-                if(s.length()>0){
+                if (s.length() > 0) {
                     otp_digit_6.clearFocus();
-                }
-                else if(s.length()==0){
+                } else if (s.length() == 0) {
                     otp_digit_6.clearFocus();
                     otp_digit_5.requestFocus();
                     otp_digit_5.setCursorVisible(true);
@@ -184,13 +195,13 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             }
         });
 
-        counttime=findViewById(R.id.timer);
+        counttime = findViewById(R.id.timer);
 
         verification_button = findViewById(R.id.verification_button);
         verification_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getCurrentFocus();
                 if (focusedView != null) {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
@@ -215,8 +226,8 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         Timer();
     }
 
-    private void Timer(){
-        new CountDownTimer(61000,1000) {
+    private void Timer() {
+        new CountDownTimer(61000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -230,6 +241,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                 counttime.setText(timeLeftFormatted);
                 counttime.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             }
+
             @Override
             public void onFinish() {
                 counttime.setText("Resend OTP");
@@ -250,7 +262,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         mTimerRunning = true;
     }
 
-    private void Verification(){
+    private void Verification() {
 
         String otp_1 = otp_digit_1.getText().toString().trim();
         String otp_2 = otp_digit_2.getText().toString().trim();
@@ -269,7 +281,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
             return;
         }
 
-        OTP = otp_1+otp_2+otp_3+otp_4+otp_5+otp_6;
+        OTP = otp_1 + otp_2 + otp_3 + otp_4 + otp_5 + otp_6;
 
         verification_button.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
         verification_button.setText("Verifying");
@@ -287,8 +299,8 @@ public class RegistrationOtpVerification extends AppCompatActivity {
 
                 if (dr.getMessage().equals("matched")) {
                     Registration();
-                }
-                else{verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
+                } else {
+                    verification_button.setBackground(getResources().getDrawable(R.drawable.button_background));
                     verification_button.setText("Verify");
                     verification_button.setTextColor(getResources().getColor(R.color.white));
                     verification_button.setEnabled(true);
@@ -317,7 +329,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         });
     }
 
-    private void Registration(){
+    private void Registration() {
 
         Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
@@ -348,8 +360,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
                                 }
                             })
                             .show();
-                }
-                else{
+                } else {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Server Error!", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
                     TextView textView = snackView.findViewById(R.id.snackbar_text);
@@ -375,7 +386,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         });
     }
 
-    private void Resend(){
+    private void Resend() {
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()

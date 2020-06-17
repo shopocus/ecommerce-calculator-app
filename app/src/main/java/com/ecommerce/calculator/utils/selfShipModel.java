@@ -5,21 +5,21 @@ public class selfShipModel {
     private double selfShipRegional;
     private double selfShipNational;
 
-    public selfShipModel(double selfShipLocal,double selfShipRegional, double selfShipNational) {
+    public selfShipModel(double selfShipLocal, double selfShipRegional, double selfShipNational) {
         this.selfShipLocal = selfShipLocal;
         this.selfShipRegional = selfShipRegional;
         this.selfShipNational = selfShipNational;
     }
 
-    public double getSelfShipLocal(){
+    public double getSelfShipLocal() {
         return selfShipLocal;
     }
 
-    public double getSelfShipRegional(){
+    public double getSelfShipRegional() {
         return selfShipRegional;
     }
 
-    public double getSelfShipNational(){
+    public double getSelfShipNational() {
         return selfShipNational;
     }
 }

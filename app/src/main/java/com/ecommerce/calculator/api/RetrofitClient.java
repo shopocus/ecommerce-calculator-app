@@ -3,8 +3,11 @@ package com.ecommerce.calculator.api;
 import android.content.Context;
 import android.util.Base64;
 import android.util.Log;
+
 import com.ecommerce.calculator.storage.SharedPrefManager;
+
 import java.io.IOException;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,24 +30,23 @@ public class RetrofitClient {
                         new Interceptor() {
                             @Override
                             public Response intercept(Chain chain) throws IOException {
-                                if(SharedPrefManager.getInstance(context).getToken() == null) {
+                                if (SharedPrefManager.getInstance(context).getToken() == null) {
                                     Response response = chain.proceed(chain.request());
                                     String token = response.header("X-Auth");
                                     SharedPrefManager.getInstance(context)
                                             .saveToken(token);
                                     return response;
-                                }
-                                else {
+                                } else {
                                     String token = SharedPrefManager.getInstance(context).getToken();
                                     Log.d("token", token);
-                                Request original = chain.request();
+                                    Request original = chain.request();
 
-                                Request.Builder requestBuilder = original.newBuilder()
-                                        .addHeader("x-auth", SharedPrefManager.getInstance(context).getToken())
-                                        .method(original.method(), original.body());
+                                    Request.Builder requestBuilder = original.newBuilder()
+                                            .addHeader("x-auth", SharedPrefManager.getInstance(context).getToken())
+                                            .method(original.method(), original.body());
 
-                                Request request = requestBuilder.build();
-                                return chain.proceed(request);
+                                    Request request = requestBuilder.build();
+                                    return chain.proceed(request);
                                 }
                             }
                         }

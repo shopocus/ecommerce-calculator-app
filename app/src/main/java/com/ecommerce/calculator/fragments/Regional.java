@@ -1,16 +1,20 @@
 package com.ecommerce.calculator.fragments;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.models.output;
+
 import java.util.ArrayList;
 
 public class Regional extends Fragment {

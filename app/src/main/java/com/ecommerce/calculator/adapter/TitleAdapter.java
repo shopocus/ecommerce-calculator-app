@@ -8,9 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Filterable;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.api.RetrofitClient;
@@ -23,10 +26,13 @@ import android.widget.Filter;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
+
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 import android.widget.Toast;
+
 import androidx.fragment.app.FragmentManager;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -45,7 +51,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
     public static class TitleHolder extends RecyclerView.ViewHolder {
         public LinearLayout data_layout;
-        public TextView textViewTitle,optionMenu,textViewDate;
+        public TextView textViewTitle, optionMenu, textViewDate;
 
         public TitleHolder(View itemView) {
             super(itemView);
@@ -87,10 +93,10 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                     SharedPrefManager.getInstance(mCtx).saveTitle(newTitle[0]);
                 }
                 Boolean isNetworkOk = NetworkHelper.isNetworkAvailable(mCtx);
-                if(!isNetworkOk) {
+                if (!isNetworkOk) {
                     Toast.makeText(mCtx, "Please Connect to the Internet!", Toast.LENGTH_SHORT).show();
-                }else {
-                    Intent intent =  new Intent(mCtx, SavedData.class);
+                } else {
+                    Intent intent = new Intent(mCtx, SavedData.class);
                     mCtx.startActivity(intent);
                 }
             }
@@ -138,8 +144,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                                         .setConfirmText("Ok")
                                                                         .setConfirmButtonBackgroundColor(mCtx.getResources().getColor(R.color.colorPrimaryDark))
                                                                         .show();
-                                                            }
-                                                            else{
+                                                            } else {
                                                                 Toast.makeText(mCtx, "Title Already Exists", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
@@ -215,7 +220,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
 
     @Override
     public int getItemCount() {
-            return titleList.size();
+        return titleList.size();
     }
 
     @Override

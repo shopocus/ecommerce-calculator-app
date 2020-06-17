@@ -73,7 +73,7 @@ public class TitleDataResponse {
                              MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela, FlipkartOutputModel flipkartLocal,
                              FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational, AmazonOutputModel amazonLocal,
                              AmazonOutputModel amazonRegional, AmazonOutputModel amazonNational, AmazonOutputModel amazonFbaLocal, AmazonOutputModel
-                             amazonFbaRegional, AmazonOutputModel amazonFbaNational) {
+                                     amazonFbaRegional, AmazonOutputModel amazonFbaNational) {
         this.title = title;
         this.category = category;
         this.subcategory = subcategory;
@@ -143,7 +143,7 @@ public class TitleDataResponse {
     }
 
     public String getSellingPrice() {
-            return sellingPrice;
+        return sellingPrice;
     }
 
     public String getGstOnProduct() {
@@ -154,101 +154,141 @@ public class TitleDataResponse {
         return productPriceWithoutGst;
     }
 
-    public String getInwardShipping(){
+    public String getInwardShipping() {
         return inwardShipping;
     }
 
-    public String getPackagingExpense(){
+    public String getPackagingExpense() {
         return packagingExpense;
     }
 
-    public String getLabour(){
+    public String getLabour() {
         return labour;
     }
 
-    public String getStorageFee(){
+    public String getStorageFee() {
         return storageFee;
     }
 
-    public String getCommission() { return commission; }
+    public String getCommission() {
+        return commission;
+    }
 
-    public String getShipping() { return shipping; }
+    public String getShipping() {
+        return shipping;
+    }
 
-    public String getPaymentGatewayCharge() { return paymentGatewayCharge; }
+    public String getPaymentGatewayCharge() {
+        return paymentGatewayCharge;
+    }
 
-    public String getWeight() { return weight; }
+    public String getWeight() {
+        return weight;
+    }
 
-    public String getLength() { return length; }
+    public String getLength() {
+        return length;
+    }
 
-    public String getBreadth() { return breadth; }
+    public String getBreadth() {
+        return breadth;
+    }
 
-    public String getHeight() { return height; }
+    public String getHeight() {
+        return height;
+    }
 
-    public String getCustomerType() { return customerType; }
+    public String getCustomerType() {
+        return customerType;
+    }
 
-    public String getCourier() { return courier; }
+    public String getCourier() {
+        return courier;
+    }
 
-    public String getPaymentMode() { return payMode; }
+    public String getPaymentMode() {
+        return payMode;
+    }
 
-    public String getOther(){
+    public String getOther() {
         return other;
     }
 
-    public String getDiscountAmount(){ return discountAmount; }
+    public String getDiscountAmount() {
+        return discountAmount;
+    }
 
-    public String getDiscountPercent(){ return discountPercent; }
+    public String getDiscountPercent() {
+        return discountPercent;
+    }
 
     public String getShipmentType() {
         return shipmentType;
     }
 
-    public easyShipModel getEasyShip(){
+    public easyShipModel getEasyShip() {
         return easyShip;
     }
 
-    public selfShipModel getSelfShip(){
+    public selfShipModel getSelfShip() {
         return selfShip;
     }
 
-    public String getBankSettlement() { return bankSettlement; }
+    public String getBankSettlement() {
+        return bankSettlement;
+    }
 
-    public String getTotalCommision() { return totalCommision; }
+    public String getTotalCommision() {
+        return totalCommision;
+    }
 
-    public String getProfit(){
-            return profit;
-        }
+    public String getProfit() {
+        return profit;
+    }
 
-        public String getTotalGstPayable(){
-            return totalGstPayable;
-        }
+    public String getTotalGstPayable() {
+        return totalGstPayable;
+    }
 
-        public String getTcs(){
-            return tcs;
-        }
+    public String getTcs() {
+        return tcs;
+    }
 
-        public String getGstPayable(){
-            return gstPayable;
-        }
+    public String getGstPayable() {
+        return gstPayable;
+    }
 
-        public String getGstClaim(){
-            return gstClaim;
-        }
+    public String getGstClaim() {
+        return gstClaim;
+    }
 
-        public String getProfitPercentage(){
-            return profitPercentage;
-        }
+    public String getProfitPercentage() {
+        return profitPercentage;
+    }
 
-        public String getCommissionFees() { return commissionFees; }
+    public String getCommissionFees() {
+        return commissionFees;
+    }
 
-        public String getShippingFees() { return shippingFees; }
+    public String getShippingFees() {
+        return shippingFees;
+    }
 
-        public String getPaymentGatewayFees() { return paymentGatewayFees; }
+    public String getPaymentGatewayFees() {
+        return paymentGatewayFees;
+    }
 
-        public String getCSP() { return CSP; }
+    public String getCSP() {
+        return CSP;
+    }
 
-        public String getGstOnCSP() { return gstOnCSP; }
+    public String getGstOnCSP() {
+        return gstOnCSP;
+    }
 
-        public String getTotalCharges() { return totalCharges; }
+    public String getTotalCharges() {
+        return totalCharges;
+    }
 
     public MeeshoCalculationResponse getLocal() {
         return local;
@@ -270,11 +310,17 @@ public class TitleDataResponse {
         return kerela;
     }
 
-    public FlipkartOutputModel getFlipkartLocal() { return flipkartLocal; }
+    public FlipkartOutputModel getFlipkartLocal() {
+        return flipkartLocal;
+    }
 
-    public FlipkartOutputModel getFlipkartZonal() { return flipkartZonal; }
+    public FlipkartOutputModel getFlipkartZonal() {
+        return flipkartZonal;
+    }
 
-    public FlipkartOutputModel getFlipkartNational() { return flipkartNational; }
+    public FlipkartOutputModel getFlipkartNational() {
+        return flipkartNational;
+    }
 
     public AmazonOutputModel getAmazonLocal() {
         return amazonLocal;
@@ -288,10 +334,16 @@ public class TitleDataResponse {
         return amazonNational;
     }
 
-    public AmazonOutputModel getAmazonFbaLocal() { return amazonFbaLocal; }
+    public AmazonOutputModel getAmazonFbaLocal() {
+        return amazonFbaLocal;
+    }
 
-    public AmazonOutputModel getAmazonFbaRegional() { return amazonFbaRegional; }
+    public AmazonOutputModel getAmazonFbaRegional() {
+        return amazonFbaRegional;
+    }
 
-    public AmazonOutputModel getAmazonFbaNational() { return amazonFbaNational; }
+    public AmazonOutputModel getAmazonFbaNational() {
+        return amazonFbaNational;
+    }
 
 }
