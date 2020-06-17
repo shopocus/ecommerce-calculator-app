@@ -44,7 +44,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> implements Fil
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.menu_rows, null);
         return new MyHolder(view);
     }
 

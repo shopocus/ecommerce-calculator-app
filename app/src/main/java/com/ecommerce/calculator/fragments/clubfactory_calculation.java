@@ -32,7 +32,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.api.RetrofitClient;
@@ -80,7 +79,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+        View view = inflater.inflate(R.layout.common_calculation, container, false);
 
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);

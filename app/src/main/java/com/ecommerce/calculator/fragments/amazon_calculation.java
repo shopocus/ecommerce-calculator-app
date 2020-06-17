@@ -27,11 +27,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
-import com.ecommerce.calculator.activities.LoadingDialog;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
@@ -40,7 +38,6 @@ import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-import com.ecommerce.calculator.utils.NonScrollListView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -81,7 +78,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-            View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+            View view = inflater.inflate(R.layout.common_calculation, container, false);
 
             details = view.findViewById(R.id.details_dropdown);
             details.setOnClickListener(new View.OnClickListener()
@@ -211,8 +208,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     selfshipLocal.setText("");
                     selfshipRegional.setText("");
                     selfshipNational.setText("");
-//                    radioButtonPostpaid.setChecked(true);
-//                    radioButtonBronze.setChecked(true);
                     result_card.setVisibility(View.GONE);
                 }
             });
@@ -484,9 +479,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 number12 = Double.parseDouble(length.getText().toString());
                 number13 = Double.parseDouble(breadth.getText().toString());
                 number14 = Double.parseDouble(height.getText().toString());
-//                selfshipLocal.setText(0);
-//                selfshipRegional.setText(0);
-//                selfshipNational.setText(0);
             }
             else{
                 if (selfshipLocal.getText().toString().isEmpty()) {
@@ -513,11 +505,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                 number15 = Double.parseDouble(selfshipLocal.getText().toString());
                 number16 = Double.parseDouble(selfshipRegional.getText().toString());
                 number17 = Double.parseDouble(selfshipNational.getText().toString());
-
-//                weight.setText(0);
-//                length.setText(0);
-//                height.setText(0);
-//                breadth.setText(0);
             }
 
             if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
@@ -568,10 +555,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             double number8 = Double.parseDouble(otherCharges.getText().toString());
             double number9 = Double.parseDouble(discountByPrice.getText().toString());
             double number10 = Double.parseDouble(discountByPercentage.getText().toString());
-
-//            double number15 = Double.parseDouble(selfshipLocal.getText().toString());
-//            double number16 = Double.parseDouble(selfshipRegional.getText().toString());
-//            double number17 = Double.parseDouble(selfshipNational.getText().toString());
 
             Call<AmazonCalculationResponse> call = RetrofitClient
                     .getInstance().getApi().amazonCalculation(category, subCategory, number1, number3, number2, number4, number5, number6, number7,
@@ -629,12 +612,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
-
-//                        ArrayList<String> input = new ArrayList<>();
-//                        input.add(weight.getText().toString());
-//                        input.add(length.getText().toString());
-//                        input.add(breadth.getText().toString());
-//                        input.add(height.getText().toString());
 
                         Bundle bundle = new Bundle();
                         bundle.putStringArrayList("Local", Local);
@@ -710,8 +687,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             String ssLocal = this.selfshipLocal.getText().toString().trim();
             String ssRegional = this.selfshipRegional.getText().toString().trim();
             String ssNational = this.selfshipNational.getText().toString().trim();
-//            String payMode = paymentOption;
-//            String customerType = customerTypeOption;
 
             Call<MessageResponse> call = RetrofitClient
                     .getInstance()
@@ -722,8 +697,8 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                             Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8), Local.get(9), Local.get(10), Local.get(11),
                             Local.get(12), Regional.get(0), Regional.get(1), Regional.get(2), Regional.get(3), Regional.get(4),
                             Regional.get(5), Regional.get(6), Regional.get(7), Regional.get(8), Regional.get(9), Regional.get(10), Regional.get(11),
-                            Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
-                            National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+                            Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5),
+                            National.get(6), National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
 
             call.enqueue(new Callback<MessageResponse>() {
                 @Override
@@ -851,7 +826,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             call.enqueue(new Callback<subCategory>() {
                 @Override
                 public void onResponse(Call<subCategory> call, Response<subCategory> response) {
-                    //loadingDialog.dismissDialog();
                     if(response.isSuccessful()) {
                         subCategory subCategory = response.body();
                         ArrayList<String> list = new ArrayList<>();
@@ -864,11 +838,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, list);
                         adapter2.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
                         subCategories.setAdapter(adapter2);
-//                        Intent intent = new Intent(c , FragmentSelection.class);
-//                        intent.putExtra(KEY,0);
-                       // c.startActivity(intent);
                     }else if(response.code() == 401){
-                        //loadingDialog.dismissDialog();
                         Toast.makeText(getActivity(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                         SharedPrefManager.getInstance(getActivity()).clear();
                         Intent intent_logout = new Intent(getActivity(), HomeScreen.class);
@@ -879,7 +849,6 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
                 @Override
                 public void onFailure(Call<subCategory> call, Throwable t) {
-                  //  loadingDialog.dismissDialog();
                     Toast.makeText(getActivity(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
                 }
             });

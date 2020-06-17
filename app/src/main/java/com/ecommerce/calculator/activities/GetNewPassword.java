@@ -32,7 +32,7 @@ public class GetNewPassword extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_password);
+        setContentView(R.layout.reset_password);
 
         newPassword = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirmPassword);

@@ -25,7 +25,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
@@ -34,7 +33,6 @@ import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.EbayCalculationResponse;
-import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.models.progressButton;
@@ -58,8 +56,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
 
     CardView productDetailsCard, expensesCard, discountsCard;
     HeightWrappingViewPager viewPager;
-    Spinner gstOnProduct, categories;
-    String categoryFinal;
+    Spinner gstOnProduct;
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
@@ -75,7 +72,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+        View view = inflater.inflate(R.layout.common_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new View.OnClickListener()
@@ -160,7 +157,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
             {
                 sellingPrice.requestFocus();
                 sellingPrice.setText("");
-//                categories.setSelection(0);
                 purchasePrice.setText("");
                 gstOnProduct.setSelection(0);
                 inwardShipping.setText("");
@@ -231,24 +227,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//        categories = view.findViewById(R.id.category);
-//
-//        list = SharedPrefManager.getInstance(getActivity()).getList();
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_activated_1, list);
-//        adapter.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-//        categories.setAdapter(adapter);
-//
-//        categories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                categoryFinal = list.get(position);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//            }
-//        });
 
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);
@@ -331,8 +309,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         if(SharedPrefManager.getInstance(getActivity()).getFlag().equals("true")){
             Bundle bundle = this.getArguments();
             ArrayList<String> bundle_input = bundle.getStringArrayList("input");
-//            int selection = adapter.getPosition(bundle_input.get(0));
-//            categories.setSelection(selection);
             sellingPrice.setText(bundle_input.get(0));
             purchasePrice.setText(bundle_input.get(1));
             int value = Integer.parseInt(bundle_input.get(2));
@@ -467,7 +443,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
             return;
         }
 
-//        String category = categoryFinal;
         double number1 = Double.parseDouble(sellingPrice.getText().toString());
         double number2 = Double.parseDouble(purchasePrice.getText().toString());
         double number3 = Double.parseDouble(spinner_ans);
@@ -563,7 +538,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
 
     public void save(){
         String title = String.valueOf(myText);
-//        String category = categoryFinal;
         String sellingPrice = this.sellingPrice.getText().toString().trim();
         String gstOnProduct = spinner_ans;
         String productPriceWithoutGst = purchasePrice.getText().toString().trim();
@@ -580,7 +554,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         String commissionFees = String.valueOf(items[0]);
         String shippingFees = String.valueOf(items[1]);
         String paymentGatewayChargeFees = String.valueOf(items[2]);
-        String CSP = String.valueOf(String.valueOf(items[3]));
+        String CSP = String.valueOf(items[3]);
         String gstOnCSP = String.valueOf(items[4]);
         String totalCharges = String.valueOf(items[5]);
         String bankSettlement = String.valueOf(items[6]);

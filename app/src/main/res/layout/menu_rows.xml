@@ -16,7 +16,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/image"
-            android:src="@drawable/calcilogofinal"/>
+            android:src="@drawable/icon"/>
 
         <TextView
             android:layout_width="match_parent"

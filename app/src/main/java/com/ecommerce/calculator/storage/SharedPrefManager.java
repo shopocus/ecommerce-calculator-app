@@ -2,7 +2,6 @@ package com.ecommerce.calculator.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

@@ -11,17 +11,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.ecommerce.calculator.fragments.AmazonLocal;
 import com.ecommerce.calculator.fragments.AmazonNational;
 import com.ecommerce.calculator.fragments.AmazonRegional;
-import com.ecommerce.calculator.fragments.FlipkartLocal;
-import com.ecommerce.calculator.fragments.National;
-import com.ecommerce.calculator.fragments.Zonal;
 
 public class AmazonSectionAdapter  extends FragmentPagerAdapter {
 
     int counttab;
     Context c;
     Bundle bundle;
-
-    // private int mCurrentPosition = -1;
 
     public AmazonSectionAdapter(Context c, @NonNull FragmentManager fm, int counttab, Bundle bundle) {
         super(fm);

@@ -22,8 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import com.ecommerce.calculator.fragments.saved;
 
-import java.util.ArrayList;
-
 public class FragmentSelection extends AppCompatActivity {
 
     ViewPager viewPager;
@@ -56,7 +54,6 @@ public class FragmentSelection extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(SharedPrefManager.getInstance(FragmentSelection.this).getCompany());
-       // toolbar.setSubtitle(getResources().getString(R.string.app_name));
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Input"));

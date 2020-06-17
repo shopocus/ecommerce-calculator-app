@@ -12,7 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="300dp"
         android:layout_height="250dp"
-        android:src="@drawable/otpback1"
+        android:src="@drawable/otp_header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

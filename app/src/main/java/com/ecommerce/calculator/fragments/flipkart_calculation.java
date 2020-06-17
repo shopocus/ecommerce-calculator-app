@@ -26,7 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
@@ -72,7 +71,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+        View view = inflater.inflate(R.layout.common_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new View.OnClickListener()

@@ -11,7 +11,7 @@ import com.ecommerce.calculator.fragments.flipkart_calculation;
 import com.ecommerce.calculator.fragments.amazon_calculation;
 import com.ecommerce.calculator.fragments.amazonFba_calculation;
 import com.ecommerce.calculator.fragments.ebay_calculation;
-import com.ecommerce.calculator.fragments.input;
+import com.ecommerce.calculator.fragments.meesho_calculation;
 import com.ecommerce.calculator.fragments.clubfactory_calculation;
 import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.storage.SharedPrefManager;
@@ -33,7 +33,7 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         if(position == 0) {
             if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
-                input input = new input();
+                meesho_calculation input = new meesho_calculation();
                 input.setArguments(bundle);
                 return input;
             }

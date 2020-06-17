@@ -29,7 +29,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.R;
@@ -48,7 +47,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class input extends Fragment implements View.OnClickListener {
+public class meesho_calculation extends Fragment implements View.OnClickListener {
 
     private ImageButton details, expenses, discounts, save, sendEmail, reset;
     private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice, discountByPercentage;
@@ -73,7 +72,7 @@ public class input extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+        View view = inflater.inflate(R.layout.common_calculation, container, false);
 
         details = view.findViewById(R.id.details_dropdown);
         details.setOnClickListener(new OnClickListener()

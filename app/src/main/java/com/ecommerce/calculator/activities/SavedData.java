@@ -1,12 +1,10 @@
 package com.ecommerce.calculator.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -15,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,8 +69,6 @@ public class SavedData extends AppCompatActivity {
     ArrayList<String> National = new ArrayList<>();
     ViewPager viewPager;
     LoadingDialog loadingDialog;
-    ListView mainList;
-   // ScrollView scrollView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,17 +87,9 @@ public class SavedData extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearlayout);
         input_card = findViewById(R.id.input_card);
         output_card = findViewById(R.id.result_card);
-//        buttons = findViewById(R.id.buttons);
         textViewTitle = findViewById(R.id.title);
         itemList = findViewById(R.id.text_view_input);
         result = findViewById(R.id.text_view_result);
-      //  mainList = findViewById(R.id.mainList);
-     //   scrollView = findViewById(R.id.scrollView);
-
-//        View header = getLayoutInflater().inflate(R.layout.saved_input_card, null);
-//        View footer = getLayoutInflater().inflate(R.layout.saved_result_card, null);
-//        mainList.addHeaderView(header);
-//        mainList.addFooterView(footer);
 
         edit = findViewById(R.id.edit);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -297,22 +284,6 @@ public class SavedData extends AppCompatActivity {
         itemList.setAdapter(adapter);
         setListViewHeightBasedOnChildren(itemList);
 
-        ArrayList<String> title = new ArrayList<>();
-        title.add("Category");
-        title.add("Selling Price");
-        title.add("Purchase Price");
-        title.add("GST on Product");
-        title.add("Weight");
-        title.add("Courier");
-        title.add("Payment Mode");
-        title.add("Inward Shipping");
-        title.add("Packaging Expenses");
-        title.add("Labour");
-        title.add("Storage Fees");
-        title.add("Other Charges");
-        title.add("Discount on Price");
-        title.add("Discount Percentage");
-
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getCategory());
         input.add(td.getSellingPrice());
@@ -454,22 +425,6 @@ public class SavedData extends AppCompatActivity {
         itemList.setAdapter(adapter);
         setListViewHeightBasedOnChildren(itemList);
 
-        ArrayList<String> title = new ArrayList<>();
-        title.add("Category");
-        title.add("Selling Price");
-        title.add("Purchase Price");
-        title.add("GST on Product");
-        title.add("Weight");
-        title.add("Courier");
-        title.add("Payment Mode");
-        title.add("Inward Shipping");
-        title.add("Packaging Expenses");
-        title.add("Labour");
-        title.add("Storage Fees");
-        title.add("Other Charges");
-        title.add("Discount on Price");
-        title.add("Discount Percentage");
-
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getCategory());
         input.add(td.getSellingPrice());
@@ -544,29 +499,6 @@ public class SavedData extends AppCompatActivity {
         FlipkartSectionAdapter flipkartSectionAdapter = new FlipkartSectionAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(flipkartSectionAdapter);
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                viewPager.getParent().requestDisallowInterceptTouchEvent(false);
-//                return false;
-//            }
-//        });
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                if(position != )
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -640,22 +572,6 @@ public class SavedData extends AppCompatActivity {
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
         setListViewHeightBasedOnChildren(itemList);
-//
-//        ArrayList<String> title = new ArrayList<>();
-//        title.add("Category");
-//        title.add("Selling Price");
-//        title.add("Purchase Price");
-//        title.add("GST on Product");
-//        title.add("Weight");
-//        title.add("Courier");
-//        title.add("Payment Mode");
-//        title.add("Inward Shipping");
-//        title.add("Packaging Expenses");
-//        title.add("Labour");
-//        title.add("Storage Fees");
-//        title.add("Other Charges");
-//        title.add("Discount on Price");
-//        title.add("Discount Percentage");
 
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getCategory());
@@ -736,35 +652,11 @@ public class SavedData extends AppCompatActivity {
         if(td.getEasyShip().getWeight() <= 12000 || td.getEasyShip().getLength()*td.getEasyShip().getBreadth()*td.getEasyShip().getHeight()/5 <= 12000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
-       // tabLayout.addTab(tabLayout.newTab().setText("National"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(amazonSectionAdapter);
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                viewPager.getParent().requestDisallowInterceptTouchEvent(false);
-//                return false;
-//            }
-//        });
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                if(position != )
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -819,22 +711,6 @@ public class SavedData extends AppCompatActivity {
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
         itemList.setAdapter(adapter);
         setListViewHeightBasedOnChildren(itemList);
-//
-//        ArrayList<String> title = new ArrayList<>();
-//        title.add("Category");
-//        title.add("Selling Price");
-//        title.add("Purchase Price");
-//        title.add("GST on Product");
-//        title.add("Weight");
-//        title.add("Courier");
-//        title.add("Payment Mode");
-//        title.add("Inward Shipping");
-//        title.add("Packaging Expenses");
-//        title.add("Labour");
-//        title.add("Storage Fees");
-//        title.add("Other Charges");
-//        title.add("Discount on Price");
-//        title.add("Discount Percentage");
 
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getCategory());
@@ -904,35 +780,11 @@ public class SavedData extends AppCompatActivity {
         if(Double.parseDouble(td.getWeight()) <= 30000 || Double.parseDouble(td.getLength())*Double.parseDouble(td.getBreadth())*Double.parseDouble(td.getHeight())/5 <= 30000) {
             tabLayout.addTab(tabLayout.newTab().setText("National"));
         }
-        // tabLayout.addTab(tabLayout.newTab().setText("National"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
         AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(amazonSectionAdapter);
-//        viewPager.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                viewPager.getParent().requestDisallowInterceptTouchEvent(false);
-//                return false;
-//            }
-//        });
-//        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                if(position != )
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -1015,22 +867,6 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text24);
         outputList.add(text25);
         outputList.add(text26);
-
-//        ArrayList<String> title = new ArrayList<>();
-//        title.add("Category");
-//        title.add("Selling Price");
-//        title.add("Purchase Price");
-//        title.add("GST on Product");
-//        title.add("Weight");
-//        title.add("Courier");
-//        title.add("Payment Mode");
-//        title.add("Inward Shipping");
-//        title.add("Packaging Expenses");
-//        title.add("Labour");
-//        title.add("Storage Fees");
-//        title.add("Other Charges");
-//        title.add("Discount on Price");
-//        title.add("Discount Percentage");
 
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getSellingPrice());

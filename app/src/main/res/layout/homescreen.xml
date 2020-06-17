@@ -25,7 +25,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
-        android:src="@drawable/home8"
+        android:src="@drawable/homescreen_header"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

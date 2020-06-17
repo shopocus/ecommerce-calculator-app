@@ -3,7 +3,6 @@ package com.ecommerce.calculator.fragments;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -32,20 +31,6 @@ public class Local extends Fragment {
 
         result = view.findViewById(R.id.text_view_result);
         scrollView = view.findViewById(R.id.scrollView);
-
-//        result.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                scrollView.requestDisallowInterceptTouchEvent(true);
-//                int action = event.getActionMasked();
-//                switch (action){
-//                    case MotionEvent.ACTION_UP:
-//                        scrollView.requestDisallowInterceptTouchEvent(false);
-//                        break;
-//                }
-//                return false;
-//            }
-//        });
 
         Bundle bundle = this.getArguments();
         ArrayList<String> bundle_local = bundle.getStringArrayList("Local");

@@ -68,10 +68,6 @@ public class AmazonLocal extends Fragment {
         outputList.add(text12);
         outputList.add(text13);
 
-//        CustomAdapter adapter = new CustomAdapter(context);
-//        mViewPager.setAdapter(adapter);
-//        mViewPager.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
         OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
         result.setAdapter(adapter);
         result.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -17,8 +17,6 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,14 +25,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
@@ -52,10 +48,9 @@ import retrofit2.Response;
 public class amazonFba_calculation extends Fragment implements View.OnClickListener  {
 
         private ImageButton details, expenses, discounts, save, sendEmail, reset;
-        private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice,
-                discountByPercentage, weight, length, breadth, height, selfshipLocal, selfshipRegional, selfshipNational;
-        LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch, selfshipLocalBunch,
-                selfshipRegionalBunch, selfshipNationalBunch, easyShipmentTypeBunch, shipmentTypeBunch, subCategoryBunch, packagingExpensesBunch,
+        private EditText sellingPrice, purchasePrice, inwardShipping, otherCharges, discountByPrice,
+                discountByPercentage, weight, length, breadth, height;
+        LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch, subCategoryBunch, packagingExpensesBunch,
     labourBunch, storageFeeBunch;
         private TextView line11, line12, line13;
 
@@ -71,9 +66,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
         private ProgressBar progressBar;
         private TextView textView;
         private String myText;
-        RadioGroup shipmentType, easyShipmentType;
-        RadioButton radioButton, radioButtonEasyShip, radioButtonSelfShip, radioButtonPrime, radioButtonNonPrime;
-        String easyShipmentTypeOption ="prime", shipmentTypeOption ="easyShip";
         HeightWrappingViewPager viewPager;
         TabLayout tabLayout;
         ArrayList<String> Local = new ArrayList<>();
@@ -82,7 +74,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-            View view = inflater.inflate(R.layout.amazon_calculation, container, false);
+            View view = inflater.inflate(R.layout.common_calculation, container, false);
 
             details = view.findViewById(R.id.details_dropdown);
             details.setOnClickListener(new View.OnClickListener()
@@ -147,43 +139,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                 }
             });
 
-//            shipmentType = view.findViewById(R.id.shipmentType);
-//            shipmentType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                    radioButton = view.findViewById(checkedId);
-//                    shipmentTypeOption = radioButton.getText().toString();
-//                    if(shipmentTypeOption.equals("easyShip")){
-//                        easyShipmentTypeBunch.setVisibility(View.VISIBLE);
-//                        weightBunch.setVisibility(View.VISIBLE);
-//                        lengthBunch.setVisibility(View.VISIBLE);
-//                        breadthBunch.setVisibility(View.VISIBLE);
-//                        heightBunch.setVisibility(View.VISIBLE);
-//                        selfshipLocalBunch.setVisibility(View.GONE);
-//                        selfshipRegionalBunch.setVisibility(View.GONE);
-//                        selfshipNationalBunch.setVisibility(View.GONE);
-//                    }else{
-//                        selfshipLocalBunch.setVisibility(View.VISIBLE);
-//                        selfshipRegionalBunch.setVisibility(View.VISIBLE);
-//                        selfshipNationalBunch.setVisibility(View.VISIBLE);
-//                        easyShipmentTypeBunch.setVisibility(View.GONE);
-//                        weightBunch.setVisibility(View.GONE);
-//                        lengthBunch.setVisibility(View.GONE);
-//                        breadthBunch.setVisibility(View.GONE);
-//                        heightBunch.setVisibility(View.GONE);
-//                    }
-//                }
-//            });
-//
-//            easyShipmentType = view.findViewById(R.id.easyShipmentType);
-//            easyShipmentType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                    radioButton = view.findViewById(checkedId);
-//                    easyShipmentTypeOption = radioButton.getText().toString();
-//                }
-//            });
-
             reset = view.findViewById(R.id.reset);
             reset.setOnClickListener(new View.OnClickListener()
             {
@@ -196,12 +151,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     subCategories.setSelection(0);
                     purchasePrice.setText("");
                     gstOnProduct.setSelection(0);
-//                    radioButtonEasyShip.setChecked(true);
-//                    radioButtonPrime.setChecked(true);
                     inwardShipping.setText("");
-//                    packagingExpenses.setText("");
-//                    labour.setText("");
-//                    storageFee.setText("");
                     otherCharges.setText("");
                     discountByPrice.setText("");
                     discountByPercentage.setText("");
@@ -209,11 +159,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     length.setText("");
                     breadth.setText("");
                     height.setText("");
-//                    selfshipLocal.setText("");
-//                    selfshipRegional.setText("");
-//                    selfshipNational.setText("");
-//                    radioButtonPostpaid.setChecked(true);
-//                    radioButtonBronze.setChecked(true);
                     result_card.setVisibility(View.GONE);
                 }
             });
@@ -320,17 +265,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             heightBunch = view.findViewById(R.id.heightBunch);
             subCategoryBunch = view.findViewById(R.id.subCategoryBunch);
             subCategoryBunch.setVisibility(View.VISIBLE);
-//            shipmentTypeBunch = view.findViewById(R.id.shipmentTypeBunch);
-//            shipmentTypeBunch.setVisibility(View.VISIBLE);
-//            easyShipmentTypeBunch = view.findViewById(R.id.easyShipmentTypeBunch);
-//            easyShipmentTypeBunch.setVisibility(View.VISIBLE);
-//            selfshipLocalBunch = view.findViewById(R.id.selfshipLocalBunch);
-//            selfshipRegionalBunch = view.findViewById(R.id.selfshipRegionalBunch);
-//            selfshipNationalBunch = view.findViewById(R.id.selfshipNationalBunch);
-//            radioButtonEasyShip = view.findViewById(R.id.radio_easyship);
-//            radioButtonSelfShip = view.findViewById(R.id.radio_selfship);
-//            radioButtonPrime = view.findViewById(R.id.radio_prime);
-//            radioButtonNonPrime = view.findViewById(R.id.radio_nonPrime);
             expenses = view.findViewById(R.id.expenses_dropdown);
             discounts = view.findViewById(R.id.discounts_dropdown);
             courierBunch = view.findViewById(R.id.courierBunch);
@@ -373,9 +307,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             length = view.findViewById(R.id.length);
             breadth = view.findViewById(R.id.breadth);
             height = view.findViewById(R.id.height);
-//            selfshipLocal = view.findViewById(R.id.selfshipLocal);
-//            selfshipRegional = view.findViewById(R.id.selfshipRegional);
-//            selfshipNational = view.findViewById(R.id.selfshipNational);
             progressBar = view.findViewById(R.id.loader);
             textView = view.findViewById(R.id.calculate_textview);
             customerTypeBunch = view.findViewById(R.id.customerTypeBunch);
@@ -417,26 +348,9 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                 breadth.setText(bundle_input.get(7));
                 height.setText(bundle_input.get(8));
                 inwardShipping.setText(bundle_input.get(9));
-//                packagingExpenses.setText(bundle_input.get(6));
-//                labour.setText(bundle_input.get(7));
-//                storageFee.setText(bundle_input.get(8));
                 otherCharges.setText(bundle_input.get(10));
                 discountByPrice.setText(bundle_input.get(11));
                 discountByPercentage.setText(bundle_input.get(12));
-//                if(bundle_input.get(12).equals("easyShip")){
-//                    radioButtonEasyShip.setChecked(true);
-//                    if(bundle_input.get(13).equals("prime")){
-//                        radioButtonPrime.setChecked(true);
-//                    }else{
-//                        radioButtonNonPrime.setChecked(true);
-//                    }
-
-//                }else{
-//                    radioButtonSelfShip.setChecked(true);
-//                    selfshipLocal.setText(bundle_input.get(13));
-//                    selfshipRegional.setText(bundle_input.get(14));
-//                    selfshipNational.setText(bundle_input.get(15));
-//                }
 
                 String flag = "false";
                 SharedPrefManager.getInstance(getActivity())
@@ -459,10 +373,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                 ButtonFinished();
                 return;
             }
-
-//            double number11=0, number12=0, number13=0, number14=0, number15=0, number16=0, number17=0;
-
-//            if(shipmentTypeOption.equals("easyShip")) {
 
                 if (weight.getText().toString().isEmpty()) {
                     weight.setError("Weight is required");
@@ -490,42 +400,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     height.requestFocus();
                     ButtonFinished();
                     return;
-//                }
-//                selfshipLocal.setText(0);
-//                selfshipRegional.setText(0);
-//                selfshipNational.setText(0);
-//            }
-//            else{
-//                if (selfshipLocal.getText().toString().isEmpty()) {
-//                    selfshipLocal.setError("SelfShip Local is required");
-//                    selfshipLocal.requestFocus();
-//                    ButtonFinished();
-//                    return;
-//                }
-//
-//                if (selfshipRegional.getText().toString().isEmpty()) {
-//                    selfshipRegional.setError("SelfShip Regional is required");
-//                    selfshipRegional.requestFocus();
-//                    ButtonFinished();
-//                    return;
-//                }
-//
-//                if (selfshipNational.getText().toString().isEmpty()) {
-//                    selfshipNational.setError("SelfShip National is required");
-//                    selfshipNational.requestFocus();
-//                    ButtonFinished();
-//                    return;
-//                }
-
-//                number15 = Double.parseDouble(selfshipLocal.getText().toString());
-//                number16 = Double.parseDouble(selfshipRegional.getText().toString());
-//                number17 = Double.parseDouble(selfshipNational.getText().toString());
-
-//                weight.setText(0);
-//                length.setText(0);
-//                height.setText(0);
-//                breadth.setText(0);
-            }
+                }
 
             if(Double.parseDouble(sellingPrice.getText().toString()) <= 0){
                 sellingPrice.setError("Selling Price not valid");
@@ -543,12 +418,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
             if(inwardShipping.getText().toString().isEmpty())
                 inwardShipping.setText("0");
-//            if(packagingExpenses.getText().toString().isEmpty())
-//                packagingExpenses.setText("0");
-//            if(labour.getText().toString().isEmpty())
-//                labour.setText("0");
-//            if(storageFee.getText().toString().isEmpty())
-//                storageFee.setText("0");
             if(otherCharges.getText().toString().isEmpty())
                 otherCharges.setText("0");
             if(discountByPrice.getText().toString().isEmpty())
@@ -569,9 +438,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             double number2 = Double.parseDouble(purchasePrice.getText().toString());
             double number3 = Double.parseDouble(spinner_ans);
             double number4 = Double.parseDouble(inwardShipping.getText().toString());
-//            double number5 = Double.parseDouble(packagingExpenses.getText().toString());
-//            double number6 = Double.parseDouble(labour.getText().toString());
-//            double number7 = Double.parseDouble(storageFee.getText().toString());
             double number5 = Double.parseDouble(otherCharges.getText().toString());
             double number6 = Double.parseDouble(discountByPrice.getText().toString());
             double number7 = Double.parseDouble(discountByPercentage.getText().toString());
@@ -579,10 +445,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             double number9 = Double.parseDouble(length.getText().toString());
             double number10 = Double.parseDouble(breadth.getText().toString());
             double number11 = Double.parseDouble(height.getText().toString());
-
-//            double number15 = Double.parseDouble(selfshipLocal.getText().toString());
-//            double number16 = Double.parseDouble(selfshipRegional.getText().toString());
-//            double number17 = Double.parseDouble(selfshipNational.getText().toString());
 
             Call<AmazonFbaCalculationResponse> call = RetrofitClient
                     .getInstance().getApi().amazonFbaCalculation(category, subCategory, number1, number3, number2, number4, number5, number7, number6,
@@ -639,12 +501,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
                         National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
-
-//                        ArrayList<String> input = new ArrayList<>();
-//                        input.add(weight.getText().toString());
-//                        input.add(length.getText().toString());
-//                        input.add(breadth.getText().toString());
-//                        input.add(height.getText().toString());
 
                         Bundle bundle = new Bundle();
                         bundle.putStringArrayList("Local", Local);
@@ -707,9 +563,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             String gstOnProduct = spinner_ans;
             String productPriceWithoutGst = purchasePrice.getText().toString().trim();
             String inwardShipping = this.inwardShipping.getText().toString().trim();
-//            String packagingExpense = packagingExpenses.getText().toString().trim();
-//            String labour = this.labour.getText().toString().trim();
-//            String storageFee = this.storageFee.getText().toString().trim();
             String other = otherCharges.getText().toString().trim();
             String discountPercent = discountByPercentage.getText().toString().trim();
             String discountAmount = discountByPrice.getText().toString().trim();
@@ -717,11 +570,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             String length = this.length.getText().toString().trim();
             String breadth = this.breadth.getText().toString().trim();
             String height = this.height.getText().toString().trim();
-//            String ssLocal = this.selfshipLocal.getText().toString().trim();
-//            String ssRegional = this.selfshipRegional.getText().toString().trim();
-//            String ssNational = this.selfshipNational.getText().toString().trim();
-//            String payMode = paymentOption;
-//            String customerType = customerTypeOption;
 
             Call<MessageResponse> call = RetrofitClient
                     .getInstance()
@@ -848,7 +696,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             call.enqueue(new Callback<subCategory>() {
                 @Override
                 public void onResponse(Call<subCategory> call, Response<subCategory> response) {
-                    //loadingDialog.dismissDialog();
                     if(response.isSuccessful()) {
                         subCategory subCategory = response.body();
                         ArrayList<String> list = new ArrayList<>();
@@ -861,11 +708,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, list);
                         adapter2.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
                         subCategories.setAdapter(adapter2);
-//                        Intent intent = new Intent(c , FragmentSelection.class);
-//                        intent.putExtra(KEY,0);
-                        // c.startActivity(intent);
                     }else if(response.code() == 401){
-                        //loadingDialog.dismissDialog();
                         Toast.makeText(getActivity(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                         SharedPrefManager.getInstance(getActivity()).clear();
                         Intent intent_logout = new Intent(getActivity(), HomeScreen.class);
@@ -876,7 +719,6 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
                 @Override
                 public void onFailure(Call<subCategory> call, Throwable t) {
-                    //  loadingDialog.dismissDialog();
                     Toast.makeText(getActivity(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
                 }
             });
