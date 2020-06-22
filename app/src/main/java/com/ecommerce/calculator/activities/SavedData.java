@@ -850,8 +850,8 @@ public class SavedData extends AppCompatActivity {
 
         output text14 = new output("Commission Fees", td.getCommissionFees());
         output text15 = new output("Shipping Fees", td.getShippingFees());
-        output text16 = new output("Payment Gateway Charge", td.getPaymentGatewayFees());
-        output text17 = new output("CSP", td.getCSP());
+        output text16 = new output("Payment Gateway Fees", td.getPaymentGatewayFees());
+        output text17 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", td.getCSP());
         output text18 = new output("GST On CSP", td.getGstOnCSP());
         output text19 = new output("Total Charges", td.getTotalCharges());
         output text20 = new output("Bank Settlement", td.getBankSettlement());

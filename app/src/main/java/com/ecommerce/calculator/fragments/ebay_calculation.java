@@ -480,7 +480,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                     output text1 = new output("Commission Fees", String.valueOf(CalculateResponse.getCommissionFees()));
                     output text2 = new output("Shipping Fees", String.valueOf(CalculateResponse.getShippingFees()));
                     output text3 = new output("Payment Gateway Charge", String.valueOf(CalculateResponse.getPaymentGatewayCharge()));
-                    output text4 = new output("CSP", String.valueOf(CalculateResponse.getCSP()));
+                    output text4 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(CalculateResponse.getCSP()));
                     output text5 = new output("GST On CSP", String.valueOf(CalculateResponse.getGstOnCSP()));
                     output text6 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()));
                     output text7 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
@@ -624,7 +624,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                 "OUTPUT" + "\n" +
                 "Commission Fees: " + items[0] + "\n" +
                 "Shipping Fees: " + items[1] + "\n" +
-                "Payment Gateway Charge: " + items[2] + "\n" +
+                "Payment Gateway Fees: " + items[2] + "\n" +
                 "CSP: " + items[3] + "\n" +
                 "GST On CSP: " + items[4] + "\n" +
                 "Total Charges: " + items[5] + "\n" +
