@@ -64,7 +64,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
-    Double[] items = new Double[8];
+    Double[] items = new Double[11];
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     ScrollView scrollView;
@@ -408,23 +408,31 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     result_card.setVisibility(View.VISIBLE);
                     itemList.setVisibility(View.VISIBLE);
 
-                    items[0] = CalculateResponse.getBankSettlement();
-                    items[1] = CalculateResponse.getTotalCommision();
-                    items[2] = CalculateResponse.getProfit();
-                    items[3] = CalculateResponse.getTotalGstPayable();
-                    items[4] = CalculateResponse.getTcs();
-                    items[5] = CalculateResponse.getGstPayable();
-                    items[6] = CalculateResponse.getGstClaim();
-                    items[7] = CalculateResponse.getProfitPercentage();
+//                    items[0] = CalculateResponse.getCommissionFees();
+//                    items[1] = CalculateResponse.getShippingFees();
+//                    items[2] = CalculateResponse.getCS();
+//                    items[3] = CalculateResponse.getGstOnCS();
+//                    items[4] = CalculateResponse.getTotalCharges();
+//                    items[5] = CalculateResponse.getBankSettlement();
+//                    items[6] = CalculateResponse.getGstClaim();
+//                    items[7] = CalculateResponse.getGstPayable();
+//                    items[8] = CalculateResponse.getTotalGstPayable();
+//                    items[9] = CalculateResponse.getTcs();
+//                    items[10] = CalculateResponse.getProfit();
+//                    items[11] = CalculateResponse.getProfitPercentage();
 
-                    output text1 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                    output text2 = new output("Total Commision", String.valueOf(CalculateResponse.getTotalCommision()));
-                    output text3 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
-                    output text4 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
-                    output text5 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
-                    output text6 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
+                    output text1 = new output("Commission Fees", String.valueOf(CalculateResponse.getCommissionFees()));
+                    output text2 = new output("Shipping Fees", String.valueOf(CalculateResponse.getShippingFees()));
+                    output text3 = new output("CS", String.valueOf(CalculateResponse.getCS()));
+                    output text4 = new output("GST On CS", String.valueOf(CalculateResponse.getGstOnCS()));
+                    output text5 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()));
+                    output text6 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
                     output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
-                    output text8 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
+                    output text8 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
+                    output text9 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
+                    output text10 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
+                    output text11 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
+                    output text12 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
 
                     ArrayList<output> outputList = new ArrayList<>();
                     outputList.add(text1);
@@ -435,6 +443,10 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     outputList.add(text6);
                     outputList.add(text7);
                     outputList.add(text8);
+                    outputList.add(text9);
+                    outputList.add(text10);
+                    outputList.add(text11);
+                    outputList.add(text12);
 
                     OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
                     itemList.setAdapter(adapter);
@@ -480,21 +492,20 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         String other = otherCharges.getText().toString().trim();
         String discountPercent = discountByPercentage.getText().toString().trim();
         String discountAmount = discountByPrice.getText().toString().trim();
-        String bankSettlement = String.valueOf(items[0]);
-        String totalCommision = String.valueOf(items[1]);
-        String profit = String.valueOf(items[2]);
-        String totalGstPayable = String.valueOf(items[3]);
-        String tcs = String.valueOf(items[4]);
-        String gstPayable = String.valueOf(items[5]);
-        String gstClaim = String.valueOf(items[6]);
-        String profitPercentage = String.valueOf(items[7]);
+//        String bankSettlement = String.valueOf(items[0]);
+//        String totalCommision = String.valueOf(items[1]);
+//        String profit = String.valueOf(items[2]);
+//        String totalGstPayable = String.valueOf(items[3]);
+//        String tcs = String.valueOf(items[4]);
+//        String gstPayable = String.valueOf(items[5]);
+//        String gstClaim = String.valueOf(items[6]);
+//        String profitPercentage = String.valueOf(items[7]);
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
                 .saved(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
-                        other, discountPercent, discountAmount, bankSettlement, totalCommision, profit, totalGstPayable, tcs, gstPayable,
-                        gstClaim, profitPercentage);
+                        other, discountPercent, discountAmount);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override

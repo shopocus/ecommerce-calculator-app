@@ -172,17 +172,17 @@ public class SavedData extends AppCompatActivity {
 
     void meeshoSavedData(TitleDataResponse td) {
         result.setVisibility(View.VISIBLE);
-        output text1 = new output("Category", String.valueOf(td.getCategory()));
-        output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
-        output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
-        output text4 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
-        output text5 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
-        output text6 = new output("Packaging Expenses", String.valueOf(td.getPackagingExpense()));
-        output text7 = new output("Labour", String.valueOf(td.getLabour()));
-        output text8 = new output("Storage fees", String.valueOf(td.getStorageFee()));
-        output text9 = new output("Other Charges", String.valueOf(td.getOther()));
-        output text10 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
-        output text11 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+        output text1 = new output("Category", String.valueOf(td.getInput().getCategory()));
+        output text2 = new output("Selling Price", String.valueOf(td.getInput().getSellingPrice()));
+        output text3 = new output("Purchase Price", String.valueOf(td.getInput().getProductPriceWithoutGst()));
+        output text4 = new output("GST on product", String.valueOf(td.getInput().getGstOnProduct()));
+        output text5 = new output("Inward Shipping", String.valueOf(td.getInput().getInwardShipping()));
+        output text6 = new output("Packaging Expenses", String.valueOf(td.getInput().getPackagingExpense()));
+        output text7 = new output("Labour", String.valueOf(td.getInput().getLabour()));
+        output text8 = new output("Storage fees", String.valueOf(td.getInput().getStorageFee()));
+        output text9 = new output("Other Charges", String.valueOf(td.getInput().getOther()));
+        output text10 = new output("Discount on Price", String.valueOf(td.getInput().getDiscountAmount()));
+        output text11 = new output("Discount Percentage", String.valueOf(td.getInput().getDiscountPercent()));
 
         ArrayList<output> inputList = new ArrayList<>();
         inputList.add(text1);
@@ -201,14 +201,18 @@ public class SavedData extends AppCompatActivity {
         itemList.setAdapter(adapter);
         SavedData.setListViewHeightBasedOnChildren(itemList);
 
-        output text12 = new output("Bank Settlement", td.getBankSettlement());
-        output text13 = new output("Total Commission", td.getTotalCommision());
-        output text14 = new output("Total GST Payable", td.getTotalGstPayable());
-        output text15 = new output("TCS", td.getTcs());
-        output text16 = new output("GST Payable", td.getGstPayable());
-        output text17 = new output("GST Claim", td.getGstClaim());
-        output text18 = new output("Profit", td.getProfit());
-        output text19 = new output("Profit Percentage", td.getProfitPercentage());
+        output text12 = new output("Bank Settlement", td.getCommissionFees());
+        output text13 = new output("Shipping Fees", td.getShippingFees());
+        output text14 = new output("CS", td.getCS());
+        output text15 = new output("GST On CS", td.getGstOnCS());
+        output text16 = new output("Total Charges", td.getTotalCharges());
+        output text17 = new output("Bank Settlement", td.getBankSettlement());
+        output text18 = new output("GST Claim", td.getGstClaim());
+        output text19 = new output("GST Payable", td.getGstPayable());
+        output text20 = new output("Total GST Payable", td.getTotalGstPayable());
+        output text21 = new output("TCS", td.getTcs());
+        output text22 = new output("Profit", td.getProfit());
+        output text23 = new output("Profit Percentage", td.getProfitPercentage());
 
         ArrayList<output> outputList = new ArrayList<>();
         outputList.add(text12);
@@ -219,22 +223,26 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text17);
         outputList.add(text18);
         outputList.add(text19);
+        outputList.add(text20);
+        outputList.add(text21);
+        outputList.add(text22);
+        outputList.add(text23);
 
-        ArrayList<String> title = new ArrayList<>();
-        title.add("Category");
-        title.add("Selling Price");
-        title.add("Purchase Price");
-        title.add("GST on Product");
-        title.add("Weight");
-        title.add("Courier");
-        title.add("Payment Mode");
-        title.add("Inward Shipping");
-        title.add("Packaging Expenses");
-        title.add("Labour");
-        title.add("Storage Fees");
-        title.add("Other Charges");
-        title.add("Discount on Price");
-        title.add("Discount Percentage");
+//        ArrayList<String> title = new ArrayList<>();
+//        title.add("Category");
+//        title.add("Selling Price");
+//        title.add("Purchase Price");
+//        title.add("GST on Product");
+//        title.add("Weight");
+//        title.add("Courier");
+//        title.add("Payment Mode");
+//        title.add("Inward Shipping");
+//        title.add("Packaging Expenses");
+//        title.add("Labour");
+//        title.add("Storage Fees");
+//        title.add("Other Charges");
+//        title.add("Discount on Price");
+//        title.add("Discount Percentage");
 
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getCategory());
@@ -311,7 +319,7 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getDiscountPercent());
 
         Local.add(String.valueOf(td.getLocal().getBankSettlement()));
-        Local.add(String.valueOf(td.getLocal().getTotalCommision()));
+//        Local.add(String.valueOf(td.getLocal().getTotalCommision()));
         Local.add(String.valueOf(td.getLocal().getTotalGstPayable()));
         Local.add(String.valueOf(td.getLocal().getTcs()));
         Local.add(String.valueOf(td.getLocal().getGstPayable()));
@@ -320,7 +328,7 @@ public class SavedData extends AppCompatActivity {
         Local.add(String.valueOf(td.getLocal().getProfitPercentage()));
 
         Regional.add(String.valueOf(td.getRegional().getBankSettlement()));
-        Regional.add(String.valueOf(td.getRegional().getTotalCommision()));
+//        Regional.add(String.valueOf(td.getRegional().getTotalCommision()));
         Regional.add(String.valueOf(td.getRegional().getTotalGstPayable()));
         Regional.add(String.valueOf(td.getRegional().getTcs()));
         Regional.add(String.valueOf(td.getRegional().getGstPayable()));
@@ -329,7 +337,7 @@ public class SavedData extends AppCompatActivity {
         Regional.add(String.valueOf(td.getRegional().getProfitPercentage()));
 
         Metro.add(String.valueOf(td.getMetro().getBankSettlement()));
-        Metro.add(String.valueOf(td.getMetro().getTotalCommision()));
+//        Metro.add(String.valueOf(td.getMetro().getTotalCommision()));
         Metro.add(String.valueOf(td.getMetro().getTotalGstPayable()));
         Metro.add(String.valueOf(td.getMetro().getTcs()));
         Metro.add(String.valueOf(td.getMetro().getGstPayable()));
@@ -338,7 +346,7 @@ public class SavedData extends AppCompatActivity {
         Metro.add(String.valueOf(td.getMetro().getProfitPercentage()));
 
         RestOfIndia.add(String.valueOf(td.getRestOfIndia().getBankSettlement()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalCommision()));
+//        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalCommision()));
         RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalGstPayable()));
         RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTcs()));
         RestOfIndia.add(String.valueOf(td.getRestOfIndia().getGstPayable()));
@@ -347,7 +355,7 @@ public class SavedData extends AppCompatActivity {
         RestOfIndia.add(String.valueOf(td.getRestOfIndia().getProfitPercentage()));
 
         Kerela.add(String.valueOf(td.getKerela().getBankSettlement()));
-        Kerela.add(String.valueOf(td.getKerela().getTotalCommision()));
+//        Kerela.add(String.valueOf(td.getKerela().getTotalCommision()));
         Kerela.add(String.valueOf(td.getKerela().getTotalGstPayable()));
         Kerela.add(String.valueOf(td.getKerela().getTcs()));
         Kerela.add(String.valueOf(td.getKerela().getGstPayable()));

@@ -73,15 +73,7 @@ public interface Api {
             @Field("storageFee") String storageFee,
             @Field("other") String other,
             @Field("discountPercent") String discountPercent,
-            @Field("discountAmount") String discountAmount,
-            @Field("bankSettlement") String bankSettlement,
-            @Field("totalCommision") String totalCommision,
-            @Field("profit") String profit,
-            @Field("totalGstPayable") String totalGstPayable,
-            @Field("tcs") String tcs,
-            @Field("gstPayable") String gstPayable,
-            @Field("gstClaim") String gstClaim,
-            @Field("profitPercentage") String profitPercentage
+            @Field("discountAmount") String discountAmount
     );
 
     @FormUrlEncoded

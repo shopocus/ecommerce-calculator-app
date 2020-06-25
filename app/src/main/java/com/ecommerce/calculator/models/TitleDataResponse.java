@@ -29,6 +29,8 @@ public class TitleDataResponse {
     private String other;
     private String discountAmount;
     private String discountPercent;
+    private String CS;
+    private String gstOnCS;
     private String bankSettlement;
     private String totalCommision;
     private String profit;
@@ -44,6 +46,7 @@ public class TitleDataResponse {
     private String CSP;
     private String gstOnCSP;
     private String totalCharges;
+    private MeeshoInputModel input;
     private MeeshoCalculationResponse local;
     private MeeshoCalculationResponse regional;
     private MeeshoCalculationResponse metro;
@@ -65,10 +68,10 @@ public class TitleDataResponse {
     public TitleDataResponse(String title, String category, String subcategory, String sellingPrice, String gstOnProduct, String productPriceWithoutGst,
                              String weight, String length, String breadth, String height, String customerType, String courier, String payMode,
                              String inwardShipping, String packagingExpense, String labour, String storageFee, String commission, String shipping,
-                             String paymentGatewayCharge, String other, String discountAmount, String discountPercent, String commissionFees,
-                             String shippingFees, String paymentGatewayFees, String CSP, String gstOnCSP, String totalCharges, String bankSettlement,
-                             String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim,
-                             String profitPercentage, String shipmentType, easyShipModel easyShip, selfShipModel selfShip,
+                             String paymentGatewayCharge, String other, String discountAmount, String discountPercent, String CS, String gstOnCS,
+                             String commissionFees, String shippingFees, String paymentGatewayFees, String CSP, String gstOnCSP, String totalCharges,
+                             String bankSettlement, String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim,
+                             String profitPercentage, String shipmentType, easyShipModel easyShip, selfShipModel selfShip, MeeshoInputModel input,
                              MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
                              MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela, FlipkartOutputModel flipkartLocal,
                              FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational, AmazonOutputModel amazonLocal,
@@ -97,6 +100,8 @@ public class TitleDataResponse {
         this.other = other;
         this.discountAmount = discountAmount;
         this.discountPercent = discountPercent;
+        this.CS = CS;
+        this.gstOnCS = gstOnCS;
         this.shipmentType = shipmentType;
         this.easyShip = easyShip;
         this.selfShip = selfShip;
@@ -119,6 +124,7 @@ public class TitleDataResponse {
         this.metro = metro;
         this.restOfIndia = restOfIndia;
         this.kerela = kerela;
+        this.input = input;
         this.flipkartLocal = flipkartLocal;
         this.flipkartZonal = flipkartZonal;
         this.flipkartNational = flipkartNational;
@@ -222,6 +228,14 @@ public class TitleDataResponse {
         return discountPercent;
     }
 
+    public String getCS() {
+        return CS;
+    }
+
+    public String getGstOnCS() {
+        return gstOnCS;
+    }
+
     public String getShipmentType() {
         return shipmentType;
     }
@@ -288,6 +302,10 @@ public class TitleDataResponse {
 
     public String getTotalCharges() {
         return totalCharges;
+    }
+
+    public MeeshoInputModel getInput() {
+        return input;
     }
 
     public MeeshoCalculationResponse getLocal() {
