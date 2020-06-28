@@ -33,6 +33,8 @@ import com.ecommerce.calculator.models.output;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.material.tabs.TabLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -126,14 +128,15 @@ public class SavedData extends AppCompatActivity {
 
         call.enqueue(new Callback<TitleDataResponse>() {
             @Override
-            public void onResponse(Call<TitleDataResponse> call, Response<TitleDataResponse> response) {
+            public void onResponse(@NotNull Call<TitleDataResponse> call, @NotNull Response<TitleDataResponse> response) {
                 if (response.isSuccessful()) {
                     TitleDataResponse td = response.body();
-                    if (td.getTitle().equals(title)) {
+                    assert td != null;
+                    if (td.getInput().getTitle().equals(title)) {
                         loadingDialog.dismissDialog();
                         input_card.setVisibility(View.VISIBLE);
                         output_card.setVisibility(View.VISIBLE);
-                        textViewTitle.setText(td.getTitle());
+                        textViewTitle.setText(td.getInput().getTitle());
                         switch (company) {
                             case "meesho":
                                 meeshoSavedData(td);
@@ -164,7 +167,7 @@ public class SavedData extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<TitleDataResponse> call, Throwable t) {
+            public void onFailure(@NotNull Call<TitleDataResponse> call, @NotNull Throwable t) {
                 Toast.makeText(SavedData.this, "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
         });
@@ -201,18 +204,18 @@ public class SavedData extends AppCompatActivity {
         itemList.setAdapter(adapter);
         SavedData.setListViewHeightBasedOnChildren(itemList);
 
-        output text12 = new output("Bank Settlement", td.getCommissionFees());
-        output text13 = new output("Shipping Fees", td.getShippingFees());
-        output text14 = new output("CS", td.getCS());
-        output text15 = new output("GST On CS", td.getGstOnCS());
-        output text16 = new output("Total Charges", td.getTotalCharges());
-        output text17 = new output("Bank Settlement", td.getBankSettlement());
-        output text18 = new output("GST Claim", td.getGstClaim());
-        output text19 = new output("GST Payable", td.getGstPayable());
-        output text20 = new output("Total GST Payable", td.getTotalGstPayable());
-        output text21 = new output("TCS", td.getTcs());
-        output text22 = new output("Profit", td.getProfit());
-        output text23 = new output("Profit Percentage", td.getProfitPercentage());
+        output text12 = new output("Commission Fees", td.getOutput().getCommissionFees());
+        output text13 = new output("Shipping Fees", td.getOutput().getShippingFees());
+        output text14 = new output("CS", td.getOutput().getCS());
+        output text15 = new output("GST On CS", td.getOutput().getGstOnCS());
+        output text16 = new output("Total Charges", td.getOutput().getTotalCharges());
+        output text17 = new output("Bank Settlement", td.getOutput().getBankSettlement());
+        output text18 = new output("GST Claim", td.getOutput().getGstClaim());
+        output text19 = new output("GST Payable", td.getOutput().getGstPayable());
+        output text20 = new output("Total GST Payable", td.getOutput().getTotalGstPayable());
+        output text21 = new output("TCS", td.getOutput().getTcs());
+        output text22 = new output("Profit", td.getOutput().getProfit());
+        output text23 = new output("Profit Percentage", td.getOutput().getProfitPercentage());
 
         ArrayList<output> outputList = new ArrayList<>();
         outputList.add(text12);
@@ -245,17 +248,17 @@ public class SavedData extends AppCompatActivity {
 //        title.add("Discount Percentage");
 
         ArrayList<String> input = new ArrayList<>();
-        input.add(td.getCategory());
-        input.add(td.getSellingPrice());
-        input.add(td.getProductPriceWithoutGst());
-        input.add(td.getGstOnProduct());
-        input.add(td.getInwardShipping());
-        input.add(td.getPackagingExpense());
-        input.add(td.getLabour());
-        input.add(td.getStorageFee());
-        input.add(td.getOther());
-        input.add(td.getDiscountAmount());
-        input.add(td.getDiscountPercent());
+        input.add(td.getInput().getCategory());
+        input.add(td.getInput().getSellingPrice());
+        input.add(td.getInput().getProductPriceWithoutGst());
+        input.add(td.getInput().getGstOnProduct());
+        input.add(td.getInput().getInwardShipping());
+        input.add(td.getInput().getPackagingExpense());
+        input.add(td.getInput().getLabour());
+        input.add(td.getInput().getStorageFee());
+        input.add(td.getInput().getOther());
+        input.add(td.getInput().getDiscountAmount());
+        input.add(td.getInput().getDiscountPercent());
 
         bundle.putStringArrayList("input", input);
 

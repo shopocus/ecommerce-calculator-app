@@ -49,7 +49,10 @@ import retrofit2.Response;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class meesho_calculation extends Fragment implements View.OnClickListener {
 
@@ -400,7 +403,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
 
         call.enqueue(new Callback<MeeshoCalculationResponse>() {
             @Override
-            public void onResponse(Call<MeeshoCalculationResponse> call, Response<MeeshoCalculationResponse> response) {
+            public void onResponse(@NotNull Call<MeeshoCalculationResponse> call, @NotNull Response<MeeshoCalculationResponse> response) {
                 if (response.isSuccessful()) {
                     MeeshoCalculationResponse CalculateResponse = response.body();
                     ButtonFinished();
@@ -509,13 +512,14 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
-            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
+            public void onResponse(@NotNull Call<MessageResponse> call, @NotNull Response<MessageResponse> response) {
                 if (response.isSuccessful()) {
                     MessageResponse dr = response.body();
+                    assert dr != null;
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
                         save.setEnabled(false);
-                        new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                        new SweetAlertDialog(Objects.requireNonNull(getContext()), SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Successfully Saved")
                                 .setConfirmText("Ok")
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))

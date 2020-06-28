@@ -26,6 +26,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.ecommerce.calculator.fragments.saved;
 
+import java.util.Objects;
+
 public class FragmentSelection extends AppCompatActivity {
 
     ViewPager viewPager;
@@ -57,7 +59,7 @@ public class FragmentSelection extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         title = findViewById(R.id.title);
@@ -101,10 +103,11 @@ public class FragmentSelection extends AppCompatActivity {
                 InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 View focusedView = getCurrentFocus();
                 if (focusedView != null) {
+                    assert inputManager != null;
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
                 if (tab.getPosition() == 1) {
-                    saved fragment = (saved) viewPager.getAdapter().instantiateItem(viewPager, tab.getPosition());
+                    saved fragment = (saved) Objects.requireNonNull(viewPager.getAdapter()).instantiateItem(viewPager, tab.getPosition());
                     fragment.onResume();
                     viewPager.getAdapter().notifyDataSetChanged();
                 }

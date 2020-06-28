@@ -47,6 +47,7 @@ public class TitleDataResponse {
     private String gstOnCSP;
     private String totalCharges;
     private MeeshoInputModel input;
+    private MeeshoOutputModel output;
     private MeeshoCalculationResponse local;
     private MeeshoCalculationResponse regional;
     private MeeshoCalculationResponse metro;
@@ -71,7 +72,7 @@ public class TitleDataResponse {
                              String paymentGatewayCharge, String other, String discountAmount, String discountPercent, String CS, String gstOnCS,
                              String commissionFees, String shippingFees, String paymentGatewayFees, String CSP, String gstOnCSP, String totalCharges,
                              String bankSettlement, String totalCommision, String profit, String totalGstPayable, String tcs, String gstPayable, String gstClaim,
-                             String profitPercentage, String shipmentType, easyShipModel easyShip, selfShipModel selfShip, MeeshoInputModel input,
+                             String profitPercentage, String shipmentType, easyShipModel easyShip, selfShipModel selfShip, MeeshoInputModel input, MeeshoOutputModel output,
                              MeeshoCalculationResponse local, MeeshoCalculationResponse regional, MeeshoCalculationResponse metro,
                              MeeshoCalculationResponse restOfIndia, MeeshoCalculationResponse kerela, FlipkartOutputModel flipkartLocal,
                              FlipkartOutputModel flipkartZonal, FlipkartOutputModel flipkartNational, AmazonOutputModel amazonLocal,
@@ -125,6 +126,7 @@ public class TitleDataResponse {
         this.restOfIndia = restOfIndia;
         this.kerela = kerela;
         this.input = input;
+        this.output = output;
         this.flipkartLocal = flipkartLocal;
         this.flipkartZonal = flipkartZonal;
         this.flipkartNational = flipkartNational;
@@ -307,6 +309,8 @@ public class TitleDataResponse {
     public MeeshoInputModel getInput() {
         return input;
     }
+
+    public MeeshoOutputModel getOutput() { return output; }
 
     public MeeshoCalculationResponse getLocal() {
         return local;
