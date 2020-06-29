@@ -574,12 +574,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                 .getInstance()
                 .getApi()
                 .savedAmazonFba(title, category, subCategory, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, other,
-                        discountPercent, discountAmount, weight, length, breadth, height, Local.get(0), Local.get(1), Local.get(2), Local.get(3),
-                        Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8), Local.get(9), Local.get(10), Local.get(11),
-                        Local.get(12), Regional.get(0), Regional.get(1), Regional.get(2), Regional.get(3), Regional.get(4),
-                        Regional.get(5), Regional.get(6), Regional.get(7), Regional.get(8), Regional.get(9), Regional.get(10), Regional.get(11),
-                        Regional.get(12), National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5),
-                        National.get(6), National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+                        discountPercent, discountAmount, weight, length, breadth, height);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
