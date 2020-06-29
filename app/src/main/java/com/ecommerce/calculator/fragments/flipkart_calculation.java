@@ -587,12 +587,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                 .getInstance()
                 .getApi()
                 .savedFlipkart(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-                        storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType,
-                        Local.get(0), Local.get(1), Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Local.get(8),
-                        Local.get(9), Local.get(10), Local.get(11), Local.get(12), Zonal.get(0), Zonal.get(1), Zonal.get(2), Zonal.get(3), Zonal.get(4),
-                        Zonal.get(5), Zonal.get(6), Zonal.get(7), Zonal.get(8), Zonal.get(9), Zonal.get(10), Zonal.get(11), Zonal.get(12),
-                        National.get(0), National.get(1), National.get(2), National.get(3), National.get(4), National.get(5), National.get(6),
-                        National.get(7), National.get(8), National.get(9), National.get(10), National.get(11), National.get(12));
+                        storageFee, other, discountPercent, discountAmount, weight, length, breadth, height, payMode, customerType);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
