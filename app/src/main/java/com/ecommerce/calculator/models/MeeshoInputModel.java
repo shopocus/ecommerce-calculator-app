@@ -11,20 +11,20 @@ public class MeeshoInputModel {
     private String sellingPrice;
     private String gstOnProduct;
     private String productPriceWithoutGst;
-//    private String weight;
-//    private String length;
-//    private String breadth;
-//    private String height;
-//    private String customerType;
-//    private String courier;
-//    private String payMode;
+    private String weight;
+    private String length;
+    private String breadth;
+    private String height;
+    private String customerType;
+    private String courier;
+    private String payMode;
     private String inwardShipping;
     private String packagingExpense;
     private String labour;
     private String storageFee;
-//    private String commission;
-//    private String shipping;
-//    private String paymentGatewayCharge;
+    private String commission;
+    private String shipping;
+    private String paymentGatewayCharge;
     private String other;
     private String discountAmount;
     private String discountPercent;
@@ -44,11 +44,11 @@ public class MeeshoInputModel {
 //    private String gstOnCSP;
 //    private String totalCharges;
 //    private MeeshoInputModel input;
-//    private MeeshoCalculationResponse local;
-//    private MeeshoCalculationResponse regional;
-//    private MeeshoCalculationResponse metro;
-//    private MeeshoCalculationResponse restOfIndia;
-//    private MeeshoCalculationResponse kerela;
+    private MeeshoCalculationResponse local;
+    private MeeshoCalculationResponse regional;
+    private MeeshoCalculationResponse metro;
+    private MeeshoCalculationResponse restOfIndia;
+    private MeeshoCalculationResponse kerela;
 //    private FlipkartOutputModel flipkartLocal;
 //    private FlipkartOutputModel flipkartZonal;
 //    private FlipkartOutputModel flipkartNational;
@@ -80,20 +80,20 @@ public class MeeshoInputModel {
         this.sellingPrice = sellingPrice;
         this.gstOnProduct = gstOnProduct;
         this.productPriceWithoutGst = productPriceWithoutGst;
-//        this.weight = weight;
-//        this.length = length;
-//        this.breadth = breadth;
-//        this.height = height;
-//        this.customerType = customerType;
-//        this.courier = courier;
-//        this.payMode = payMode;
+        this.weight = weight;
+        this.length = length;
+        this.breadth = breadth;
+        this.height = height;
+        this.customerType = customerType;
+        this.courier = courier;
+        this.payMode = payMode;
         this.inwardShipping = inwardShipping;
         this.packagingExpense = packagingExpense;
         this.labour = labour;
         this.storageFee = storageFee;
-//        this.commission = commission;
-//        this.shipping = shipping;
-//        this.paymentGatewayCharge = paymentGatewayCharge;
+        this.commission = commission;
+        this.shipping = shipping;
+        this.paymentGatewayCharge = paymentGatewayCharge;
         this.other = other;
         this.discountAmount = discountAmount;
         this.discountPercent = discountPercent;
@@ -114,11 +114,11 @@ public class MeeshoInputModel {
 //        this.CSP = CSP;
 //        this.gstOnCSP = gstOnCSP;
 //        this.totalCharges = totalCharges;
-//        this.local = local;
-//        this.regional = regional;
-//        this.metro = metro;
-//        this.restOfIndia = restOfIndia;
-//        this.kerela = kerela;
+        this.local = local;
+        this.regional = regional;
+        this.metro = metro;
+        this.restOfIndia = restOfIndia;
+        this.kerela = kerela;
 //        this.flipkartLocal = flipkartLocal;
 //        this.flipkartZonal = flipkartZonal;
 //        this.flipkartNational = flipkartNational;
@@ -170,45 +170,45 @@ public class MeeshoInputModel {
         return storageFee;
     }
 
-//    public String getCommission() {
-//        return commission;
-//    }
-//
-//    public String getShipping() {
-//        return shipping;
-//    }
-//
-//    public String getPaymentGatewayCharge() {
-//        return paymentGatewayCharge;
-//    }
-//
-//    public String getWeight() {
-//        return weight;
-//    }
-//
-//    public String getLength() {
-//        return length;
-//    }
-//
-//    public String getBreadth() {
-//        return breadth;
-//    }
-//
-//    public String getHeight() {
-//        return height;
-//    }
-//
-//    public String getCustomerType() {
-//        return customerType;
-//    }
-//
-//    public String getCourier() {
-//        return courier;
-//    }
-//
-//    public String getPaymentMode() {
-//        return payMode;
-//    }
+    public String getCommission() {
+        return commission;
+    }
+
+    public String getShipping() {
+        return shipping;
+    }
+
+    public String getPaymentGatewayCharge() {
+        return paymentGatewayCharge;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getLength() {
+        return length;
+    }
+
+    public String getBreadth() {
+        return breadth;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public String getCourier() {
+        return courier;
+    }
+
+    public String getPaymentMode() {
+        return payMode;
+    }
 
     public String getOther() {
         return other;
@@ -290,25 +290,25 @@ public class MeeshoInputModel {
 //        return totalCharges;
 //    }
 //
-//    public MeeshoCalculationResponse getLocal() {
-//        return local;
-//    }
-//
-//    public MeeshoCalculationResponse getRegional() {
-//        return regional;
-//    }
-//
-//    public MeeshoCalculationResponse getMetro() {
-//        return metro;
-//    }
-//
-//    public MeeshoCalculationResponse getRestOfIndia() {
-//        return restOfIndia;
-//    }
-//
-//    public MeeshoCalculationResponse getKerela() {
-//        return kerela;
-//    }
+    public MeeshoCalculationResponse getLocal() {
+        return local;
+    }
+
+    public MeeshoCalculationResponse getRegional() {
+        return regional;
+    }
+
+    public MeeshoCalculationResponse getMetro() {
+        return metro;
+    }
+
+    public MeeshoCalculationResponse getRestOfIndia() {
+        return restOfIndia;
+    }
+
+    public MeeshoCalculationResponse getKerela() {
+        return kerela;
+    }
 //
 //    public FlipkartOutputModel getFlipkartLocal() {
 //        return flipkartLocal;

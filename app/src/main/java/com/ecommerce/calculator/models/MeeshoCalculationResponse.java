@@ -3,8 +3,11 @@ package com.ecommerce.calculator.models;
 public class MeeshoCalculationResponse {
     private double commissionFees;
     private double shippingFees;
+    private double prepaidFees;
     private double CS;
     private double gstOnCS;
+    private double CSP;
+    private double gstOnCSP;
     private double totalCharges;
     private double bankSettlement;
     private double gstClaim;
@@ -14,12 +17,15 @@ public class MeeshoCalculationResponse {
     private double profit;
     private double profitPercentage;
 
-    public MeeshoCalculationResponse(double commissionFees, double shippingFees, double CS, double gstOnCS, double totalCharges, double bankSettlement, double gstClaim,
-                                     double gstPayable, double totalGstPayable, double tcs, double profit, double profitPercentage) {
+    public MeeshoCalculationResponse(double commissionFees, double shippingFees, double prepaidFees, double CS, double gstOnCS, double CSP, double gstOnCSP, double totalCharges,
+                                     double bankSettlement, double gstClaim, double gstPayable, double totalGstPayable, double tcs, double profit, double profitPercentage) {
         this.commissionFees = commissionFees;
         this.shippingFees = shippingFees;
+        this.prepaidFees = prepaidFees;
         this.CS = CS;
         this.gstOnCS = gstOnCS;
+        this.CSP = CSP;
+        this.gstOnCSP = gstOnCSP;
         this.totalCharges = totalCharges;
         this.bankSettlement = bankSettlement;
         this.gstClaim = gstClaim;
@@ -38,12 +44,24 @@ public class MeeshoCalculationResponse {
         return shippingFees;
     }
 
+    public double getPrepaidFees() {
+        return prepaidFees;
+    }
+
     public double getCS() {
         return CS;
     }
 
     public double getGstOnCS() {
         return gstOnCS;
+    }
+
+    public double getCSP() {
+        return CSP;
+    }
+
+    public double getGstOnCSP() {
+        return gstOnCSP;
     }
 
     public double getTotalCharges() {

@@ -47,11 +47,11 @@ public class MeeshoOutputModel {
     private String totalCharges;
 //    private MeeshoInputModel input;
 //    private MeeshoOutputModel output;
-//    private MeeshoCalculationResponse local;
-//    private MeeshoCalculationResponse regional;
-//    private MeeshoCalculationResponse metro;
-//    private MeeshoCalculationResponse restOfIndia;
-//    private MeeshoCalculationResponse kerela;
+    private MeeshoCalculationResponse local;
+    private MeeshoCalculationResponse regional;
+    private MeeshoCalculationResponse metro;
+    private MeeshoCalculationResponse restOfIndia;
+    private MeeshoCalculationResponse kerela;
 //    private FlipkartOutputModel flipkartLocal;
 //    private FlipkartOutputModel flipkartZonal;
 //    private FlipkartOutputModel flipkartNational;
@@ -119,11 +119,11 @@ public class MeeshoOutputModel {
         this.CSP = CSP;
         this.gstOnCSP = gstOnCSP;
         this.totalCharges = totalCharges;
-//        this.local = local;
-//        this.regional = regional;
-//        this.metro = metro;
-//        this.restOfIndia = restOfIndia;
-//        this.kerela = kerela;
+        this.local = local;
+        this.regional = regional;
+        this.metro = metro;
+        this.restOfIndia = restOfIndia;
+        this.kerela = kerela;
 //        this.input = input;
 //        this.flipkartLocal = flipkartLocal;
 //        this.flipkartZonal = flipkartZonal;
@@ -308,25 +308,25 @@ public class MeeshoOutputModel {
 //        return input;
 //    }
 //
-//    public MeeshoCalculationResponse getLocal() {
-//        return local;
-//    }
-//
-//    public MeeshoCalculationResponse getRegional() {
-//        return regional;
-//    }
-//
-//    public MeeshoCalculationResponse getMetro() {
-//        return metro;
-//    }
-//
-//    public MeeshoCalculationResponse getRestOfIndia() {
-//        return restOfIndia;
-//    }
-//
-//    public MeeshoCalculationResponse getKerela() {
-//        return kerela;
-//    }
+    public MeeshoCalculationResponse getLocal() {
+        return local;
+    }
+
+    public MeeshoCalculationResponse getRegional() {
+        return regional;
+    }
+
+    public MeeshoCalculationResponse getMetro() {
+        return metro;
+    }
+
+    public MeeshoCalculationResponse getRestOfIndia() {
+        return restOfIndia;
+    }
+
+    public MeeshoCalculationResponse getKerela() {
+        return kerela;
+    }
 //
 //    public FlipkartOutputModel getFlipkartLocal() {
 //        return flipkartLocal;

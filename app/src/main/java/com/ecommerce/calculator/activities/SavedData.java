@@ -270,20 +270,20 @@ public class SavedData extends AppCompatActivity {
     void clubFactoryData(TitleDataResponse td) {
         viewPager.setVisibility(View.VISIBLE);
         tabLayout.setVisibility(View.VISIBLE);
-        output text1 = new output("Category", String.valueOf(td.getCategory()));
-        output text2 = new output("Selling Price", String.valueOf(td.getSellingPrice()));
-        output text3 = new output("Purchase Price", String.valueOf(td.getProductPriceWithoutGst()));
-        output text4 = new output("GST on product", String.valueOf(td.getGstOnProduct()));
-        output text5 = new output("Weight", String.valueOf(td.getWeight()));
-        output text6 = new output("Courier", String.valueOf(td.getCourier()));
-        output text7 = new output("Payment Mode", String.valueOf(td.getPaymentMode()));
-        output text8 = new output("Inward Shipping", String.valueOf(td.getInwardShipping()));
-        output text9 = new output("Packaging Expenses", String.valueOf(td.getPackagingExpense()));
-        output text10 = new output("Labour", String.valueOf(td.getLabour()));
-        output text11 = new output("Storage fees", String.valueOf(td.getStorageFee()));
-        output text12 = new output("Other Charges", String.valueOf(td.getOther()));
-        output text13 = new output("Discount on Price", String.valueOf(td.getDiscountAmount()));
-        output text14 = new output("Discount Percentage", String.valueOf(td.getDiscountPercent()));
+        output text1 = new output("Category", String.valueOf(td.getInput().getCategory()));
+        output text2 = new output("Selling Price", String.valueOf(td.getInput().getSellingPrice()));
+        output text3 = new output("Purchase Price", String.valueOf(td.getInput().getProductPriceWithoutGst()));
+        output text4 = new output("GST on product", String.valueOf(td.getInput().getGstOnProduct()));
+        output text5 = new output("Weight", String.valueOf(td.getInput().getWeight()));
+        output text6 = new output("Courier", String.valueOf(td.getInput().getCourier()));
+        output text7 = new output("Payment Mode", String.valueOf(td.getInput().getPaymentMode()));
+        output text8 = new output("Inward Shipping", String.valueOf(td.getInput().getInwardShipping()));
+        output text9 = new output("Packaging Expenses", String.valueOf(td.getInput().getPackagingExpense()));
+        output text10 = new output("Labour", String.valueOf(td.getInput().getLabour()));
+        output text11 = new output("Storage fees", String.valueOf(td.getInput().getStorageFee()));
+        output text12 = new output("Other Charges", String.valueOf(td.getInput().getOther()));
+        output text13 = new output("Discount on Price", String.valueOf(td.getInput().getDiscountAmount()));
+        output text14 = new output("Discount Percentage", String.valueOf(td.getInput().getDiscountPercent()));
 
         ArrayList<output> outputList = new ArrayList<>();
         outputList.add(text1);
@@ -306,65 +306,116 @@ public class SavedData extends AppCompatActivity {
         setListViewHeightBasedOnChildren(itemList);
 
         ArrayList<String> input = new ArrayList<>();
-        input.add(td.getCategory());
-        input.add(td.getSellingPrice());
-        input.add(td.getProductPriceWithoutGst());
-        input.add(td.getGstOnProduct());
-        input.add(td.getWeight());
-        input.add(td.getCourier());
-        input.add(td.getPaymentMode());
-        input.add(td.getInwardShipping());
-        input.add(td.getPackagingExpense());
-        input.add(td.getLabour());
-        input.add(td.getStorageFee());
-        input.add(td.getOther());
-        input.add(td.getDiscountAmount());
-        input.add(td.getDiscountPercent());
+        input.add(td.getInput().getCategory());
+        input.add(td.getInput().getSellingPrice());
+        input.add(td.getInput().getProductPriceWithoutGst());
+        input.add(td.getInput().getGstOnProduct());
+        input.add(td.getInput().getWeight());
+        input.add(td.getInput().getCourier());
+        input.add(td.getInput().getPaymentMode());
+        input.add(td.getInput().getInwardShipping());
+        input.add(td.getInput().getPackagingExpense());
+        input.add(td.getInput().getLabour());
+        input.add(td.getInput().getStorageFee());
+        input.add(td.getInput().getOther());
+        input.add(td.getInput().getDiscountAmount());
+        input.add(td.getInput().getDiscountPercent());
 
-        Local.add(String.valueOf(td.getLocal().getBankSettlement()));
-//        Local.add(String.valueOf(td.getLocal().getTotalCommision()));
-        Local.add(String.valueOf(td.getLocal().getTotalGstPayable()));
-        Local.add(String.valueOf(td.getLocal().getTcs()));
-        Local.add(String.valueOf(td.getLocal().getGstPayable()));
-        Local.add(String.valueOf(td.getLocal().getGstClaim()));
-        Local.add(String.valueOf(td.getLocal().getProfit()));
-        Local.add(String.valueOf(td.getLocal().getProfitPercentage()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getCommissionFees()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getShippingFees()));
+        if(td.getInput().getPaymentMode().equals("postpaid")){
+            Local.add(String.valueOf(td.getOutput().getLocal().getCS()));
+            Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCS()));
+        }else{
+            Local.add(String.valueOf(td.getOutput().getLocal().getPrepaidFees()));
+            Local.add(String.valueOf(td.getOutput().getLocal().getCSP()));
+            Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCSP()));
+        }
+        Local.add(String.valueOf(td.getOutput().getLocal().getTotalCharges()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getGstPayable()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getTotalGstPayable()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getTcs()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getProfit()));
+        Local.add(String.valueOf(td.getOutput().getLocal().getProfitPercentage()));
 
-        Regional.add(String.valueOf(td.getRegional().getBankSettlement()));
-//        Regional.add(String.valueOf(td.getRegional().getTotalCommision()));
-        Regional.add(String.valueOf(td.getRegional().getTotalGstPayable()));
-        Regional.add(String.valueOf(td.getRegional().getTcs()));
-        Regional.add(String.valueOf(td.getRegional().getGstPayable()));
-        Regional.add(String.valueOf(td.getRegional().getGstClaim()));
-        Regional.add(String.valueOf(td.getRegional().getProfit()));
-        Regional.add(String.valueOf(td.getRegional().getProfitPercentage()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getCommissionFees()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getShippingFees()));
+        if(td.getInput().getPaymentMode().equals("postpaid")){
+            Regional.add(String.valueOf(td.getOutput().getRegional().getCS()));
+            Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCS()));
+        }else{
+            Regional.add(String.valueOf(td.getOutput().getRegional().getPrepaidFees()));
+            Regional.add(String.valueOf(td.getOutput().getRegional().getCSP()));
+            Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCSP()));
+        }
+        Regional.add(String.valueOf(td.getOutput().getRegional().getTotalCharges()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getBankSettlement()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getGstClaim()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getGstPayable()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getTotalGstPayable()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getTcs()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getProfit()));
+        Regional.add(String.valueOf(td.getOutput().getRegional().getProfitPercentage()));
 
-        Metro.add(String.valueOf(td.getMetro().getBankSettlement()));
-//        Metro.add(String.valueOf(td.getMetro().getTotalCommision()));
-        Metro.add(String.valueOf(td.getMetro().getTotalGstPayable()));
-        Metro.add(String.valueOf(td.getMetro().getTcs()));
-        Metro.add(String.valueOf(td.getMetro().getGstPayable()));
-        Metro.add(String.valueOf(td.getMetro().getGstClaim()));
-        Metro.add(String.valueOf(td.getMetro().getProfit()));
-        Metro.add(String.valueOf(td.getMetro().getProfitPercentage()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getCommissionFees()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getShippingFees()));
+        if(td.getInput().getPaymentMode().equals("postpaid")){
+            Metro.add(String.valueOf(td.getOutput().getMetro().getCS()));
+            Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCS()));
+        }else{
+            Metro.add(String.valueOf(td.getOutput().getMetro().getPrepaidFees()));
+            Metro.add(String.valueOf(td.getOutput().getMetro().getCSP()));
+            Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCSP()));
+        }
+        Metro.add(String.valueOf(td.getOutput().getMetro().getTotalCharges()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getBankSettlement()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getGstClaim()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getGstPayable()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getTotalGstPayable()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getTcs()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getProfit()));
+        Metro.add(String.valueOf(td.getOutput().getMetro().getProfitPercentage()));
 
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getBankSettlement()));
-//        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalCommision()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTotalGstPayable()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getTcs()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getGstPayable()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getGstClaim()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getProfit()));
-        RestOfIndia.add(String.valueOf(td.getRestOfIndia().getProfitPercentage()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCommissionFees()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getShippingFees()));
+        if(td.getInput().getPaymentMode().equals("postpaid")){
+            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCS()));
+            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCS()));
+        }else{
+            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getPrepaidFees()));
+            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCSP()));
+            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCSP()));
+        }
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getTotalCharges()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getBankSettlement()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstClaim()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstPayable()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getTotalGstPayable()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getTcs()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getProfit()));
+        RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getProfitPercentage()));
 
-        Kerela.add(String.valueOf(td.getKerela().getBankSettlement()));
-//        Kerela.add(String.valueOf(td.getKerela().getTotalCommision()));
-        Kerela.add(String.valueOf(td.getKerela().getTotalGstPayable()));
-        Kerela.add(String.valueOf(td.getKerela().getTcs()));
-        Kerela.add(String.valueOf(td.getKerela().getGstPayable()));
-        Kerela.add(String.valueOf(td.getKerela().getGstClaim()));
-        Kerela.add(String.valueOf(td.getKerela().getProfit()));
-        Kerela.add(String.valueOf(td.getKerela().getProfitPercentage()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getCommissionFees()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getShippingFees()));
+        if(td.getInput().getPaymentMode().equals("postpaid")){
+            Kerela.add(String.valueOf(td.getOutput().getKerela().getCS()));
+            Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCS()));
+        }else{
+            Kerela.add(String.valueOf(td.getOutput().getKerela().getPrepaidFees()));
+            Kerela.add(String.valueOf(td.getOutput().getKerela().getCSP()));
+            Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCSP()));
+        }
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getTotalCharges()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getBankSettlement()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getGstClaim()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getGstPayable()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getTotalGstPayable()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getTcs()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getProfit()));
+        Kerela.add(String.valueOf(td.getOutput().getKerela().getProfitPercentage()));
+
 
         bundle.putStringArrayList("input", input);
         bundle.putStringArrayList("Local", Local);

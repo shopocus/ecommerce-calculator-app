@@ -449,48 +449,98 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
 
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getCommissionFees()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getShippingFees()));
+                    if(paymentOption.equals("postpaid")){
+                        Local.add(String.valueOf(CalculateResponse.getLocal().getCS()));
+                        Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCS()));
+                    }else{
+                        Local.add(String.valueOf(CalculateResponse.getLocal().getPrepaidFees()));
+                        Local.add(String.valueOf(CalculateResponse.getLocal().getCSP()));
+                        Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCSP()));
+                    }
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCharges()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
-//                    Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCommision()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstClaim()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTcs()));
-                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstPayable()));
-                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstClaim()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfit()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getProfitPercentage()));
 
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getCommissionFees()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getShippingFees()));
+                    if(paymentOption.equals("postpaid")){
+                        Regional.add(String.valueOf(CalculateResponse.getRegional().getCS()));
+                        Regional.add(String.valueOf(CalculateResponse.getRegional().getGstOnCS()));
+                    }else{
+                        Regional.add(String.valueOf(CalculateResponse.getRegional().getPrepaidFees()));
+                        Regional.add(String.valueOf(CalculateResponse.getRegional().getCSP()));
+                        Regional.add(String.valueOf(CalculateResponse.getRegional().getGstOnCSP()));
+                    }
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalCharges()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
-//                    Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalCommision()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstClaim()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTcs()));
-                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstPayable()));
-                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstClaim()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getProfit()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getProfitPercentage()));
 
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getCommissionFees()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getShippingFees()));
+                    if(paymentOption.equals("postpaid")){
+                        Metro.add(String.valueOf(CalculateResponse.getMetro().getCS()));
+                        Metro.add(String.valueOf(CalculateResponse.getMetro().getGstOnCS()));
+                    }else{
+                        Metro.add(String.valueOf(CalculateResponse.getMetro().getPrepaidFees()));
+                        Metro.add(String.valueOf(CalculateResponse.getMetro().getCSP()));
+                        Metro.add(String.valueOf(CalculateResponse.getMetro().getGstOnCSP()));
+                    }
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalCharges()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
-//                    Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalCommision()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstClaim()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstPayable()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalGstPayable()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTcs()));
-                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstPayable()));
-                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstClaim()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getProfit()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getProfitPercentage()));
 
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCommissionFees()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getShippingFees()));
+                    if(paymentOption.equals("postpaid")){
+                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCS()));
+                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstOnCS()));
+                    }else{
+                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getPrepaidFees()));
+                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCSP()));
+                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstOnCSP()));
+                    }
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalCharges()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getBankSettlement()));
-//                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalCommision()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstClaim()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstPayable()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalGstPayable()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTcs()));
-                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstPayable()));
-                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstClaim()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfit()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getProfitPercentage()));
 
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getCommissionFees()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getShippingFees()));
+                    if(paymentOption.equals("postpaid")){
+                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getCS()));
+                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstOnCS()));
+                    }else{
+                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getPrepaidFees()));
+                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getCSP()));
+                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstOnCSP()));
+                    }
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalCharges()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getBankSettlement()));
-//                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalCommision()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstClaim()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstPayable()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalGstPayable()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTcs()));
-                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstPayable()));
-                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstClaim()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getProfit()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getProfitPercentage()));
 
@@ -575,13 +625,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 .getInstance()
                 .getApi()
                 .savedclubFactory(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour,
-                        storageFee, other, discountPercent, discountAmount, weight, paymentOption, courierOption, Local.get(0), Local.get(1),
-                        Local.get(2), Local.get(3), Local.get(4), Local.get(5), Local.get(6), Local.get(7), Regional.get(0), Regional.get(1),
-                        Regional.get(2), Regional.get(3), Regional.get(4), Regional.get(5), Regional.get(6), Regional.get(7), Metro.get(0),
-                        Metro.get(1), Metro.get(2), Metro.get(3), Metro.get(4), Metro.get(5), Metro.get(6), Metro.get(7), RestOfIndia.get(0),
-                        RestOfIndia.get(1), RestOfIndia.get(2), RestOfIndia.get(3), RestOfIndia.get(4), RestOfIndia.get(5), RestOfIndia.get(6),
-                        RestOfIndia.get(7), Kerela.get(0), Kerela.get(1), Kerela.get(2), Kerela.get(3), Kerela.get(4), Kerela.get(5), Kerela.get(6),
-                        Kerela.get(7));
+                        storageFee, other, discountPercent, discountAmount, weight, paymentOption, courierOption);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override
