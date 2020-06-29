@@ -471,9 +471,10 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstOnCFCS()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalCharges()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getBankSettlement()));
+                    Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstClaim()));
+                    Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTotalGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getTcs()));
-                    Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfit()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getProfitPercentage()));
 
@@ -485,9 +486,10 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstOnCFCS()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalCharges()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getBankSettlement()));
+                    Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstClaim()));
+                    Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstPayable()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTotalGstPayable()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getTcs()));
-                    Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getGstPayable()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfit()));
                     Zonal.add(String.valueOf(CalculateResponse.getFlipkartZonal().getProfitPercentage()));
 
@@ -499,9 +501,10 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstOnCFCS()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalCharges()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getBankSettlement()));
+                    National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstClaim()));
+                    National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTotalGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getTcs()));
-                    National.add(String.valueOf(CalculateResponse.getFlipkartNational().getGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfit()));
                     National.add(String.valueOf(CalculateResponse.getFlipkartNational().getProfitPercentage()));
 

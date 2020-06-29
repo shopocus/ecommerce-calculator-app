@@ -524,9 +524,10 @@ public class SavedData extends AppCompatActivity {
         Local.add(String.valueOf(td.getFlipkartLocal().getGstOnCFCS()));
         Local.add(String.valueOf(td.getFlipkartLocal().getTotalCharges()));
         Local.add(String.valueOf(td.getFlipkartLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getFlipkartLocal().getGstPayable()));
         Local.add(String.valueOf(td.getFlipkartLocal().getTotalGstPayable()));
         Local.add(String.valueOf(td.getFlipkartLocal().getTcs()));
-        Local.add(String.valueOf(td.getFlipkartLocal().getGstPayable()));
         Local.add(String.valueOf(td.getFlipkartLocal().getProfit()));
         Local.add(String.valueOf(td.getFlipkartLocal().getProfitPercentage()));
 
@@ -538,9 +539,10 @@ public class SavedData extends AppCompatActivity {
         Zonal.add(String.valueOf(td.getFlipkartZonal().getGstOnCFCS()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getTotalCharges()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getBankSettlement()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getGstClaim()));
+        Zonal.add(String.valueOf(td.getFlipkartZonal().getGstPayable()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getTotalGstPayable()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getTcs()));
-        Zonal.add(String.valueOf(td.getFlipkartZonal().getGstPayable()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getProfit()));
         Zonal.add(String.valueOf(td.getFlipkartZonal().getProfitPercentage()));
 
@@ -552,9 +554,10 @@ public class SavedData extends AppCompatActivity {
         National.add(String.valueOf(td.getFlipkartNational().getGstOnCFCS()));
         National.add(String.valueOf(td.getFlipkartNational().getTotalCharges()));
         National.add(String.valueOf(td.getFlipkartNational().getBankSettlement()));
+        National.add(String.valueOf(td.getFlipkartNational().getGstClaim()));
+        National.add(String.valueOf(td.getFlipkartNational().getGstPayable()));
         National.add(String.valueOf(td.getFlipkartNational().getTotalGstPayable()));
         National.add(String.valueOf(td.getFlipkartNational().getTcs()));
-        National.add(String.valueOf(td.getFlipkartNational().getGstPayable()));
         National.add(String.valueOf(td.getFlipkartNational().getProfit()));
         National.add(String.valueOf(td.getFlipkartNational().getProfitPercentage()));
 
@@ -677,11 +680,11 @@ public class SavedData extends AppCompatActivity {
         Local.add(String.valueOf(td.getAmazonLocal().getRCS()));
         Local.add(String.valueOf(td.getAmazonLocal().getGstOnRCS()));
         Local.add(String.valueOf(td.getAmazonLocal().getTotalCharges()));
-        Local.add(String.valueOf(td.getAmazonLocal().getGstClaim()));
         Local.add(String.valueOf(td.getAmazonLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getAmazonLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getAmazonLocal().getGstPayable()));
         Local.add(String.valueOf(td.getAmazonLocal().getTotalGstPayable()));
         Local.add(String.valueOf(td.getAmazonLocal().getTcs()));
-        Local.add(String.valueOf(td.getAmazonLocal().getGstPayable()));
         Local.add(String.valueOf(td.getAmazonLocal().getProfit()));
         Local.add(String.valueOf(td.getAmazonLocal().getProfitPercentage()));
 
@@ -691,11 +694,11 @@ public class SavedData extends AppCompatActivity {
         Regional.add(String.valueOf(td.getAmazonRegional().getRCS()));
         Regional.add(String.valueOf(td.getAmazonRegional().getGstOnRCS()));
         Regional.add(String.valueOf(td.getAmazonRegional().getTotalCharges()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getGstClaim()));
         Regional.add(String.valueOf(td.getAmazonRegional().getBankSettlement()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getGstClaim()));
+        Regional.add(String.valueOf(td.getAmazonRegional().getGstPayable()));
         Regional.add(String.valueOf(td.getAmazonRegional().getTotalGstPayable()));
         Regional.add(String.valueOf(td.getAmazonRegional().getTcs()));
-        Regional.add(String.valueOf(td.getAmazonRegional().getGstPayable()));
         Regional.add(String.valueOf(td.getAmazonRegional().getProfit()));
         Regional.add(String.valueOf(td.getAmazonRegional().getProfitPercentage()));
 
@@ -705,11 +708,11 @@ public class SavedData extends AppCompatActivity {
         National.add(String.valueOf(td.getAmazonNational().getRCS()));
         National.add(String.valueOf(td.getAmazonNational().getGstOnRCS()));
         National.add(String.valueOf(td.getAmazonNational().getTotalCharges()));
-        National.add(String.valueOf(td.getAmazonNational().getGstClaim()));
         National.add(String.valueOf(td.getAmazonNational().getBankSettlement()));
+        National.add(String.valueOf(td.getAmazonNational().getGstClaim()));
+        National.add(String.valueOf(td.getAmazonNational().getGstPayable()));
         National.add(String.valueOf(td.getAmazonNational().getTotalGstPayable()));
         National.add(String.valueOf(td.getAmazonNational().getTcs()));
-        National.add(String.valueOf(td.getAmazonNational().getGstPayable()));
         National.add(String.valueOf(td.getAmazonNational().getProfit()));
         National.add(String.valueOf(td.getAmazonNational().getProfitPercentage()));
 
@@ -802,42 +805,45 @@ public class SavedData extends AppCompatActivity {
         Local.add(String.valueOf(td.getAmazonFbaLocal().getReferralFees()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getClosingFees()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getShippingFees()));
-        Local.add(String.valueOf(td.getAmazonFbaLocal().getRCF()));
-        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstOnRCF()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getFulfillmentFees()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getRCSF()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstOnRCSF()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getTotalCharges()));
-        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstClaim()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getBankSettlement()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstClaim()));
+        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstPayable()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getTotalGstPayable()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getTcs()));
-        Local.add(String.valueOf(td.getAmazonFbaLocal().getGstPayable()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getProfit()));
         Local.add(String.valueOf(td.getAmazonFbaLocal().getProfitPercentage()));
 
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getReferralFees()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getClosingFees()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getShippingFees()));
-        Regional.add(String.valueOf(td.getAmazonFbaRegional().getRCF()));
-        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstOnRCF()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getFulfillmentFees()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getRCSF()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstOnRCSF()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getTotalCharges()));
-        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstClaim()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getBankSettlement()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstClaim()));
+        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstPayable()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getTotalGstPayable()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getTcs()));
-        Regional.add(String.valueOf(td.getAmazonFbaRegional().getGstPayable()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getProfit()));
         Regional.add(String.valueOf(td.getAmazonFbaRegional().getProfitPercentage()));
 
         National.add(String.valueOf(td.getAmazonFbaNational().getReferralFees()));
         National.add(String.valueOf(td.getAmazonFbaNational().getClosingFees()));
         National.add(String.valueOf(td.getAmazonFbaNational().getShippingFees()));
-        National.add(String.valueOf(td.getAmazonFbaNational().getRCF()));
-        National.add(String.valueOf(td.getAmazonFbaNational().getGstOnRCF()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getFulfillmentFees()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getRCSF()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstOnRCSF()));
         National.add(String.valueOf(td.getAmazonFbaNational().getTotalCharges()));
-        National.add(String.valueOf(td.getAmazonFbaNational().getGstClaim()));
         National.add(String.valueOf(td.getAmazonFbaNational().getBankSettlement()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstClaim()));
+        National.add(String.valueOf(td.getAmazonFbaNational().getGstPayable()));
         National.add(String.valueOf(td.getAmazonFbaNational().getTotalGstPayable()));
         National.add(String.valueOf(td.getAmazonFbaNational().getTcs()));
-        National.add(String.valueOf(td.getAmazonFbaNational().getGstPayable()));
         National.add(String.valueOf(td.getAmazonFbaNational().getProfit()));
         National.add(String.valueOf(td.getAmazonFbaNational().getProfitPercentage()));
 
@@ -917,10 +923,10 @@ public class SavedData extends AppCompatActivity {
         output text18 = new output("GST On CSP", td.getGstOnCSP());
         output text19 = new output("Total Charges", td.getTotalCharges());
         output text20 = new output("Bank Settlement", td.getBankSettlement());
-        output text21 = new output("Total GST Payable", td.getTotalGstPayable());
-        output text22 = new output("GST Claim", td.getGstClaim());
-        output text23 = new output("TCS", td.getTcs());
-        output text24 = new output("GST Payable", td.getGstPayable());
+        output text21 = new output("GST Claim", td.getGstClaim());
+        output text22 = new output("GST Payable", td.getGstPayable());
+        output text23 = new output("Total GST Payable", td.getTotalGstPayable());
+        output text24 = new output("TCS", td.getTcs());
         output text25 = new output("Profit", td.getProfit());
         output text26 = new output("Profit Percentage", td.getProfitPercentage());
 

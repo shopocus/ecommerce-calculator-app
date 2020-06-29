@@ -9,14 +9,15 @@ public class FlipkartOutputModel {
     private double gstOnCFCS;
     private double totalCharges;
     private double bankSettlement;
+    private double gstClaim;
+    private double gstPayable;
     private double totalGstPayable;
     private double tcs;
-    private double gstPayable;
     private double profit;
     private double profitPercentage;
 
     public FlipkartOutputModel(double commissionFees, double fixedFees, double collectionFees, double shippingFees, double CFCS, double gstOnCFCS,
-                               double totalCharges, double bankSettlement, double totalGstPayable, double tcs, double gstPayable, double profit,
+                               double totalCharges, double bankSettlement, double gstClaim, double gstPayable, double totalGstPayable, double tcs, double profit,
                                double profitPercentage) {
         this.commissionFees = commissionFees;
         this.fixedFees = fixedFees;
@@ -26,6 +27,7 @@ public class FlipkartOutputModel {
         this.gstOnCFCS = gstOnCFCS;
         this.totalCharges = totalCharges;
         this.bankSettlement = bankSettlement;
+        this.gstClaim = gstClaim;
         this.profit = profit;
         this.totalGstPayable = totalGstPayable;
         this.tcs = tcs;
@@ -63,6 +65,10 @@ public class FlipkartOutputModel {
 
     public double getBankSettlement() {
         return bankSettlement;
+    }
+
+    public double getGstClaim() {
+        return gstClaim;
     }
 
     public double getProfit() {

@@ -567,11 +567,11 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getRCS()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstOnRCS()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalCharges()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstClaim()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getBankSettlement()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstClaim()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTcs()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstPayable()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfit()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfitPercentage()));
 
@@ -581,11 +581,11 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getRCS()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstOnRCS()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalCharges()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstClaim()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getBankSettlement()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstClaim()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTcs()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstPayable()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfit()));
                     Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfitPercentage()));
 
@@ -595,11 +595,11 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getRCS()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstOnRCS()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalCharges()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstClaim()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getBankSettlement()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstClaim()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getTcs()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
                     National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
 

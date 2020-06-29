@@ -484,10 +484,10 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                     output text5 = new output("GST On CSP", String.valueOf(CalculateResponse.getGstOnCSP()));
                     output text6 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()));
                     output text7 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()));
-                    output text8 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
-                    output text9 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
-                    output text10 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
-                    output text11 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
+                    output text8 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()));
+                    output text9 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()));
+                    output text10 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()));
+                    output text11 = new output("TCS", String.valueOf(CalculateResponse.getTcs()));
                     output text12 = new output("Profit", String.valueOf(CalculateResponse.getProfit()));
                     output text13 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()));
 
@@ -552,19 +552,6 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         String commission = this.commission.getText().toString().trim();
         String shipping = this.shipping.getText().toString().trim();
         String paymentGatewayCharge = this.paymentGatewayCharge.getText().toString().trim();
-        String commissionFees = String.valueOf(items[0]);
-        String shippingFees = String.valueOf(items[1]);
-        String paymentGatewayChargeFees = String.valueOf(items[2]);
-        String CSP = String.valueOf(items[3]);
-        String gstOnCSP = String.valueOf(items[4]);
-        String totalCharges = String.valueOf(items[5]);
-        String bankSettlement = String.valueOf(items[6]);
-        String totalGstPayable = String.valueOf(items[7]);
-        String gstClaim = String.valueOf(items[8]);
-        String tcs = String.valueOf(items[9]);
-        String gstPayable = String.valueOf(items[10]);
-        String profit = String.valueOf(items[11]);
-        String profitPercentage = String.valueOf(items[12]);
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
