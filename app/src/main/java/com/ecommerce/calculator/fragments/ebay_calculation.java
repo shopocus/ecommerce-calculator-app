@@ -570,9 +570,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                 .getInstance()
                 .getApi()
                 .savedEbay(title, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
-                        other, discountAmount, discountPercent, commission, shipping, paymentGatewayCharge, commissionFees, shippingFees,
-                        paymentGatewayChargeFees, CSP, gstOnCSP, totalCharges, bankSettlement, totalGstPayable, gstClaim, tcs, gstPayable, profit,
-                        profitPercentage);
+                        other, discountAmount, discountPercent, commission, shipping, paymentGatewayCharge);
 
         call.enqueue(new Callback<MessageResponse>() {
             @Override

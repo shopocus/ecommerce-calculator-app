@@ -299,20 +299,7 @@ public interface Api {
             @Field("discountPercent") String discountPercent,
             @Field("commission") String commission,
             @Field("shipping") String shipping,
-            @Field("paymentGatewayCharge") String paymentGatewayCharge,
-            @Field("commissionFees") String commissionFees,
-            @Field("shippingFees") String shippingFees,
-            @Field("paymentGatewayFees") String paymentGatewayFees,
-            @Field("CSP") String CSP,
-            @Field("gstOnCSP") String gstOnCSP,
-            @Field("totalCharges") String totalCharges,
-            @Field("bankSettlement") String bankSettlement,
-            @Field("totalGstPayable") String totalGstPayable,
-            @Field("gstClaim") String gstClaim,
-            @Field("tcs") String tcs,
-            @Field("gstPayable") String gstPayable,
-            @Field("profit") String profit,
-            @Field("profitPercentage") String profitPercentage
+            @Field("paymentGatewayCharge") String paymentGatewayCharge
     );
 
     @FormUrlEncoded
