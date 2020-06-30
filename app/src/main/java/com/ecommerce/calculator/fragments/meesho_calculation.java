@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.activities.SavedData;
@@ -398,14 +399,14 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         double number9 = Double.parseDouble(discountByPrice.getText().toString());
         double number10 = Double.parseDouble(discountByPercentage.getText().toString());
 
-        Call<MeeshoCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
 
-        call.enqueue(new Callback<MeeshoCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(@NotNull Call<MeeshoCalculationResponse> call, @NotNull Response<MeeshoCalculationResponse> response) {
+            public void onResponse(@NotNull Call<CommonOutputModel> call, @NotNull Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    MeeshoCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
@@ -475,7 +476,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(Call<MeeshoCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }

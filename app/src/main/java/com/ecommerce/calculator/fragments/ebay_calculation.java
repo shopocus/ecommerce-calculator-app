@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
@@ -449,37 +450,37 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
         double number12 = Double.parseDouble(shipping.getText().toString());
         double number13 = Double.parseDouble(paymentGatewayCharge.getText().toString());
 
-        Call<EbayCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().ebayCalculation(number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
                         number11, number12, number13);
 
-        call.enqueue(new Callback<EbayCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(Call<EbayCalculationResponse> call, Response<EbayCalculationResponse> response) {
+            public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    EbayCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     itemList.setVisibility(View.VISIBLE);
 
-                    items[0] = CalculateResponse.getCommissionFees();
-                    items[1] = CalculateResponse.getShippingFees();
-                    items[2] = CalculateResponse.getPaymentGatewayCharge();
-                    items[3] = CalculateResponse.getCSP();
-                    items[4] = CalculateResponse.getGstOnCSP();
-                    items[5] = CalculateResponse.getTotalCharges();
-                    items[6] = CalculateResponse.getBankSettlement();
-                    items[7] = CalculateResponse.getTotalGstPayable();
-                    items[8] = CalculateResponse.getGstClaim();
-                    items[9] = CalculateResponse.getTcs();
-                    items[10] = CalculateResponse.getGstPayable();
-                    items[11] = CalculateResponse.getProfit();
-                    items[12] = CalculateResponse.getProfitPercentage();
+//                    items[0] = CalculateResponse.getCommissionFees();
+//                    items[1] = CalculateResponse.getShippingFees();
+//                    items[2] = CalculateResponse.getPaymentGatewayCharge();
+//                    items[3] = CalculateResponse.getCSP();
+//                    items[4] = CalculateResponse.getGstOnCSP();
+//                    items[5] = CalculateResponse.getTotalCharges();
+//                    items[6] = CalculateResponse.getBankSettlement();
+//                    items[7] = CalculateResponse.getTotalGstPayable();
+//                    items[8] = CalculateResponse.getGstClaim();
+//                    items[9] = CalculateResponse.getTcs();
+//                    items[10] = CalculateResponse.getGstPayable();
+//                    items[11] = CalculateResponse.getProfit();
+//                    items[12] = CalculateResponse.getProfitPercentage();
 
                     output text1 = new output("Commission Fees", String.valueOf(CalculateResponse.getCommissionFees()));
                     output text2 = new output("Shipping Fees", String.valueOf(CalculateResponse.getShippingFees()));
-                    output text3 = new output("Payment Gateway Charge", String.valueOf(CalculateResponse.getPaymentGatewayCharge()));
+                    output text3 = new output("Payment Gateway Fees", String.valueOf(CalculateResponse.getPaymentGatewayFees()));
                     output text4 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(CalculateResponse.getCSP()));
                     output text5 = new output("GST On CSP", String.valueOf(CalculateResponse.getGstOnCSP()));
                     output text6 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()));
@@ -530,7 +531,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
             }
 
             @Override
-            public void onFailure(Call<EbayCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }

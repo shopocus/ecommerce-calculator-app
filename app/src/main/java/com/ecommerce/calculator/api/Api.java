@@ -3,6 +3,7 @@ package com.ecommerce.calculator.api;
 import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.EbayCalculationResponse;
 import com.ecommerce.calculator.models.FlipkartCalculationResponse;
@@ -42,7 +43,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("meesho/app/calculate")
-    Call<MeeshoCalculationResponse> calculate(
+    Call<CommonOutputModel> calculate(
             @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
@@ -78,7 +79,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("clubFactory/app/calculate")
-    Call<ClubFactoryCalculationResponse> clubFactoyrCalculation(
+    Call<CommonOutputModel> clubFactoyrCalculation(
             @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
@@ -120,7 +121,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("flipkart/app/calculate")
-    Call<FlipkartCalculationResponse> flipkartCalculation(
+    Call<CommonOutputModel> flipkartCalculation(
             @Field("category") String category,
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
@@ -168,7 +169,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("amazon/app/calculate")
-    Call<AmazonCalculationResponse> amazonCalculation(
+    Call<CommonOutputModel> amazonCalculation(
             @Field("category") String category,
             @Field("subcategory") String subcategory,
             @Field("sellingPrice") double sellingPrice,
@@ -230,7 +231,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("amazon/app/fba/calculate")
-    Call<AmazonFbaCalculationResponse> amazonFbaCalculation(
+    Call<CommonOutputModel> amazonFbaCalculation(
             @Field("category") String category,
             @Field("subcategory") String subcategory,
             @Field("sellingPrice") double sellingPrice,
@@ -267,7 +268,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("ebay/app/calculate")
-    Call<EbayCalculationResponse> ebayCalculation(
+    Call<CommonOutputModel> ebayCalculation(
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
             @Field("productPriceWithoutGst") double productPriceWithoutGst,

@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
@@ -546,16 +547,16 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
         double number9 = Double.parseDouble(discountByPrice.getText().toString());
         double number10 = Double.parseDouble(discountByPercentage.getText().toString());
 
-        Call<AmazonCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().amazonCalculation(category, subCategory, number1, number3, number2, number4, number5, number6, number7,
                         number8, number10, number9, number11, number12, number13, number14, shipmentTypeOption, easyShipmentTypeOption,
                         number15, number16, number17);
 
-        call.enqueue(new Callback<AmazonCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(Call<AmazonCalculationResponse> call, Response<AmazonCalculationResponse> response) {
+            public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    AmazonCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
@@ -656,7 +657,7 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
             }
 
             @Override
-            public void onFailure(Call<AmazonCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }

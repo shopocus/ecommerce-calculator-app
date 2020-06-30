@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.SectionPagerAdapter;
@@ -14,6 +15,7 @@ import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -435,19 +437,25 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         double number10 = Double.parseDouble(discountByPercentage.getText().toString());
         double number11 = Double.parseDouble(weight.getText().toString());
 
-        Call<ClubFactoryCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().clubFactoyrCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
                         number11, paymentOption, courierOption);
 
-        call.enqueue(new Callback<ClubFactoryCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(Call<ClubFactoryCalculationResponse> call, Response<ClubFactoryCalculationResponse> response) {
+            public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    ClubFactoryCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
+
+                    Local.clear();
+                    Regional.clear();
+                    Metro.clear();
+                    RestOfIndia.clear();
+                    Kerela.clear();
 
                     Local.add(String.valueOf(CalculateResponse.getLocal().getCommissionFees()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getShippingFees()));
@@ -599,7 +607,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
             }
 
             @Override
-            public void onFailure(Call<ClubFactoryCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }

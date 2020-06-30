@@ -1,7 +1,7 @@
 package com.ecommerce.calculator.models;
 
 public class MeeshoCalculationResponse {
-    private double commissionFees;
+    private String commissionFees;
     private double shippingFees;
     private double prepaidFees;
     private double CS;
@@ -17,7 +17,7 @@ public class MeeshoCalculationResponse {
     private double profit;
     private double profitPercentage;
 
-    public MeeshoCalculationResponse(double commissionFees, double shippingFees, double prepaidFees, double CS, double gstOnCS, double CSP, double gstOnCSP, double totalCharges,
+    public MeeshoCalculationResponse(String commissionFees, double shippingFees, double prepaidFees, double CS, double gstOnCS, double CSP, double gstOnCSP, double totalCharges,
                                      double bankSettlement, double gstClaim, double gstPayable, double totalGstPayable, double tcs, double profit, double profitPercentage) {
         this.commissionFees = commissionFees;
         this.shippingFees = shippingFees;
@@ -36,7 +36,7 @@ public class MeeshoCalculationResponse {
         this.profitPercentage = profitPercentage;
     }
 
-    public double getCommissionFees() {
+    public String getCommissionFees() {
         return commissionFees;
     }
 

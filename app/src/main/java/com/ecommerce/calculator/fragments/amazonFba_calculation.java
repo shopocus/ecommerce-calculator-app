@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
@@ -437,19 +438,23 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
         double number10 = Double.parseDouble(breadth.getText().toString());
         double number11 = Double.parseDouble(height.getText().toString());
 
-        Call<AmazonFbaCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().amazonFbaCalculation(category, subCategory, number1, number3, number2, number4, number5, number7, number6,
                         number8, number9, number10, number11);
 
-        call.enqueue(new Callback<AmazonFbaCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(Call<AmazonFbaCalculationResponse> call, Response<AmazonFbaCalculationResponse> response) {
+            public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    AmazonFbaCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
+
+                    Local.clear();
+                    Regional.clear();
+                    National.clear();
 
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getReferralFees()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getClosingFees()));
@@ -550,7 +555,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
             }
 
             @Override
-            public void onFailure(Call<AmazonFbaCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }

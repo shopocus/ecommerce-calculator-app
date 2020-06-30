@@ -29,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
@@ -144,7 +145,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
             }
         });
 
-        customerType = view.findViewById(R.id.easyShipmentType);
+        customerType = view.findViewById(R.id.customerType);
         customerType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -449,19 +450,23 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
         double number13 = Double.parseDouble(breadth.getText().toString());
         double number14 = Double.parseDouble(height.getText().toString());
 
-        Call<FlipkartCalculationResponse> call = RetrofitClient
+        Call<CommonOutputModel> call = RetrofitClient
                 .getInstance().getApi().flipkartCalculation(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9,
                         number11, number12, number13, number14, paymentOption, customerTypeOption);
 
-        call.enqueue(new Callback<FlipkartCalculationResponse>() {
+        call.enqueue(new Callback<CommonOutputModel>() {
             @Override
-            public void onResponse(Call<FlipkartCalculationResponse> call, Response<FlipkartCalculationResponse> response) {
+            public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    FlipkartCalculationResponse CalculateResponse = response.body();
+                    CommonOutputModel CalculateResponse = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
+
+                    Local.clear();
+                    Zonal.clear();
+                    National.clear();
 
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getCommissionFees()));
                     Local.add(String.valueOf(CalculateResponse.getFlipkartLocal().getFixedFees()));
@@ -559,7 +564,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
             }
 
             @Override
-            public void onFailure(Call<FlipkartCalculationResponse> call, Throwable t) {
+            public void onFailure(Call<CommonOutputModel> call, Throwable t) {
                 ButtonFinished();
                 Toast.makeText(getContext(), "Please Connect to the Internet", Toast.LENGTH_SHORT).show();
             }
