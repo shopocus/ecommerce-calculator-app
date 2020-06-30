@@ -1,11 +1,6 @@
 package com.ecommerce.calculator.models;
 
-import com.ecommerce.calculator.utils.AmazonOutputModel;
-import com.ecommerce.calculator.utils.FlipkartOutputModel;
-
 public class CommonOutputModel {
-    private String CS;
-    private String gstOnCS;
     private String bankSettlement;
     private String profit;
     private String totalGstPayable;
@@ -31,11 +26,11 @@ public class CommonOutputModel {
     private String gstOnRCS;
     private String gstOnCSP;
     private String totalCharges;
-    private CommonOutputModel local;
-    private CommonOutputModel regional;
-    private CommonOutputModel metro;
-    private CommonOutputModel restOfIndia;
-    private CommonOutputModel kerela;
+    private CommonOutputModel Local;
+    private CommonOutputModel Regional;
+    private CommonOutputModel Metro;
+    private CommonOutputModel RestOfIndia;
+    private CommonOutputModel Kerela;
     private CommonOutputModel flipkartLocal;
     private CommonOutputModel flipkartZonal;
     private CommonOutputModel flipkartNational;
@@ -46,15 +41,13 @@ public class CommonOutputModel {
     private CommonOutputModel amazonFbaRegional;
     private CommonOutputModel amazonFbaNational;
 
-    public CommonOutputModel(String CS, String gstOnCS, String commissionFees, String shippingFees, String paymentGatewayFees, String prepaidFees, String CSP,
+    public CommonOutputModel(String commissionFees, String shippingFees, String paymentGatewayFees, String prepaidFees, String CSP,
                              String gstOnCSP, String fulfillmentFees, String RCSF, String gstOnRCSF, String fixedFees, String collectionFees, String CFCS, String gstOnCFCS,
                              String totalCharges, String bankSettlement, String profit, String totalGstPayable, String tcs, String referralFees, String closingFees,
-                             String RCS, String gstOnRCS, String gstPayable, String gstClaim, String profitPercentage, CommonOutputModel local, CommonOutputModel regional,
-                             CommonOutputModel metro, CommonOutputModel restOfIndia, CommonOutputModel kerela, CommonOutputModel flipkartLocal, CommonOutputModel flipkartZonal,
+                             String RCS, String gstOnRCS, String gstPayable, String gstClaim, String profitPercentage, CommonOutputModel Local, CommonOutputModel Regional,
+                             CommonOutputModel Metro, CommonOutputModel RestOfIndia, CommonOutputModel Kerela, CommonOutputModel flipkartLocal, CommonOutputModel flipkartZonal,
                              CommonOutputModel flipkartNational, CommonOutputModel amazonLocal, CommonOutputModel amazonRegional, CommonOutputModel amazonNational,
                              CommonOutputModel amazonFbaLocal, CommonOutputModel amazonFbaRegional, CommonOutputModel amazonFbaNational) {
-        this.CS = CS;
-        this.gstOnCS = gstOnCS;
         this.bankSettlement = bankSettlement;
         this.profit = profit;
         this.totalGstPayable = totalGstPayable;
@@ -80,11 +73,11 @@ public class CommonOutputModel {
         this.gstOnRCS = gstOnRCS;
         this.gstOnCSP = gstOnCSP;
         this.totalCharges = totalCharges;
-        this.local = local;
-        this.regional = regional;
-        this.metro = metro;
-        this.restOfIndia = restOfIndia;
-        this.kerela = kerela;
+        this.Local = Local;
+        this.Regional = Regional;
+        this.Metro = Metro;
+        this.RestOfIndia = RestOfIndia;
+        this.Kerela = Kerela;
         this.flipkartLocal = flipkartLocal;
         this.flipkartZonal = flipkartZonal;
         this.flipkartNational = flipkartNational;
@@ -94,14 +87,6 @@ public class CommonOutputModel {
         this.amazonFbaLocal = amazonFbaLocal;
         this.amazonFbaRegional = amazonFbaRegional;
         this.amazonFbaNational = amazonFbaNational;
-    }
-
-    public String getCS() {
-        return CS;
-    }
-
-    public String getGstOnCS() {
-        return gstOnCS;
     }
 
     public String getBankSettlement() {
@@ -205,23 +190,23 @@ public class CommonOutputModel {
     }
 
     public CommonOutputModel getLocal() {
-        return local;
+        return Local;
     }
 
     public CommonOutputModel getRegional() {
-        return regional;
+        return Regional;
     }
 
     public CommonOutputModel getMetro() {
-        return metro;
+        return Metro;
     }
 
     public CommonOutputModel getRestOfIndia() {
-        return restOfIndia;
+        return RestOfIndia;
     }
 
     public CommonOutputModel getKerela() {
-        return kerela;
+        return Kerela;
     }
 
     public CommonOutputModel getFlipkartLocal() {

@@ -552,6 +552,10 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                         number8, number10, number9, number11, number12, number13, number14, shipmentTypeOption, easyShipmentTypeOption,
                         number15, number16, number17);
 
+        double finalNumber14 = number14;
+        double finalNumber13 = number13;
+        double finalNumber12 = number12;
+        double finalNumber11 = number11;
         call.enqueue(new Callback<CommonOutputModel>() {
             @Override
             public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
@@ -561,6 +565,10 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
                     result_card.setVisibility(View.VISIBLE);
                     tabLayout.removeAllTabs();
+
+                    Local.clear();
+                    Regional.clear();
+                    National.clear();
 
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getReferralFees()));
                     Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getClosingFees()));
@@ -611,14 +619,13 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
 
                     tabLayout.addTab(tabLayout.newTab().setText("Local"));
                     tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-                    if (Double.parseDouble(weight.getText().toString()) <= 12000 && Double.parseDouble(length.getText().toString()) *
-                            Double.parseDouble(breadth.getText().toString()) * Double.parseDouble(height.getText().toString()) / 5 <= 12000) {
+                    if (finalNumber11 <= 12000 && finalNumber12 * finalNumber13 * finalNumber14 / 5 <= 12000) {
                         tabLayout.addTab(tabLayout.newTab().setText("National"));
                     }
                     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                     tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-                    AmazonSectionAdapter flipkartSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
-                    viewPager.setAdapter(flipkartSectionAdapter);
+                    AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                    viewPager.setAdapter(amazonSectionAdapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
                     tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                         @Override

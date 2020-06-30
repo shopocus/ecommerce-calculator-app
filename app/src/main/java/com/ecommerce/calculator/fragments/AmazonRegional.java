@@ -45,11 +45,11 @@ public class AmazonRegional extends Fragment {
             text5 = new output("GST ON RCF", bundle_regional.get(5));
         }
         output text6 = new output("Total Charges", bundle_regional.get(5));
-        output text7 = new output("GST Claim", bundle_regional.get(6));
-        output text8 = new output("Bank Settlement", bundle_regional.get(7));
-        output text9 = new output("Total GST Payable", bundle_regional.get(8));
-        output text10 = new output("TCS", bundle_regional.get(9));
-        output text11 = new output("GST Payable", bundle_regional.get(10));
+        output text7 = new output("Bank Settlement", bundle_regional.get(6));
+        output text8 = new output("GST Claim", bundle_regional.get(7));
+        output text9 = new output("GST Payable", bundle_regional.get(8));
+        output text10 = new output("Total GST Payable", bundle_regional.get(9));
+        output text11 = new output("TCS", bundle_regional.get(10));
         output text12 = new output("Profit", bundle_regional.get(11));
         output text13 = new output("Profit Percentage", bundle_regional.get(12));
 

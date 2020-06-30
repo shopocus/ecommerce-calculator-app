@@ -456,50 +456,50 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     Regional.clear();
                     National.clear();
 
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getReferralFees()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getClosingFees()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getShippingFees()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getFulfillmentFees()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getRCSF()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstOnRCSF()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalCharges()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getBankSettlement()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstClaim()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getGstPayable()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTotalGstPayable()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getTcs()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfit()));
-                    Local.add(String.valueOf(CalculateResponse.getAmazonLocal().getProfitPercentage()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getReferralFees()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getClosingFees()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getShippingFees()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getFulfillmentFees()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getRCSF()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getGstOnRCSF()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getTotalCharges()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getBankSettlement()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getGstClaim()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getGstPayable()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getTotalGstPayable()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getTcs()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getProfit()));
+                    Local.add(String.valueOf(CalculateResponse.getAmazonFbaLocal().getProfitPercentage()));
 
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getReferralFees()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getClosingFees()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getShippingFees()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getFulfillmentFees()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getRCSF()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstOnRCSF()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalCharges()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getBankSettlement()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstClaim()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getGstPayable()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTotalGstPayable()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getTcs()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfit()));
-                    Regional.add(String.valueOf(CalculateResponse.getAmazonRegional().getProfitPercentage()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getReferralFees()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getClosingFees()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getShippingFees()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getFulfillmentFees()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getRCSF()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getGstOnRCSF()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getTotalCharges()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getBankSettlement()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getGstClaim()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getGstPayable()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getTotalGstPayable()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getTcs()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getProfit()));
+                    Regional.add(String.valueOf(CalculateResponse.getAmazonFbaRegional().getProfitPercentage()));
 
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getReferralFees()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getClosingFees()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getShippingFees()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getFulfillmentFees()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getRCSF()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstOnRCSF()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalCharges()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getBankSettlement()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstClaim()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getGstPayable()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getTotalGstPayable()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getTcs()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfit()));
-                    National.add(String.valueOf(CalculateResponse.getAmazonNational().getProfitPercentage()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getReferralFees()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getClosingFees()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getShippingFees()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getFulfillmentFees()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getRCSF()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getGstOnRCSF()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getTotalCharges()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getBankSettlement()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getGstClaim()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getGstPayable()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getTotalGstPayable()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getTcs()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getProfit()));
+                    National.add(String.valueOf(CalculateResponse.getAmazonFbaNational().getProfitPercentage()));
 
                     Bundle bundle = new Bundle();
                     bundle.putStringArrayList("Local", Local);
@@ -508,8 +508,7 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
 
                     tabLayout.addTab(tabLayout.newTab().setText("Local"));
                     tabLayout.addTab(tabLayout.newTab().setText("Regional"));
-                    if (Double.parseDouble(weight.getText().toString()) <= 30000 || Double.parseDouble(length.getText().toString()) *
-                            Double.parseDouble(breadth.getText().toString()) * Double.parseDouble(height.getText().toString()) / 5 <= 30000) {
+                    if (number8 <= 30000 && number9 * number10 * number11 / 5 <= 30000) {
                         tabLayout.addTab(tabLayout.newTab().setText("National"));
                     }
                     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

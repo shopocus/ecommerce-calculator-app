@@ -459,14 +459,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Local.add(String.valueOf(CalculateResponse.getLocal().getCommissionFees()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getShippingFees()));
-                    if(paymentOption.equals("postpaid")){
-                        Local.add(String.valueOf(CalculateResponse.getLocal().getCS()));
-                        Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCS()));
-                    }else{
+                    if(paymentOption.equals("prepaid")){
                         Local.add(String.valueOf(CalculateResponse.getLocal().getPrepaidFees()));
-                        Local.add(String.valueOf(CalculateResponse.getLocal().getCSP()));
-                        Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCSP()));
                     }
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getCSP()));
+                    Local.add(String.valueOf(CalculateResponse.getLocal().getGstOnCSP()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getTotalCharges()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getBankSettlement()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getGstClaim()));
@@ -478,14 +475,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getCommissionFees()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getShippingFees()));
-                    if(paymentOption.equals("postpaid")){
-                        Regional.add(String.valueOf(CalculateResponse.getRegional().getCS()));
-                        Regional.add(String.valueOf(CalculateResponse.getRegional().getGstOnCS()));
-                    }else{
+                    if(paymentOption.equals("prepaid")){
                         Regional.add(String.valueOf(CalculateResponse.getRegional().getPrepaidFees()));
-                        Regional.add(String.valueOf(CalculateResponse.getRegional().getCSP()));
-                        Regional.add(String.valueOf(CalculateResponse.getRegional().getGstOnCSP()));
                     }
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getCSP()));
+                    Regional.add(String.valueOf(CalculateResponse.getRegional().getGstOnCSP()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getTotalCharges()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getBankSettlement()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getGstClaim()));
@@ -497,14 +491,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getCommissionFees()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getShippingFees()));
-                    if(paymentOption.equals("postpaid")){
-                        Metro.add(String.valueOf(CalculateResponse.getMetro().getCS()));
-                        Metro.add(String.valueOf(CalculateResponse.getMetro().getGstOnCS()));
-                    }else{
+                    if(paymentOption.equals("prepaid")){
                         Metro.add(String.valueOf(CalculateResponse.getMetro().getPrepaidFees()));
-                        Metro.add(String.valueOf(CalculateResponse.getMetro().getCSP()));
-                        Metro.add(String.valueOf(CalculateResponse.getMetro().getGstOnCSP()));
                     }
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getCSP()));
+                    Metro.add(String.valueOf(CalculateResponse.getMetro().getGstOnCSP()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getTotalCharges()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getBankSettlement()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getGstClaim()));
@@ -516,14 +507,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCommissionFees()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getShippingFees()));
-                    if(paymentOption.equals("postpaid")){
-                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCS()));
-                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstOnCS()));
-                    }else{
+                    if(paymentOption.equals("prepaid")){
                         RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getPrepaidFees()));
-                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCSP()));
-                        RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstOnCSP()));
                     }
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCSP()));
+                    RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstOnCSP()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getTotalCharges()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getBankSettlement()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getGstClaim()));
@@ -535,14 +523,11 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getCommissionFees()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getShippingFees()));
-                    if(paymentOption.equals("postpaid")){
-                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getCS()));
-                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstOnCS()));
-                    }else{
+                    if(paymentOption.equals("prepaid")){
                         Kerela.add(String.valueOf(CalculateResponse.getKerela().getPrepaidFees()));
-                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getCSP()));
-                        Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstOnCSP()));
                     }
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getCSP()));
+                    Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstOnCSP()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getTotalCharges()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getBankSettlement()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getGstClaim()));
