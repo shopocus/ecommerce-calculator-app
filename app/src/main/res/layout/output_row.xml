@@ -19,17 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
-        app:layout_constraintEnd_toEndOf="parent"
         android:maxWidth="205dp"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
-
-<!--    <TextView-->
-<!--        android:id="@+id/unit"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text=" ₹"-->
-<!--        android:gravity="right"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

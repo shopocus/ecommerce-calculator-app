@@ -10,7 +10,7 @@ import android.text.InputType;
 import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
-import com.ecommerce.calculator.adapter.SectionPagerAdapter;
+import com.ecommerce.calculator.adapter.ClubFactoryPagerAdapter;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 
@@ -457,7 +457,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Local.add(String.valueOf(CalculateResponse.getLocal().getCommissionFees()));
                     Local.add(String.valueOf(CalculateResponse.getLocal().getShippingFees()));
-                    if(paymentOption.equals("prepaid")){
+                    if (paymentOption.equals("prepaid")) {
                         Local.add(String.valueOf(CalculateResponse.getLocal().getPrepaidFees()));
                     }
                     Local.add(String.valueOf(CalculateResponse.getLocal().getCSP()));
@@ -473,7 +473,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getCommissionFees()));
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getShippingFees()));
-                    if(paymentOption.equals("prepaid")){
+                    if (paymentOption.equals("prepaid")) {
                         Regional.add(String.valueOf(CalculateResponse.getRegional().getPrepaidFees()));
                     }
                     Regional.add(String.valueOf(CalculateResponse.getRegional().getCSP()));
@@ -489,7 +489,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getCommissionFees()));
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getShippingFees()));
-                    if(paymentOption.equals("prepaid")){
+                    if (paymentOption.equals("prepaid")) {
                         Metro.add(String.valueOf(CalculateResponse.getMetro().getPrepaidFees()));
                     }
                     Metro.add(String.valueOf(CalculateResponse.getMetro().getCSP()));
@@ -505,7 +505,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCommissionFees()));
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getShippingFees()));
-                    if(paymentOption.equals("prepaid")){
+                    if (paymentOption.equals("prepaid")) {
                         RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getPrepaidFees()));
                     }
                     RestOfIndia.add(String.valueOf(CalculateResponse.getRestOfIndia().getCSP()));
@@ -521,7 +521,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
 
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getCommissionFees()));
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getShippingFees()));
-                    if(paymentOption.equals("prepaid")){
+                    if (paymentOption.equals("prepaid")) {
                         Kerela.add(String.valueOf(CalculateResponse.getKerela().getPrepaidFees()));
                     }
                     Kerela.add(String.valueOf(CalculateResponse.getKerela().getCSP()));
@@ -549,7 +549,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
                     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                     tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-                    SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                    ClubFactoryPagerAdapter sectionPagerAdapter = new ClubFactoryPagerAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
                     viewPager.setAdapter(sectionPagerAdapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
                     tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -671,8 +671,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                 "OUTPUT" + "\n\n" +
                 "Local" + "\n" +
                 "Commission Fees: " + " ₹" + Local.get(0) + "\n" +
-                "Shipping Fees: " + " ₹" + Local.get(1) + "\n" ;
-        if(paymentOption.equals("postpaid")){
+                "Shipping Fees: " + " ₹" + Local.get(1) + "\n";
+        if (paymentOption.equals("postpaid")) {
             content += "Commission Fees + Shipping Fees: " + " ₹" + Local.get(2) + "\n" +
                     "GST On Commission Fees + Shipping Fees: " + " ₹" + Local.get(3) + "\n" +
                     "Total Charges: " + " ₹" + Local.get(4) + "\n" +
@@ -689,7 +689,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     "Commission Fees + Shipping Fees: " + " ₹" + Regional.get(2) + "\n" +
                     "GST On Commission Fees + Shipping Fees: " + " ₹" + Regional.get(3) + "\n" +
                     "Total Charges: " + " ₹" + Regional.get(4) + "\n" +
-                    "Bank Settlement: "+ " ₹"  + Regional.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + Regional.get(5) + "\n" +
                     "GST Claim: " + " ₹" + Regional.get(6) + "\n" +
                     "GST Payable: " + " ₹" + Regional.get(7) + "\n" +
                     "Total GST Payable: " + " ₹" + Regional.get(8) + "\n" +
@@ -735,7 +735,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                     "Tcs: " + " ₹" + Kerela.get(9) + "\n" +
                     "Profit: " + " ₹" + Kerela.get(10) + "\n" +
                     "Profit Percentage: " + Kerela.get(11) + " %" + "\n";
-        }else {
+        } else {
             content += "Prepaid Fees: " + " ₹" + Local.get(2) + "\n" +
                     "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Local.get(3) + "\n" +
                     "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Local.get(4) + "\n" +

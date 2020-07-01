@@ -26,7 +26,7 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
-import com.ecommerce.calculator.adapter.SectionPagerAdapter;
+import com.ecommerce.calculator.adapter.ClubFactoryPagerAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.TitleDataResponse;
 import com.ecommerce.calculator.models.output;
@@ -231,22 +231,6 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text22);
         outputList.add(text23);
 
-//        ArrayList<String> title = new ArrayList<>();
-//        title.add("Category");
-//        title.add("Selling Price");
-//        title.add("Purchase Price");
-//        title.add("GST on Product");
-//        title.add("Weight");
-//        title.add("Courier");
-//        title.add("Payment Mode");
-//        title.add("Inward Shipping");
-//        title.add("Packaging Expenses");
-//        title.add("Labour");
-//        title.add("Storage Fees");
-//        title.add("Other Charges");
-//        title.add("Discount on Price");
-//        title.add("Discount Percentage");
-
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getInput().getCategory());
         input.add(td.getInput().getSellingPrice());
@@ -323,10 +307,10 @@ public class SavedData extends AppCompatActivity {
 
         Local.add(String.valueOf(td.getOutput().getLocal().getCommissionFees()));
         Local.add(String.valueOf(td.getOutput().getLocal().getShippingFees()));
-        if(td.getInput().getPaymentMode().equals("postpaid")){
+        if (td.getInput().getPaymentMode().equals("postpaid")) {
             Local.add(String.valueOf(td.getOutput().getLocal().getCS()));
             Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCS()));
-        }else{
+        } else {
             Local.add(String.valueOf(td.getOutput().getLocal().getPrepaidFees()));
             Local.add(String.valueOf(td.getOutput().getLocal().getCSP()));
             Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCSP()));
@@ -342,10 +326,10 @@ public class SavedData extends AppCompatActivity {
 
         Regional.add(String.valueOf(td.getOutput().getRegional().getCommissionFees()));
         Regional.add(String.valueOf(td.getOutput().getRegional().getShippingFees()));
-        if(td.getInput().getPaymentMode().equals("postpaid")){
+        if (td.getInput().getPaymentMode().equals("postpaid")) {
             Regional.add(String.valueOf(td.getOutput().getRegional().getCS()));
             Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCS()));
-        }else{
+        } else {
             Regional.add(String.valueOf(td.getOutput().getRegional().getPrepaidFees()));
             Regional.add(String.valueOf(td.getOutput().getRegional().getCSP()));
             Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCSP()));
@@ -361,10 +345,10 @@ public class SavedData extends AppCompatActivity {
 
         Metro.add(String.valueOf(td.getOutput().getMetro().getCommissionFees()));
         Metro.add(String.valueOf(td.getOutput().getMetro().getShippingFees()));
-        if(td.getInput().getPaymentMode().equals("postpaid")){
+        if (td.getInput().getPaymentMode().equals("postpaid")) {
             Metro.add(String.valueOf(td.getOutput().getMetro().getCS()));
             Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCS()));
-        }else{
+        } else {
             Metro.add(String.valueOf(td.getOutput().getMetro().getPrepaidFees()));
             Metro.add(String.valueOf(td.getOutput().getMetro().getCSP()));
             Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCSP()));
@@ -380,10 +364,10 @@ public class SavedData extends AppCompatActivity {
 
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCommissionFees()));
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getShippingFees()));
-        if(td.getInput().getPaymentMode().equals("postpaid")){
+        if (td.getInput().getPaymentMode().equals("postpaid")) {
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCS()));
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCS()));
-        }else{
+        } else {
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getPrepaidFees()));
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCSP()));
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCSP()));
@@ -399,10 +383,10 @@ public class SavedData extends AppCompatActivity {
 
         Kerela.add(String.valueOf(td.getOutput().getKerela().getCommissionFees()));
         Kerela.add(String.valueOf(td.getOutput().getKerela().getShippingFees()));
-        if(td.getInput().getPaymentMode().equals("postpaid")){
+        if (td.getInput().getPaymentMode().equals("postpaid")) {
             Kerela.add(String.valueOf(td.getOutput().getKerela().getCS()));
             Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCS()));
-        }else{
+        } else {
             Kerela.add(String.valueOf(td.getOutput().getKerela().getPrepaidFees()));
             Kerela.add(String.valueOf(td.getOutput().getKerela().getCSP()));
             Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCSP()));
@@ -431,7 +415,7 @@ public class SavedData extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Kerala"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-        SectionPagerAdapter sectionPagerAdapter = new SectionPagerAdapter(SavedData.this, getSupportFragmentManager(),
+        ClubFactoryPagerAdapter sectionPagerAdapter = new ClubFactoryPagerAdapter(SavedData.this, getSupportFragmentManager(),
                 tabLayout.getTabCount(), bundle);
         viewPager.setAdapter(sectionPagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

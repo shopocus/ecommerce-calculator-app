@@ -14,5 +14,7 @@ public class TitleDataResponse {
         return input;
     }
 
-    public CommonOutputModel getOutput() { return output; }
+    public CommonOutputModel getOutput() {
+        return output;
+    }
 }

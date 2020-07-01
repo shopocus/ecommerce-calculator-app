@@ -474,7 +474,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                     output text9 = new output("GST Payable", String.valueOf(commonOutputModel.getGstPayable()) + " ₹");
                     output text10 = new output("Total GST Payable", String.valueOf(commonOutputModel.getTotalGstPayable()) + " ₹");
                     output text11 = new output("TCS", String.valueOf(commonOutputModel.getTcs()) + " ₹");
-                    output text12 = new output("Profit", String.valueOf(commonOutputModel.getProfit())+ " ₹");
+                    output text12 = new output("Profit", String.valueOf(commonOutputModel.getProfit()) + " ₹");
                     output text13 = new output("Profit Percentage", String.valueOf(commonOutputModel.getProfitPercentage()) + " %");
 
                     ArrayList<output> outputList = new ArrayList<>();

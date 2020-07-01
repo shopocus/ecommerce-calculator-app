@@ -77,22 +77,14 @@
                                 android:scrollbars="none"
                                 android:visibility="gone"></ListView>
 
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:text=" * All output prices are in INR/-"-->
-<!--                                android:textSize="12sp"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textStyle="italic"/>-->
-
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" * All calculations are approx."
-                                android:textSize="12sp"
                                 android:letterSpacing="0.1"
+                                android:text=" * All calculations are approx."
                                 android:textColor="@color/black"
-                                android:textStyle="italic"/>
+                                android:textSize="12sp"
+                                android:textStyle="italic" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"

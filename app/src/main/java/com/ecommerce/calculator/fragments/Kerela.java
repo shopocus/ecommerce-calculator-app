@@ -42,7 +42,7 @@ public class Kerela extends Fragment {
         outputList.add(text1);
         outputList.add(text2);
 
-        if(bundle_kerela.size()==12){
+        if (bundle_kerela.size() == 12) {
             output text3 = new output("Commission Fees + Shipping Fees", bundle_kerela.get(2) + " ₹");
             output text4 = new output("GST On Commission Fees + Shipping Fees", bundle_kerela.get(3) + " ₹");
             output text5 = new output("Total Charges", bundle_kerela.get(4) + " ₹");
@@ -64,7 +64,7 @@ public class Kerela extends Fragment {
             outputList.add(text10);
             outputList.add(text11);
             outputList.add(text12);
-        }else{
+        } else {
             output text3 = new output("Prepaid Fees", bundle_kerela.get(2) + " ₹");
             output text4 = new output("Commission Fees + Shipping Fees + Prepaid Fees", bundle_kerela.get(3) + " ₹");
             output text5 = new output("GST On Commission Fees + Shipping Fees + Prepaid Fees", bundle_kerela.get(4) + " ₹");

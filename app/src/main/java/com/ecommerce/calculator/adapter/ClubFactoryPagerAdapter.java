@@ -14,13 +14,13 @@ import com.ecommerce.calculator.fragments.Metro;
 import com.ecommerce.calculator.fragments.Regional;
 import com.ecommerce.calculator.fragments.RestOfIndia;
 
-public class SectionPagerAdapter extends FragmentPagerAdapter {
+public class ClubFactoryPagerAdapter extends FragmentPagerAdapter {
 
     int counttab;
     Context c;
     Bundle bundle;
 
-    public SectionPagerAdapter(Context c, @NonNull FragmentManager fm, int counttab, Bundle bundle) {
+    public ClubFactoryPagerAdapter(Context c, @NonNull FragmentManager fm, int counttab, Bundle bundle) {
         super(fm);
         this.c = c;
         this.counttab = counttab;

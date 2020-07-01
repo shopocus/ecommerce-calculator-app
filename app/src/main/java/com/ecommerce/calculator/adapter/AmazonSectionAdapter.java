@@ -35,31 +35,31 @@ public class AmazonSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                if(SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
+                if (SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
                     AmazonLocal amazonLocal = new AmazonLocal();
                     amazonLocal.setArguments(bundle);
                     return amazonLocal;
-                }else{
+                } else {
                     AmazonFbaLocal amazonFbaLocal = new AmazonFbaLocal();
                     amazonFbaLocal.setArguments(bundle);
                     return amazonFbaLocal;
                 }
             case 1:
-                if(SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
+                if (SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
                     AmazonRegional amazonRegional = new AmazonRegional();
                     amazonRegional.setArguments(bundle);
                     return amazonRegional;
-                }else{
+                } else {
                     AmazonFbaRegional amazonFbaRegional = new AmazonFbaRegional();
                     amazonFbaRegional.setArguments(bundle);
                     return amazonFbaRegional;
                 }
             case 2:
-                if(SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
+                if (SharedPrefManager.getInstance(c).getCompany().equals("amazon")) {
                     AmazonNational amazonNational = new AmazonNational();
                     amazonNational.setArguments(bundle);
                     return amazonNational;
-                }else{
+                } else {
                     AmazonFbaNational amazonFbaNational = new AmazonFbaNational();
                     amazonFbaNational.setArguments(bundle);
                     return amazonFbaNational;
