@@ -155,6 +155,21 @@ public class SharedPrefManager {
         editor.apply();
     }
 
+    public String getTempVar() {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        String temp = (sharedPreferences.getString("temp", null));
+        return temp;
+    }
+
+    public void saveTempVar(String temp) {
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("temp", temp);
+
+        editor.apply();
+    }
+
     public String getCompany() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         String company = (sharedPreferences.getString("company", null));

@@ -103,10 +103,10 @@ public class Menu extends AppCompatActivity {
         m.setImg(R.drawable.meesho);
         menu.add(m);
 
-        m = new menu();
-        m.setTitle("Club Factory");
-        m.setImg(R.drawable.clubfactory);
-        menu.add(m);
+//        m = new menu();
+//        m.setTitle("Club Factory");
+//        m.setImg(R.drawable.clubfactory);
+//        menu.add(m);
 
         m = new menu();
         m.setTitle("Flipkart");

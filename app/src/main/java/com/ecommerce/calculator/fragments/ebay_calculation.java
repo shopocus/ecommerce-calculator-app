@@ -558,6 +558,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
                                 .setConfirmText("Ok")
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .show();
+                        SharedPrefManager.getInstance(getActivity()).saveTempVar("true");
                     } else {
                         Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
                     }

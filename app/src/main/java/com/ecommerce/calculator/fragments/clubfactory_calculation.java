@@ -631,6 +631,7 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
                                 .setConfirmText("Ok")
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .show();
+                        SharedPrefManager.getInstance(getActivity()).saveTempVar("true");
                     } else {
                         Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
                     }
@@ -654,65 +655,155 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
         String content = "CLUB FACTORY" + "\n\n" +
                 "INPUT" + "\n" +
                 "Category: " + categoryFinal + "\n" +
-                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
-                "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                "Weight: " + weight.getText().toString().trim() + "\n" +
+                "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
+                "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
+                "GST On Product: " + spinner_ans + " %" + "\n" +
+                "Weight: " + weight.getText().toString().trim() + " gm" + "\n" +
                 "Courier" + courierOption + "\n" +
                 "Payment Mode" + paymentOption + "\n" +
-                "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                "Labour: " + labour.getText().toString().trim() + "\n" +
-                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
-                "Other: " + otherCharges.getText().toString().trim() + "\n" +
-                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
-                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
+                "Inward Shipping: " + " ₹" + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + " ₹" + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + " ₹" + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + " ₹" + storageFee.getText().toString().trim() + "\n" +
+                "Other: " + " ₹" + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n\n" +
                 "Local" + "\n" +
-                "Bank Settlement: " + Local.get(0) + "\n" +
-                "Total Commision: " + Local.get(1) + "\n" +
-                "Total GST Payable: " + Local.get(2) + "\n" +
-                "Tcs: " + Local.get(3) + "\n" +
-                "GST Payable: " + Local.get(4) + "\n" +
-                "GST Claim: " + Local.get(5) + "\n" +
-                "Profit: " + Local.get(6) + "\n" +
-                "Profit Percentage: " + Local.get(7) + "\n" +
-                "Regional" + "\n" +
-                "Bank Settlement: " + Regional.get(0) + "\n" +
-                "Total Commision: " + Regional.get(1) + "\n" +
-                "Total GST Payable: " + Regional.get(2) + "\n" +
-                "Tcs: " + Regional.get(3) + "\n" +
-                "GST Payable: " + Regional.get(4) + "\n" +
-                "GST Claim: " + Regional.get(5) + "\n" +
-                "Profit: " + Regional.get(6) + "\n" +
-                "Profit Percentage: " + Regional.get(7) + "\n" +
-                "Metro" + "\n" +
-                "Bank Settlement: " + Metro.get(0) + "\n" +
-                "Total Commision: " + Metro.get(1) + "\n" +
-                "Total GST Payable: " + Metro.get(2) + "\n" +
-                "Tcs: " + Metro.get(3) + "\n" +
-                "GST Payable: " + Metro.get(4) + "\n" +
-                "GST Claim: " + Metro.get(5) + "\n" +
-                "Profit: " + Metro.get(6) + "\n" +
-                "Profit Percentage: " + Metro.get(7) + "\n" +
-                "Rest Of India" + "\n" +
-                "Bank Settlement: " + RestOfIndia.get(0) + "\n" +
-                "Total Commision: " + RestOfIndia.get(1) + "\n" +
-                "Total GST Payable: " + RestOfIndia.get(2) + "\n" +
-                "Tcs: " + RestOfIndia.get(3) + "\n" +
-                "GST Payable: " + RestOfIndia.get(4) + "\n" +
-                "GST Claim: " + RestOfIndia.get(5) + "\n" +
-                "Profit: " + RestOfIndia.get(6) + "\n" +
-                "Profit Percentage: " + RestOfIndia.get(7) + "\n" +
-                "Kerala" + "\n" +
-                "Bank Settlement: " + Kerela.get(0) + "\n" +
-                "Total Commision: " + Kerela.get(1) + "\n" +
-                "Total GST Payable: " + Kerela.get(2) + "\n" +
-                "Tcs: " + Kerela.get(3) + "\n" +
-                "GST Payable: " + Kerela.get(4) + "\n" +
-                "GST Claim: " + Kerela.get(5) + "\n" +
-                "Profit: " + Kerela.get(6) + "\n" +
-                "Profit Percentage: " + Kerela.get(7);
+                "Commission Fees: " + " ₹" + Local.get(0) + "\n" +
+                "Shipping Fees: " + " ₹" + Local.get(1) + "\n" ;
+        if(paymentOption.equals("postpaid")){
+            content += "Commission Fees + Shipping Fees: " + " ₹" + Local.get(2) + "\n" +
+                    "GST On Commission Fees + Shipping Fees: " + " ₹" + Local.get(3) + "\n" +
+                    "Total Charges: " + " ₹" + Local.get(4) + "\n" +
+                    "Bank Settlement: " + " ₹" + Local.get(5) + "\n" +
+                    "GST Claim: " + " ₹" + Local.get(6) + "\n" +
+                    "GST Payable: " + " ₹" + Local.get(7) + "\n" +
+                    "Total GST Payable: " + " ₹" + Local.get(8) + "\n" +
+                    "Tcs: " + " ₹" + Local.get(9) + "\n" +
+                    "Profit: " + " ₹" + Local.get(10) + "\n" +
+                    "Profit Percentage: " + Local.get(11) + " %" + "\n\n" +
+                    "Regional" + "\n" +
+                    "Commission Fees: " + " ₹" + Regional.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Regional.get(1) + "\n" +
+                    "Commission Fees + Shipping Fees: " + " ₹" + Regional.get(2) + "\n" +
+                    "GST On Commission Fees + Shipping Fees: " + " ₹" + Regional.get(3) + "\n" +
+                    "Total Charges: " + " ₹" + Regional.get(4) + "\n" +
+                    "Bank Settlement: "+ " ₹"  + Regional.get(5) + "\n" +
+                    "GST Claim: " + " ₹" + Regional.get(6) + "\n" +
+                    "GST Payable: " + " ₹" + Regional.get(7) + "\n" +
+                    "Total GST Payable: " + " ₹" + Regional.get(8) + "\n" +
+                    "Tcs: " + " ₹" + Regional.get(9) + "\n" +
+                    "Profit: " + " ₹" + Regional.get(10) + "\n" +
+                    "Profit Percentage: " + Regional.get(11) + " %" + "\n\n" +
+                    "Metro" + "\n" +
+                    "Commission Fees: " + " ₹" + Metro.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Metro.get(1) + "\n" +
+                    "Commission Fees + Shipping Fees: " + " ₹" + Metro.get(2) + "\n" +
+                    "GST On Commission Fees + Shipping Fees: " + " ₹" + Metro.get(3) + "\n" +
+                    "Total Charges: " + " ₹" + Metro.get(4) + "\n" +
+                    "Bank Settlement: " + " ₹" + Metro.get(5) + "\n" +
+                    "GST Claim: " + " ₹" + Metro.get(6) + "\n" +
+                    "GST Payable: " + " ₹" + Metro.get(7) + "\n" +
+                    "Total GST Payable: " + " ₹" + Metro.get(8) + "\n" +
+                    "Tcs: " + " ₹" + Metro.get(9) + "\n" +
+                    "Profit: " + " ₹" + Metro.get(10) + "\n" +
+                    "Profit Percentage: " + Metro.get(11) + " %" + "\n\n" +
+                    "Rest Of India" + "\n" +
+                    "Commission Fees: " + " ₹" + RestOfIndia.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + RestOfIndia.get(1) + "\n" +
+                    "Commission Fees + Shipping Fees: " + " ₹" + RestOfIndia.get(2) + "\n" +
+                    "GST On Commission Fees + Shipping Fees: " + " ₹" + RestOfIndia.get(3) + "\n" +
+                    "Total Charges: " + " ₹" + RestOfIndia.get(4) + "\n" +
+                    "Bank Settlement: " + " ₹" + RestOfIndia.get(5) + "\n" +
+                    "GST Claim: " + " ₹" + RestOfIndia.get(6) + "\n" +
+                    "GST Payable: " + " ₹" + RestOfIndia.get(7) + "\n" +
+                    "Total GST Payable: " + " ₹" + RestOfIndia.get(8) + "\n" +
+                    "Tcs: " + " ₹" + RestOfIndia.get(9) + "\n" +
+                    "Profit: " + " ₹" + RestOfIndia.get(10) + "\n" +
+                    "Profit Percentage: " + RestOfIndia.get(11) + " %" + "\n\n" +
+                    "Kerala" + "\n" +
+                    "Commission Fees: " + " ₹" + Kerela.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Kerela.get(1) + "\n" +
+                    "Commission Fees + Shipping Fees: " + " ₹" + Kerela.get(2) + "\n" +
+                    "GST On Commission Fees + Shipping Fees: " + " ₹" + Kerela.get(3) + "\n" +
+                    "Total Charges: " + " ₹" + Kerela.get(4) + "\n" +
+                    "Bank Settlement: " + " ₹" + Kerela.get(5) + "\n" +
+                    "GST Claim: " + " ₹" + Kerela.get(6) + "\n" +
+                    "GST Payable: " + " ₹" + Kerela.get(7) + "\n" +
+                    "Total GST Payable: " + " ₹" + Kerela.get(8) + "\n" +
+                    "Tcs: " + " ₹" + Kerela.get(9) + "\n" +
+                    "Profit: " + " ₹" + Kerela.get(10) + "\n" +
+                    "Profit Percentage: " + Kerela.get(11) + " %" + "\n";
+        }else {
+            content += "Prepaid Fees: " + " ₹" + Local.get(2) + "\n" +
+                    "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Local.get(3) + "\n" +
+                    "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Local.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + Local.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + Local.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + Local.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + Local.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + Local.get(9) + "\n" +
+                    "Tcs: " + " ₹" + Local.get(10) + "\n" +
+                    "Profit: " + " ₹" + Local.get(11) + "\n" +
+                    "Profit Percentage: " + Local.get(12) + " %" + "\n\n" +
+                    "Regional" + "\n" +
+                    "Commission Fees: " + " ₹" + Regional.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Regional.get(1) + "\n" +
+                    "Prepaid Fees: " + " ₹" + Regional.get(2) + "\n" +
+                    "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Regional.get(3) + "\n" +
+                    "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Regional.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + Regional.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + Regional.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + Regional.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + Regional.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + Regional.get(9) + "\n" +
+                    "Tcs: " + " ₹" + Regional.get(10) + "\n" +
+                    "Profit: " + " ₹" + Regional.get(11) + "\n" +
+                    "Profit Percentage: " + Regional.get(12) + " %" + "\n\n" +
+                    "Metro" + "\n" +
+                    "Commission Fees: " + " ₹" + Metro.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Metro.get(1) + "\n" +
+                    "Prepaid Fees: " + " ₹" + Metro.get(2) + "\n" +
+                    "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Metro.get(3) + "\n" +
+                    "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Metro.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + Metro.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + Metro.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + Metro.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + Metro.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + Metro.get(9) + "\n" +
+                    "Tcs: " + " ₹" + Metro.get(10) + "\n" +
+                    "Profit: " + " ₹" + Metro.get(11) + "\n" +
+                    "Profit Percentage: " + Metro.get(12) + " %" + "\n\n" +
+                    "Rest Of India" + "\n" +
+                    "Commission Fees: " + " ₹" + RestOfIndia.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + RestOfIndia.get(1) + "\n" +
+                    "Prepaid Fees: " + " ₹" + RestOfIndia.get(2) + "\n" +
+                    "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + RestOfIndia.get(3) + "\n" +
+                    "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + RestOfIndia.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + RestOfIndia.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + RestOfIndia.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + RestOfIndia.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + RestOfIndia.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + RestOfIndia.get(9) + "\n" +
+                    "Tcs: " + " ₹" + RestOfIndia.get(10) + "\n" +
+                    "Profit: " + " ₹" + RestOfIndia.get(11) + "\n" +
+                    "Profit Percentage: " + RestOfIndia.get(12) + " %" + "\n\n" +
+                    "Kerala" + "\n" +
+                    "Commission Fees: " + " ₹" + Kerela.get(0) + "\n" +
+                    "Shipping Fees: " + " ₹" + Kerela.get(1) + "\n" +
+                    "Prepaid Fees: " + " ₹" + Kerela.get(2) + "\n" +
+                    "Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Kerela.get(3) + "\n" +
+                    "GST On Commission Fees + Shipping Fees + Prepaid Fees: " + " ₹" + Kerela.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + Kerela.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + Kerela.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + Kerela.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + Kerela.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + Kerela.get(9) + "\n" +
+                    "Tcs: " + " ₹" + Kerela.get(10) + "\n" +
+                    "Profit: " + " ₹" + Kerela.get(11) + "\n" +
+                    "Profit Percentage: " + Kerela.get(12) + " %" + "\n";
+        }
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

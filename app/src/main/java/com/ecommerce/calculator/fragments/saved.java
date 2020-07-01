@@ -76,7 +76,10 @@ public class saved extends Fragment {
 
         text = view.findViewById(R.id.text);
         recyclerView = view.findViewById(R.id.title_list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         String company = SharedPrefManager.getInstance(getActivity()).getCompany();
 
         Call<savedTitleResponse> call = RetrofitClient.getInstance().getApi().getTitles(company);

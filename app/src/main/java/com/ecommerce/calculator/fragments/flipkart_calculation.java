@@ -610,6 +610,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                                 .setConfirmText("Ok")
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
                                 .show();
+                        SharedPrefManager.getInstance(getActivity()).saveTempVar("true");
                     } else {
                         Toast.makeText(getContext(), "Title Name Already Exists", Toast.LENGTH_SHORT).show();
                     }
@@ -664,7 +665,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                 "Total GST Payable: " + " ₹" + Local.get(10) + "\n" +
                 "Tcs: " + " ₹" + Local.get(11) + "\n" +
                 "Profit: " + " ₹" + Local.get(12) + "\n" +
-                "Profit Percentage: " + Local.get(13) + " %" + "\n" +
+                "Profit Percentage: " + Local.get(13) + " %" + "\n\n" +
                 "Zonal" + "\n" +
                 "Commission Fees: " + " ₹" + Zonal.get(0) + "\n" +
                 "Fixed Fees: " + " ₹" + Zonal.get(1) + "\n" +
@@ -679,7 +680,7 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
                 "Total GST Payable: " + " ₹" + Zonal.get(10) + "\n" +
                 "Tcs: " + " ₹" + Zonal.get(11) + "\n" +
                 "Profit: " + " ₹" + Zonal.get(12) + "\n" +
-                "Profit Percentage: " + Zonal.get(13) + " %" + "\n" +
+                "Profit Percentage: " + Zonal.get(13) + " %" + "\n\n" +
                 "National" + "\n" +
                 "Commission Fees: " + " ₹" + National.get(0) + "\n" +
                 "Fixed Fees: " + " ₹" + National.get(1) + "\n" +

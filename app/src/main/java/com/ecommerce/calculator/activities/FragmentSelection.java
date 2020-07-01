@@ -92,6 +92,8 @@ public class FragmentSelection extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
 
+        SharedPrefManager.getInstance(FragmentSelection.this).saveTempVar("false");
+
         Bundle bundle = getIntent().getExtras();
 
         viewPager = findViewById(R.id.pager);
@@ -107,7 +109,8 @@ public class FragmentSelection extends AppCompatActivity {
                     assert inputManager != null;
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
-                if (tab.getPosition() == 1) {
+                if (SharedPrefManager.getInstance(FragmentSelection.this).getTempVar().equals("true") && tab.getPosition()==1) {
+                    SharedPrefManager.getInstance(FragmentSelection.this).saveTempVar("false");
                     saved fragment = (saved) (viewPager.getAdapter()).instantiateItem(viewPager, tab.getPosition());
                     fragment.onResume();
                     viewPager.getAdapter().notifyDataSetChanged();
