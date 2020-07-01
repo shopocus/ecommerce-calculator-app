@@ -1,7 +1,5 @@
 package com.ecommerce.calculator.models;
 
-import com.ecommerce.calculator.utils.AmazonOutputModel;
-import com.ecommerce.calculator.utils.FlipkartOutputModel;
 import com.ecommerce.calculator.utils.easyShipModel;
 import com.ecommerce.calculator.utils.selfShipModel;
 

@@ -33,7 +33,6 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.models.subCategory;
@@ -513,8 +512,8 @@ public class amazonFba_calculation extends Fragment implements View.OnClickListe
                     }
                     tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
                     tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimaryDark));
-                    AmazonSectionAdapter flipkartSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
-                    viewPager.setAdapter(flipkartSectionAdapter);
+                    AmazonSectionAdapter amazonSectionAdapter = new AmazonSectionAdapter(getContext(), getChildFragmentManager(), tabLayout.getTabCount(), bundle);
+                    viewPager.setAdapter(amazonSectionAdapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
                     tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                         @Override

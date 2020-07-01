@@ -33,7 +33,6 @@ import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.adapter.AmazonSectionAdapter;
-import com.ecommerce.calculator.models.AmazonCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.subCategory;
 import com.ecommerce.calculator.activities.HomeScreen;

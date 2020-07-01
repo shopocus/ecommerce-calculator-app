@@ -35,7 +35,6 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.adapter.FlipkartSectionAdapter;
 import com.ecommerce.calculator.api.RetrofitClient;
-import com.ecommerce.calculator.models.FlipkartCalculationResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;

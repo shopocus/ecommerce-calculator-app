@@ -1,14 +1,8 @@
 package com.ecommerce.calculator.api;
 
-import com.ecommerce.calculator.models.AmazonCalculationResponse;
-import com.ecommerce.calculator.models.AmazonFbaCalculationResponse;
-import com.ecommerce.calculator.models.ClubFactoryCalculationResponse;
 import com.ecommerce.calculator.models.CommonOutputModel;
 import com.ecommerce.calculator.models.DefaultResponse;
-import com.ecommerce.calculator.models.EbayCalculationResponse;
-import com.ecommerce.calculator.models.FlipkartCalculationResponse;
 import com.ecommerce.calculator.models.LoginResponse;
-import com.ecommerce.calculator.models.MeeshoCalculationResponse;
 import com.ecommerce.calculator.models.category;
 import com.ecommerce.calculator.models.savedTitleResponse;
 import com.ecommerce.calculator.models.TitleDataResponse;

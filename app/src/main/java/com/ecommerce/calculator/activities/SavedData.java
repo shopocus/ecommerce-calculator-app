@@ -206,8 +206,8 @@ public class SavedData extends AppCompatActivity {
 
         output text12 = new output("Commission Fees", td.getOutput().getCommissionFees());
         output text13 = new output("Shipping Fees", td.getOutput().getShippingFees());
-        output text14 = new output("CS", td.getOutput().getCS());
-        output text15 = new output("GST On CS", td.getOutput().getGstOnCS());
+        output text14 = new output("Commission Fees + Shipping Fees", td.getOutput().getCS());
+        output text15 = new output("GST On Commission Fees + shipping Fees", td.getOutput().getGstOnCS());
         output text16 = new output("Total Charges", td.getOutput().getTotalCharges());
         output text17 = new output("Bank Settlement", td.getOutput().getBankSettlement());
         output text18 = new output("GST Claim", td.getOutput().getGstClaim());
@@ -920,7 +920,7 @@ public class SavedData extends AppCompatActivity {
         output text15 = new output("Shipping Fees", td.getOutput().getShippingFees());
         output text16 = new output("Payment Gateway Fees", td.getOutput().getPaymentGatewayFees());
         output text17 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", td.getOutput().getCSP());
-        output text18 = new output("GST On CSP", td.getOutput().getGstOnCSP());
+        output text18 = new output("GST On Commission Fees + Shipping Fees + Payment Gateway Fees", td.getOutput().getGstOnCSP());
         output text19 = new output("Total Charges", td.getOutput().getTotalCharges());
         output text20 = new output("Bank Settlement", td.getOutput().getBankSettlement());
         output text21 = new output("GST Claim", td.getOutput().getGstClaim());

@@ -107,7 +107,7 @@ public class FragmentSelection extends AppCompatActivity {
                     inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
                 if (tab.getPosition() == 1) {
-                    saved fragment = (saved) Objects.requireNonNull(viewPager.getAdapter()).instantiateItem(viewPager, tab.getPosition());
+                    saved fragment = (saved) (viewPager.getAdapter()).instantiateItem(viewPager, tab.getPosition());
                     fragment.onResume();
                     viewPager.getAdapter().notifyDataSetChanged();
                 }

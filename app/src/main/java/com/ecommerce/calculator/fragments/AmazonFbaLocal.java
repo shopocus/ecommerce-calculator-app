@@ -13,11 +13,10 @@ import com.ecommerce.calculator.R;
 import com.ecommerce.calculator.activities.SavedData;
 import com.ecommerce.calculator.adapter.OutputListAdapter;
 import com.ecommerce.calculator.models.output;
-import com.ecommerce.calculator.storage.SharedPrefManager;
 
 import java.util.ArrayList;
 
-public class AmazonNational extends Fragment {
+public class AmazonFbaLocal extends Fragment {
 
     ListView result;
 
@@ -33,21 +32,22 @@ public class AmazonNational extends Fragment {
         result = view.findViewById(R.id.text_view_result);
 
         Bundle bundle = this.getArguments();
-        ArrayList<String> bundle_national = bundle.getStringArrayList("National");
+        ArrayList<String> bundle_local = bundle.getStringArrayList("Local");
 
-        output text1 = new output("Referral Fees", bundle_national.get(0) + " ₹");
-        output text2 = new output("Closing Fees", bundle_national.get(1) + " ₹");
-        output text3 = new output("Shipping Fees", bundle_national.get(2) + " ₹");
-        output text4 = new output("Referral Fees + Closing Fees + Shipping Fees", bundle_national.get(3) + " ₹");
-        output text5 = new output("GST On Referral Fees + Closing Fees + Shipping Fees", bundle_national.get(4) + " ₹");
-        output text6 = new output("Total Charges", bundle_national.get(5) + " ₹");
-        output text7 = new output("Bank Settlement", bundle_national.get(6) + " ₹");
-        output text8 = new output("GST Claim", bundle_national.get(7) + " ₹");
-        output text9 = new output("GST Payable", bundle_national.get(8) + " ₹");
-        output text10 = new output("Total GST Payable", bundle_national.get(9) + " ₹");
-        output text11 = new output("TCS", bundle_national.get(10) + " ₹");
-        output text12 = new output("Profit", bundle_national.get(11) + " ₹");
-        output text13 = new output("Profit Percentage", bundle_national.get(12) + " %");
+        output text1 = new output("Referral Fees", bundle_local.get(0) + " ₹");
+        output text2 = new output("Closing Fees", bundle_local.get(1) + " ₹");
+        output text3 = new output("Shipping Fees", bundle_local.get(2) + " ₹");
+        output text4 = new output("Fulfillment Fees", bundle_local.get(3) + " ₹");
+        output text5 = new output("Referral Fees + Closing Fees + Shipping Fees + Fulfillment Fees", bundle_local.get(4) + " ₹");
+        output text6 = new output("GST On Referral Fees + Closing Fees + Shipping Fees + Fulfillment Fees", bundle_local.get(5) + " ₹");
+        output text7 = new output("Total Charges", bundle_local.get(6) + " ₹");
+        output text8 = new output("Bank Settlement", bundle_local.get(7) + " ₹");
+        output text9 = new output("GST Claim", bundle_local.get(8) + " ₹");
+        output text10 = new output("GST Payable", bundle_local.get(9) + " ₹");
+        output text11 = new output("Total GST Payable", bundle_local.get(10) + " ₹");
+        output text12 = new output("TCS", bundle_local.get(11) + " ₹");
+        output text13 = new output("Profit", bundle_local.get(12) + " ₹");
+        output text14 = new output("Profit Percentage", bundle_local.get(13) + " %");
 
         ArrayList<output> outputList = new ArrayList<>();
         outputList.add(text1);
@@ -63,6 +63,7 @@ public class AmazonNational extends Fragment {
         outputList.add(text11);
         outputList.add(text12);
         outputList.add(text13);
+        outputList.add(text14);
 
         OutputListAdapter adapter = new OutputListAdapter(getActivity(), R.layout.output_row, outputList);
         result.setAdapter(adapter);

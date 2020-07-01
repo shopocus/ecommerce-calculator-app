@@ -118,7 +118,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -190,7 +190,7 @@
                         android:id="@+id/rs1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -372,7 +372,7 @@
                         android:id="@+id/gm1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gm."
+                        android:text="gm"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -786,7 +786,7 @@
                         android:id="@+id/rs3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -824,7 +824,7 @@
                         android:id="@+id/rs4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -862,7 +862,7 @@
                         android:id="@+id/rs5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -900,7 +900,7 @@
                         android:id="@+id/rs6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -980,7 +980,7 @@
                         android:id="@+id/rs11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -1056,7 +1056,7 @@
                         android:id="@+id/rs7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 
@@ -1126,7 +1126,7 @@
                         android:id="@+id/rs8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rs."
+                        android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
 

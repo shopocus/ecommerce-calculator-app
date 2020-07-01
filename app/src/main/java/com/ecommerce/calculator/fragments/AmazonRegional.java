@@ -35,23 +35,19 @@ public class AmazonRegional extends Fragment {
         Bundle bundle = this.getArguments();
         ArrayList<String> bundle_regional = bundle.getStringArrayList("Regional");
 
-        output text1 = new output("Referral Fees", bundle_regional.get(0));
-        output text2 = new output("Closing Fees", bundle_regional.get(1));
-        output text3 = new output("Shipping Fees", bundle_regional.get(2));
-        output text4 = new output("RCS", bundle_regional.get(3));
-        output text5 = new output("GST On RCS", bundle_regional.get(4));
-        if (SharedPrefManager.getInstance(getActivity()).getCompany().equals("amazonfba")) {
-            text4 = new output("RCF", bundle_regional.get(4));
-            text5 = new output("GST ON RCF", bundle_regional.get(5));
-        }
-        output text6 = new output("Total Charges", bundle_regional.get(5));
-        output text7 = new output("Bank Settlement", bundle_regional.get(6));
-        output text8 = new output("GST Claim", bundle_regional.get(7));
-        output text9 = new output("GST Payable", bundle_regional.get(8));
-        output text10 = new output("Total GST Payable", bundle_regional.get(9));
-        output text11 = new output("TCS", bundle_regional.get(10));
-        output text12 = new output("Profit", bundle_regional.get(11));
-        output text13 = new output("Profit Percentage", bundle_regional.get(12));
+        output text1 = new output("Referral Fees", bundle_regional.get(0) + " ₹");
+        output text2 = new output("Closing Fees", bundle_regional.get(1) + " ₹");
+        output text3 = new output("Shipping Fees", bundle_regional.get(2) + " ₹");
+        output text4 = new output("Referral Fees + Closing Fees + Shipping Fees", bundle_regional.get(3) + " ₹");
+        output text5 = new output("GST On Referral Fees + Closing Fees + Shipping Fees", bundle_regional.get(4) + " ₹");
+        output text6 = new output("Total Charges", bundle_regional.get(5) + " ₹");
+        output text7 = new output("Bank Settlement", bundle_regional.get(6) + " ₹");
+        output text8 = new output("GST Claim", bundle_regional.get(7) + " ₹");
+        output text9 = new output("GST Payable", bundle_regional.get(8) + " ₹");
+        output text10 = new output("Total GST Payable", bundle_regional.get(9) + " ₹");
+        output text11 = new output("TCS", bundle_regional.get(10) + " ₹");
+        output text12 = new output("Profit", bundle_regional.get(11) + " ₹");
+        output text13 = new output("Profit Percentage", bundle_regional.get(12) + " %");
 
         ArrayList<output> outputList = new ArrayList<>();
         outputList.add(text1);

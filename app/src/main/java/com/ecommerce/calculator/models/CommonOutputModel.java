@@ -1,6 +1,8 @@
 package com.ecommerce.calculator.models;
 
 public class CommonOutputModel {
+    private String CS;
+    private String gstOnCS;
     private String bankSettlement;
     private String profit;
     private String totalGstPayable;
@@ -41,13 +43,15 @@ public class CommonOutputModel {
     private CommonOutputModel amazonFbaRegional;
     private CommonOutputModel amazonFbaNational;
 
-    public CommonOutputModel(String commissionFees, String shippingFees, String paymentGatewayFees, String prepaidFees, String CSP,
+    public CommonOutputModel(String CS, String gstOnCS, String commissionFees, String shippingFees, String paymentGatewayFees, String prepaidFees, String CSP,
                              String gstOnCSP, String fulfillmentFees, String RCSF, String gstOnRCSF, String fixedFees, String collectionFees, String CFCS, String gstOnCFCS,
                              String totalCharges, String bankSettlement, String profit, String totalGstPayable, String tcs, String referralFees, String closingFees,
                              String RCS, String gstOnRCS, String gstPayable, String gstClaim, String profitPercentage, CommonOutputModel Local, CommonOutputModel Regional,
                              CommonOutputModel Metro, CommonOutputModel RestOfIndia, CommonOutputModel Kerela, CommonOutputModel flipkartLocal, CommonOutputModel flipkartZonal,
                              CommonOutputModel flipkartNational, CommonOutputModel amazonLocal, CommonOutputModel amazonRegional, CommonOutputModel amazonNational,
                              CommonOutputModel amazonFbaLocal, CommonOutputModel amazonFbaRegional, CommonOutputModel amazonFbaNational) {
+        this.CS = CS;
+        this.gstOnCS = gstOnCS;
         this.bankSettlement = bankSettlement;
         this.profit = profit;
         this.totalGstPayable = totalGstPayable;
@@ -87,6 +91,14 @@ public class CommonOutputModel {
         this.amazonFbaLocal = amazonFbaLocal;
         this.amazonFbaRegional = amazonFbaRegional;
         this.amazonFbaNational = amazonFbaNational;
+    }
+
+    public String getCS() {
+        return CS;
+    }
+
+    public String getGstOnCS() {
+        return gstOnCS;
     }
 
     public String getBankSettlement() {
