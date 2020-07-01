@@ -651,7 +651,8 @@ public class clubfactory_calculation extends Fragment implements View.OnClickLis
     }
 
     public void share() {
-        String content = "INPUT" + "\n\n" +
+        String content = "CLUB FACTORY" + "\n\n" +
+                "INPUT" + "\n" +
                 "Category: " + categoryFinal + "\n" +
                 "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
                 "GST On Product: " + spinner_ans + "\n" +

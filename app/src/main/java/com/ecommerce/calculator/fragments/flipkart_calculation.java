@@ -38,6 +38,7 @@ import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.models.progressButton;
 import com.ecommerce.calculator.storage.SharedPrefManager;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -629,50 +630,71 @@ public class flipkart_calculation extends Fragment implements View.OnClickListen
     }
 
     public void share() {
-        String content = "INPUT" + "\n\n" +
+        String content = "FLIPKART" + "\n\n" +
+                "INPUT" + "\n" +
                 "Category: " + categoryFinal + "\n" +
-                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
-                "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                "Weight: " + weight.getText().toString().trim() + "\n" +
-                "Courier" + customerTypeOption + "\n" +
-                "Payment Mode" + paymentOption + "\n" +
-                "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                "Labour: " + labour.getText().toString().trim() + "\n" +
-                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
-                "Other: " + otherCharges.getText().toString().trim() + "\n" +
-                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
-                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
+                "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
+                "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
+                "GST On Product: " + spinner_ans + " %" + "\n" +
+                "Weight: " + weight.getText().toString().trim() + " gm" + "\n" +
+                "Length: " + length.getText().toString().trim() + " cm" + "\n" +
+                "Breadth: " + breadth.getText().toString().trim() + " cm" + "\n" +
+                "Height: " + breadth.getText().toString().trim() + " cm" + "\n" +
+                "Customer Type: " + customerTypeOption + "\n" +
+                "Payment Mode: " + paymentOption + "\n" +
+                "Inward Shipping: " + " ₹" + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + " ₹" + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + " ₹" + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + " ₹" + storageFee.getText().toString().trim() + "\n" +
+                "Other: " + " ₹" + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n\n" +
                 "Local" + "\n" +
-                "Bank Settlement: " + Local.get(0) + "\n" +
-                "Total Commision: " + Local.get(1) + "\n" +
-                "Total GST Payable: " + Local.get(2) + "\n" +
-                "Tcs: " + Local.get(3) + "\n" +
-                "GST Payable: " + Local.get(4) + "\n" +
-                "GST Claim: " + Local.get(5) + "\n" +
-                "Profit: " + Local.get(6) + "\n" +
-                "Profit Percentage: " + Local.get(7) + "\n" +
-                "Regional" + "\n" +
-                "Bank Settlement: " + Zonal.get(0) + "\n" +
-                "Total Commision: " + Zonal.get(1) + "\n" +
-                "Total GST Payable: " + Zonal.get(2) + "\n" +
-                "Tcs: " + Zonal.get(3) + "\n" +
-                "GST Payable: " + Zonal.get(4) + "\n" +
-                "GST Claim: " + Zonal.get(5) + "\n" +
-                "Profit: " + Zonal.get(6) + "\n" +
-                "Profit Percentage: " + Zonal.get(7) + "\n" +
-                "Metro" + "\n" +
-                "Bank Settlement: " + National.get(0) + "\n" +
-                "Total Commision: " + National.get(1) + "\n" +
-                "Total GST Payable: " + National.get(2) + "\n" +
-                "Tcs: " + National.get(3) + "\n" +
-                "GST Payable: " + National.get(4) + "\n" +
-                "GST Claim: " + National.get(5) + "\n" +
-                "Profit: " + National.get(6) + "\n" +
-                "Profit Percentage: " + National.get(7) + "\n" +
-                "Rest Of India" + "\n";
+                "Commission Fees: " + " ₹" + Local.get(0) + "\n" +
+                "Fixed Fees: " + " ₹" + Local.get(1) + "\n" +
+                "Collection Fees: " + " ₹" + Local.get(2) + "\n" +
+                "Shipping Fees: " + " ₹" + Local.get(3) + "\n" +
+                "Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + Local.get(4) + "\n" +
+                "GST On Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + Local.get(5) + "\n" +
+                "Total Charges: " + " ₹" + Local.get(6) + "\n" +
+                "Bank Settlement: " + " ₹" + Local.get(7) + "\n" +
+                "GST Claim: " + " ₹" + Local.get(8) + "\n" +
+                "GST Payable: " + " ₹" + Local.get(9) + "\n" +
+                "Total GST Payable: " + " ₹" + Local.get(10) + "\n" +
+                "Tcs: " + " ₹" + Local.get(11) + "\n" +
+                "Profit: " + " ₹" + Local.get(12) + "\n" +
+                "Profit Percentage: " + Local.get(13) + " %" + "\n" +
+                "Zonal" + "\n" +
+                "Commission Fees: " + " ₹" + Zonal.get(0) + "\n" +
+                "Fixed Fees: " + " ₹" + Zonal.get(1) + "\n" +
+                "Collection Fees: " + " ₹" + Zonal.get(2) + "\n" +
+                "Shipping Fees: " + " ₹" + Zonal.get(3) + "\n" +
+                "Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + Zonal.get(4) + "\n" +
+                "GST On Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + Zonal.get(5) + "\n" +
+                "Total Charges: " + " ₹" + Zonal.get(6) + "\n" +
+                "Bank Settlement: " + " ₹" + Zonal.get(7) + "\n" +
+                "GST Claim: " + " ₹" + Zonal.get(8) + "\n" +
+                "GST Payable: " + " ₹" + Zonal.get(9) + "\n" +
+                "Total GST Payable: " + " ₹" + Zonal.get(10) + "\n" +
+                "Tcs: " + " ₹" + Zonal.get(11) + "\n" +
+                "Profit: " + " ₹" + Zonal.get(12) + "\n" +
+                "Profit Percentage: " + Zonal.get(13) + " %" + "\n" +
+                "National" + "\n" +
+                "Commission Fees: " + " ₹" + National.get(0) + "\n" +
+                "Fixed Fees: " + " ₹" + National.get(1) + "\n" +
+                "Collection Fees: " + " ₹" + National.get(2) + "\n" +
+                "Shipping Fees: " + " ₹" + National.get(3) + "\n" +
+                "Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + National.get(4) + "\n" +
+                "GST On Commission Fees + Fixed Fees + Collection Fees + Shipping Fees: " + " ₹" + National.get(5) + "\n" +
+                "Total Charges: " + " ₹" + National.get(6) + "\n" +
+                "Bank Settlement: " + " ₹" + National.get(7) + "\n" +
+                "GST Claim: " + " ₹" + National.get(8) + "\n" +
+                "GST Payable: " + " ₹" + National.get(9) + "\n" +
+                "Total GST Payable: " + " ₹" + National.get(10) + "\n" +
+                "Tcs: " + " ₹" + National.get(11) + "\n" +
+                "Profit: " + " ₹" + National.get(12) + "\n" +
+                "Profit Percentage: " + National.get(13) + " %";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

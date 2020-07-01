@@ -398,6 +398,14 @@
                         android:text="Selfship Local: "
                         android:textColor="@color/colorPrimary" />
 
+                    <TextView
+                        android:id="@+id/rs13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
+
                     <EditText
                         android:id="@+id/selfshipLocal"
                         android:layout_width="match_parent"
@@ -457,6 +465,14 @@
                         android:text="Selfship Regional: "
                         android:textColor="@color/colorPrimary" />
 
+                    <TextView
+                        android:id="@+id/rs14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
+
                     <EditText
                         android:id="@+id/selfshipRegional"
                         android:layout_width="match_parent"
@@ -515,6 +531,14 @@
                         android:layout_height="wrap_content"
                         android:text="Selfship National: "
                         android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/rs15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹"
+                        android:textColor="@color/colorBase"
+                        android:textSize="15dp" />
 
                     <EditText
                         android:id="@+id/selfshipNational"

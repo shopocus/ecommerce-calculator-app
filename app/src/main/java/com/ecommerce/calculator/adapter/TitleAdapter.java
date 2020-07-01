@@ -185,6 +185,7 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.TitleHolder>
                                                         if (deleteDataResponse.getMessage().equals("deleted")) {
                                                             titleList.remove(position);
                                                             notifyItemRemoved(position);
+                                                            notifyItemRangeChanged(position, getItemCount());
                                                             new SweetAlertDialog(mCtx, SweetAlertDialog.SUCCESS_TYPE)
                                                                     .setTitleText("Deleted")
                                                                     .setConfirmText("Ok")

@@ -732,78 +732,79 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
     }
 
     public void share() {
-        String content = "INPUT" + "\n\n" +
+        String content = "AMAZON" + "\n\n" +
+                "INPUT" + "\n" +
                 "Category: " + categoryFinal + "\n" +
                 "Sub Category: " + subCategoryFinal + "\n" +
-                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
-                "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
+                "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
+                "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
+                "GST On Product: " + spinner_ans + " %" + "\n" +
                 "Shipment Type: " + shipmentTypeOption + "\n";
         String content1 = "";
         if (shipmentTypeOption.equals("easyShip")) {
             content1 = "Easy Shipment Type: " + easyShipmentTypeOption + "\n" +
-                    "Weight: " + weight.getText().toString().trim() + "\n" +
-                    "Length: " + length.getText().toString().trim() + "\n" +
-                    "Breadth: " + breadth.getText().toString().trim() + "\n" +
-                    "Height: " + height.getText().toString().trim() + "\n";
+                    "Weight: " + weight.getText().toString().trim() + " gm" + "\n" +
+                    "Length: " + length.getText().toString().trim() + " cm" + "\n" +
+                    "Breadth: " + breadth.getText().toString().trim() + " cm" + "\n" +
+                    "Height: " + height.getText().toString().trim() + " cm" + "\n";
         } else {
-            content1 = "Self Ship Local: " + selfshipLocal.getText().toString().trim() + "\n" +
-                    "Self Ship Regional: " + selfshipRegional.getText().toString().trim() + "\n" +
-                    "Self Ship National: " + selfshipNational.getText().toString().trim() + "\n";
+            content1 = "Self Ship Local: " + " ₹" + selfshipLocal.getText().toString().trim() + "\n" +
+                    "Self Ship Regional: " + " ₹" + selfshipRegional.getText().toString().trim() + "\n" +
+                    "Self Ship National: " + " ₹" + selfshipNational.getText().toString().trim() + "\n";
         }
-        String content2 = "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                "Labour: " + labour.getText().toString().trim() + "\n" +
-                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
-                "Other: " + otherCharges.getText().toString().trim() + "\n" +
-                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
-                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
+        String content2 = "Inward Shipping: " + " ₹" + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + " ₹" + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + " ₹" + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + " ₹" + storageFee.getText().toString().trim() + "\n" +
+                "Other: " + " ₹" + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n\n" +
                 "Local" + "\n" +
-                "Referral Fees: " + Local.get(0) + "\n" +
-                "Closing Fees: " + Local.get(1) + "\n" +
-                "Shipping Fees: " + Local.get(2) + "\n" +
-                "Referral + Closing + Shipping Fees: " + Local.get(3) + "\n" +
-                "GST On RCS: " + Local.get(4) + "\n" +
-                "Total Charges: " + Local.get(5) + "\n" +
-                "GST Claim: " + Local.get(6) + "\n" +
-                "Bank Settlement: " + Local.get(7) + "\n" +
-                "Total GST Payable: " + Local.get(8) + "\n" +
-                "Tcs: " + Local.get(9) + "\n" +
-                "GST Payable: " + Local.get(10) + "\n" +
-                "Profit: " + Local.get(11) + "\n" +
-                "Profit Percentage: " + Local.get(12) + "\n\n" +
+                "Referral Fees: " + " ₹" + Local.get(0) + "\n" +
+                "Closing Fees: " + " ₹" + Local.get(1) + "\n" +
+                "Shipping Fees: " + " ₹" + Local.get(2) + "\n" +
+                "Referral Fees + Closing Fees + Shipping Fees: " + " ₹" + Local.get(3) + "\n" +
+                "GST On Referral Fees + Closing Fees + Shipping Fees: " + " ₹" + Local.get(4) + "\n" +
+                "Total Charges: " + " ₹" + Local.get(5) + "\n" +
+                "Bank Settlement: " + " ₹" + Local.get(6) + "\n" +
+                "GST Claim: " + " ₹" + Local.get(7) + "\n" +
+                "GST Payable: " + " ₹" + Local.get(8) + "\n" +
+                "Total GST Payable: " + " ₹" + Local.get(9) + "\n" +
+                "Tcs: " + " ₹" + Local.get(10) + "\n" +
+                "Profit: " + " ₹" + Local.get(11) + "\n" +
+                "Profit Percentage: " + Local.get(12) + " %" + "\n\n" +
                 "Regional" + "\n" +
-                "Referral Fees: " + Regional.get(0) + "\n" +
-                "Closing Fees: " + Regional.get(1) + "\n" +
-                "Shipping Fees: " + Regional.get(2) + "\n" +
-                "Referral + Closing + Shipping Fees: " + Regional.get(3) + "\n" +
-                "GST On RCS: " + Regional.get(4) + "\n" +
-                "Total Charges: " + Regional.get(5) + "\n" +
-                "GST Claim: " + Regional.get(6) + "\n" +
-                "Bank Settlement: " + Regional.get(7) + "\n" +
-                "Total GST Payable: " + Regional.get(8) + "\n" +
-                "Tcs: " + Regional.get(9) + "\n" +
-                "GST Payable: " + Regional.get(10) + "\n" +
-                "Profit: " + Regional.get(11) + "\n" +
-                "Profit Percentage: " + Regional.get(12) + "\n\n";
+                "Referral Fees: " + " ₹" + Regional.get(0) + "\n" +
+                "Closing Fees: " + " ₹" + Regional.get(1) + "\n" +
+                "Shipping Fees: " + " ₹" + Regional.get(2) + "\n" +
+                "Referral + Closing + Shipping Fees: " + " ₹" + Regional.get(3) + "\n" +
+                "GST On Referral + Closing + Shipping Fees:  " + " ₹" + Regional.get(4) + "\n" +
+                "Total Charges: " + " ₹" + Regional.get(5) + "\n" +
+                "Bank Settlement: " + " ₹" + Regional.get(6) + "\n" +
+                "GST Claim: " + " ₹" + Regional.get(7) + "\n" +
+                "GST Payable: " + " ₹" + Regional.get(8) + "\n" +
+                "Total GST Payable: " + " ₹" + Regional.get(9) + "\n" +
+                "Tcs: " + " ₹" + Regional.get(10) + "\n" +
+                "Profit: " + " ₹" + Regional.get(11) + "\n" +
+                "Profit Percentage: " + Regional.get(12) + " %" + "\n\n";
         String content3 = "";
-        if (Double.parseDouble(weight.getText().toString()) <= 12000 || Double.parseDouble(length.getText().toString()) *
+        if (Double.parseDouble(weight.getText().toString()) <= 12000 && Double.parseDouble(length.getText().toString()) *
                 Double.parseDouble(breadth.getText().toString()) * Double.parseDouble(height.getText().toString()) / 5 <= 12000) {
             content3 = "National" + "\n" +
-                    "Referral Fees: " + National.get(0) + "\n" +
-                    "Closing Fees: " + National.get(1) + "\n" +
-                    "Shipping Fees: " + National.get(2) + "\n" +
-                    "Referral + Closing + Shipping Fees: " + National.get(3) + "\n" +
-                    "GST On RCS: " + National.get(4) + "\n" +
-                    "Total Charges: " + National.get(5) + "\n" +
-                    "GST Claim: " + National.get(6) + "\n" +
-                    "Bank Settlement: " + National.get(7) + "\n" +
-                    "Total GST Payable: " + National.get(8) + "\n" +
-                    "Tcs: " + National.get(9) + "\n" +
-                    "GST Payable: " + National.get(10) + "\n" +
-                    "Profit: " + National.get(11) + "\n" +
-                    "Profit Percentage: " + National.get(12) + "\n";
+                    "Referral Fees: " + " ₹" + National.get(0) + "\n" +
+                    "Closing Fees: " + " ₹" + National.get(1) + "\n" +
+                    "Shipping Fees: " + " ₹" + National.get(2) + "\n" +
+                    "Referral + Closing + Shipping Fees: " + " ₹" + National.get(3) + "\n" +
+                    "GST On Referral + Closing + Shipping Fees: " + " ₹" + National.get(4) + "\n" +
+                    "Total Charges: " + " ₹" + National.get(5) + "\n" +
+                    "Bank Settlement: " + " ₹" + National.get(6) + "\n" +
+                    "GST Claim: " + " ₹" + National.get(7) + "\n" +
+                    "GST Payable: " + " ₹" + National.get(8) + "\n" +
+                    "Total GST Payable: " + " ₹" + National.get(9) + "\n" +
+                    "Tcs: " + " ₹" + National.get(10) + "\n" +
+                    "Profit: " + " ₹" + National.get(11) + "\n" +
+                    "Profit Percentage: " + National.get(12) + " %" + "\n";
         }
 
         Intent intent = new Intent(Intent.ACTION_SEND);

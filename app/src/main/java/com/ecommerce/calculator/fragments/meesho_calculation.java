@@ -67,7 +67,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     ArrayList<String> list = new ArrayList<>();
     ListView itemList;
     CardView result_card;
-    Double[] items = new Double[11];
+    CommonOutputModel commonOutputModel;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     ScrollView scrollView;
@@ -405,24 +405,24 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             @Override
             public void onResponse(@NotNull Call<CommonOutputModel> call, @NotNull Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    CommonOutputModel CalculateResponse = response.body();
+                    commonOutputModel = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     itemList.setVisibility(View.VISIBLE);
 
-                    output text1 = new output("Commission Fees", String.valueOf(CalculateResponse.getCommissionFees()) + " ₹");
-                    output text2 = new output("Shipping Fees", String.valueOf(CalculateResponse.getShippingFees()) + " ₹");
-                    output text3 = new output("Commission Fees + Shipping Fees", String.valueOf(CalculateResponse.getCS()) + " ₹");
-                    output text4 = new output("GST On Commission Fees + Shipping Fees", String.valueOf(CalculateResponse.getGstOnCS()) + " ₹");
-                    output text5 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()) + " ₹");
-                    output text6 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()) + " ₹");
-                    output text7 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()) + " ₹");
-                    output text8 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()) + " ₹");
-                    output text9 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()) + " ₹");
-                    output text10 = new output("TCS", String.valueOf(CalculateResponse.getTcs()) + " ₹");
-                    output text11 = new output("Profit", String.valueOf(CalculateResponse.getProfit()) + " ₹");
-                    output text12 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()) + " %");
+                    output text1 = new output("Commission Fees", commonOutputModel.getCommissionFees() + " ₹");
+                    output text2 = new output("Shipping Fees", commonOutputModel.getShippingFees() + " ₹");
+                    output text3 = new output("Commission Fees + Shipping Fees", commonOutputModel.getCS() + " ₹");
+                    output text4 = new output("GST On Commission Fees + Shipping Fees", commonOutputModel.getGstOnCS() + " ₹");
+                    output text5 = new output("Total Charges", commonOutputModel.getTotalCharges() + " ₹");
+                    output text6 = new output("Bank Settlement", commonOutputModel.getBankSettlement() + " ₹");
+                    output text7 = new output("GST Claim", commonOutputModel.getGstClaim() + " ₹");
+                    output text8 = new output("GST Payable", commonOutputModel.getGstPayable() + " ₹");
+                    output text9 = new output("Total GST Payable", commonOutputModel.getTotalGstPayable() + " ₹");
+                    output text10 = new output("TCS", commonOutputModel.getTcs() + " ₹");
+                    output text11 = new output("Profit", commonOutputModel.getProfit() + " ₹");
+                    output text12 = new output("Profit Percentage", commonOutputModel.getProfitPercentage() + " %");
 
                     ArrayList<output> outputList = new ArrayList<>();
                     outputList.add(text1);
@@ -482,14 +482,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         String other = otherCharges.getText().toString().trim();
         String discountPercent = discountByPercentage.getText().toString().trim();
         String discountAmount = discountByPrice.getText().toString().trim();
-//        String bankSettlement = String.valueOf(items[0]);
-//        String totalCommision = String.valueOf(items[1]);
-//        String profit = String.valueOf(items[2]);
-//        String totalGstPayable = String.valueOf(items[3]);
-//        String tcs = String.valueOf(items[4]);
-//        String gstPayable = String.valueOf(items[5]);
-//        String gstClaim = String.valueOf(items[6]);
-//        String profitPercentage = String.valueOf(items[7]);
 
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
@@ -531,26 +523,32 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     }
 
     public void share() {
-        String content = "INPUT" + "\n" +
-                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
-                "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                "Labour: " + labour.getText().toString().trim() + "\n" +
-                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
-                "Other: " + otherCharges.getText().toString().trim() + "\n" +
-                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
-                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n\n" +
+        String content = "MEESHO" + "\n\n" +
+                "INPUT" + "\n" +
+                "Category: " + categoryFinal + "\n" +
+                "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
+                "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
+                "GST On Product: " + spinner_ans + " %" + "\n" +
+                "Inward Shipping: " + " ₹" + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + " ₹" + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + " ₹" + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + " ₹" + storageFee.getText().toString().trim() + "\n" +
+                "Other: " + " ₹" + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n" +
-                "Bank Settlement: " + items[0] + "\n" +
-                "Total Commision: " + items[1] + "\n" +
-                "Profit: " + items[2] + "\n" +
-                "Total GST Payable: " + items[3] + "\n" +
-                "Tcs: " + items[4] + "\n" +
-                "GST Payable: " + items[5] + "\n" +
-                "GST Claim: " + items[6] + "\n" +
-                "Profit Percentage: " + items[7];
+                "Commission Fees: " + " ₹" + commonOutputModel.getCommissionFees() + "\n" +
+                "Shipping Fees: " + " ₹" + commonOutputModel.getShippingFees() + "\n" +
+                "Commission Fees + Shipping Fees: " + " ₹" + commonOutputModel.getCS() + "\n" +
+                "GST On Commission Fees + Shipping Fees: " + " ₹" + commonOutputModel.getGstOnCS() + "\n" +
+                "Total Charges: " + " ₹" + commonOutputModel.getTotalCharges() + "\n" +
+                "Bank Settlement: " + " ₹" + commonOutputModel.getBankSettlement() + "\n" +
+                "GST Claim: " + " ₹" + commonOutputModel.getGstClaim() + "\n" +
+                "GST Payable: " + " ₹" + commonOutputModel.getGstPayable() + "\n" +
+                "Total GST Payable: " + " ₹" + commonOutputModel.getTotalGstPayable() + "\n" +
+                "Tcs: " + " ₹" + commonOutputModel.getTcs() + "\n" +
+                "Profit: " + " ₹" + commonOutputModel.getProfit() + "\n" +
+                "Profit Percentage: " + commonOutputModel.getProfitPercentage() + " %";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

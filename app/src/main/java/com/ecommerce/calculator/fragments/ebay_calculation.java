@@ -62,7 +62,7 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     ListView itemList;
     CardView result_card;
     ScrollView scrollView;
-    Double[] items = new Double[13];
+    CommonOutputModel commonOutputModel;
     String[] gst_array = {"0", "5", "12", "18", "28"};
     String spinner_ans;
     TabLayout tabLayout;
@@ -457,25 +457,25 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
             @Override
             public void onResponse(Call<CommonOutputModel> call, Response<CommonOutputModel> response) {
                 if (response.isSuccessful()) {
-                    CommonOutputModel CalculateResponse = response.body();
+                    commonOutputModel = response.body();
                     ButtonFinished();
 
                     result_card.setVisibility(View.VISIBLE);
                     itemList.setVisibility(View.VISIBLE);
 
-                    output text1 = new output("Commission Fees", String.valueOf(CalculateResponse.getCommissionFees()) + " ₹");
-                    output text2 = new output("Shipping Fees", String.valueOf(CalculateResponse.getShippingFees()));
-                    output text3 = new output("Payment Gateway Fees", String.valueOf(CalculateResponse.getPaymentGatewayFees()) + " ₹");
-                    output text4 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(CalculateResponse.getCSP()) + " ₹");
-                    output text5 = new output("GST On Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(CalculateResponse.getGstOnCSP()) + " ₹");
-                    output text6 = new output("Total Charges", String.valueOf(CalculateResponse.getTotalCharges()) + " ₹");
-                    output text7 = new output("Bank Settlement", String.valueOf(CalculateResponse.getBankSettlement()) + " ₹");
-                    output text8 = new output("GST Claim", String.valueOf(CalculateResponse.getGstClaim()) + " ₹");
-                    output text9 = new output("GST Payable", String.valueOf(CalculateResponse.getGstPayable()) + " ₹");
-                    output text10 = new output("Total GST Payable", String.valueOf(CalculateResponse.getTotalGstPayable()) + " ₹");
-                    output text11 = new output("TCS", String.valueOf(CalculateResponse.getTcs()) + " ₹");
-                    output text12 = new output("Profit", String.valueOf(CalculateResponse.getProfit())+ " ₹");
-                    output text13 = new output("Profit Percentage", String.valueOf(CalculateResponse.getProfitPercentage()) + " %");
+                    output text1 = new output("Commission Fees", String.valueOf(commonOutputModel.getCommissionFees()) + " ₹");
+                    output text2 = new output("Shipping Fees", String.valueOf(commonOutputModel.getShippingFees()));
+                    output text3 = new output("Payment Gateway Fees", String.valueOf(commonOutputModel.getPaymentGatewayFees()) + " ₹");
+                    output text4 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getCSP()) + " ₹");
+                    output text5 = new output("GST On Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getGstOnCSP()) + " ₹");
+                    output text6 = new output("Total Charges", String.valueOf(commonOutputModel.getTotalCharges()) + " ₹");
+                    output text7 = new output("Bank Settlement", String.valueOf(commonOutputModel.getBankSettlement()) + " ₹");
+                    output text8 = new output("GST Claim", String.valueOf(commonOutputModel.getGstClaim()) + " ₹");
+                    output text9 = new output("GST Payable", String.valueOf(commonOutputModel.getGstPayable()) + " ₹");
+                    output text10 = new output("Total GST Payable", String.valueOf(commonOutputModel.getTotalGstPayable()) + " ₹");
+                    output text11 = new output("TCS", String.valueOf(commonOutputModel.getTcs()) + " ₹");
+                    output text12 = new output("Profit", String.valueOf(commonOutputModel.getProfit())+ " ₹");
+                    output text13 = new output("Profit Percentage", String.valueOf(commonOutputModel.getProfitPercentage()) + " %");
 
                     ArrayList<output> outputList = new ArrayList<>();
                     outputList.add(text1);
@@ -578,34 +578,35 @@ public class ebay_calculation extends Fragment implements View.OnClickListener {
     }
 
     public void share() {
-        String content = "INPUT" + "\n" +
-                "Selling Price: " + sellingPrice.getText().toString().trim() + "\n" +
-                "GST On Product: " + spinner_ans + "\n" +
-                "Product Price Without GST: " + purchasePrice.getText().toString().trim() + "\n" +
-                "Inward Shipping: " + inwardShipping.getText().toString().trim() + "\n" +
-                "Packaging Expense: " + packagingExpenses.getText().toString().trim() + "\n" +
-                "Labour: " + labour.getText().toString().trim() + "\n" +
-                "Storage Fee: " + storageFee.getText().toString().trim() + "\n" +
-                "Other: " + otherCharges.getText().toString().trim() + "\n" +
-                "Discount Percent: " + discountByPercentage.getText().toString().trim() + "\n" +
-                "Discount Amount: " + discountByPrice.getText().toString().trim() + "\n" +
-                "Commission: " + commission.getText().toString().trim() + '\n' +
-                "Shipping: " + shipping.getText().toString().trim() + '\n' +
-                "Payment Gateway Charge: " + paymentGatewayCharge.getText().toString().trim() + "\n\n" +
+        String content = "EBAY" + "\n\n" +
+                "INPUT" + "\n" +
+                "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
+                "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
+                "GST On Product: " + spinner_ans + " %" + "\n" +
+                "Inward Shipping: " + " ₹" + inwardShipping.getText().toString().trim() + "\n" +
+                "Packaging Expense: " + " ₹" + packagingExpenses.getText().toString().trim() + "\n" +
+                "Labour: " + " ₹" + labour.getText().toString().trim() + "\n" +
+                "Storage Fee: " + " ₹" + storageFee.getText().toString().trim() + "\n" +
+                "Commission: " + commission.getText().toString().trim() + " %" + "\n" +
+                "Shipping: " + " ₹" + shipping.getText().toString().trim() + "\n" +
+                "Payment Gateway Charge: " + paymentGatewayCharge.getText().toString().trim() + " %" + "\n" +
+                "Other: " + " ₹" + otherCharges.getText().toString().trim() + "\n" +
+                "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
+                "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n" +
-                "Commission Fees: " + items[0] + "\n" +
-                "Shipping Fees: " + items[1] + "\n" +
-                "Payment Gateway Fees: " + items[2] + "\n" +
-                "CSP: " + items[3] + "\n" +
-                "GST On CSP: " + items[4] + "\n" +
-                "Total Charges: " + items[5] + "\n" +
-                "Bank Settlement: " + items[6] + "\n" +
-                "Total GST Payable: " + items[7] + "\n" +
-                "GST Claim: " + items[8] + "\n" +
-                "Tcs: " + items[9] + "\n" +
-                "GST Payable: " + items[10] + "\n" +
-                "Profit: " + items[11] + "\n" +
-                "Profit Percentage: " + items[12];
+                "Commission Fees: " + " ₹" + commonOutputModel.getCommissionFees() + "\n" +
+                "Shipping Fees: " + " ₹" + commonOutputModel.getShippingFees() + "\n" +
+                "Payment Gateway Fees: " + " ₹" + commonOutputModel.getPaymentGatewayFees() + "\n" +
+                "Commission Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getCSP() + "\n" +
+                "GST On Commission Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getGstOnCSP() + "\n" +
+                "Total Charges: " + " ₹" + commonOutputModel.getTotalCharges() + "\n" +
+                "Bank Settlement: " + " ₹" + commonOutputModel.getBankSettlement() + "\n" +
+                "GST Claim: " + " ₹" + commonOutputModel.getGstClaim() + "\n" +
+                "GST Payable: " + " ₹" + commonOutputModel.getGstPayable() + "\n" +
+                "Total GST Payable: " + " ₹" + commonOutputModel.getTotalGstPayable() + "\n" +
+                "Tcs: " + " ₹" + commonOutputModel.getTcs() + "\n" +
+                "Profit: " + " ₹" + commonOutputModel.getProfit() + "\n" +
+                "Profit Percentage: " + commonOutputModel.getProfitPercentage() + " %";
 
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");

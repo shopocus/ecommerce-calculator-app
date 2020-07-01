@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.storage.SharedPrefManager;

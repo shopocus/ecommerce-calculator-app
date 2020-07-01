@@ -3,6 +3,7 @@ package com.ecommerce.calculator.adapter;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -33,9 +34,9 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         if (position == 0) {
             if (SharedPrefManager.getInstance(c).getCompany().equals("meesho")) {
-                meesho_calculation input = new meesho_calculation();
-                input.setArguments(bundle);
-                return input;
+                meesho_calculation meesho_calculation = new meesho_calculation();
+                meesho_calculation.setArguments(bundle);
+                return meesho_calculation;
             } else if (SharedPrefManager.getInstance(c).getCompany().equals("clubFactory")) {
                 clubfactory_calculation clubfactory_calculation = new clubfactory_calculation();
                 clubfactory_calculation.setArguments(bundle);
@@ -67,5 +68,10 @@ public class PageAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return counttab;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }
