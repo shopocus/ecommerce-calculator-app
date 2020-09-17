@@ -21,6 +21,7 @@ public class CommonInputModel {
     private String labour;
     private String storageFee;
     private String commission;
+    private String marketingFees;
     private String shipping;
     private String paymentGatewayCharge;
     private String other;
@@ -31,12 +32,7 @@ public class CommonInputModel {
     private selfShipModel selfShip;
     private String title;
 
-    public CommonInputModel(String title, String category, String subcategory, String sellingPrice, String gstOnProduct, String productPriceWithoutGst,
-                            String weight, String length, String breadth, String height, String customerType, String courier, String payMode,
-                            String inwardShipping, String packagingExpense, String labour, String storageFee, String commission, String shipping,
-                            String paymentGatewayCharge, String other, String discountAmount, String discountPercent, String shipmentType, easyShipModel easyShip,
-                            selfShipModel selfShip) {
-        this.title = title;
+    public CommonInputModel(String category, String subcategory, String sellingPrice, String gstOnProduct, String productPriceWithoutGst, String weight, String length, String breadth, String height, String customerType, String courier, String payMode, String inwardShipping, String packagingExpense, String labour, String storageFee, String commission, String marketingFees, String shipping, String paymentGatewayCharge, String other, String discountAmount, String discountPercent, String shipmentType, easyShipModel easyShip, selfShipModel selfShip, String title) {
         this.category = category;
         this.subcategory = subcategory;
         this.sellingPrice = sellingPrice;
@@ -54,6 +50,7 @@ public class CommonInputModel {
         this.labour = labour;
         this.storageFee = storageFee;
         this.commission = commission;
+        this.marketingFees = marketingFees;
         this.shipping = shipping;
         this.paymentGatewayCharge = paymentGatewayCharge;
         this.other = other;
@@ -62,6 +59,7 @@ public class CommonInputModel {
         this.shipmentType = shipmentType;
         this.easyShip = easyShip;
         this.selfShip = selfShip;
+        this.title = title;
     }
 
     public String getTitle() {
@@ -166,5 +164,121 @@ public class CommonInputModel {
 
     public selfShipModel getSelfShip() {
         return selfShip;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
+
+    public void setSellingPrice(String sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+    public void setGstOnProduct(String gstOnProduct) {
+        this.gstOnProduct = gstOnProduct;
+    }
+
+    public void setProductPriceWithoutGst(String productPriceWithoutGst) {
+        this.productPriceWithoutGst = productPriceWithoutGst;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public void setLength(String length) {
+        this.length = length;
+    }
+
+    public void setBreadth(String breadth) {
+        this.breadth = breadth;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
+    public void setCourier(String courier) {
+        this.courier = courier;
+    }
+
+    public String getPayMode() {
+        return payMode;
+    }
+
+    public void setPayMode(String payMode) {
+        this.payMode = payMode;
+    }
+
+    public void setInwardShipping(String inwardShipping) {
+        this.inwardShipping = inwardShipping;
+    }
+
+    public void setPackagingExpense(String packagingExpense) {
+        this.packagingExpense = packagingExpense;
+    }
+
+    public void setLabour(String labour) {
+        this.labour = labour;
+    }
+
+    public void setStorageFee(String storageFee) {
+        this.storageFee = storageFee;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
+    }
+
+    public String getMarketingFees() {
+        return marketingFees;
+    }
+
+    public void setMarketingFees(String marketingFees) {
+        this.marketingFees = marketingFees;
+    }
+
+    public void setShipping(String shipping) {
+        this.shipping = shipping;
+    }
+
+    public void setPaymentGatewayCharge(String paymentGatewayCharge) {
+        this.paymentGatewayCharge = paymentGatewayCharge;
+    }
+
+    public void setOther(String other) {
+        this.other = other;
+    }
+
+    public void setDiscountAmount(String discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public void setDiscountPercent(String discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public void setShipmentType(String shipmentType) {
+        this.shipmentType = shipmentType;
+    }
+
+    public void setEasyShip(easyShipModel easyShip) {
+        this.easyShip = easyShip;
+    }
+
+    public void setSelfShip(selfShipModel selfShip) {
+        this.selfShip = selfShip;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

@@ -58,7 +58,7 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 ebay_calculation ebay_calculation = new ebay_calculation();
                 ebay_calculation.setArguments(bundle);
                 return ebay_calculation;
-            } else if (SharedPrefManager.getInstance(c).getCompany().equals("other")) {
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("otherPlatform")) {
                 other_calculation other_calculation = new other_calculation();
                 other_calculation.setArguments(bundle);
                 return other_calculation;

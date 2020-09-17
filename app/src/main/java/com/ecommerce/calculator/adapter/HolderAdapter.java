@@ -89,7 +89,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> {
                     c.startActivity(intent);
                 } else if (menu.get(position).getTitle().equals("Other")) {
                     SharedPrefManager.getInstance(c)
-                            .saveCompany("other");
+                            .saveCompany("otherPlatform");
                     loadingDialog.dismissDialog();
                     Intent intent = new Intent(c, FragmentSelection.class);
                     c.startActivity(intent);

@@ -156,6 +156,9 @@ public class SavedData extends AppCompatActivity {
                             case "ebay":
                                 ebayData(td);
                                 break;
+                            case "otherPlatform":
+                                otherData(td);
+                                break;
                         }
                     }
                 } else if (response.code() == 401) {
@@ -938,6 +941,90 @@ public class SavedData extends AppCompatActivity {
         input.add(td.getInput().getLabour());
         input.add(td.getInput().getStorageFee());
         input.add(td.getInput().getCommission());
+        input.add(td.getInput().getShipping());
+        input.add(td.getInput().getPaymentGatewayCharge());
+        input.add(td.getInput().getOther());
+        input.add(td.getInput().getDiscountAmount());
+        input.add(td.getInput().getDiscountPercent());
+
+        bundle.putStringArrayList("input", input);
+
+        OutputListAdapter adapterOutput = new OutputListAdapter(SavedData.this, R.layout.output_row, outputList);
+        result.setAdapter(adapterOutput);
+        SavedData.setListViewHeightBasedOnChildren(result);
+    }
+
+    void otherData(TitleDataResponse td) {
+        result.setVisibility(View.VISIBLE);
+        output text1 = new output("Selling Price", String.valueOf(td.getInput().getSellingPrice()));
+        output text2 = new output("Purchase Price", String.valueOf(td.getInput().getProductPriceWithoutGst()));
+        output text3 = new output("GST on product", String.valueOf(td.getInput().getGstOnProduct()));
+        output text4 = new output("Inward Shipping", String.valueOf(td.getInput().getInwardShipping()));
+        output text5 = new output("Packaging Expenses", String.valueOf(td.getInput().getPackagingExpense()));
+        output text6 = new output("Labour", String.valueOf(td.getInput().getLabour()));
+        output text7 = new output("Storage fees", String.valueOf(td.getInput().getStorageFee()));
+        output text8 = new output("Marketing Fees", String.valueOf(td.getInput().getMarketingFees()));
+        output text9 = new output("Shipping", String.valueOf(td.getInput().getShipping()));
+        output text10 = new output("Payment Gateway Charge", String.valueOf(td.getInput().getPaymentGatewayCharge()));
+        output text11 = new output("Other Charges", String.valueOf(td.getInput().getOther()));
+        output text12 = new output("Discount on Price", String.valueOf(td.getInput().getDiscountAmount()));
+        output text13 = new output("Discount Percentage", String.valueOf(td.getInput().getDiscountPercent()));
+
+        ArrayList<output> inputList = new ArrayList<>();
+        inputList.add(text1);
+        inputList.add(text2);
+        inputList.add(text3);
+        inputList.add(text4);
+        inputList.add(text5);
+        inputList.add(text6);
+        inputList.add(text7);
+        inputList.add(text8);
+        inputList.add(text9);
+        inputList.add(text10);
+        inputList.add(text11);
+        inputList.add(text12);
+        inputList.add(text13);
+
+        OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, inputList);
+        itemList.setAdapter(adapter);
+        SavedData.setListViewHeightBasedOnChildren(itemList);
+
+        output text14 = new output("Marketing Fees", td.getOutput().getMarketingFees());
+        output text15 = new output("Shipping Fees", td.getOutput().getShippingFees());
+        output text16 = new output("Payment Gateway Fees", td.getOutput().getPaymentGatewayFees());
+        output text17 = new output("Marketing Fees + Shipping Fees + Payment Gateway Fees", td.getOutput().getCSP());
+        output text18 = new output("GST On Marketing Fees + Shipping Fees + Payment Gateway Fees", td.getOutput().getGstOnCSP());
+        output text19 = new output("Total Charges", td.getOutput().getTotalCharges());
+        output text20 = new output("Bank Settlement", td.getOutput().getBankSettlement());
+        output text21 = new output("GST Claim", td.getOutput().getGstClaim());
+        output text22 = new output("GST Payable", td.getOutput().getGstPayable());
+        output text23 = new output("Total GST Payable", td.getOutput().getTotalGstPayable());
+        output text24 = new output("Profit", td.getOutput().getProfit());
+        output text25 = new output("Profit Percentage", td.getOutput().getProfitPercentage());
+
+        ArrayList<output> outputList = new ArrayList<>();
+        outputList.add(text14);
+        outputList.add(text15);
+        outputList.add(text16);
+        outputList.add(text17);
+        outputList.add(text18);
+        outputList.add(text19);
+        outputList.add(text20);
+        outputList.add(text21);
+        outputList.add(text22);
+        outputList.add(text23);
+        outputList.add(text24);
+        outputList.add(text25);
+
+        ArrayList<String> input = new ArrayList<>();
+        input.add(td.getInput().getSellingPrice());
+        input.add(td.getInput().getProductPriceWithoutGst());
+        input.add(td.getInput().getGstOnProduct());
+        input.add(td.getInput().getInwardShipping());
+        input.add(td.getInput().getPackagingExpense());
+        input.add(td.getInput().getLabour());
+        input.add(td.getInput().getStorageFee());
+        input.add(td.getInput().getMarketingFees());
         input.add(td.getInput().getShipping());
         input.add(td.getInput().getPaymentGatewayCharge());
         input.add(td.getInput().getOther());

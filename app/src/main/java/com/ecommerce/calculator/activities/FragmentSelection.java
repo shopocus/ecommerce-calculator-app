@@ -84,7 +84,7 @@ public class FragmentSelection extends AppCompatActivity {
             case "ebay":
                 title.setText("Ebay");
                 break;
-            case "other":
+            case "otherPlatform":
                 title.setText("Other");
                 break;
         }

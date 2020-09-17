@@ -45,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/light_grey"
                     android:paddingLeft="3dp"
+                    android:singleLine="true"
                     android:text="Input Details"
                     android:textSize="16sp" />
 
@@ -57,13 +58,15 @@
                         android:id="@+id/textViewCategory"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Category: "
                         android:textColor="@color/colorPrimary" />
 
                     <Spinner
                         android:id="@+id/category"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:singleLine="true" />
 
                 </LinearLayout>
 
@@ -86,13 +89,15 @@
                         android:id="@+id/textViewSubCategory"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Sub Category: "
                         android:textColor="@color/colorPrimary" />
 
                     <Spinner
                         android:id="@+id/subCategory"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:singleLine="true" />
 
                 </LinearLayout>
 
@@ -112,12 +117,14 @@
                         android:id="@+id/text_sp"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Selling Price: "
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -127,6 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -147,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingLeft="3dp"
+                android:singleLine="true"
                 android:text="Product Details"
                 android:textSize="16sp" />
 
@@ -183,6 +192,7 @@
                         android:id="@+id/text_pp"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Purchase Price: "
                         android:textColor="@color/colorPrimary" />
 
@@ -190,6 +200,7 @@
                         android:id="@+id/rs1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -199,6 +210,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -219,6 +231,7 @@
                         android:id="@+id/text_gst"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="GST on product: "
                         android:textColor="@color/colorPrimary" />
 
@@ -226,6 +239,7 @@
                         android:id="@+id/rs2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="%"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -233,7 +247,8 @@
                     <Spinner
                         android:id="@+id/gst"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:singleLine="true" />
 
                 </LinearLayout>
 
@@ -251,12 +266,14 @@
                         android:layout_height="1dp"
                         android:background="@color/colorBase"
                         android:gravity="center_horizontal"
-                        android:paddingTop="3dp" />
+                        android:paddingTop="3dp"
+                        android:singleLine="true" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="Shipment Type: "
                         android:textColor="@color/colorPrimary" />
 
@@ -306,12 +323,14 @@
                         android:layout_height="1dp"
                         android:background="@color/colorBase"
                         android:gravity="center_horizontal"
-                        android:paddingTop="3dp" />
+                        android:paddingTop="3dp"
+                        android:singleLine="true" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="Easy Shipment Type: "
                         android:textColor="@color/colorPrimary" />
 
@@ -365,6 +384,7 @@
                         android:id="@+id/text_weight"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Weight: "
                         android:textColor="@color/colorPrimary" />
 
@@ -372,6 +392,7 @@
                         android:id="@+id/gm1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="gm"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -381,6 +402,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -395,6 +417,7 @@
                         android:id="@+id/text_selfshipLocal"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Selfship Local: "
                         android:textColor="@color/colorPrimary" />
 
@@ -402,6 +425,7 @@
                         android:id="@+id/rs13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -411,6 +435,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -433,12 +458,14 @@
                         android:id="@+id/text_length"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Length: "
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="cm"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -448,6 +475,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -462,6 +490,7 @@
                         android:id="@+id/text_selfshipRegional"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Selfship Regional: "
                         android:textColor="@color/colorPrimary" />
 
@@ -469,6 +498,7 @@
                         android:id="@+id/rs14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -478,6 +508,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -500,12 +531,14 @@
                         android:id="@+id/text_breadth"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Breadth: "
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="cm"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -515,6 +548,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -529,6 +563,7 @@
                         android:id="@+id/text_selfshipNational"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Selfship National: "
                         android:textColor="@color/colorPrimary" />
 
@@ -536,6 +571,7 @@
                         android:id="@+id/rs15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -545,6 +581,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -567,12 +604,14 @@
                         android:id="@+id/text_height"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Height: "
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="cm"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -582,6 +621,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -605,6 +645,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="Courier: "
                         android:textColor="@color/colorPrimary" />
 
@@ -658,6 +699,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="Customer Type: "
                         android:textColor="@color/colorPrimary" />
 
@@ -720,6 +762,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
+                        android:singleLine="true"
                         android:text="Payment Mode:"
                         android:textColor="@color/colorPrimary" />
 
@@ -768,6 +811,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingLeft="3dp"
+                android:singleLine="true"
                 android:text="Expenses"
                 android:textSize="16sp" />
 
@@ -803,6 +847,7 @@
                         android:id="@+id/text_transport"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Inward Shipping: "
                         android:textColor="@color/colorPrimary" />
 
@@ -810,6 +855,7 @@
                         android:id="@+id/rs3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -819,6 +865,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -841,6 +888,7 @@
                         android:id="@+id/text_packaging"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Packaging expenses: "
                         android:textColor="@color/colorPrimary" />
 
@@ -848,6 +896,7 @@
                         android:id="@+id/rs4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -857,6 +906,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -879,6 +929,7 @@
                         android:id="@+id/text_labour"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Labour: "
                         android:textColor="@color/colorPrimary" />
 
@@ -886,6 +937,7 @@
                         android:id="@+id/rs5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -895,6 +947,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -917,6 +970,7 @@
                         android:id="@+id/text_Storage"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Storage fees: "
                         android:textColor="@color/colorPrimary" />
 
@@ -924,6 +978,7 @@
                         android:id="@+id/rs6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -933,6 +988,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -957,6 +1013,7 @@
                         android:id="@+id/text_Commission"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Commission: "
                         android:textColor="@color/colorPrimary" />
 
@@ -964,6 +1021,7 @@
                         android:id="@+id/rs12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="%"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -973,6 +1031,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -997,6 +1056,7 @@
                         android:id="@+id/text_Shipping"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Shipping: "
                         android:textColor="@color/colorPrimary" />
 
@@ -1004,6 +1064,7 @@
                         android:id="@+id/rs11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -1013,6 +1074,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -1037,6 +1099,7 @@
                         android:id="@+id/text_payment_Gateway_Charge"
                         android:layout_width="170dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Payment Gateway Charge: "
                         android:textColor="@color/colorPrimary" />
 
@@ -1044,6 +1107,7 @@
                         android:id="@+id/rs10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="%"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -1053,6 +1117,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -1073,6 +1138,7 @@
                         android:id="@+id/text_other"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Other charges: "
                         android:textColor="@color/colorPrimary" />
 
@@ -1080,6 +1146,7 @@
                         android:id="@+id/rs7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -1089,6 +1156,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
                 </LinearLayout>
 
@@ -1108,6 +1176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="10"
                 android:paddingLeft="3dp"
+                android:singleLine="true"
                 android:text="Discounts"
                 android:textSize="16sp" />
 
@@ -1143,6 +1212,7 @@
                         android:id="@+id/text_price"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="By Price: "
                         android:textColor="@color/colorPrimary" />
 
@@ -1150,6 +1220,7 @@
                         android:id="@+id/rs8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="₹"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -1159,6 +1230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
@@ -1179,6 +1251,7 @@
                         android:id="@+id/text_percentage"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="By Percentage: "
                         android:textColor="@color/colorPrimary" />
 
@@ -1186,6 +1259,7 @@
                         android:id="@+id/rs9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="%"
                         android:textColor="@color/colorBase"
                         android:textSize="15dp" />
@@ -1195,13 +1269,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:singleLine="true"
                         android:textSize="15dp" />
 
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
 
         <LinearLayout
             android:layout_width="match_parent"

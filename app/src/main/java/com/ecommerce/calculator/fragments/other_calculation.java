@@ -474,14 +474,13 @@ public class other_calculation extends Fragment implements View.OnClickListener 
                     output text1 = new output("Marketing Fees", String.valueOf(commonOutputModel.getMarketingFees()) + " ₹");
                     output text2 = new output("Shipping Fees", String.valueOf(commonOutputModel.getShippingFees()));
                     output text3 = new output("Payment Gateway Fees", String.valueOf(commonOutputModel.getPaymentGatewayFees()) + " ₹");
-                    output text4 = new output("Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getCSP()) + " ₹");
-                    output text5 = new output("GST On Commission Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getGstOnCSP()) + " ₹");
+                    output text4 = new output("Marketing Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getCSP()) + " ₹");
+                    output text5 = new output("GST On Marketing Fees + Shipping Fees + Payment Gateway Fees", String.valueOf(commonOutputModel.getGstOnCSP()) + " ₹");
                     output text6 = new output("Total Charges", String.valueOf(commonOutputModel.getTotalCharges()) + " ₹");
                     output text7 = new output("Bank Settlement", String.valueOf(commonOutputModel.getBankSettlement()) + " ₹");
                     output text8 = new output("GST Claim", String.valueOf(commonOutputModel.getGstClaim()) + " ₹");
                     output text9 = new output("GST Payable", String.valueOf(commonOutputModel.getGstPayable()) + " ₹");
                     output text10 = new output("Total GST Payable", String.valueOf(commonOutputModel.getTotalGstPayable()) + " ₹");
-//                    output text11 = new output("TCS", String.valueOf(commonOutputModel.getTcs()) + " ₹");
                     output text12 = new output("Profit", String.valueOf(commonOutputModel.getProfit()) + " ₹");
                     output text13 = new output("Profit Percentage", String.valueOf(commonOutputModel.getProfitPercentage()) + " %");
 
@@ -496,7 +495,6 @@ public class other_calculation extends Fragment implements View.OnClickListener 
                     outputList.add(text8);
                     outputList.add(text9);
                     outputList.add(text10);
-//                    outputList.add(text11);
                     outputList.add(text12);
                     outputList.add(text13);
 
@@ -603,11 +601,11 @@ public class other_calculation extends Fragment implements View.OnClickListener 
                 "Discount Amount: " + " ₹" + discountByPrice.getText().toString().trim() + "\n" +
                 "Discount Percent: " + discountByPercentage.getText().toString().trim() + " %" + "\n\n" +
                 "OUTPUT" + "\n" +
-                "Commission Fees: " + " ₹" + commonOutputModel.getCommissionFees() + "\n" +
+                "Marketing Fees: " + " ₹" + commonOutputModel.getMarketingFees() + "\n" +
                 "Shipping Fees: " + " ₹" + commonOutputModel.getShippingFees() + "\n" +
                 "Payment Gateway Fees: " + " ₹" + commonOutputModel.getPaymentGatewayFees() + "\n" +
-                "Commission Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getCSP() + "\n" +
-                "GST On Commission Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getGstOnCSP() + "\n" +
+                "Marketing Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getCSP() + "\n" +
+                "GST On Marketing Fees + Shipping Fees + Payment Fees: " + " ₹" + commonOutputModel.getGstOnCSP() + "\n" +
                 "Total Charges: " + " ₹" + commonOutputModel.getTotalCharges() + "\n" +
                 "Bank Settlement: " + " ₹" + commonOutputModel.getBankSettlement() + "\n" +
                 "GST Claim: " + " ₹" + commonOutputModel.getGstClaim() + "\n" +
