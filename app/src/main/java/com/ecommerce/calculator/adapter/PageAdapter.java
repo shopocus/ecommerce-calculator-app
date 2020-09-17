@@ -14,6 +14,7 @@ import com.ecommerce.calculator.fragments.amazonFba_calculation;
 import com.ecommerce.calculator.fragments.ebay_calculation;
 import com.ecommerce.calculator.fragments.meesho_calculation;
 import com.ecommerce.calculator.fragments.clubfactory_calculation;
+import com.ecommerce.calculator.fragments.other_calculation;
 import com.ecommerce.calculator.fragments.saved;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 
@@ -57,6 +58,10 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 ebay_calculation ebay_calculation = new ebay_calculation();
                 ebay_calculation.setArguments(bundle);
                 return ebay_calculation;
+            } else if (SharedPrefManager.getInstance(c).getCompany().equals("other")) {
+                other_calculation other_calculation = new other_calculation();
+                other_calculation.setArguments(bundle);
+                return other_calculation;
             }
         } else {
             saved saved = new saved();

@@ -103,10 +103,10 @@ public class Menu extends AppCompatActivity {
         m.setImg(R.drawable.meesho);
         menu.add(m);
 
-//        m = new menu();
-//        m.setTitle("Club Factory");
-//        m.setImg(R.drawable.clubfactory);
-//        menu.add(m);
+        m = new menu();
+        m.setTitle("Club Factory");
+        m.setImg(R.drawable.clubfactory);
+        menu.add(m);
 
         m = new menu();
         m.setTitle("Flipkart");
@@ -124,8 +124,13 @@ public class Menu extends AppCompatActivity {
         menu.add(m);
 
         m = new menu();
-        m.setTitle("ebay");
+        m.setTitle("Ebay");
         m.setImg(R.drawable.ebay);
+        menu.add(m);
+
+        m = new menu();
+        m.setTitle("Other");
+        m.setImg(R.drawable.icon);
         menu.add(m);
 
         return menu;

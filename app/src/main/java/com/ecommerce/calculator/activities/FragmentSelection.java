@@ -53,7 +53,7 @@ public class FragmentSelection extends AppCompatActivity {
         setStatusBarGradiant(this);
         setContentView(R.layout.options_tab);
 
-        MobileAds.initialize(this, "ca-app-pub-3940256099942544/6300978111");
+        MobileAds.initialize(this, "ca-app-pub-1991858249857939/5362322607");
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -83,6 +83,9 @@ public class FragmentSelection extends AppCompatActivity {
                 break;
             case "ebay":
                 title.setText("Ebay");
+                break;
+            case "other":
+                title.setText("Other");
                 break;
         }
 

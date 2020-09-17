@@ -298,6 +298,43 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("other/app/calculate")
+    Call<CommonOutputModel> otherCalculation(
+            @Field("sellingPrice") double sellingPrice,
+            @Field("gstOnProduct") double gstOnProduct,
+            @Field("productPriceWithoutGst") double productPriceWithoutGst,
+            @Field("inwardShipping") double inwardShipping,
+            @Field("packagingExpense") double packagingExpense,
+            @Field("labour") double labour,
+            @Field("storageFee") double storageFee,
+            @Field("other") double other,
+            @Field("discountAmount") double discountAmount,
+            @Field("discountPercent") double discountPercent,
+            @Field("marketingFees") double marketingFees,
+            @Field("shipping") double shipping,
+            @Field("paymentGatewayCharge") double paymentGatewayCharge
+    );
+
+    @FormUrlEncoded
+    @POST("other/app/toSave")
+    Call<MessageResponse> savedOther(
+            @Field("title") String title,
+            @Field("sellingPrice") String sellingPrice,
+            @Field("gstOnProduct") String gstOnProduct,
+            @Field("productPriceWithoutGst") String productPriceWithoutGst,
+            @Field("inwardShipping") String inwardShipping,
+            @Field("packagingExpense") String packagingExpense,
+            @Field("labour") String labour,
+            @Field("storageFee") String storageFee,
+            @Field("other") String other,
+            @Field("discountAmount") String discountAmount,
+            @Field("discountPercent") String discountPercent,
+            @Field("marketingFees") String marketingFees,
+            @Field("shipping") String shipping,
+            @Field("paymentGatewayCharge") String paymentGatewayCharge
+    );
+
+    @FormUrlEncoded
     @POST("common/show/saved/title")
     Call<savedTitleResponse> getTitles(
             @Field("company") String company
