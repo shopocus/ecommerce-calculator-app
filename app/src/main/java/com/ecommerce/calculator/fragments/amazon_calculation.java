@@ -837,9 +837,13 @@ public class amazon_calculation extends Fragment implements View.OnClickListener
                     SharedPrefManager.getInstance(getActivity())
                             .saveSubList(list);
                     subList = SharedPrefManager.getInstance(getActivity()).getSubList();
-                    ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, list);
-                    adapter2.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
-                    subCategories.setAdapter(adapter2);
+                    try {
+                        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, list);
+                        adapter2.setDropDownViewResource(android.R.layout.simple_list_item_activated_1);
+                        subCategories.setAdapter(adapter2);
+                    }catch (Exception e){
+
+                    }
                 } else if (response.code() == 401) {
                     Toast.makeText(getActivity(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
                     SharedPrefManager.getInstance(getActivity()).clear();

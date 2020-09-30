@@ -196,6 +196,15 @@ public interface Api {
             @Field("category") String category
     );
 
+    @GET("amazonFba/app/showCategory")
+    Call<category> getCategoriesAmazonFba();
+
+    @FormUrlEncoded
+    @POST("amazonFba/app/showSubCategory")
+    Call<subCategory> getSubCategoriesAmazonFba(
+            @Field("category") String category
+    );
+
     @FormUrlEncoded
     @POST("amazon/app/toSave")
     Call<MessageResponse> savedAmazon(

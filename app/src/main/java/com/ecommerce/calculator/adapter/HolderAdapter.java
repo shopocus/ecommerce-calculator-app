@@ -122,7 +122,7 @@ public class HolderAdapter extends RecyclerView.Adapter<MyHolder> {
                 call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
                 break;
             case "amazonFba":
-                call = RetrofitClient.getInstance().getApi().getCategoriesAmazon();
+                call = RetrofitClient.getInstance().getApi().getCategoriesAmazonFba();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + SharedPrefManager.getInstance(c).getCompany());
