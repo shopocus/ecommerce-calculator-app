@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+<<<<<<< HEAD
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ecommerce-calculator-app/app/src/main/res/layout/forgot_password.xml" value="0.2246376811594203" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ecommerce-calculator-app/app/src/main/res/layout/options_tab.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ecommerce-calculator-app/app/src/main/res/layout/verification.xml" value="0.2246376811594203" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

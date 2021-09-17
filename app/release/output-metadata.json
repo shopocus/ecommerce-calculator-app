@@ -1,0 +1,34 @@
+{
+<<<<<<< HEAD
+  "version": 3,
+=======
+  "version": 1,
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.ecommerce.calculator",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+<<<<<<< HEAD
+      "attributes": [],
+      "versionCode": 3,
+      "versionName": "1.2",
+      "outputFile": "app-release.apk"
+    }
+  ],
+  "elementType": "File"
+=======
+      "properties": [],
+      "versionCode": 1,
+      "versionName": "1.0",
+      "enabled": true,
+      "outputFile": "app-release.apk"
+    }
+  ]
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
+}

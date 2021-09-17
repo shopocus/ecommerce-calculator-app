@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#ff7233</color>
+    <color name="colorPrimary">#F68716</color>
+    <color name="colorAccent">#F7932E</color>
+    <color name="homescreen_background">#FBF6F6</color>
+    <color name="main_headings">#4c4c4c</color>#2F2A37
+    <color name="link">#2196F3</color>
+    <color name="colorBase">#D8D6D6</color>
+    <color name="light_grey">#ECEBEB</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+</resources>
