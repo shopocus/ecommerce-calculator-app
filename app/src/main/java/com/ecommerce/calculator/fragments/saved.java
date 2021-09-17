@@ -98,12 +98,6 @@ public class saved extends Fragment {
                         loader.setVisibility(View.GONE);
                         adapter = new TitleAdapter(getActivity(), titleList, getFragmentManager());
                         recyclerView.setAdapter(adapter);
-<<<<<<< HEAD
-=======
-                    } else if (savedTitleResponse.getMessage().equals("no_data_exists")) {
-                        text.setVisibility(View.VISIBLE);
-                        loader.setVisibility(View.GONE);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                     }
                 } else if (response.code() == 401) {
                     Toast.makeText(getContext(), "Session Expire! Please Login Again", Toast.LENGTH_SHORT).show();
@@ -111,12 +105,9 @@ public class saved extends Fragment {
                     Intent intent_logout = new Intent(getContext(), HomeScreen.class);
                     intent_logout.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent_logout);
-<<<<<<< HEAD
                 } else if (response.code() == 409) {
                     text.setVisibility(View.VISIBLE);
                     loader.setVisibility(View.GONE);
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                 }
             }
 

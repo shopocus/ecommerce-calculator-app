@@ -39,10 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-<<<<<<< HEAD
             android:textSize="20sp"
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             android:text="Enter the OTP sent to"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"
-<<<<<<< HEAD
             android:textSize="20sp"
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

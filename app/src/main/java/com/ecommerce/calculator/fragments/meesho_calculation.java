@@ -8,10 +8,7 @@ import android.os.Bundle;
 import android.text.InputType;
 
 import com.ecommerce.calculator.models.CommonOutputModel;
-<<<<<<< HEAD
 import com.ecommerce.calculator.models.subCategory;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 import com.ecommerce.calculator.utils.HeightWrappingViewPager;
 import com.ecommerce.calculator.activities.HomeScreen;
 import com.ecommerce.calculator.activities.SavedData;
@@ -62,7 +59,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
 
     private ImageButton details, expenses, discounts, save, sendEmail, reset;
     private EditText sellingPrice, purchasePrice, inwardShipping, packagingExpenses, labour, storageFee, otherCharges, discountByPrice, discountByPercentage;
-<<<<<<< HEAD
     LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch, subCategoryBunch;
 
     CardView productDetailsCard, expensesCard, discountsCard;
@@ -71,15 +67,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     String categoryFinal, subCategoryFinal;
     ArrayList<String> list = new ArrayList<>();
     ArrayList<String> subList = new ArrayList<>();
-=======
-    LinearLayout linearLayout, weightBunch, lengthBunch, breadthBunch, heightBunch, customerTypeBunch, courierBunch, payModeBunch;
-
-    CardView productDetailsCard, expensesCard, discountsCard;
-    HeightWrappingViewPager viewPager;
-    Spinner gstOnProduct, categories;
-    String categoryFinal;
-    ArrayList<String> list = new ArrayList<>();
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     ListView itemList;
     CardView result_card;
     CommonOutputModel commonOutputModel;
@@ -161,10 +148,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                 sellingPrice.requestFocus();
                 sellingPrice.setText("");
                 categories.setSelection(0);
-<<<<<<< HEAD
                 subCategories.setSelection(0);
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                 purchasePrice.setText("");
                 gstOnProduct.setSelection(0);
                 inwardShipping.setText("");
@@ -240,10 +224,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 categoryFinal = list.get(position);
-<<<<<<< HEAD
                 subCategories(categoryFinal);
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             }
 
             @Override
@@ -251,7 +232,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             }
         });
 
-<<<<<<< HEAD
         subCategories = view.findViewById(R.id.subCategory);
 
         subCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -266,8 +246,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             }
         });
 
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         itemList = view.findViewById(R.id.text_view_result);
         result_card = view.findViewById(R.id.result_card);
         linearLayout = view.findViewById(R.id.linearlayout);
@@ -283,11 +261,8 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         lengthBunch = view.findViewById(R.id.lengthBunch);
         breadthBunch = view.findViewById(R.id.breadthBunch);
         heightBunch = view.findViewById(R.id.heightBunch);
-<<<<<<< HEAD
         subCategoryBunch = view.findViewById(R.id.subCategoryBunch);
         subCategoryBunch.setVisibility(View.VISIBLE);
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         customerTypeBunch = view.findViewById(R.id.customerTypeBunch);
         payModeBunch = view.findViewById(R.id.payModeBunch);
         courierBunch = view.findViewById(R.id.courierBunch);
@@ -345,18 +320,12 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             ArrayList<String> bundle_input = bundle.getStringArrayList("input");
             int selection = adapter.getPosition(bundle_input.get(0));
             categories.setSelection(selection);
-<<<<<<< HEAD
 
             selection = adapter.getPosition(bundle_input.get(1));
             subCategories.setSelection(selection);
             sellingPrice.setText(bundle_input.get(2));
             purchasePrice.setText(bundle_input.get(3));
             int value = Integer.parseInt(bundle_input.get(4));
-=======
-            sellingPrice.setText(bundle_input.get(1));
-            purchasePrice.setText(bundle_input.get(2));
-            int value = Integer.parseInt(bundle_input.get(3));
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             switch (value) {
                 case 0:
                     gstOnProduct.setSelection(0);
@@ -374,7 +343,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     gstOnProduct.setSelection(4);
                     break;
             }
-<<<<<<< HEAD
             inwardShipping.setText(bundle_input.get(5));
             packagingExpenses.setText(bundle_input.get(6));
             labour.setText(bundle_input.get(7));
@@ -382,15 +350,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
             otherCharges.setText(bundle_input.get(9));
             discountByPrice.setText(bundle_input.get(10));
             discountByPercentage.setText(bundle_input.get(11));
-=======
-            inwardShipping.setText(bundle_input.get(4));
-            packagingExpenses.setText(bundle_input.get(5));
-            labour.setText(bundle_input.get(6));
-            storageFee.setText(bundle_input.get(7));
-            otherCharges.setText(bundle_input.get(8));
-            discountByPrice.setText(bundle_input.get(9));
-            discountByPercentage.setText(bundle_input.get(10));
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 
             String flag = "false";
             SharedPrefManager.getInstance(getActivity())
@@ -451,10 +410,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         }
 
         String category = categoryFinal;
-<<<<<<< HEAD
         String subCategory = subCategoryFinal;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         double number1 = Double.parseDouble(sellingPrice.getText().toString());
         double number2 = Double.parseDouble(purchasePrice.getText().toString());
         double number3 = Double.parseDouble(spinner_ans);
@@ -467,11 +423,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         double number10 = Double.parseDouble(discountByPercentage.getText().toString());
 
         Call<CommonOutputModel> call = RetrofitClient
-<<<<<<< HEAD
                 .getInstance().getApi().calculate(category, subCategory, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
-=======
-                .getInstance().getApi().calculate(category, number1, number3, number2, number4, number5, number6, number7, number8, number10, number9);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 
         call.enqueue(new Callback<CommonOutputModel>() {
             @Override
@@ -544,10 +496,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
     public void save() {
         String title = String.valueOf(myText);
         String category = categoryFinal;
-<<<<<<< HEAD
         String subCategory = subCategoryFinal;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         String sellingPrice = this.sellingPrice.getText().toString().trim();
         String gstOnProduct = spinner_ans;
         String productPriceWithoutGst = purchasePrice.getText().toString().trim();
@@ -562,11 +511,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         Call<MessageResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-<<<<<<< HEAD
                 .saved(title, category, subCategory, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
-=======
-                .saved(title, category, sellingPrice, gstOnProduct, productPriceWithoutGst, inwardShipping, packagingExpense, labour, storageFee,
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                         other, discountPercent, discountAmount);
 
         call.enqueue(new Callback<MessageResponse>() {
@@ -578,11 +523,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
                     if (dr.getMessage().equals("data_saved")) {
                         save.setImageResource(R.drawable.ic_bookmark);
                         save.setEnabled(false);
-<<<<<<< HEAD
                         new SweetAlertDialog(requireContext(), SweetAlertDialog.SUCCESS_TYPE)
-=======
-                        new SweetAlertDialog(Objects.requireNonNull(getContext()), SweetAlertDialog.SUCCESS_TYPE)
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                                 .setTitleText("Successfully Saved")
                                 .setConfirmText("Ok")
                                 .setConfirmButtonBackgroundColor(getResources().getColor(R.color.colorPrimaryDark))
@@ -611,10 +552,7 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         String content = "MEESHO" + "\n\n" +
                 "INPUT" + "\n" +
                 "Category: " + categoryFinal + "\n" +
-<<<<<<< HEAD
                 "Sub Category: " + subCategoryFinal + "\n" +
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                 "Selling Price: " + " ₹" + sellingPrice.getText().toString().trim() + "\n" +
                 "Product Price Without GST: " + " ₹" + purchasePrice.getText().toString().trim() + "\n" +
                 "GST On Product: " + spinner_ans + " %" + "\n" +
@@ -653,7 +591,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         textView.setText("Calculate");
     }
 
-<<<<<<< HEAD
     public void subCategories(String categoryFinal) {
         Call<subCategory> call;
         call = RetrofitClient.getInstance().getApi().getSubCategoriesMeesho(categoryFinal);
@@ -692,8 +629,6 @@ public class meesho_calculation extends Fragment implements View.OnClickListener
         });
     }
 
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     @Override
     public void onClick(View v) {
 

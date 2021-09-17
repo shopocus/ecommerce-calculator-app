@@ -15,10 +15,7 @@ import android.widget.Toast;
 import com.ecommerce.calculator.adapter.PageAdapter;
 import com.ecommerce.calculator.storage.SharedPrefManager;
 import com.google.android.gms.ads.AdRequest;
-<<<<<<< HEAD
 import com.google.android.gms.ads.AdSize;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
@@ -57,13 +54,8 @@ public class FragmentSelection extends AppCompatActivity {
         setStatusBarGradiant(this);
         setContentView(R.layout.options_tab);
 
-<<<<<<< HEAD
 //        MobileAds.initialize(this, "ca-app-pub-1991858249857939/5362322607");
         mAdView = (AdView) findViewById(R.id.adView);
-=======
-        MobileAds.initialize(this, "ca-app-pub-1991858249857939/5362322607");
-        mAdView = findViewById(R.id.adView);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 

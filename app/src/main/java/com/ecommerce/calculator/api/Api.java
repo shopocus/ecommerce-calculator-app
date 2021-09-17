@@ -25,12 +25,8 @@ public interface Api {
             @Field("name") String name,
             @Field("email") String email,
             @Field("mobile_no") String mobile_no,
-<<<<<<< HEAD
             @Field("password") String password,
             @Field("role") String role
-=======
-            @Field("password") String password
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     );
 
     @FormUrlEncoded
@@ -44,10 +40,7 @@ public interface Api {
     @POST("meesho/app/calculate")
     Call<CommonOutputModel> calculate(
             @Field("category") String category,
-<<<<<<< HEAD
             @Field("subcategory") String subcategory,
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             @Field("sellingPrice") double sellingPrice,
             @Field("gstOnProduct") double gstOnProduct,
             @Field("productPriceWithoutGst") double productPriceWithoutGst,
@@ -64,23 +57,17 @@ public interface Api {
     Call<category> getCategories();
 
     @FormUrlEncoded
-<<<<<<< HEAD
     @POST("meesho/app/showSubCategory")
     Call<subCategory> getSubCategoriesMeesho(
             @Field("category") String category
     );
 
     @FormUrlEncoded
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     @POST("meesho/app/toSave")
     Call<MessageResponse> saved(
             @Field("title") String title,
             @Field("category") String category,
-<<<<<<< HEAD
             @Field("subcategory") String subcategory,
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
             @Field("sellingPrice") String sellingPrice,
             @Field("gstOnProduct") String gstOnProduct,
             @Field("productPriceWithoutGst") String productPriceWithoutGst,
@@ -255,11 +242,7 @@ public interface Api {
     );
 
     @FormUrlEncoded
-<<<<<<< HEAD
     @POST("amazonFba/app/calculate")
-=======
-    @POST("amazon/app/fba/calculate")
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     Call<CommonOutputModel> amazonFbaCalculation(
             @Field("category") String category,
             @Field("subcategory") String subcategory,
@@ -277,11 +260,7 @@ public interface Api {
     );
 
     @FormUrlEncoded
-<<<<<<< HEAD
     @POST("amazonFba/app/toSave")
-=======
-    @POST("amazon/app/fba/toSave")
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     Call<MessageResponse> savedAmazonFba(
             @Field("title") String title,
             @Field("category") String category,

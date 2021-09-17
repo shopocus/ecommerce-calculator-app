@@ -334,11 +334,7 @@ public class RegistrationOtpVerification extends AppCompatActivity {
         Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
-<<<<<<< HEAD
                 .signup(name, email, mobile_no, password, "app");
-=======
-                .signup(name, email, mobile_no, password);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 
         call.enqueue(new Callback<DefaultResponse>() {
             @Override

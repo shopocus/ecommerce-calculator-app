@@ -7,10 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -24,23 +21,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.ecommerce.calculator.R;
-<<<<<<< HEAD
 import com.ecommerce.calculator.models.DefaultResponse;
 import com.ecommerce.calculator.models.MessageResponse;
 import com.ecommerce.calculator.api.RetrofitClient;
 import com.ecommerce.calculator.storage.SharedPrefManager;
-=======
-import com.ecommerce.calculator.models.MessageResponse;
-import com.ecommerce.calculator.api.RetrofitClient;
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.regex.Pattern;
 
-<<<<<<< HEAD
 import cn.pedant.SweetAlert.SweetAlertDialog;
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -142,7 +131,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         signup.setBackground(getResources().getDrawable(R.drawable.disabled_button_background));
         signup.setEnabled(false);
 
-<<<<<<< HEAD
         Call<DefaultResponse> call = RetrofitClient
                 .getInstance()
                 .getApi()
@@ -171,27 +159,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                 }
                             })
                             .show();
-=======
-        Call<MessageResponse> call = RetrofitClient
-                .getInstance()
-                .getApi()
-                .otpSend(email, mobile_no);
-
-        call.enqueue(new Callback<MessageResponse>() {
-            @Override
-            public void onResponse(Call<MessageResponse> call, Response<MessageResponse> response) {
-                MessageResponse dr = response.body();
-                signup.setBackground(getResources().getDrawable(R.drawable.button_background));
-                signup.setEnabled(true);
-                loadingDialog.dismissDialog();
-                if (dr.getMessage().equals("otp_sent")) {
-                    Intent intent = new Intent(Registration.this, RegistrationOtpVerification.class);
-                    intent.putExtra("name", name);
-                    intent.putExtra("email", email);
-                    intent.putExtra("mobile_no", mobile_no);
-                    intent.putExtra("password", password);
-                    startActivity(intent);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                 } else if (dr.getMessage().equals("user_already_exist")) {
                     Snackbar snackbar = Snackbar.make(constraintLayout, "Email Already Exist", Snackbar.LENGTH_SHORT);
                     View snackView = snackbar.getView();
@@ -217,11 +184,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             }
 
             @Override
-<<<<<<< HEAD
             public void onFailure(Call<DefaultResponse> call, Throwable t) {
-=======
-            public void onFailure(Call<MessageResponse> call, Throwable t) {
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
                 loadingDialog.dismissDialog();
                 signup.setBackground(getResources().getDrawable(R.drawable.button_background));
                 signup.setEnabled(true);
@@ -233,7 +196,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 snackbar.show();
             }
         });
-<<<<<<< HEAD
 
 //        Call<MessageResponse> call = RetrofitClient
 //                .getInstance()
@@ -291,8 +253,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 //                snackbar.show();
 //            }
 //        });
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
     }
 
     @Override

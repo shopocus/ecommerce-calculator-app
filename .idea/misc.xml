@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
@@ -11,6 +12,9 @@
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 =======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
 >>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c

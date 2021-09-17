@@ -179,7 +179,6 @@ public class SavedData extends AppCompatActivity {
     void meeshoSavedData(TitleDataResponse td) {
         result.setVisibility(View.VISIBLE);
         output text1 = new output("Category", String.valueOf(td.getInput().getCategory()));
-<<<<<<< HEAD
         output text2 = new output("subcategory", String.valueOf(td.getInput().getSubcategory()));
         output text3 = new output("Selling Price", String.valueOf(td.getInput().getSellingPrice()));
         output text4 = new output("Purchase Price", String.valueOf(td.getInput().getProductPriceWithoutGst()));
@@ -191,18 +190,6 @@ public class SavedData extends AppCompatActivity {
         output text10 = new output("Other Charges", String.valueOf(td.getInput().getOther()));
         output text11 = new output("Discount on Price", String.valueOf(td.getInput().getDiscountAmount()));
         output text12 = new output("Discount Percentage", String.valueOf(td.getInput().getDiscountPercent()));
-=======
-        output text2 = new output("Selling Price", String.valueOf(td.getInput().getSellingPrice()));
-        output text3 = new output("Purchase Price", String.valueOf(td.getInput().getProductPriceWithoutGst()));
-        output text4 = new output("GST on product", String.valueOf(td.getInput().getGstOnProduct()));
-        output text5 = new output("Inward Shipping", String.valueOf(td.getInput().getInwardShipping()));
-        output text6 = new output("Packaging Expenses", String.valueOf(td.getInput().getPackagingExpense()));
-        output text7 = new output("Labour", String.valueOf(td.getInput().getLabour()));
-        output text8 = new output("Storage fees", String.valueOf(td.getInput().getStorageFee()));
-        output text9 = new output("Other Charges", String.valueOf(td.getInput().getOther()));
-        output text10 = new output("Discount on Price", String.valueOf(td.getInput().getDiscountAmount()));
-        output text11 = new output("Discount Percentage", String.valueOf(td.getInput().getDiscountPercent()));
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 
         ArrayList<output> inputList = new ArrayList<>();
         inputList.add(text1);
@@ -216,16 +203,12 @@ public class SavedData extends AppCompatActivity {
         inputList.add(text9);
         inputList.add(text10);
         inputList.add(text11);
-<<<<<<< HEAD
         inputList.add(text12);
-=======
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 
         OutputListAdapter adapter = new OutputListAdapter(SavedData.this, R.layout.output_row, inputList);
         itemList.setAdapter(adapter);
         SavedData.setListViewHeightBasedOnChildren(itemList);
 
-<<<<<<< HEAD
         output text13 = new output("Commission Fees", td.getOutput().getCommissionFees());
         output text14 = new output("Shipping Fees", td.getOutput().getShippingFees());
         output text15 = new output("Commission Fees + Shipping Fees", td.getOutput().getCS());
@@ -240,23 +223,6 @@ public class SavedData extends AppCompatActivity {
         output text24 = new output("Profit Percentage", td.getOutput().getProfitPercentage());
 
         ArrayList<output> outputList = new ArrayList<>();
-=======
-        output text12 = new output("Commission Fees", td.getOutput().getCommissionFees());
-        output text13 = new output("Shipping Fees", td.getOutput().getShippingFees());
-        output text14 = new output("Commission Fees + Shipping Fees", td.getOutput().getCS());
-        output text15 = new output("GST On Commission Fees + shipping Fees", td.getOutput().getGstOnCS());
-        output text16 = new output("Total Charges", td.getOutput().getTotalCharges());
-        output text17 = new output("Bank Settlement", td.getOutput().getBankSettlement());
-        output text18 = new output("GST Claim", td.getOutput().getGstClaim());
-        output text19 = new output("GST Payable", td.getOutput().getGstPayable());
-        output text20 = new output("Total GST Payable", td.getOutput().getTotalGstPayable());
-        output text21 = new output("TCS", td.getOutput().getTcs());
-        output text22 = new output("Profit", td.getOutput().getProfit());
-        output text23 = new output("Profit Percentage", td.getOutput().getProfitPercentage());
-
-        ArrayList<output> outputList = new ArrayList<>();
-        outputList.add(text12);
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         outputList.add(text13);
         outputList.add(text14);
         outputList.add(text15);
@@ -268,17 +234,11 @@ public class SavedData extends AppCompatActivity {
         outputList.add(text21);
         outputList.add(text22);
         outputList.add(text23);
-<<<<<<< HEAD
         outputList.add(text24);
 
         ArrayList<String> input = new ArrayList<>();
         input.add(td.getInput().getCategory());
         input.add(td.getInput().getSubcategory());
-=======
-
-        ArrayList<String> input = new ArrayList<>();
-        input.add(td.getInput().getCategory());
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         input.add(td.getInput().getSellingPrice());
         input.add(td.getInput().getProductPriceWithoutGst());
         input.add(td.getInput().getGstOnProduct());
@@ -353,22 +313,11 @@ public class SavedData extends AppCompatActivity {
 
         Local.add(String.valueOf(td.getOutput().getLocal().getCommissionFees()));
         Local.add(String.valueOf(td.getOutput().getLocal().getShippingFees()));
-<<<<<<< HEAD
         if (td.getInput().getPaymentMode().equals("prepaid")) {
             Local.add(String.valueOf(td.getOutput().getLocal().getPrepaidFees()));
         }
         Local.add(String.valueOf(td.getOutput().getLocal().getCSP()));
         Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCSP()));
-=======
-        if (td.getInput().getPaymentMode().equals("postpaid")) {
-            Local.add(String.valueOf(td.getOutput().getLocal().getCS()));
-            Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCS()));
-        } else {
-            Local.add(String.valueOf(td.getOutput().getLocal().getPrepaidFees()));
-            Local.add(String.valueOf(td.getOutput().getLocal().getCSP()));
-            Local.add(String.valueOf(td.getOutput().getLocal().getGstOnCSP()));
-        }
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         Local.add(String.valueOf(td.getOutput().getLocal().getTotalCharges()));
         Local.add(String.valueOf(td.getOutput().getLocal().getBankSettlement()));
         Local.add(String.valueOf(td.getOutput().getLocal().getGstClaim()));
@@ -380,22 +329,11 @@ public class SavedData extends AppCompatActivity {
 
         Regional.add(String.valueOf(td.getOutput().getRegional().getCommissionFees()));
         Regional.add(String.valueOf(td.getOutput().getRegional().getShippingFees()));
-<<<<<<< HEAD
         if (td.getInput().getPaymentMode().equals("prepaid")) {
             Regional.add(String.valueOf(td.getOutput().getRegional().getPrepaidFees()));
         }
         Regional.add(String.valueOf(td.getOutput().getRegional().getCSP()));
         Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCSP()));
-=======
-        if (td.getInput().getPaymentMode().equals("postpaid")) {
-            Regional.add(String.valueOf(td.getOutput().getRegional().getCS()));
-            Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCS()));
-        } else {
-            Regional.add(String.valueOf(td.getOutput().getRegional().getPrepaidFees()));
-            Regional.add(String.valueOf(td.getOutput().getRegional().getCSP()));
-            Regional.add(String.valueOf(td.getOutput().getRegional().getGstOnCSP()));
-        }
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         Regional.add(String.valueOf(td.getOutput().getRegional().getTotalCharges()));
         Regional.add(String.valueOf(td.getOutput().getRegional().getBankSettlement()));
         Regional.add(String.valueOf(td.getOutput().getRegional().getGstClaim()));
@@ -407,22 +345,11 @@ public class SavedData extends AppCompatActivity {
 
         Metro.add(String.valueOf(td.getOutput().getMetro().getCommissionFees()));
         Metro.add(String.valueOf(td.getOutput().getMetro().getShippingFees()));
-<<<<<<< HEAD
         if (td.getInput().getPaymentMode().equals("prepaid")) {
             Metro.add(String.valueOf(td.getOutput().getMetro().getPrepaidFees()));
         }
         Metro.add(String.valueOf(td.getOutput().getMetro().getCSP()));
         Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCSP()));
-=======
-        if (td.getInput().getPaymentMode().equals("postpaid")) {
-            Metro.add(String.valueOf(td.getOutput().getMetro().getCS()));
-            Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCS()));
-        } else {
-            Metro.add(String.valueOf(td.getOutput().getMetro().getPrepaidFees()));
-            Metro.add(String.valueOf(td.getOutput().getMetro().getCSP()));
-            Metro.add(String.valueOf(td.getOutput().getMetro().getGstOnCSP()));
-        }
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         Metro.add(String.valueOf(td.getOutput().getMetro().getTotalCharges()));
         Metro.add(String.valueOf(td.getOutput().getMetro().getBankSettlement()));
         Metro.add(String.valueOf(td.getOutput().getMetro().getGstClaim()));
@@ -434,22 +361,11 @@ public class SavedData extends AppCompatActivity {
 
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCommissionFees()));
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getShippingFees()));
-<<<<<<< HEAD
         if (td.getInput().getPaymentMode().equals("prepaid")) {
             RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getPrepaidFees()));
         }
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCSP()));
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCSP()));
-=======
-        if (td.getInput().getPaymentMode().equals("postpaid")) {
-            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCS()));
-            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCS()));
-        } else {
-            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getPrepaidFees()));
-            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getCSP()));
-            RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstOnCSP()));
-        }
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getTotalCharges()));
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getBankSettlement()));
         RestOfIndia.add(String.valueOf(td.getOutput().getRestOfIndia().getGstClaim()));
@@ -461,22 +377,11 @@ public class SavedData extends AppCompatActivity {
 
         Kerela.add(String.valueOf(td.getOutput().getKerela().getCommissionFees()));
         Kerela.add(String.valueOf(td.getOutput().getKerela().getShippingFees()));
-<<<<<<< HEAD
         if (td.getInput().getPaymentMode().equals("prepaid")) {
             Kerela.add(String.valueOf(td.getOutput().getKerela().getPrepaidFees()));
         }
         Kerela.add(String.valueOf(td.getOutput().getKerela().getCSP()));
         Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCSP()));
-=======
-        if (td.getInput().getPaymentMode().equals("postpaid")) {
-            Kerela.add(String.valueOf(td.getOutput().getKerela().getCS()));
-            Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCS()));
-        } else {
-            Kerela.add(String.valueOf(td.getOutput().getKerela().getPrepaidFees()));
-            Kerela.add(String.valueOf(td.getOutput().getKerela().getCSP()));
-            Kerela.add(String.valueOf(td.getOutput().getKerela().getGstOnCSP()));
-        }
->>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
         Kerela.add(String.valueOf(td.getOutput().getKerela().getTotalCharges()));
         Kerela.add(String.valueOf(td.getOutput().getKerela().getBankSettlement()));
         Kerela.add(String.valueOf(td.getOutput().getKerela().getGstClaim()));

@@ -1,6 +1,10 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": 3,
+=======
+  "version": 1,
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 =======
   "version": 1,
 >>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
@@ -15,6 +19,7 @@
       "type": "SINGLE",
       "filters": [],
 <<<<<<< HEAD
+<<<<<<< HEAD
       "attributes": [],
       "versionCode": 3,
       "versionName": "1.2",
@@ -23,6 +28,8 @@
   ],
   "elementType": "File"
 =======
+=======
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
       "properties": [],
       "versionCode": 1,
       "versionName": "1.0",
@@ -30,5 +37,8 @@
       "outputFile": "app-release.apk"
     }
   ]
+<<<<<<< HEAD
+>>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
+=======
 >>>>>>> 7958cce5fecb1ce2efe325ca7f44614e7e551e6c
 }
